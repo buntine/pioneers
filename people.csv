@@ -1,4 +1,4 @@
-Name, Gender, Country, Born, Died, Biography, Picture
+Name, Gender, Country, Born, Died, Biography, Picture, Source
 "Muḥammad ibn Mūsā al-Khwārizmī", "Male", "Persia", "780", "850", "A Persian mathematician, astronomer and geographer during the Abbasid Caliphate, a scholar in the House of Wisdom in Baghdad."
 "John Vincent Atanasoff", "Male", "USA", "1903", "1995", "An American physicist and inventor."
 "Charles Babbage", "Male", "England", "1791", "1871", "An English mathematician, philosopher, inventor and mechanical engineer."
@@ -8,3 +8,4 @@ Name, Gender, Country, Born, Died, Biography, Picture
 "George Boole", "Male", "England", "1815", "1864", "An English mathematician, logician and philosopher."
 "Per Brinch Hansen", "Male", "Denmark", "1938", "2007", "A Danish computer scientist who spent the latter part of his life in the USA."
 "Nikolay Brusentsov", "Male", "Russia", "1925", "2014", "A Russian computer scientist."
+"Vannevar Bush", "Male", "USA", "1890", "1974", "An engineer, inventor and scientist from Massachusetts, USA."
