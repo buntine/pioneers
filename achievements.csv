@@ -32,3 +32,5 @@ Name, Date, Achievement, Tags, Impact, Source
 "Vint Cerf", "1973", "Conducted research around the notion of packet-switching network protocols.", "Networking, Internet", "3", "https://en.wikipedia.org/wiki/Vint_Cerf"
 "Vint Cerf", "1975", "Co-designed the TCP/IP network protocol suite for the US Department of Defense.", "TCP/IP, Networking, Internet", "4", "https://en.wikipedia.org/wiki/Internet_protocol_suite"
 "Vint Cerf", "1984", "Lead engineer on MCI Mail, the first commercial email service to be connected to the Internet", "Email, Networking, Internet", "4", "https://en.wikipedia.org/wiki/MCI_Mail"
+"Vint Cerf", "1992", "Co-founded the Internet Society to provide guidance for standards and education related to the Internet.", "Internet", "2", "https://en.wikipedia.org/wiki/Internet_Society"
+"Noam Chomsky", "1956", "Invented the Chomsky Hierarchy, which is a set of classes of formal grammars that have become especially important in the creation of compilers and interpreters in computer programming.", "Compiler, Programming Language", "4", "https://en.wikipedia.org/wiki/Chomsky_hierarchy"
