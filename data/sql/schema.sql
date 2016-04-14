@@ -14,7 +14,6 @@ create table people (
 drop table if exists impacts;
 create table impacts (
   id integer primary key,
-  name varchar(255) not null,
   value smallint unique
 );
 

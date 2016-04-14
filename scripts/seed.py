@@ -43,8 +43,8 @@ conn = sqlite3.connect("db/pioneers.sqlite3")
 db = conn.cursor()
 print "Opened database."
 
-for n in range(1, 5):
-    db.execute("INSERT INTO impacts VALUES ('%d', %d)" % (n, n))
+for n in range(1, 6):
+    db.execute("INSERT INTO impacts (value) VALUES (%d)" % n)
 
-db.commit()
+conn.commit()
 print "Created Impacts."
