@@ -1,6 +1,6 @@
 drop table if exists people;
 create table people (
-  id integer primary key autoincrement,
+  id integer primary key,
   name varchar(255) not null,
   gender tinyint not null,
   country varchar(255) not null,
@@ -13,16 +13,16 @@ create table people (
 
 drop table if exists impacts;
 create table impacts (
-  id integer primary_key autoincrement,
+  id integer primary key,
   name varchar(255) not null,
-  value unique smallint
+  value smallint unique
 );
 
 drop table if exists achievements;
 create table achievements (
-  id integer primary key autoincrement,
-  foreign_key(person_id) references people(id),
-  foreign_key(impact_id) references impacts(id),
+  id integer primary key,
+  person_id integer references people(id),
+  impact_id integer references impacts(id),
   year integer not null,
   description text not null,
   source varchar(255) not null
@@ -30,12 +30,12 @@ create table achievements (
 
 drop table if exists tags;
 create table tags (
-  id integer primary key autoincrement,
+  id integer primary key,
   name varchar(255) unique not null
 );
 
 drop table if exists achievements_tags;
 create table achievements_tags (
-  foreign_key(achievement_id) references achievements(id),
-  foreign_key(tag)id) references tags(id)
+  achievement_id integer references achievements(id),
+  tag_id integer references tags(id)
 );
