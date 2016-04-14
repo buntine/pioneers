@@ -28,14 +28,27 @@ create table achievements (
   source varchar(255) not null
 );
 
+drop table if exists awards;
+create table awards (
+  id integer primary key,
+  name varchar(255) not null
+);
+
+drop table if exists awardees;
+create table awardees (
+  award_id integer references awards(id),
+  person_id integer references people(id),
+  year integer not null
+);
+ 
 drop table if exists tags;
 create table tags (
   id integer primary key,
   name varchar(255) unique not null
 );
 
-drop table if exists achievements_tags;
-create table achievements_tags (
+drop table if exists achievement_tags;
+create table achievement_tags (
   achievement_id integer references achievements(id),
   tag_id integer references tags(id)
 );
