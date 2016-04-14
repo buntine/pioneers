@@ -1,3 +1,7 @@
+#! /usr/bin/env python
+
+import subprocess
+
 # Seeds the database from the CSV files in ./data/csv.
 
 # - Remove database
@@ -15,3 +19,21 @@
 
 # - For each award
 #   - Create and assign
+
+def run(cmd, success, fail, die_on_fail=True):
+    out = subprocess.call("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3", shell=True, stderr=subprocess.PIPE)
+
+    if out > 0:
+        print fail
+        if die_on_fail:
+            exit(1)
+    else:
+        print success
+
+run("rm db/pioneers.sqlite3",
+    "Removed database",
+    "No database. Continuing...", die_on_fail=False)
+
+run("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3",
+    "Created database from schema.",
+    "Could not create database. Dying...")
