@@ -2,6 +2,7 @@
 
 import subprocess
 import sqlite3
+import csv
 
 # Seeds the database from the CSV files in ./data/csv.
 
@@ -48,3 +49,12 @@ for n in range(1, 6):
 
 conn.commit()
 print "Created Impacts."
+
+with open("data/csv/people.csv", "rb") as csvfile:
+    people = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+
+    for row in people:
+        db.execute("INSERT INTO people (name, gender, country, yob, yod, biography, picture, source) VALUES ('%s')" % "', '".join(row))
+
+    conn.commit()
+    print "Created People."
