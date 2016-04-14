@@ -1,3 +1,5 @@
+PRAGMA encoding = "UTF-8"; 
+
 drop table if exists people;
 create table people (
   id integer primary key,

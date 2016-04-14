@@ -45,16 +45,27 @@ db = conn.cursor()
 print "Opened database."
 
 for n in range(1, 6):
-    db.execute("INSERT INTO impacts (value) VALUES (%d)" % n)
+    db.execute("INSERT INTO impacts (value) VALUES (?)", (n,))
 
 conn.commit()
 print "Created Impacts."
 
 with open("data/csv/people.csv", "rb") as csvfile:
     people = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+    next(people, None) # Skip headers.
 
     for row in people:
-        db.execute("INSERT INTO people (name, gender, country, yob, yod, biography, picture, source) VALUES ('%s')" % "', '".join(row))
+        db.execute("INSERT INTO people (name, gender, country, yob, yod, biography, picture, source) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", row)
 
     conn.commit()
     print "Created People."
+
+with open("data/csv/achievements.csv", "rb") as csvfile:
+    achievements = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+
+    for row in achievements:
+        db.execute("SELECT id FROM people WHERE name = ?", (row["Name"],))
+
+    conn.commit()
+    print "Created Achievements."
+ 
