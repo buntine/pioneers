@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 
 import subprocess
+import sqlite3
 
 # Seeds the database from the CSV files in ./data/csv.
 
@@ -37,3 +38,13 @@ run("rm db/pioneers.sqlite3",
 run("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3",
     "Created database from schema.",
     "Could not create database. Dying...")
+
+conn = sqlite3.connect("db/pioneers.sqlite3")
+db = conn.cursor()
+print "Opened database."
+
+for n in range(1, 5):
+    db.execute("INSERT INTO impacts VALUES ('%d', %d)" % (n, n))
+
+db.commit()
+print "Created Impacts."
