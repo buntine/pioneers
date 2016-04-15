@@ -5,22 +5,7 @@ import sqlite3
 import csv
 
 # Seeds the database from the CSV files in ./data/csv.
-
-# - Remove database
-# - Create database from schema
-
-# - Create 1..5 for impacts
-# - Import all from people.csv
-
-# - For each achievement
-#   - Assign person
-#   - Assign impact
-#   - For each tag:
-#     - Create and assign
-#   - Save
-
-# - For each award
-#   - Create and assign
+# WARNING: This script is destructive. The existing database will be blown away and replaced!
 
 def run(cmd, success, fail, die_on_fail=True):
     out = subprocess.call("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3", shell=True, stderr=subprocess.PIPE)
@@ -76,6 +61,8 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
                        (person[0], impact[0], row["Date"], row["Achievement"], row["Source"]))
 
             print "Created Achievement for %s" % (row["Name"],)
+
+            # TODO: Create tags here.
         else:
             print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
             continue
@@ -83,3 +70,4 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
     conn.commit()
     print "Created Achievements."
  
+# TODO: Create awards here.
