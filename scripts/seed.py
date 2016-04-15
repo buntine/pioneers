@@ -41,6 +41,7 @@ run("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3",
     "Could not create database. Dying...")
 
 conn = sqlite3.connect("db/pioneers.sqlite3")
+conn.text_factory = sqlite3.Binary
 db = conn.cursor()
 print "Opened database."
 
