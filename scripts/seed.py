@@ -65,6 +65,19 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
 
     for row in achievements:
         db.execute("SELECT id FROM people WHERE name = ?", (row["Name"],))
+        person = db.fetchone()
+
+        db.execute("SELECT id FROM impacts WHERE value = ?", (int(row["Impact"]),))
+        impact = db.fetchone()
+
+        if person and impact:
+            db.execute("INSERT INTO achievements (person_id, impact_id, year, description, source) VALUES (?, ?, ?, ?, ?)",
+                       (person[0], impact[0], row["Date"], row["Achievement"], row["Source"]))
+
+            print "Created Achievement for %s" % (row["Name"],)
+        else:
+            print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
+            continue
 
     conn.commit()
     print "Created Achievements."
