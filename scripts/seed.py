@@ -60,14 +60,22 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
             db.execute("INSERT INTO achievements (person_id, impact_id, year, description, source) VALUES (?, ?, ?, ?, ?)",
                        (person[0], impact[0], row["Date"], row["Achievement"], row["Source"]))
 
+            conn.commit()
             print "Created Achievement for %s" % (row["Name"],)
 
-            # TODO: Create tags here.
+            tags = map(lambda t: t.strip(), row["Tags"].split(","))
+
+            for t in tags:
+                db.execute("SELECT id FROM tags WHERE name = ?", (t,))
+                tag = db.fetchone()
+
+                if tag:
+                    db.execute
+
         else:
             print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
             continue
 
-    conn.commit()
     print "Created Achievements."
  
 # TODO: Create awards here.
