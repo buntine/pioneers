@@ -3,7 +3,9 @@
 import subprocess
 import sqlite3
 import csv
-import models
+
+from models import *
+from pony.orm import *
 
 # Seeds the database from the CSV files in ./data/csv.
 
@@ -12,11 +14,12 @@ conn.text_factory = sqlite3.Binary
 db = conn.cursor()
 print "Opened database."
 
-for n in range(1, 6):
-    db.execute("INSERT INTO impact (value) VALUES (?)", (n,))
+with db_session:
+    for n in range(1, 6):
+        Impact(value = n)
 
-conn.commit()
-print "Created Impacts."
+    commit()
+    print "Created Impacts."
 
 with open("data/csv/people.csv", "rb") as csvfile:
     people = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
