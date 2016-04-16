@@ -1,3 +1,4 @@
 .*.sw*
 venv/*
 db/*.sqlite3
+*.pyc

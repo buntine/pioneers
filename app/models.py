@@ -1,5 +1,4 @@
 from pony.orm import *
-import os
 
 db = Database()
 

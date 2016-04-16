@@ -3,27 +3,9 @@
 import subprocess
 import sqlite3
 import csv
+import models
 
 # Seeds the database from the CSV files in ./data/csv.
-# WARNING: This script is destructive. The existing database will be blown away and replaced!
-
-def run(cmd, success, fail, die_on_fail=True):
-    out = subprocess.call("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3", shell=True, stderr=subprocess.PIPE)
-
-    if out > 0:
-        print fail
-        if die_on_fail:
-            exit(1)
-    else:
-        print success
-
-run("rm db/pioneers.sqlite3",
-    "Removed database",
-    "No database. Continuing...", die_on_fail=False)
-
-run("cat data/sql/schema.sql | sqlite3 db/pioneers.sqlite3",
-    "Created database from schema.",
-    "Could not create database. Dying...")
 
 conn = sqlite3.connect("db/pioneers.sqlite3")
 conn.text_factory = sqlite3.Binary
@@ -31,7 +13,7 @@ db = conn.cursor()
 print "Opened database."
 
 for n in range(1, 6):
-    db.execute("INSERT INTO impacts (value) VALUES (?)", (n,))
+    db.execute("INSERT INTO impact (value) VALUES (?)", (n,))
 
 conn.commit()
 print "Created Impacts."
