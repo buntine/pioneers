@@ -9,6 +9,8 @@ from pony.orm import *
 # Seeds the database from the CSV files in ./data/csv.
 # WARNING: This import is destructive. All existing data will be purged!
 
+# sql_debug(True)
+
 print "Opened database."
 
 with db_session:
@@ -37,8 +39,6 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
     achievements = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
 
     with db_session:
-        print "Removed: %d Achievements." % Achievement.select().delete()
-
         for row in achievements:
             person = Person.get(name = row["Name"])
             impact = Impact.get(value = int(row["Impact"]))
@@ -50,18 +50,18 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
                 Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"], source = row["Source"],
                             tags = tags)
 
-                commit()
 
                 print "Created Achievement for %s" % person.name
             else:
                 print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
                 continue
 
+        commit()
+
 with open("data/csv/awards.csv", "rb") as csvfile:
     wins = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
 
     with db_session:
-        print "Removed: %d Wins." % Win.select().delete()
         print "Removed: %d Awards." % Award.select().delete()
 
         for row in wins:
@@ -71,9 +71,9 @@ with open("data/csv/awards.csv", "rb") as csvfile:
             if person:
                 Win(award = award, person = person, year = row["Year"])
 
-                commit()
-
                 print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
             else:
                 print "WARN: Unknown person (%s). Skipping..." % row["Name"]
                 continue
+
+        commit()
