@@ -12,6 +12,8 @@ from pony.orm import *
 print "Opened database."
 
 with db_session:
+    print "Removed: %d Impacts." % Impact.select().delete()
+
     for n in range(1, 6):
         Impact(value = n)
 
@@ -22,6 +24,8 @@ with open("data/csv/people.csv", "rb") as csvfile:
     people = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
 
     with db_session:
+        print "Removed: %d People." % Person.select().delete()
+
         for row in people:
             Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"], yod = row["Died"] if len(row["Died"]) > 0 else 0,
                    biography = row["Biography"], picture = row["Picture"], source = row["Source"])
@@ -33,6 +37,8 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
     achievements = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
 
     with db_session:
+        print "Removed: %d Achievements." % Achievement.select().delete()
+
         for row in achievements:
             person = Person.get(name = row["Name"])
             impact = Impact.get(value = int(row["Impact"]))
