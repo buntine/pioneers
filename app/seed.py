@@ -58,5 +58,24 @@ with open("data/csv/achievements.csv", "rb") as csvfile:
                 continue
 
         print "Created Achievements."
- 
-# TODO: Create awards here.
+
+with open("data/csv/awards.csv", "rb") as csvfile:
+    wins = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+
+    with db_session:
+        print "Removed: %d Wins." % Win.select().delete()
+        print "Removed: %d Awards." % Award.select().delete()
+
+        for row in wins:
+            award = Award.get(name = row["Award"]) or Award(name = row["Award"])
+            person = Person.get(name = row["Name"])
+
+            if person:
+                Win(award = award, person = person, year = row["Year"])
+
+                commit()
+
+                print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
+            else:
+                print "WARN: Unknown person (%s). Skipping..." % row["Name"]
+                continue

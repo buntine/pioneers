@@ -23,8 +23,8 @@ class Award(db.Entity):
     name = Required(str)
 
 class Win(db.Entity):
-    people = Set("Person")
-    awards = Set("Award")
+    person = Required(Person)
+    award = Required(Award)
     year = Required(int)
 
 class Tag(db.Entity):
