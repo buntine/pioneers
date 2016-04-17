@@ -22,14 +22,15 @@ with db_session:
     print "Created Impacts."
 
 with open("data/csv/people.csv", "rb") as csvfile:
-    people = csv.reader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
-    next(people, None) # Skip headers.
+    people = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
 
-    for row in people:
-        db.execute("INSERT INTO people (name, gender, country, yob, yod, biography, picture, source) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", row)
+    with db_session:
+        for row in people:
+            Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"], yod = row["Died"] if len(row["Died"]) > 0 else 0,
+                   biography = row["Biography"], picture = row["Picture"], source = row["Source"])
 
-    conn.commit()
-    print "Created People."
+        commit()
+        print "Created People."
 
 with open("data/csv/achievements.csv", "rb") as csvfile:
     achievements = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)

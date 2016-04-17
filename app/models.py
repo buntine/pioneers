@@ -10,6 +10,7 @@ class Person(db.Entity):
     achievements = Set("Achievement")
     wins = Set("Win")
     name = Required(str)
+    country = Required(str)
     gender = Required(str)
     yob = Required(int)
     yod = Required(int)
