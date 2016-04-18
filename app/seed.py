@@ -13,7 +13,13 @@ from pony.orm import *
 
 print "Opened database."
 
-with db_session:
+def with_csv(path, f):
+    with open(path, "rb") as csvfile:
+        rows = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+        f(rows)   
+
+@db_session
+def impacts():
     print "Removed: %d Impacts." % Impact.select().delete()
 
     for n in range(1, 6):
@@ -21,59 +27,57 @@ with db_session:
 
     commit()
     print "Created Impacts."
+ 
+@db_session
+def people(rows):
+    print "Removed: %d People." % Person.select().delete()
 
-with open("data/csv/people.csv", "rb") as csvfile:
-    people = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+    for row in rows:
+        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"], yod = row["Died"] if len(row["Died"]) > 0 else 0,
+               biography = row["Biography"], picture = row["Picture"], source = row["Source"])
+        print "Created Person: %s" % row["Name"]
 
-    with db_session:
-        print "Removed: %d People." % Person.select().delete()
+    commit()
 
-        for row in people:
-            Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"], yod = row["Died"] if len(row["Died"]) > 0 else 0,
-                   biography = row["Biography"], picture = row["Picture"], source = row["Source"])
-            print "Created Person: %s" % row["Name"]
+@db_session
+def achievements(rows):
+    for row in rows:
+        person = Person.get(name = row["Name"])
+        impact = Impact.get(value = int(row["Impact"]))
 
-        commit()
+        if person and impact:
+            tags = map(lambda t: Tag.get(name = t) or Tag(name = t),
+                       map(lambda t: t.strip(), row["Tags"].split(",")))
 
-with open("data/csv/achievements.csv", "rb") as csvfile:
-    achievements = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+            Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"], source = row["Source"],
+                        tags = tags)
 
-    with db_session:
-        for row in achievements:
-            person = Person.get(name = row["Name"])
-            impact = Impact.get(value = int(row["Impact"]))
+            print "Created Achievement for %s" % person.name
+        else:
+            print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
+            continue
 
-            if person and impact:
-                tags = map(lambda t: Tag.get(name = t) or Tag(name = t),
-                           map(lambda t: t.strip(), row["Tags"].split(",")))
+    commit()
 
-                Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"], source = row["Source"],
-                            tags = tags)
+@db_session
+def awards(rows):
+    print "Removed: %d Awards." % Award.select().delete()
 
+    for row in rows:
+        award = Award.get(name = row["Award"]) or Award(name = row["Award"])
+        person = Person.get(name = row["Name"])
 
-                print "Created Achievement for %s" % person.name
-            else:
-                print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
-                continue
+        if person:
+            Win(award = award, person = person, year = row["Year"])
 
-        commit()
+            print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
+        else:
+            print "WARN: Unknown person (%s). Skipping..." % row["Name"]
+            continue
 
-with open("data/csv/awards.csv", "rb") as csvfile:
-    wins = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
+    commit()
 
-    with db_session:
-        print "Removed: %d Awards." % Award.select().delete()
-
-        for row in wins:
-            award = Award.get(name = row["Award"]) or Award(name = row["Award"])
-            person = Person.get(name = row["Name"])
-
-            if person:
-                Win(award = award, person = person, year = row["Year"])
-
-                print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
-            else:
-                print "WARN: Unknown person (%s). Skipping..." % row["Name"]
-                continue
-
-        commit()
+impacts()
+with_csv("data/csv/people.csv", people)
+with_csv("data/csv/achievements.csv", achievements)
+with_csv("data/csv/awards.csv", awards)
