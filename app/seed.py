@@ -13,10 +13,12 @@ from pony.orm import *
 
 print "Opened database."
 
+@db_session
 def with_csv(path, f):
     with open(path, "rb") as csvfile:
         rows = csv.DictReader(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL, skipinitialspace=True)
         f(rows)   
+        commit()
 
 @db_session
 def impacts():
@@ -37,9 +39,6 @@ def people(rows):
                biography = row["Biography"], picture = row["Picture"], source = row["Source"])
         print "Created Person: %s" % row["Name"]
 
-    commit()
-
-@db_session
 def achievements(rows):
     for row in rows:
         person = Person.get(name = row["Name"])
@@ -57,9 +56,6 @@ def achievements(rows):
             print "WARN: Unknown person or impact (%s, %s). Skipping..." % (row["Name"], row["Impact"])
             continue
 
-    commit()
-
-@db_session
 def awards(rows):
     print "Removed: %d Awards." % Award.select().delete()
 
@@ -74,8 +70,6 @@ def awards(rows):
         else:
             print "WARN: Unknown person (%s). Skipping..." % row["Name"]
             continue
-
-    commit()
 
 impacts()
 with_csv("data/csv/people.csv", people)
