@@ -15,3 +15,4 @@ Name, Gender, Country, Born, Died, Biography, Picture, Source
 "Alonzo Church", "Male", "USA", "1903", "1995", "A mathematician and logician from Washington D.C, USA.", "alonzo_church.jpg", "https://en.wikipedia.org/wiki/Alonzo_Church"
 "Wesley A. Clark", "Male", "USA", "1927", "2016", "A physicist and computer designer from Connecticut, USA.", "wesley_a_clark.jpg", "https://en.wikipedia.org/wiki/Wesley_A._Clark"
 "Edmund M. Clarke", "Male", "USA", "1945", "", "A computer scientist and academic from Virginia, USA.", "edmund_m_clarke.jpg", "https://en.wikipedia.org/wiki/Edmund_M._Clarke"
+"Edgar F. Codd", "Male", "England", "1923", "2003", "An English computer scientist and long-term IBM employee.", "edgar_f_codd.jpg", "https://en.wikipedia.org/wiki/Edgar_F._Codd"
