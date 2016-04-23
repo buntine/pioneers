@@ -16,3 +16,4 @@ Name, Gender, Country, Born, Died, Biography, Picture, Source
 "Wesley A. Clark", "Male", "USA", "1927", "2016", "A physicist and computer designer from Connecticut, USA.", "wesley_a_clark.jpg", "https://en.wikipedia.org/wiki/Wesley_A._Clark"
 "Edmund M. Clarke", "Male", "USA", "1945", "", "A computer scientist and academic from Virginia, USA.", "edmund_m_clarke.jpg", "https://en.wikipedia.org/wiki/Edmund_M._Clarke"
 "Edgar F. Codd", "Male", "England", "1923", "2003", "An English computer scientist and long-term IBM employee.", "edgar_f_codd.jpg", "https://en.wikipedia.org/wiki/Edgar_F._Codd"
+"Douglas Engelbart", "Male", "USA", "1925", "2013", "An Californian engineer, inventor and Computer pioneer.", "douglas_engelbart.jpg", "https://en.wikipedia.org/wiki/Douglas_Engelbart"
