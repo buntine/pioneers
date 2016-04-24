@@ -1,16 +1,15 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from models import *
 from pony.orm import *
 
-DEBUG = True
-
 app = Flask(__name__)
+app.config.from_envvar('SETTINGS', silent=True)
 
 @app.route("/")
 @db_session
 def index():
     people = Person.select()
-    return str(len(people))
+    return render_template("index.html", people=people)
 
 @app.route("/people")
 @db_session
@@ -23,4 +22,4 @@ def people():
     return people
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG)
+    app.run()
