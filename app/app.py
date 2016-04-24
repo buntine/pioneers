@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from models import *
 from pony.orm import *
 
@@ -18,8 +18,9 @@ def people():
     # Get People and mix in achievements for tags
     # Markup results with "total" which is sum of "importance" of achievements
     # Example:
+    tags = request.args.getlist("tag")
     people = [{"name": "Andrew", "achievements": [{"description": "Invented everything", "year": 1945}], "total": 12}]
-    return people
+    return jsonify(people=people)
 
 if __name__ == "__main__":
     app.run()
