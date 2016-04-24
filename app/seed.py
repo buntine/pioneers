@@ -46,7 +46,7 @@ def achievements(rows):
 
         if person and impact:
             tags = map(lambda t: Tag.get(name = t) or Tag(name = t),
-                       map(lambda t: t.strip(), row["Tags"].split(",")))
+                       map(lambda t: t.strip().lower(), row["Tags"].split(",")))
 
             Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"], source = row["Source"],
                         tags = tags)

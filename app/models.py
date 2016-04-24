@@ -2,6 +2,8 @@ from pony.orm import *
 
 db = Database()
 
+sql_debug(True)
+
 class Impact(db.Entity):
     value = Required(int)
     achievements = Set("Achievement")

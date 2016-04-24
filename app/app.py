@@ -19,8 +19,9 @@ def people():
     # Markup results with "total" which is sum of "importance" of achievements
     # Example:
     tags = request.args.getlist("tag")
-    people = [{"name": "Andrew", "achievements": [{"description": "Invented everything", "year": 1945}], "total": 12}]
-    return jsonify(people=people)
+    people = left_join((p, a) for p in Person for a in p.achievements for t in a.tags if t.name in tags)
+
+    return jsonify(people=people[:])
 
 if __name__ == "__main__":
     app.run()
