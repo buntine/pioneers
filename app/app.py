@@ -7,12 +7,21 @@ app = Flask(__name__)
 app.config.from_envvar('SETTINGS', silent=True)
 
 def expand_achievements(achievements):
-    return map(lambda a: {"description": a.description}, achievements)
+    return map(lambda a: {"description": a.description,
+                          "year": a.year,
+                          "impact": a.impact.value,
+                          "source": a.source}, achievements)
+
+def expand_person(person, achievements):
+    p = person.to_dict(only=["name", "country", "gender", "yob", "yod", "biography", "picture", "source"])
+    p["achievements"] = expand_achievements(achievements)
+    p["impact"] = reduce(lambda t, a: t + a["impact"], p["achievements"], 0)
+
+    return p
 
 def to_list(people):
     "Translates a dict of people->achievements into a list people."
-    return [{"name": p.name,
-             "achievements": expand_achievements(a)} for p, a in people.iteritems()]
+    return [expand_person(p, a) for p, a in people.iteritems()]
 
 def to_dict(people):
     "Collects a list of (person, achievement) into a dict of people->achievements."
@@ -20,10 +29,6 @@ def to_dict(people):
     for k, v in people: p[k].append(v)
 
     return p
-
-def all_achievements(people):
-    "Adds remaining achievements for each person."
-    return people
 
 @app.route("/")
 @db_session
@@ -39,9 +44,8 @@ def people():
                                for a in p.achievements
                                for t in a.tags if t.name in tags)
 
-    people = all_achievements(
-               to_list(
-                 to_dict(results[:])))
+    people = to_list(
+               to_dict(results[:]))
 
     print people
 
