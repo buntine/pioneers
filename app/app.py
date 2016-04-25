@@ -55,7 +55,7 @@ def index():
 @db_session
 def people():
     tags = request.args.getlist("tag")
-    operation = request.args.get("op")
+    operation = request.args.get("op", "OR")
     people = translate(
                left_join((p, a) for p in Person
                                 for a in p.achievements
