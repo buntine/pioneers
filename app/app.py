@@ -5,6 +5,15 @@ from pony.orm import *
 app = Flask(__name__)
 app.config.from_envvar('SETTINGS', silent=True)
 
+def dictify(people):
+    "Collects a list of (person, achievement) into a dict of people->achievements.
+     Also decorates dict with sum of importance of achievements."
+    people
+
+def all_achievements(people):
+    "Adds remaining achievements for each person."
+    people
+
 @app.route("/")
 @db_session
 def index():
@@ -14,14 +23,15 @@ def index():
 @app.route("/people")
 @db_session
 def people():
-    # Get tags
-    # Get People and mix in achievements for tags
-    # Markup results with "total" which is sum of "importance" of achievements
-    # Example:
     tags = request.args.getlist("tag")
-    people = left_join((p, a) for p in Person for a in p.achievements for t in a.tags if t.name in tags)
+    results = left_join((p, a) for p in Person
+                               for a in p.achievements
+                               for t in a.tags if t.name in tags)
 
-    return jsonify(people=people[:])
+    people = all_achievements(
+               to_dict(people[:]))
+
+    return jsonify(people=people)
 
 if __name__ == "__main__":
     app.run()
