@@ -24,19 +24,25 @@ def expand_person(person, achievements):
     return p
 
 def to_list(people):
-    "Translates a dict of people->achievements into a list people."
+    "Translates a dict of people->achievements into a list of people."
     return [expand_person(p, a) for p, a in people.iteritems()]
 
-def to_dict(people):
+def has_all_tags(achievement, tags):
+    names = [t.name for t in achievement.tags]
+    return all(map(lambda t: t in names, tags))
+
+def to_dict(people, tags=[]):
     "Collects a list of (person, achievement) into a dict of people->achievements."
     p = defaultdict(list)
-    for k, v in people: p[k].append(v)
+    for k, v in people:
+        if len(tags) == 0 or has_all_tags(v, tags):
+            p[k].append(v)
 
     return p
 
-def translate(results):
+def translate(results, tags=[]):
     return to_list(
-             to_dict(results[:]))
+             to_dict(results[:], tags))
 
 @app.route("/")
 @db_session
@@ -48,10 +54,12 @@ def index():
 @db_session
 def people():
     tags = request.args.getlist("tag")
+    operation = request.args.get("op")
     people = translate(
                left_join((p, a) for p in Person
                                 for a in p.achievements
-                                for t in a.tags if t.name in tags))
+                                for t in a.tags if t.name in tags),
+               tags if operation == "AND" else [])
 
     return jsonify(people=people)
 
