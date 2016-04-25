@@ -45,6 +45,15 @@ def translate(results, tags=[]):
     return to_list(
              to_dict(results[:], tags))
 
+def all_achievements_for_tags(tags):
+    return left_join((p, a) for p in Person
+                            for a in p.achievements
+                            for t in a.tags if t.name in tags)
+ 
+def all_achievements():
+    return left_join((p, a) for p in Person
+                            for a in p.achievements)
+ 
 @app.route("/")
 @db_session
 def index():
@@ -57,9 +66,7 @@ def people():
     tags = request.args.getlist("tag")
     operation = request.args.get("op", "OR")
     people = translate(
-               left_join((p, a) for p in Person
-                                for a in p.achievements
-                                for t in a.tags if t.name in tags),
+               all_achievements_for_tags(tags) if len(tags) > 0 else all_achievements(),
                tags if operation == "AND" else [])
 
     return jsonify(people=people)
