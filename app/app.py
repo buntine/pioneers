@@ -29,11 +29,12 @@ def to_list(people):
 
 def has_all_tags(achievement, tags):
     names = [t.name for t in achievement.tags]
-    return all(map(lambda t: t in names, tags))
+    return all([t in names for t in tags])
 
 def to_dict(people, tags=[]):
     "Collects a list of (person, achievement) into a dict of people->achievements."
     p = defaultdict(list)
+
     for k, v in people:
         if len(tags) == 0 or has_all_tags(v, tags):
             p[k].append(v)
