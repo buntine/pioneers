@@ -12,9 +12,13 @@ def expand_achievements(achievements):
                           "impact": a.impact.value,
                           "source": a.source}, achievements)
 
+def expand_wins(wins):
+    return map(lambda w: {"name": w.award.name, "year": w.year}, wins)
+
 def expand_person(person, achievements):
     p = person.to_dict(only=["name", "country", "gender", "yob", "yod", "biography", "picture", "source"])
     p["achievements"] = expand_achievements(achievements)
+    p["wins"] = expand_wins(person.wins)
     p["impact"] = reduce(lambda t, a: t + a["impact"], p["achievements"], 0)
 
     return p
@@ -30,6 +34,10 @@ def to_dict(people):
 
     return p
 
+def translate(results):
+    return to_list(
+             to_dict(results[:]))
+
 @app.route("/")
 @db_session
 def index():
@@ -40,14 +48,10 @@ def index():
 @db_session
 def people():
     tags = request.args.getlist("tag")
-    results = left_join((p, a) for p in Person
-                               for a in p.achievements
-                               for t in a.tags if t.name in tags)
-
-    people = to_list(
-               to_dict(results[:]))
-
-    print people
+    people = translate(
+               left_join((p, a) for p in Person
+                                for a in p.achievements
+                                for t in a.tags if t.name in tags))
 
     return jsonify(people=people)
 
