@@ -17,3 +17,5 @@ Name, Gender, Country, Born, Died, Biography, Picture, Source
 "Edmund M. Clarke", "Male", "USA", "1945", "", "A computer scientist and academic from Virginia, USA.", "edmund_m_clarke.jpg", "https://en.wikipedia.org/wiki/Edmund_M._Clarke"
 "Edgar F. Codd", "Male", "England", "1923", "2003", "An English computer scientist and long-term IBM employee.", "edgar_f_codd.jpg", "https://en.wikipedia.org/wiki/Edgar_F._Codd"
 "Douglas Engelbart", "Male", "USA", "1925", "2013", "An Californian engineer, inventor and Computer pioneer.", "douglas_engelbart.jpg", "https://en.wikipedia.org/wiki/Douglas_Engelbart"
+"E. Allen Emerson", "Male", "USA", "1954", "", "An computer scientist from Texas, USA.", "e_allen_emerson.jpg", "https://en.wikipedia.org/wiki/E._Allen_Emerson"
+"Stephen Cook", "Male", "USA", "1939", "", "An American-Canadian computer scientist and mathematician.", "stephen_cook.jpg", "https://en.wikipedia.org/wiki/Stephen_Cook"
