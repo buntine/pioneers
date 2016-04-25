@@ -57,8 +57,7 @@ def all_achievements():
 @app.route("/")
 @db_session
 def index():
-    people = Person.select()
-    return render_template("index.html", people=people)
+    return render_template("index.html")
 
 @app.route("/people")
 @db_session
