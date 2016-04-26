@@ -4,7 +4,7 @@ from pony.orm import *
 from collections import defaultdict
 
 app = Flask(__name__)
-app.config.from_envvar('SETTINGS', silent=True)
+app.config.from_envvar("SETTINGS", silent=True)
 
 def expand_achievements(achievements):
     return map(lambda a: {"description": a.description,
