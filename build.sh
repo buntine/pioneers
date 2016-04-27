@@ -1,2 +1,2 @@
-tsc --out app/static/js/app.js typescript/app.ts && \
+tsc && \
   SETTINGS=app/settings.py python ./app/app.py
