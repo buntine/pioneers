@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "app/static/js/app.js",
+        "sourceMap": true
+    },
+  "files": [
+    "typescript/app.ts"
+  ]
+}
