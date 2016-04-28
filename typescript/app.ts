@@ -12,7 +12,7 @@ interface IAchievement {
   year: number;
 }
 
-interface IPerson {
+class Person {
   name: string;
   country: string;
   gender: string;
@@ -24,10 +24,22 @@ interface IPerson {
   yod: number;
   wins: Array<IWin>;
   achievements: Array<IAchievement>;
+
+  constructor(p: {name: string}) {
+    this.name = p.name;
+  }
+
+  test() {
+    return "Hello " + this.name;
+  }
 }
 
 $(function(){
   $.getJSON("/people", {"tag": ["www", "internet"], "op": "OR"},
-    (d:string, s:string, x:any) => {console.log(d);}
+    (d:any) => {
+      let people: Person[] = $.map(d.people, (p:any) => {return new Person(p)});
+
+      console.log(people[0].test());
+    }
   );
 });
