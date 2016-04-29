@@ -29,7 +29,7 @@ interface IPerson {
 class Person implements IPerson {
   constructor(public name: string, public country: string, public gender: string, public impact: number, public biography: string,
               public picture: string, public source: string, public yob: number, public yod: number,
-              public achievements: Array<any>, public wins: Array<any>) {
+              public achievements: Array<IAchievement>, public wins: Array<IWin>) {
     this.name = name;
     this.country = country;
     this.gender = gender;
@@ -39,8 +39,8 @@ class Person implements IPerson {
     this.source = source;
     this.yod = yod;
     this.yob = yob;
-    this.achievements = $.map(achievements, (a:any) => {return <IAchievement>a;})
-    this.wins = $.map(wins, (a:any) => {return <IWin>a;})
+    this.achievements = $.map(achievements, (a:IAchievement) => {return <IAchievement>a;})
+    this.wins = $.map(wins, (a:IWin) => {return <IWin>a;})
   }
 
   test() {
@@ -50,13 +50,11 @@ class Person implements IPerson {
 
 $(function(){
   $.getJSON("/people", {"tag": ["www", "internet"], "op": "OR"},
-    (d:any) => {
-      let people: Person[] = $.map(d.people, (p:any) => {
+    (d:{people: IPerson}) => {
+      let people: Person[] = $.map(d.people, (p:IPerson) => {
         return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
                           p.source, p.yod, p.yob, p.achievements, p.wins)
       });
-
-      console.log(people[0].test());
     }
   );
 });
