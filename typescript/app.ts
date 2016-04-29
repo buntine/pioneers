@@ -43,18 +43,24 @@ class Person implements IPerson {
     this.wins = $.map(wins, (a:IWin) => {return <IWin>a;})
   }
 
+  static fromIPerson(p:IPerson) {
+    return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
+                      p.source, p.yod, p.yob, p.achievements, p.wins);
+  }
+
   test() {
     return "Hello " + this.name;
   }
 }
 
 $(function(){
-  $.getJSON("/people", {"tag": ["www", "internet"], "op": "OR"},
-    (d:{people: IPerson}) => {
-      let people: Person[] = $.map(d.people, (p:IPerson) => {
-        return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
-                          p.source, p.yod, p.yob, p.achievements, p.wins)
-      });
-    }
-  );
+  $("#search").submit((e:any) => {
+    e.preventDefault();
+
+    $.getJSON("/people", $("#search").serialize(),
+      (d:{people: IPerson}) => {
+        let people: Person[] = $.map(d.people, Person.fromIPerson)
+      }
+    );
+  });
 });
