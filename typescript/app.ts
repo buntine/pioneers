@@ -47,10 +47,6 @@ class Person implements IPerson {
     return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
-
-  test() {
-    return "Hello " + this.name;
-  }
 }
 
 $(function(){

@@ -11,9 +11,10 @@
     <div class=page>
       <h1>Pioneers</h1>
       <form method="get" id="search" action="/people">
-        <input type="text" id="tags">
-        <input type="hidden" name="tag" value="www">
-        <input type="hidden" name="tag" value="internet">
+        <select multiple name="tag" id="tags">
+          <option value="www">WWW</option>
+          <option value="internet">Internet</option>
+        </select>
         <input type="radio" name="op" value="OR">
         <input type="radio" name="op" value="AND">
         <input type="submit" value="Go">
