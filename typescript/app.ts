@@ -77,11 +77,11 @@ class People extends Array<Person> {
 }
 
 $(function(){
-  let canvas = $("#cvs");
-  let ctx = canvas[0].getContext("2d");
+  let cvs = $("#cvs")[0];
+  let ctx = cvs.getContext("2d");
 
-  canvas.attr("width", $(window).width() - 20);
-  canvas.attr("height", $(window).height() - canvas.offsetTop);
+  cvs.width = $(window).width() - 20;
+  cvs.height = $(window).height() - cvs.offsetTop;
 
   $("#search").submit((e:any) => {
     e.preventDefault();
