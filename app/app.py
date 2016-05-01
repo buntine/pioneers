@@ -57,7 +57,7 @@ def all_achievements():
 @app.route("/")
 @db_session
 def index():
-    return render_template("index.html")
+    return render_template("index.html", tags=select(t.name for t in Tag)[:])
 
 @app.route("/people")
 @db_session
@@ -71,4 +71,4 @@ def people():
     return jsonify(people=people)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
