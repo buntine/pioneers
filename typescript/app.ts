@@ -48,8 +48,29 @@ class Person implements IPerson {
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
 
+  public draw(ctx:any, unit:number) {
+    console.log(this.impact * unit)
+  }
+}
+
+class People {
+  private people:Person[];
+  private total:number;
+
+  constructor() {
+    this.people = [];
+    this.total = 0;
+  }
+
+  public push(p:Person) {
+    this.people.push(p);
+    this.total += p.impact;
+  }
+
   public draw(ctx:any) {
-    
+    let unit = Math.min(ctx.canvas.width / this.total, ctx.canvas.height / this.total);
+
+    $.each(this.people, (_:any, p:Person) => { p.draw(ctx, unit); });
   }
 }
 
@@ -64,8 +85,10 @@ $(function(){
     e.preventDefault();
 
     $.getJSON("/people", $("#search").serialize(),
-      (d:{people: IPerson}) => {
-        let people: Person[] = $.map(d.people, (p:IPerson) => { Person.fromIPerson(p).draw(ctx); } )
+      (d:{people:IPerson}) => {
+        let people:People = new People();
+
+        $.each(d.people, (_:any, p:IPerson) => { people.push(Person.fromIPerson(p)); });
       }
     );
   });
