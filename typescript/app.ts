@@ -47,15 +47,25 @@ class Person implements IPerson {
     return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
+
+  public draw(ctx:any) {
+    
+  }
 }
 
 $(function(){
+  let canvas = $("#cvs");
+  let ctx = canvas[0].getContext("2d");
+
+  canvas.attr("width", $(window).width() - 20);
+  canvas.attr("height", $(window).height() - canvas.offsetTop);
+
   $("#search").submit((e:any) => {
     e.preventDefault();
 
     $.getJSON("/people", $("#search").serialize(),
       (d:{people: IPerson}) => {
-        let people: Person[] = $.map(d.people, Person.fromIPerson)
+        let people: Person[] = $.map(d.people, (p:IPerson) => { Person.fromIPerson(p).draw(ctx); } )
       }
     );
   });
