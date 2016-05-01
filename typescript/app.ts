@@ -75,7 +75,7 @@ class People extends Array<Person> {
 
   public draw(ctx:any) {
     let cvs = ctx.canvas;
-    let unit = Math.min(cvs.width / this.total, cvs.height / this.total);
+    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * 1.7;
 
     for (let p of this) {
       p.draw(ctx, unit);
