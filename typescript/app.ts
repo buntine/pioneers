@@ -53,24 +53,24 @@ class Person implements IPerson {
   }
 }
 
-class People {
-  private people:Person[];
+class People extends Array<Person> {
   private total:number;
 
   constructor() {
-    this.people = [];
+    super();
     this.total = 0;
   }
 
-  public push(p:Person) {
-    this.people.push(p);
+  public add(p:Person) {
+    this.push(p);
     this.total += p.impact;
+    return 0;
   }
 
   public draw(ctx:any) {
     let unit = Math.min(ctx.canvas.width / this.total, ctx.canvas.height / this.total);
 
-    $.each(this.people, (_:any, p:Person) => { p.draw(ctx, unit); });
+    $.each(this, (_:any, p:Person) => { p.draw(ctx, unit); });
   }
 }
 
@@ -88,7 +88,9 @@ $(function(){
       (d:{people:IPerson}) => {
         let people:People = new People();
 
-        $.each(d.people, (_:any, p:IPerson) => { people.push(Person.fromIPerson(p)); });
+        $.each(d.people, (_:any, p:IPerson) => { people.add(Person.fromIPerson(p)); });
+
+        people.draw(ctx);
       }
     );
   });
