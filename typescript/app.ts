@@ -62,6 +62,7 @@ class Person implements IPerson {
 
 class People extends Array<Person> {
   private total:number;
+  private static delta:number = 2.2;
 
   constructor() {
     super();
@@ -75,7 +76,7 @@ class People extends Array<Person> {
 
   public draw(ctx:any) {
     let cvs = ctx.canvas;
-    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * 1.7;
+    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * People.delta;
 
     for (let p of this) {
       p.draw(ctx, unit);
