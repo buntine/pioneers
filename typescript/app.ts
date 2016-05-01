@@ -54,7 +54,9 @@ class Person implements IPerson {
 
     img.src = "/static/images/" + this.picture;
 
-    ctx.drawImage(img, 100, 100, radius, radius);
+    // Just draw randomly for now until I get the particule system going...
+    ctx.drawImage(img, Math.random() * (ctx.canvas.width - radius),
+                  Math.random() * (ctx.canvas.height - radius), radius, radius);
   }
 }
 
@@ -94,6 +96,8 @@ $(function(){
     $.getJSON("/people", $("#search").serialize(),
       (d:{people:Array<IPerson>}) => {
         let people:People = new People();
+
+        ctx.clearRect(0, 0, cvs.width, cvs.height);
 
         for (let p of d.people) {
           people.add(Person.fromIPerson(p));
