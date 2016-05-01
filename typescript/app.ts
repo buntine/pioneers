@@ -64,13 +64,15 @@ class People extends Array<Person> {
   public add(p:Person) {
     this.push(p);
     this.total += p.impact;
-    return 0;
   }
 
   public draw(ctx:any) {
-    let unit = Math.min(ctx.canvas.width / this.total, ctx.canvas.height / this.total);
+    let cvs = ctx.canvas;
+    let unit = Math.min(cvs.width / this.total, cvs.height / this.total);
 
-    $.each(this, (_:any, p:Person) => { p.draw(ctx, unit); });
+    for (let p of this) {
+      p.draw(ctx, unit);
+    }
   }
 }
 
