@@ -49,7 +49,12 @@ class Person implements IPerson {
   }
 
   public draw(ctx:any, unit:number) {
-    console.log(this.impact * unit)
+    let radius = this.impact * unit;
+    let img = new Image();
+
+    img.src = "/static/images/" + this.picture;
+
+    ctx.drawImage(img, 100, 100, radius, radius);
   }
 }
 
