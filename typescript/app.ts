@@ -87,10 +87,12 @@ $(function(){
     e.preventDefault();
 
     $.getJSON("/people", $("#search").serialize(),
-      (d:{people:IPerson}) => {
+      (d:{people:Array<IPerson>}) => {
         let people:People = new People();
 
-        $.each(d.people, (_:any, p:IPerson) => { people.add(Person.fromIPerson(p)); });
+        for (let p of d.people) {
+          people.add(Person.fromIPerson(p));
+        }
 
         people.draw(ctx);
       }
