@@ -1,3 +1,5 @@
+/// <reference path='helpers.ts'/>
+
 declare var $:any;
 
 interface IWin {
@@ -49,6 +51,7 @@ class Person implements IPerson {
   }
 
   public draw(ctx:any, unit:number) : void {
+    console.log(helpers.ass());
     let radius = (this.impact * unit) / 2.0;
     let img = new Image();
 
