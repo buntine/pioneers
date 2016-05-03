@@ -51,7 +51,6 @@ class Person implements IPerson {
   }
 
   public draw(ctx:any, unit:number) : void {
-    console.log(helpers.ass());
     let radius = (this.impact * unit) / 2.0;
     let img = new Image();
 
@@ -61,16 +60,9 @@ class Person implements IPerson {
 
     img.src = "/static/images/" + this.picture;
 
-    ctx.save();
-    ctx.beginPath();
-
-    ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-
-    ctx.clip();
-
-    ctx.drawImage(img, x - radius, y - radius, radius * 2, radius * 2);
-
-    ctx.restore();
+    helpers.onMask(ctx, x, y, radius, () => {
+      ctx.drawImage(img, x - radius, y - radius, radius * 2, radius * 2);
+    });
   }
 }
 
