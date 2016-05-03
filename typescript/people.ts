@@ -27,19 +27,7 @@ interface IPerson {
 class Person implements IPerson {
   constructor(public name: string, public country: string, public gender: string, public impact: number, public biography: string,
               public picture: string, public source: string, public yob: number, public yod: number,
-              public achievements: Array<IAchievement>, public wins: Array<IWin>) {
-    this.name = name;
-    this.country = country;
-    this.gender = gender;
-    this.impact = impact;
-    this.biography = biography;
-    this.picture = picture;
-    this.source = source;
-    this.yod = yod;
-    this.yob = yob;
-    this.achievements = achievements.map((a:IAchievement) => {return <IAchievement>a;});
-    this.wins = wins.map((a:IWin) => {return <IWin>a;});
-  }
+              public achievements: Array<IAchievement>, public wins: Array<IWin>) {}
 
   static fromIPerson(p:IPerson) {
     return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
