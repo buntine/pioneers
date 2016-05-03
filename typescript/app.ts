@@ -69,9 +69,9 @@ class People extends Array<Person> {
     this.total = 0;
   }
 
-  public add(p:Person) {
-    this.push(p);
+  public push(p:Person) {
     this.total += p.impact;
+    return super.push(p);
   }
 
   public draw(ctx:any) {
@@ -101,7 +101,7 @@ $(function(){
         ctx.clearRect(0, 0, cvs.width, cvs.height);
 
         for (let p of d.people) {
-          people.add(Person.fromIPerson(p));
+          people.push(Person.fromIPerson(p));
         }
 
         people.draw(ctx);
