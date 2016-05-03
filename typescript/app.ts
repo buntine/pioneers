@@ -50,7 +50,7 @@ class Person implements IPerson {
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
 
-  public draw(ctx:any, unit:number) : void {
+  public draw(ctx:CanvasRenderingContext2D, unit:number) : void {
     let radius = (this.impact * unit) / 2.0;
     let img = new Image();
 
@@ -80,7 +80,7 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public draw(ctx:any) : void {
+  public draw(ctx:CanvasRenderingContext2D) : void {
     let cvs = ctx.canvas;
     let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * People.delta;
 
