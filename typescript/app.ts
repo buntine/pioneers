@@ -39,8 +39,8 @@ class Person implements IPerson {
     this.source = source;
     this.yod = yod;
     this.yob = yob;
-    this.achievements = $.map(achievements, (a:IAchievement) => {return <IAchievement>a;})
-    this.wins = $.map(wins, (a:IWin) => {return <IWin>a;})
+    this.achievements = $.map(achievements, (a:IAchievement) => {return <IAchievement>a;});
+    this.wins = $.map(wins, (a:IWin) => {return <IWin>a;});
   }
 
   static fromIPerson(p:IPerson) {
@@ -48,21 +48,32 @@ class Person implements IPerson {
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
 
-  public draw(ctx:any, unit:number) {
-    let radius = this.impact * unit;
+  public draw(ctx:any, unit:number) : void {
+    let radius = (this.impact * unit) / 2.0;
     let img = new Image();
+
+    // Just draw randomly for now until I get the particule system going...
+    let x = Math.random() * (ctx.canvas.width - (radius * 2)) + radius;
+    let y = Math.random() * (ctx.canvas.height - (radius * 2)) + radius;
 
     img.src = "/static/images/" + this.picture;
 
-    // Just draw randomly for now until I get the particule system going...
-    ctx.drawImage(img, Math.random() * (ctx.canvas.width - radius),
-                  Math.random() * (ctx.canvas.height - radius), radius, radius);
+    ctx.save();
+    ctx.beginPath();
+
+    ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+
+    ctx.clip();
+
+    ctx.drawImage(img, x - radius, y - radius, radius * 2, radius * 2);
+
+    ctx.restore();
   }
 }
 
 class People extends Array<Person> {
   private total:number;
-  private static delta:number = 2.2;
+  private static delta:number = 1.5;
 
   constructor() {
     super();
@@ -74,7 +85,7 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public draw(ctx:any) {
+  public draw(ctx:any) : void {
     let cvs = ctx.canvas;
     let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * People.delta;
 
