@@ -35,38 +35,42 @@ class Person implements IPerson {
   }
 
   public draw(ctx:CanvasRenderingContext2D, unit:number) : void {
-    let radius = (this.impact * unit) / 2.0;
+    let mass = (this.impact * unit);
+    let radius = mass / 2.0;
     let img = new Image();
 
     // Just draw randomly for now until I get the particule system going...
-    let x = Math.random() * (ctx.canvas.width - (radius * 2)) + radius;
-    let y = Math.random() * (ctx.canvas.height - (radius * 2)) + radius;
+    let x = Math.random() * (ctx.canvas.width - mass) + radius;
+    let y = Math.random() * (ctx.canvas.height - mass) + radius;
 
     img.src = "/static/images/" + this.picture;
 
     helpers.onMask(ctx, x, y, radius, () => {
-      ctx.drawImage(img, x - radius, y - radius, radius * 2, radius * 2);
+      ctx.drawImage(img, x - radius, y - radius, mass, mass);
     });
   }
 }
 
 class People extends Array<Person> {
   private total:number;
-  private static delta:number = 1.5;
 
   constructor() {
     super();
     this.total = 0;
   }
 
-  public push(p:Person) {
+  private delta() : number {
+    return 1 + ((this.length - 1) * 0.1);
+  }
+
+  public push(p:Person) : number {
     this.total += p.impact;
     return super.push(p);
   }
 
   public draw(ctx:CanvasRenderingContext2D) : void {
     let cvs = ctx.canvas;
-    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * People.delta;
+    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * this.delta();
 
     for (let p of this) {
       p.draw(ctx, unit);
