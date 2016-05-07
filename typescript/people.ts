@@ -24,20 +24,13 @@ interface IPerson {
   achievements: Array<IAchievement>;
 }
 
-class Person implements IPerson {
-  constructor(public name: string, public country: string, public gender: string, public impact: number, public biography: string,
-              public picture: string, public source: string, public yob: number, public yod: number,
-              public achievements: Array<IAchievement>, public wins: Array<IWin>) {}
-
-  static fromIPerson(p:IPerson) {
-    return new Person(p.name, p.country, p.gender, p.impact, p.biography, p.picture,
-                      p.source, p.yod, p.yob, p.achievements, p.wins);
-  }
+class Person {
+  constructor(public details: IPerson, public point: Vector) {}
 
   public draw(svg:Snap.Paper, unit:number) : void {
-    let mass = (this.impact * unit);
+    let mass = (this.details.impact * unit);
     let radius = mass / 2.0;
-    let imgsrc = "/static/images/" + this.picture;
+    let imgsrc = "/static/images/" + this.details.picture;
     let x = Math.random() * (parseInt(svg.attr("width")) - mass) + radius;
     let y = Math.random() * (parseInt(svg.attr("height")) - mass) + radius;
     let mask = svg.circle(x, y, radius);
@@ -61,7 +54,7 @@ class People extends Array<Person> {
   }
 
   public push(p:Person) : number {
-    this.total += p.impact;
+    this.total += p.details.impact;
     return super.push(p);
   }
 

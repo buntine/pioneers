@@ -18,7 +18,7 @@ $(function(){
         let people:People = new People();
 
         for (let p of d.people) {
-          people.push(Person.fromIPerson(p));
+          people.push(new Person(p, new Vector(0, 0)));
         }
 
         svg.clear();
