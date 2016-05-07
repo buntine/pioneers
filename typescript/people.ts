@@ -25,19 +25,25 @@ interface IPerson {
 }
 
 class Person {
+  public image : Snap.Element;
+
   constructor(public details: IPerson, public point: Vector) {}
 
   public draw(svg:Snap.Paper, unit:number) : void {
     let mass = (this.details.impact * unit);
     let radius = mass / 2.0;
     let imgsrc = "/static/images/" + this.details.picture;
-    let x = Math.random() * (parseInt(svg.attr("width")) - mass) + radius;
-    let y = Math.random() * (parseInt(svg.attr("height")) - mass) + radius;
-    let mask = svg.circle(x, y, radius);
-    let img = svg.image(imgsrc, x - radius, y - radius, mass, mass);
+    let mask = svg.circle(this.point.x, this.point.y, radius);
 
     mask.attr({fill: "white"});
-    img.attr({mask: mask});
+
+    this.image = svg.image(imgsrc, this.point.x - radius, this.point.y - radius, mass, mass);
+    this.image.attr({mask: mask});
+    this.image.transform("translate(1000, 10)");
+  }
+
+  public position(svg:Snap.Paper) {
+    this.image.transform("translate(10, 10)");
   }
 }
 
@@ -58,13 +64,31 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public draw(svg:Snap.Paper) : void {
+  public position(svg:Snap.Paper, unit: number, iteration = 1) : void {
+    let people = this;
+
+    for (let p of this) {
+      p.position(svg);
+    }
+
+    if (iteration < 100) {
+      setTimeout(function(){
+        people.position(svg, unit, iteration + 1);
+        console.log(iteration);
+      }, 100);
+    }
+  }
+
+  public pack(svg:Snap.Paper) : void {
     let width = parseInt(svg.attr("width"));
     let height = parseInt(svg.attr("height"));
     let unit = Math.min(width / this.total, height / this.total) * this.delta();
+    let people = this;
 
     for (let p of this) {
       p.draw(svg, unit);
     }
+
+    this.position(svg, unit);
   }
 }

@@ -18,11 +18,14 @@ $(function(){
         let people:People = new People();
 
         for (let p of d.people) {
-          people.push(new Person(p, new Vector(0, 0)));
+          let x = Math.random() * parseInt(svg.attr("width"));
+          let y = Math.random() * parseInt(svg.attr("height"));
+
+          people.push(new Person(p, new Vector(x, y)));
         }
 
         svg.clear();
-        people.draw(svg);
+        people.pack(svg);
       }
     );
   });
