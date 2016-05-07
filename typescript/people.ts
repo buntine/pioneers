@@ -37,17 +37,14 @@ class Person implements IPerson {
   public draw(svg:Snap.Paper, unit:number) : void {
     let mass = (this.impact * unit);
     let radius = mass / 2.0;
-    let img = new Image();
-
-    // Just draw randomly for now until I get the particule system going...
+    let imgsrc = "/static/images/" + this.picture;
     let x = Math.random() * (parseInt(svg.attr("width")) - mass) + radius;
     let y = Math.random() * (parseInt(svg.attr("height")) - mass) + radius;
+    let mask = svg.circle(x, y, radius);
+    let img = svg.image(imgsrc, x - radius, y - radius, mass, mass);
 
-    img.src = "/static/images/" + this.picture;
-
-//    helpers.onMask(ctx, x, y, radius, () => {
-//      ctx.drawImage(img, x - radius, y - radius, mass, mass);
-//    });
+    mask.attr({fill: "white"});
+    img.attr({mask: mask});
   }
 }
 

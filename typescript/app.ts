@@ -1,4 +1,3 @@
-/// <reference path='helpers.ts'/>
 /// <reference path='people.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
 
@@ -21,6 +20,7 @@ $(function(){
           people.push(Person.fromIPerson(p));
         }
 
+        svg.clear();
         people.draw(svg);
       }
     );
