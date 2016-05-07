@@ -57,7 +57,7 @@ def all_achievements():
 @app.route("/")
 @db_session
 def index():
-    return render_template("index.html", tags=select(t.name for t in Tag)[:])
+    return render_template("index.html", tags=select(t.name for t in Tag).order_by(1)[:])
 
 @app.route("/people")
 @db_session
