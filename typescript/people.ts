@@ -39,11 +39,10 @@ class Person {
 
     this.image = svg.image(imgsrc, this.point.x - radius, this.point.y - radius, mass, mass);
     this.image.attr({mask: mask});
-    this.image.transform("translate(1000, 10)");
   }
 
   public position(svg:Snap.Paper) {
-    this.image.transform("translate(10, 10)");
+    // NOTE: SVG translate is relative to original x,y. translate(10, 0) means x+10, y+0.
   }
 }
 
@@ -64,7 +63,7 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public position(svg:Snap.Paper, unit: number, iteration = 1) : void {
+  public position(svg:Snap.Paper, unit:number, iteration = 1) : void {
     let people = this;
 
     for (let p of this) {
@@ -74,7 +73,6 @@ class People extends Array<Person> {
     if (iteration < 100) {
       setTimeout(function(){
         people.position(svg, unit, iteration + 1);
-        console.log(iteration);
       }, 100);
     }
   }
