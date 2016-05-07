@@ -41,8 +41,12 @@ class Person {
     this.image.attr({mask: mask});
   }
 
-  public position(svg:Snap.Paper) {
-    // NOTE: SVG translate is relative to original x,y. translate(10, 0) means x+10, y+0.
+  // TODO Implement.
+  public detract(svg:Snap.Paper, p:Person) : void {
+  }
+
+  // TODO Implement.
+  public attract(svg:Snap.Paper) : void {
   }
 }
 
@@ -69,10 +73,19 @@ class People extends Array<Person> {
   }
 
   public position(svg:Snap.Paper, iteration = 1) : void {
+    // Sort from closest to furthest to center point.
     this.sort(this.comparer);
 
+    // Detract other particles.
+    for (let i=0;i<this.length;i++) {
+      for (let n=i+1;n<this.length;n++) {
+        this[i].detract(svg, this[n]);
+      }
+    }
+
+    // Attract to center point.
     for (let p of this) {
-      p.position(svg);
+      p.attract(svg);
     }
 
     if (iteration < 100) {
