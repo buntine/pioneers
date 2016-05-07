@@ -63,16 +63,21 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public position(svg:Snap.Paper, unit:number, iteration = 1) : void {
-    let people = this;
+  // TODO: Implement.
+  private comparer(a:Person, b:Person) {
+    return 1;
+  }
+
+  public position(svg:Snap.Paper, iteration = 1) : void {
+    this.sort(this.comparer);
 
     for (let p of this) {
       p.position(svg);
     }
 
     if (iteration < 100) {
-      setTimeout(function(){
-        people.position(svg, unit, iteration + 1);
+      setTimeout(() => {
+        this.position(svg, iteration + 1);
       }, 100);
     }
   }
@@ -81,12 +86,11 @@ class People extends Array<Person> {
     let width = parseInt(svg.attr("width"));
     let height = parseInt(svg.attr("height"));
     let unit = Math.min(width / this.total, height / this.total) * this.delta();
-    let people = this;
 
     for (let p of this) {
       p.draw(svg, unit);
     }
 
-    this.position(svg, unit);
+    this.position(svg);
   }
 }
