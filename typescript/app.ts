@@ -1,4 +1,5 @@
 /// <reference path='people.ts'/>
+/// <reference path='vector.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
 
 declare var $:any;
