@@ -34,20 +34,20 @@ class Person implements IPerson {
                       p.source, p.yod, p.yob, p.achievements, p.wins);
   }
 
-  public draw(ctx:CanvasRenderingContext2D, unit:number) : void {
+  public draw(svg:Snap.Paper, unit:number) : void {
     let mass = (this.impact * unit);
     let radius = mass / 2.0;
     let img = new Image();
 
     // Just draw randomly for now until I get the particule system going...
-    let x = Math.random() * (ctx.canvas.width - mass) + radius;
-    let y = Math.random() * (ctx.canvas.height - mass) + radius;
+    let x = Math.random() * (parseInt(svg.attr("width")) - mass) + radius;
+    let y = Math.random() * (parseInt(svg.attr("height")) - mass) + radius;
 
     img.src = "/static/images/" + this.picture;
 
-    helpers.onMask(ctx, x, y, radius, () => {
-      ctx.drawImage(img, x - radius, y - radius, mass, mass);
-    });
+//    helpers.onMask(ctx, x, y, radius, () => {
+//      ctx.drawImage(img, x - radius, y - radius, mass, mass);
+//    });
   }
 }
 
@@ -68,12 +68,13 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  public draw(ctx:CanvasRenderingContext2D) : void {
-    let cvs = ctx.canvas;
-    let unit = Math.min(cvs.width / this.total, cvs.height / this.total) * this.delta();
+  public draw(svg:Snap.Paper) : void {
+    let width = parseInt(svg.attr("width"));
+    let height = parseInt(svg.attr("height"));
+    let unit = Math.min(width / this.total, height / this.total) * this.delta();
 
     for (let p of this) {
-      p.draw(ctx, unit);
+      p.draw(svg, unit);
     }
   }
 }

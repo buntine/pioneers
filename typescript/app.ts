@@ -5,11 +5,10 @@
 declare var $:any;
 
 $(function(){
-  let cvs = $("#cvs")[0];
-  let ctx = cvs.getContext("2d");
+  let svg = Snap("#svg");
 
-  cvs.width = $(window).width() - 20;
-  cvs.height = $(window).height() - cvs.offsetTop;
+  svg.attr({width: $(window).width() - 20,
+            height: $(window).height() - $("#svg").offset().top});
 
   $("#search").submit((e:any) => {
     e.preventDefault();
@@ -18,13 +17,11 @@ $(function(){
       (d:{people:Array<IPerson>}) => {
         let people:People = new People();
 
-        ctx.clearRect(0, 0, cvs.width, cvs.height);
-
         for (let p of d.people) {
           people.push(Person.fromIPerson(p));
         }
 
-        people.draw(ctx);
+        people.draw(svg);
       }
     );
   });
