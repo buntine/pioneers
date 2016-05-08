@@ -53,9 +53,14 @@ class Person {
   // TODO Implement.
   public detract(svg:Snap.Paper, p:Person) : void {
     let dist = this.distanceFrom(p.point);
+    let radii = this.radius + p.radius;
 
-    if (dist < (this.radius + p.radius)) {
-      console.log(`${this.details.name} and ${p.details.name}`);
+    if (dist < radii) {
+      let v = Vector.sub(p.point, this.point);
+      let tv = new Vector((v.x / dist) * (radii - dist) * 0.5,
+                          (v.y / dist) * (radii - dist) * 0.5)
+
+      this.point.sub(tv);
     }
   }
 
@@ -109,7 +114,7 @@ class People extends Array<Person> {
     if (iteration < 100) {
       setTimeout(() => {
         this.position(iteration + 1);
-      }, 2000);
+      }, 500);
     }
   }
 
