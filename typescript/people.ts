@@ -52,9 +52,15 @@ class Person {
 
 class People extends Array<Person> {
   private total:number;
+  private center:Vector;
 
-  constructor() {
+  constructor(public svg:Snap.Paper) {
     super();
+
+    let width = parseInt(svg.attr("width"));
+    let height = parseInt(svg.attr("height"));
+
+    this.center = new Vector(width / 2.0, height / 2.0);
     this.total = 0;
   }
 
@@ -72,38 +78,42 @@ class People extends Array<Person> {
     return 1;
   }
 
-  public position(svg:Snap.Paper, iteration = 1) : void {
+  private distanceFromCenter() : number {
+    return 1;
+  }
+
+  public position(iteration = 1) : void {
     // Sort from closest to furthest to center point.
     this.sort(this.comparer);
 
     // Detract other particles.
     for (let i=0;i<this.length;i++) {
       for (let n=i+1;n<this.length;n++) {
-        this[i].detract(svg, this[n]);
+        this[i].detract(this.svg, this[n]);
       }
     }
 
-    // Attract to center point.
+    // Attract to nenter point.
     for (let p of this) {
-      p.attract(svg);
+      p.attract(this.svg);
     }
 
     if (iteration < 100) {
       setTimeout(() => {
-        this.position(svg, iteration + 1);
+        this.position(iteration + 1);
       }, 100);
     }
   }
 
-  public pack(svg:Snap.Paper) : void {
-    let width = parseInt(svg.attr("width"));
-    let height = parseInt(svg.attr("height"));
+  public pack() : void {
+    let width = this.center.x * 2;
+    let height = this.center.y * 2;
     let unit = Math.min(width / this.total, height / this.total) * this.delta();
 
     for (let p of this) {
-      p.draw(svg, unit);
+      p.draw(this.svg, unit);
     }
 
-    this.position(svg);
+    this.position();
   }
 }
