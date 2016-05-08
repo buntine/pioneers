@@ -26,18 +26,21 @@ interface IPerson {
 
 class Person {
   public image : Snap.Element;
+  public radius : number;
 
-  constructor(public details: IPerson, public point: Vector) {}
+  constructor(public details:IPerson, public point:Vector) {}
 
   public draw(svg:Snap.Paper, unit:number) : void {
     let mass = (this.details.impact * unit);
-    let radius = mass / 2.0;
+
+    this.radius = mass / 2.0;
+
     let imgsrc = "/static/images/" + this.details.picture;
-    let mask = svg.circle(this.point.x, this.point.y, radius);
+    let mask = svg.circle(this.point.x, this.point.y, this.radius);
 
     mask.attr({fill: "white"});
 
-    this.image = svg.image(imgsrc, this.point.x - radius, this.point.y - radius, mass, mass);
+    this.image = svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
     this.image.attr({mask: mask});
   }
 
@@ -49,6 +52,11 @@ class Person {
 
   // TODO Implement.
   public detract(svg:Snap.Paper, p:Person) : void {
+    let dist = this.distanceFrom(p.point);
+
+    if (dist < (this.radius + p.radius)) {
+      console.log(`${this.details.name} and ${p.details.name}`);
+    }
   }
 
   // TODO Implement.
@@ -101,7 +109,7 @@ class People extends Array<Person> {
     if (iteration < 100) {
       setTimeout(() => {
         this.position(iteration + 1);
-      }, 100);
+      }, 2000);
     }
   }
 
