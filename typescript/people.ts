@@ -48,7 +48,7 @@ class Person {
   }
 
   public position(svg:Snap.Paper) : void {
-    let v = Vector.sub(this.initial_point, this.point);
+    let v = Vector.sub(this.point, this.initial_point);
     this.image.transform(`translate(${v.x}, ${v.y})`);
   }
 
@@ -113,7 +113,7 @@ class People extends Array<Person> {
       }
     }
 
-    // Attract to nenter point.
+    // Attract to center point.
     for (let p of this) {
       p.attract(this.svg);
       p.position(this.svg);
