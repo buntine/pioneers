@@ -41,6 +41,12 @@ class Person {
     this.image.attr({mask: mask});
   }
 
+  public distanceFrom(v:Vector) : number {
+    let distance = Vector.sub(v, this.point);
+    let m = distance.mag();
+    return m;
+  }
+
   // TODO Implement.
   public detract(svg:Snap.Paper, p:Person) : void {
   }
@@ -73,18 +79,12 @@ class People extends Array<Person> {
     return super.push(p);
   }
 
-  // TODO: Implement.
-  private comparer(a:Person, b:Person) {
-    return 1;
-  }
-
-  private distanceFromCenter() : number {
-    return 1;
-  }
-
   public position(iteration = 1) : void {
     // Sort from closest to furthest to center point.
-    this.sort(this.comparer);
+    this.sort((a:Person, b:Person) => {
+      let c = this.center;
+      return a.distanceFrom(c) - b.distanceFrom(c);
+    });
 
     // Detract other particles.
     for (let i=0;i<this.length;i++) {

@@ -16,6 +16,10 @@ class Vector {
     this.y -= v.y;
   }
 
+  public static sub(v1:Vector, v2:Vector) : Vector {
+    return new Vector(v1.x - v2.x, v1.y - v2.y);
+  }
+
   public div(n: number) : void {
     this.x /= n;
     this.y /= n;
