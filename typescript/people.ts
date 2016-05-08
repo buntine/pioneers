@@ -27,8 +27,11 @@ interface IPerson {
 class Person {
   public image : Snap.Element;
   public radius : number;
+  private initial_point : Vector;
 
-  constructor(public details:IPerson, public point:Vector) {}
+  constructor(public details:IPerson, public point:Vector) {
+    this.initial_point = new Vector(point.x, point.y);
+  }
 
   public draw(svg:Snap.Paper, unit:number) : void {
     let mass = (this.details.impact * unit);
@@ -44,14 +47,18 @@ class Person {
     this.image.attr({mask: mask});
   }
 
+  public position(svg:Snap.Paper) : void {
+    let v = Vector.sub(this.initial_point, this.point);
+    this.image.transform(`translate(${v.x}, ${v.y})`);
+  }
+
   public distanceFrom(v:Vector) : number {
     let distance = Vector.sub(v, this.point);
     let m = distance.mag();
     return m;
   }
 
-  // TODO Implement.
-  public detract(svg:Snap.Paper, p:Person) : void {
+  public detract(p:Person) : void {
     let dist = this.distanceFrom(p.point);
     let radii = this.radius + p.radius;
 
@@ -102,19 +109,20 @@ class People extends Array<Person> {
     // Detract other particles.
     for (let i=0;i<this.length;i++) {
       for (let n=i+1;n<this.length;n++) {
-        this[i].detract(this.svg, this[n]);
+        this[i].detract(this[n]);
       }
     }
 
     // Attract to nenter point.
     for (let p of this) {
       p.attract(this.svg);
+      p.position(this.svg);
     }
 
     if (iteration < 100) {
       setTimeout(() => {
         this.position(iteration + 1);
-      }, 500);
+      }, 100);
     }
   }
 
