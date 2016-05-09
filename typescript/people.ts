@@ -68,6 +68,7 @@ class Person {
                           (v.y / dist) * (radii - dist) * 0.5)
 
       this.point.sub(tv);
+      p.point.add(tv);
     }
   }
 
@@ -118,14 +119,17 @@ class People extends Array<Person> {
 
     // Attract to center point.
     for (let p of this) {
-      p.attract(this.svg, this.center, 0.1 / iteration);
-      p.position(this.svg);
+      p.attract(this.svg, this.center, 0.25 / iteration);
     }
 
-    if (iteration < 200) {
-      setTimeout(() => {
-        this.position(iteration + 1);
-      }, 10);
+    if (iteration < this.total * 10) {
+      this.position(iteration + 1);
+    }
+    else {
+      // Re-position each person based on their final offsets.
+      for (let p of this) {
+        p.position(this.svg);
+      }
     }
   }
 
