@@ -41,10 +41,13 @@ class Person {
     let imgsrc = "/static/images/" + this.details.picture;
     let mask = svg.circle(this.point.x, this.point.y, this.radius);
 
-    mask.attr({fill: "white"});
+    mask.attr({fill: "blue"});
 
-    this.image = svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
-    this.image.attr({mask: mask});
+    this.image = mask;
+    let i =  svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
+    this.image.attr({fill: i.pattern(this.point.x - this.radius, this.point.y - this.radius, mass, mass)});
+    this.image.click((e:MouseEvent) => { console.log(this.details.name); });
+  //  this.image.attr({mask: mask});
   }
 
   public position(svg:Snap.Paper) : void {
