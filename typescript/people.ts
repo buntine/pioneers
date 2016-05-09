@@ -120,16 +120,14 @@ class People extends Array<Person> {
     // Attract to center point.
     for (let p of this) {
       p.attract(this.svg, this.center, 0.25 / iteration);
+        p.position(this.svg);
     }
 
-    if (iteration < this.total * 10) {
-      this.position(iteration + 1);
-    }
-    else {
-      // Re-position each person based on their final offsets.
-      for (let p of this) {
-        p.position(this.svg);
-      }
+    // Recrusively refine.
+    if (iteration < this.length * 7) {
+      setTimeout(() => {
+        this.position(iteration + 1);
+      }, 15);
     }
   }
 
