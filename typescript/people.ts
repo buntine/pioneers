@@ -45,7 +45,7 @@ class Person {
 
     this.image = svg.circle(this.point.x, this.point.y, this.radius);
     this.image.attr({fill: pattern.pattern(x, y, mass, mass)});
-    this.image.click((e:MouseEvent) => { console.log(this.details.name); });
+    this.image.click((e:MouseEvent) => this.show());
   }
 
   public position(svg:Snap.Paper) : void {
@@ -79,6 +79,10 @@ class Person {
     v.mul(damping);
 
     this.point.sub(v);
+  }
+
+  public show() : void {
+    console.log(this.details.name);
   }
 }
 
