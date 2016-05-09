@@ -72,7 +72,12 @@ class Person {
   }
 
   // TODO Implement.
-  public attract(svg:Snap.Paper) : void {
+  public attract(svg:Snap.Paper, to:Vector) : void {
+    let v = Vector.sub(to, this.point);
+    v.normalize();
+    v.mul(3);
+
+    this.point.add(v);
   }
 }
 
@@ -115,14 +120,14 @@ class People extends Array<Person> {
 
     // Attract to center point.
     for (let p of this) {
-      p.attract(this.svg);
+      p.attract(this.svg, this.center);
       p.position(this.svg);
     }
 
     if (iteration < 100) {
       setTimeout(() => {
         this.position(iteration + 1);
-      }, 100);
+      }, 10);
     }
   }
 
