@@ -38,16 +38,14 @@ class Person {
 
     this.radius = mass / 2.0;
 
+    let x = this.point.x - this.radius;
+    let y = this.point.y - this.radius;
     let imgsrc = "/static/images/" + this.details.picture;
-    let mask = svg.circle(this.point.x, this.point.y, this.radius);
+    let pattern = svg.image(imgsrc, x, y, mass, mass);
 
-    mask.attr({fill: "blue"});
-
-    this.image = mask;
-    let i =  svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
-    this.image.attr({fill: i.pattern(this.point.x - this.radius, this.point.y - this.radius, mass, mass)});
+    this.image = svg.circle(this.point.x, this.point.y, this.radius);
+    this.image.attr({fill: pattern.pattern(x, y, mass, mass)});
     this.image.click((e:MouseEvent) => { console.log(this.details.name); });
-  //  this.image.attr({mask: mask});
   }
 
   public position(svg:Snap.Paper) : void {
@@ -58,6 +56,7 @@ class Person {
   public distanceFrom(v:Vector) : number {
     let distance = Vector.sub(v, this.point);
     let m = distance.mag();
+
     return m;
   }
 
@@ -66,9 +65,9 @@ class Person {
     let radii = this.radius + p.radius + padding;
 
     if (dist < radii) {
+      let mid = (c:number) => { return (c / dist) * (radii - dist) * 0.5; };
       let v = Vector.sub(p.point, this.point);
-      let tv = new Vector((v.x / dist) * (radii - dist) * 0.5,
-                          (v.y / dist) * (radii - dist) * 0.5)
+      let tv = new Vector(mid(v.x), mid(v.y));
 
       this.point.sub(tv);
       p.point.add(tv);
