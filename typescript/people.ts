@@ -58,9 +58,9 @@ class Person {
     return m;
   }
 
-  public detract(p:Person) : void {
+  public detract(p:Person, padding:number) : void {
     let dist = this.distanceFrom(p.point);
-    let radii = this.radius + p.radius;
+    let radii = this.radius + p.radius + padding;
 
     if (dist < radii) {
       let v = Vector.sub(p.point, this.point);
@@ -71,13 +71,11 @@ class Person {
     }
   }
 
-  // TODO Implement.
-  public attract(svg:Snap.Paper, to:Vector) : void {
-    let v = Vector.sub(to, this.point);
-    v.normalize();
-    v.mul(3);
+  public attract(svg:Snap.Paper, to:Vector, damping:number) : void {
+    let v = Vector.sub(this.point, to);
+    v.mul(damping);
 
-    this.point.add(v);
+    this.point.sub(v);
   }
 }
 
@@ -114,17 +112,17 @@ class People extends Array<Person> {
     // Detract other particles.
     for (let i=0;i<this.length;i++) {
       for (let n=i+1;n<this.length;n++) {
-        this[i].detract(this[n]);
+        this[i].detract(this[n], 10);
       }
     }
 
     // Attract to center point.
     for (let p of this) {
-      p.attract(this.svg, this.center);
+      p.attract(this.svg, this.center, 0.1 / iteration);
       p.position(this.svg);
     }
 
-    if (iteration < 100) {
+    if (iteration < 200) {
       setTimeout(() => {
         this.position(iteration + 1);
       }, 10);
