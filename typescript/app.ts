@@ -1,3 +1,4 @@
+/// <reference path='person.ts'/>
 /// <reference path='people.ts'/>
 /// <reference path='vector.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
