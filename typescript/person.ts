@@ -45,7 +45,10 @@ class Person {
 
     this.avatar = svg.circle(this.point.x, this.point.y, this.radius);
     this.avatar.attr({fill: pattern.pattern(x, y, mass, mass)});
+
     this.avatar.click((e:MouseEvent) => this.show());
+    this.avatar.hover((e:MouseEvent) => this.highlight(),
+                      (e:MouseEvent) => this.unhighlight());
   }
 
   public position(svg:Snap.Paper) : void {
@@ -55,9 +58,8 @@ class Person {
 
   public distanceFrom(v:Vector) : number {
     let distance = Vector.sub(v, this.point);
-    let m = distance.mag();
 
-    return m;
+    return distance.mag();
   }
 
   public detract(p:Person, padding:number) : void {
@@ -84,4 +86,13 @@ class Person {
   public show() : void {
     console.log(this.details.name);
   }
+
+  public highlight() : void {
+    console.log(this.details.name);
+  }
+
+  public unhighlight() : void {
+    console.log("Bye");
+  }
+
 }
