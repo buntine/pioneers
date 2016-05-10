@@ -13,7 +13,7 @@ class People extends Array<Person> {
   }
 
   private delta() : number {
-    return 1 + ((this.length - 1) * 0.1);
+    return (this.length == 1) ? 0.7 : 1 + ((this.length - 1) * 0.07);
   }
 
   public push(p:Person) : number {
@@ -38,11 +38,11 @@ class People extends Array<Person> {
     // Attract to center point.
     for (let p of this) {
       p.attract(this.svg, this.center, 0.25 / iteration);
-        p.position(this.svg);
+      p.position(this.svg);
     }
 
-    // Recrusively refine.
-    if (iteration < this.length * 7) {
+    // Refine.
+    if (iteration < Math.max(45, this.length * 8)) {
       setTimeout(() => {
         this.position(iteration + 1);
       }, 15);

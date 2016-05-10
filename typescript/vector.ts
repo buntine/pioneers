@@ -1,17 +1,17 @@
 class Vector {
-  constructor(public x: number, public y: number) {}
+  constructor(public x:number, public y:number) {}
 
-  public add(v: Vector) : void {
+  public add(v:Vector) : void {
     this.x += v.x;
     this.y += v.y;
   }
 
-  public mul(n: number) : void {
+  public mul(n:number) : void {
     this.x *= n;
     this.y *= n;
   }
 
-  public sub(v: Vector) : void {
+  public sub(v:Vector) : void {
     this.x -= v.x;
     this.y -= v.y;
   }
@@ -20,7 +20,7 @@ class Vector {
     return new Vector(v1.x - v2.x, v1.y - v2.y);
   }
 
-  public div(n: number) : void {
+  public div(n:number) : void {
     this.x /= n;
     this.y /= n;
   }

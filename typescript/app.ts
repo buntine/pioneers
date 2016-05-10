@@ -5,7 +5,7 @@
 
 declare var $:any;
 
-$(function(){
+$(() => {
   let svg = Snap("#svg");
 
   svg.attr({width: $(window).width() - 20,
