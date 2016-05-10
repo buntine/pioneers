@@ -88,11 +88,11 @@ class Person {
   }
 
   public highlight() : void {
-    this.avatar.animate({r: this.radius + 5}, 80);
+    this.avatar.animate({strokeWidth: 6, r: this.radius + 3}, 140);
   }
 
   public unhighlight() : void {
-    this.avatar.animate({r: this.radius}, 80);
+    this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
   }
 
 }
