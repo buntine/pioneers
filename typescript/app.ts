@@ -11,12 +11,17 @@ $(() => {
   svg.attr({width: $(window).width() - 20,
             height: $(window).height() - $("#svg").offset().top});
 
+  let people = new People(svg);
+
   $("#search").submit((e:any) => {
     e.preventDefault();
 
     $.getJSON("/people", $("#search").serialize(),
       (d:{people:Array<IPerson>}) => {
-        let people = new People(svg);
+        if (people.length > 0) {
+          people.alive = false;
+          people = new People(svg);
+        }
 
         for (let p of d.people) {
           let x = Math.random() * parseInt(svg.attr("width"));

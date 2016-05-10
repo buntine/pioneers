@@ -1,6 +1,7 @@
 class People extends Array<Person> {
   private total:number;
   private center:Vector;
+  public alive:boolean;
 
   private static MIN_REFINEMENT = 45;
   private static MAX_DELTA = 0.7;
@@ -15,6 +16,7 @@ class People extends Array<Person> {
 
     this.center = new Vector(width / 2.0, height / 2.0);
     this.total = 0;
+    this.alive = true;
   }
 
   private delta() : number {
@@ -27,7 +29,7 @@ class People extends Array<Person> {
   }
 
   public position(iteration = 1) : void {
-    // Sort from closest to furthest to center point.
+    // Sort from closest->furthest to center point.
     this.sort((a:Person, b:Person) => {
       let c = this.center;
       return a.distanceFrom(c) - b.distanceFrom(c);
@@ -47,7 +49,7 @@ class People extends Array<Person> {
     }
 
     // Refine.
-    if (iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
+    if (this.alive && iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
       setTimeout(() => {
         this.position(iteration + 1);
       }, 15);
