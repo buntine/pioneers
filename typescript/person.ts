@@ -25,7 +25,7 @@ interface IPerson {
 }
 
 class Person {
-  public image : Snap.Element;
+  public avatar : Snap.Element;
   public radius : number;
   private initial_point : Vector;
 
@@ -43,14 +43,14 @@ class Person {
     let imgsrc = "/static/images/" + this.details.picture;
     let pattern = svg.image(imgsrc, x, y, mass, mass);
 
-    this.image = svg.circle(this.point.x, this.point.y, this.radius);
-    this.image.attr({fill: pattern.pattern(x, y, mass, mass)});
-    this.image.click((e:MouseEvent) => this.show());
+    this.avatar = svg.circle(this.point.x, this.point.y, this.radius);
+    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass)});
+    this.avatar.click((e:MouseEvent) => this.show());
   }
 
   public position(svg:Snap.Paper) : void {
     let v = Vector.sub(this.point, this.initial_point);
-    this.image.transform(`translate(${v.x}, ${v.y})`);
+    this.avatar.transform(`translate(${v.x}, ${v.y})`);
   }
 
   public distanceFrom(v:Vector) : number {

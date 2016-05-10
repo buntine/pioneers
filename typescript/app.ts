@@ -16,7 +16,7 @@ $(() => {
 
     $.getJSON("/people", $("#search").serialize(),
       (d:{people:Array<IPerson>}) => {
-        let people:People = new People(svg);
+        let people = new People(svg);
 
         for (let p of d.people) {
           let x = Math.random() * parseInt(svg.attr("width"));
