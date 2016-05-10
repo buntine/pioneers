@@ -2,6 +2,11 @@ class People extends Array<Person> {
   private total:number;
   private center:Vector;
 
+  private static MIN_REFINEMENT = 45;
+  private static MAX_DELTA = 0.7;
+  private static DAMPING_FACTOR = 0.25;
+  private static REFINEMENT_DELTA = 8;
+
   constructor(public svg:Snap.Paper) {
     super();
 
@@ -13,7 +18,7 @@ class People extends Array<Person> {
   }
 
   private delta() : number {
-    return (this.length == 1) ? 0.7 : 1 + ((this.length - 1) * 0.07);
+    return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.07);
   }
 
   public push(p:Person) : number {
@@ -37,12 +42,12 @@ class People extends Array<Person> {
 
     // Attract to center point.
     for (let p of this) {
-      p.attract(this.svg, this.center, 0.25 / iteration);
+      p.attract(this.svg, this.center, People.DAMPING_FACTOR / iteration);
       p.position(this.svg);
     }
 
     // Refine.
-    if (iteration < Math.max(45, this.length * 8)) {
+    if (iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
       setTimeout(() => {
         this.position(iteration + 1);
       }, 15);
