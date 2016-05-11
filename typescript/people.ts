@@ -7,6 +7,7 @@ class People extends Array<Person> {
   private static MAX_DELTA = 0.7;
   private static DAMPING_FACTOR = 0.25;
   private static REFINEMENT_DELTA = 8;
+  private static REDRAW_THRESHOLD = 16;
 
   constructor(public svg:Snap.Paper) {
     super();
@@ -29,6 +30,8 @@ class People extends Array<Person> {
   }
 
   public position(iteration = 1) : void {
+    let redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
+
     // Sort from closest->furthest to center point.
     this.sort((a:Person, b:Person) => {
       let c = this.center;
@@ -45,14 +48,17 @@ class People extends Array<Person> {
     // Attract to center point.
     for (let p of this) {
       p.attract(this.svg, this.center, People.DAMPING_FACTOR / iteration);
-      p.position(this.svg);
+
+      if (redraw) {
+        p.position(this.svg);
+      }
     }
 
     // Refine.
     if (this.alive && iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
       setTimeout(() => {
         this.position(iteration + 1);
-      }, 15);
+      }, redraw ? 15 : 0);
     }
   }
 
