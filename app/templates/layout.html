@@ -10,17 +10,18 @@
   </head>
   <body>
     <div class=page>
-      <h1>Pioneers</h1>
-      <form method="get" id="search" action="/people">
-        <select multiple name="tag" id="tags">
-          {% for t in tags %}
-          <option value="{{t}}">{{t}}</option>
-          {% endfor %}
-        </select>
-        <input type="radio" name="op" value="OR">
-        <input type="radio" name="op" value="AND">
-        <input type="submit" value="Go">
-      </form>
+      <div id="searchform">
+        <form method="get" id="search" action="/people">
+          <select multiple name="tag" id="tags">
+            {% for t in tags %}
+            <option value="{{t}}">{{t}}</option>
+            {% endfor %}
+          </select>
+          <input type="radio" name="op" value="OR">
+          <input type="radio" name="op" value="AND">
+          <input type="submit" value="Go">
+        </form>
+      </div>
       {% block body %}{% endblock %}
     </div>
   </body>
