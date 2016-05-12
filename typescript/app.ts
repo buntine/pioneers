@@ -6,16 +6,18 @@
 declare var $:any;
 
 $(() => {
-  let svg = Snap("#svg");
+  let svg_i = Snap("#impactcanvas");
+  let svg_o = Snap("#opcanvas");
 
-  svg.attr({width: $(window).width() - 20,
-            height: $(window).height() - $("#svg").offset().top + 7});
+  svg_i.attr({width: $(window).width() - 20,
+            height: $(window).height() - $("#impactcanvas").offset().top + 7});
 
-  $("#tags").selectivity({
-    placeholder: "Choose one or more topics",
-  });
+  let people = new People(svg_i);
 
-  let people = new People(svg);
+  $("#tags").selectivity({placeholder: "Choose one or more topics"});
+
+  let op_switch = svg_o.rect(2, 2, 46, 42, 5);
+  op_switch.attr({fill: "#4484c7"});
 
   $("#tags, #searchform input[name='op']").change((e:any) => {
     e.preventDefault();
@@ -24,17 +26,17 @@ $(() => {
       (d:{people:Array<IPerson>}) => {
         if (people.length > 0) {
           people.alive = false;
-          people = new People(svg);
+          people = new People(svg_i);
         }
 
         for (let p of d.people) {
-          let x = Math.random() * parseInt(svg.attr("width"));
-          let y = Math.random() * parseInt(svg.attr("height"));
+          let x = Math.random() * parseInt(svg_i.attr("width"));
+          let y = Math.random() * parseInt(svg_i.attr("height"));
 
           people.push(new Person(p, new Vector(x, y)));
         }
 
-        svg.clear();
+        svg_i.clear();
         people.pack();
       }
     );

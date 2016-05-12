@@ -18,8 +18,8 @@
             <option value="{{t}}">{{t}}</option>
             {% endfor %}
           </select>
-          <input type="radio" name="op" value="OR">
-          <input type="radio" name="op" value="AND">
+          <input type="hidden" name="op" value="and" />
+          <svg id="opcanvas">sassas</svg>
         </form>
       </div>
       {% block body %}{% endblock %}
