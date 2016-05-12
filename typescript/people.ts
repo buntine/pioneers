@@ -7,7 +7,7 @@ class People extends Array<Person> {
   private static MAX_DELTA = 0.7;
   private static DAMPING_FACTOR = 0.25;
   private static REFINEMENT_DELTA = 8;
-  private static REDRAW_THRESHOLD = 16;
+  private static REDRAW_THRESHOLD = 22;
 
   constructor(public svg:Snap.Paper) {
     super();

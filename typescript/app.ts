@@ -10,7 +10,7 @@ $(() => {
   let svg_i = Snap("#impactcanvas");
 
   svg_i.attr({width: $(window).width() - 20,
-            height: $(window).height() - $("#impactcanvas").offset().top + 7});
+            height: $(window).height() - $("#impactcanvas").offset().top + 6});
 
   let people = new People(svg_i);
 
