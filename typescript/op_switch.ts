@@ -3,27 +3,48 @@ class OpSwitch {
   private text : Snap.Element;
   private coords : Array<[number, number, string]>;
 
-  constructor(public svg:Snap.Paper) {
+  private static WIDTH = 100;
+  private static HEIGHT = 47;
+
+  constructor(public svg:Snap.Paper, public speed=150) {
     this.coords = [
-      [2, 15, "or"],
-      [48, 52, "and"],
+      [0, 15, "or"],
+      [OpSwitch.WIDTH / 2, 7, "and"],
     ];
   }
 
-  public draw(f: (s:string) => void) : void {
-    this.button = this.svg.rect(this.coords[0][0], 2, 46, 42, 5);
+  private drawBg() : void {
+    let bg = this.svg.rect(0, 0, OpSwitch.WIDTH, OpSwitch.HEIGHT, 5);
+    bg.attr({fill: "#fff"});
+  }
+
+  private drawBgTexts() : void {
+    for (let c of this.coords) {
+      let text = this.svg.text(c[0] + c[1], 28, c[2]);
+      text.attr({fill: "#aaa"});
+    }
+  }
+
+  private drawOpGroup() : Snap.Element {
+    this.button = this.svg.rect(0, 0, OpSwitch.WIDTH / 2, OpSwitch.HEIGHT, 5);
     this.text = this.svg.text(this.coords[0][1], 28, "or");
     this.text.attr({fill: "#fff", cursor: "pointer"});
     this.button.attr({fill: "#4484c7", cursor: "pointer"});
 
-    let op_group = this.svg.group(this.button, this.text);
+    return this.svg.group(this.button, this.text);
+  }
 
-    op_group.click((e:MouseEvent) => {
+  public draw(f: (s:string) => void) : void {
+    this.drawBg();
+    this.drawBgTexts();
+    let ops = this.drawOpGroup();
+
+    ops.click((e:MouseEvent) => {
       let n = (this.text.attr("text") == this.coords[0][2]) ? 1 : 0;
       let c = this.coords[n];
 
-      this.button.animate({x: c[0]}, 150);
-      this.text.animate({x: c[1]}, 150);
+      this.button.animate({x: c[0]}, this.speed);
+      this.text.animate({x: c[0] + c[1]}, this.speed);
       this.text.attr({text: c[2]});
 
       f(this.text.attr("text"));
