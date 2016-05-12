@@ -44,7 +44,7 @@ class Person {
     let pattern = svg.image(imgsrc, x, y, mass, mass);
 
     this.avatar = svg.circle(this.point.x, this.point.y, this.radius);
-    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#9999ff", strokeWidth: 2});
+    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#fff", strokeWidth: 2});
 
     this.avatar.click((e:MouseEvent) => this.show());
     this.avatar.hover((e:MouseEvent) => this.highlight(),
@@ -88,7 +88,7 @@ class Person {
   }
 
   public highlight() : void {
-    this.avatar.animate({strokeWidth: 6, r: this.radius + 3}, 140);
+    this.avatar.animate({strokeWidth: 6, r: this.radius + 4}, 140);
   }
 
   public unhighlight() : void {

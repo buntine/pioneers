@@ -9,7 +9,7 @@ $(() => {
   let svg = Snap("#svg");
 
   svg.attr({width: $(window).width() - 20,
-            height: $(window).height() - $("#svg").offset().top - 4});
+            height: $(window).height() - $("#svg").offset().top + 7});
 
   $("#tags").selectivity({
     placeholder: "Choose one or more topics",
