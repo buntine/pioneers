@@ -11,6 +11,10 @@ $(() => {
   svg.attr({width: $(window).width() - 20,
             height: $(window).height() - $("#svg").offset().top - 4});
 
+  $("#tags").selectivity({
+    placeholder: "Choose one or more topics",
+  });
+
   let people = new People(svg);
 
   $("#search").submit((e:any) => {
