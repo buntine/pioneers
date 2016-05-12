@@ -1,3 +1,5 @@
 h1 { color: green; }
 body { margin: 0; padding: 0; }
 #searchform { position: absolute; top: 5px; left: 5px; }
+#tags { width: 800px; }
+.fa-remove:before { content: "\2718"; }
