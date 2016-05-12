@@ -13,6 +13,8 @@ $(() => {
 
   let people = new People(svg);
 
+  $("#tags").selectator();
+
   $("#search").submit((e:any) => {
     e.preventDefault();
 
