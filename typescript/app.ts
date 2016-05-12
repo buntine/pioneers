@@ -17,7 +17,7 @@ $(() => {
 
   let people = new People(svg);
 
-  $("#search").submit((e:any) => {
+  $("#tags, #searchform input[name='op']").change((e:any) => {
     e.preventDefault();
 
     $.getJSON("/people", $("#search").serialize(),

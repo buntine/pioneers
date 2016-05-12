@@ -2,6 +2,5 @@ h1 { color: green; }
 body { margin: 0; padding: 0; background: #666; }
 #searchform { padding: 10px 10px 0 10px; margin: 0; }
 #svg { margin: 10px; background: #e5f2ff;  }
-#tags { width: 80%; }
-#go { float: right; }
+#tags { width: 90%; }
 .fa-remove:before { content: "\2718"; }
