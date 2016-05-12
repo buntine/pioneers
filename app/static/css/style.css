@@ -1,7 +1,7 @@
 h1 { color: green; }
 body { margin: 0; padding: 0; background: #666; font-family: "sans-serif arial"; }
 #searchform { padding: 10px 10px 0 10px; margin: 0; font-family: "sans-serif"; }
-#opcanvas { width: 100px; height: calc(2em + 4px); background: #eee; float: right; font-family: "sans-serif"; color: "#fff"; font-size: 1.3em}
+#opcanvas { width: 100px; height: calc(2em + 8px); background: #eee; float: right; font-family: "sans-serif"; color: "#fff"; font-size: 1.2em}
 #impactcanvas { margin: 10px; background: #e5f2ff; }
 #tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }

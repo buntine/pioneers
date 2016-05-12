@@ -17,12 +17,23 @@ $(() => {
   $("#tags").selectivity({placeholder: "Choose one or more topics"});
 
   let op_switch = svg_o.rect(2, 2, 46, 42, 5);
-  let op_text = svg_o.text(15, 27, "or");
+  let op_text = svg_o.text(15, 28, "or");
   let op_group = svg_o.group(op_switch, op_text);
-  op_text.attr({fill: "#fff"});
-  op_switch.attr({fill: "#4484c7"});
+  op_text.attr({fill: "#fff", cursor: "pointer"});
+  op_switch.attr({fill: "#4484c7", cursor: "pointer"});
 
   op_group.click((e:MouseEvent) => {
+    if (op_text.attr("text") == "or") {
+      op_switch.animate({x: 48}, 150);
+      op_text.animate({x: 52}, 150);
+      op_text.attr({text: "and"});
+    } else {
+      op_switch.animate({x: 2}, 150);
+      op_text.animate({x: 15}, 150);
+      op_text.attr({text: "or"});
+    }
+
+    $("#op").value(op_text.attr("text"));
   });
 
   $("#tags, #searchform input[name='op']").change((e:any) => {
