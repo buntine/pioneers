@@ -21,7 +21,7 @@ class People extends Array<Person> {
   }
 
   private delta() : number {
-    return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.05);
+    return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.07);
   }
 
   public push(p:Person) : number {

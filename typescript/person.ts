@@ -38,10 +38,12 @@ class Person {
 
     this.radius = mass / 2.0;
 
+    let gs = svg.filter(Snap.filter.grayscale(1));
     let x = this.point.x - this.radius;
     let y = this.point.y - this.radius;
     let imgsrc = "/static/images/" + this.details.picture;
     let pattern = svg.image(imgsrc, x, y, mass, mass);
+    pattern.attr({filter: gs});
 
     this.avatar = svg.circle(this.point.x, this.point.y, this.radius);
     this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#fff", strokeWidth: 2});

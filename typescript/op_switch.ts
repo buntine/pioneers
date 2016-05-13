@@ -15,13 +15,13 @@ class OpSwitch {
 
   private drawBg() : void {
     let bg = this.svg.rect(0, 0, OpSwitch.WIDTH, OpSwitch.HEIGHT, 5);
-    bg.attr({fill: "#fff"});
+    bg.attr({fill: "#fff", cursor: "pointer"});
   }
 
   private drawBgTexts() : void {
     for (let c of this.coords) {
       let text = this.svg.text(c[0] + c[1], 28, c[2]);
-      text.attr({fill: "#aaa"});
+      text.attr({fill: "#aaa", cursor: "pointer"});
     }
   }
 
@@ -39,7 +39,7 @@ class OpSwitch {
     this.drawBgTexts();
     let ops = this.drawOpGroup();
 
-    ops.click((e:MouseEvent) => {
+    this.svg.click((e:MouseEvent) => {
       let n = (this.text.attr("text") == this.coords[0][2]) ? 1 : 0;
       let c = this.coords[n];
 
