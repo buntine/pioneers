@@ -1,7 +1,8 @@
 h1 { color: green; }
-body { margin: 0; padding: 0; background: #c9c9c9; font-family: "sans-serif arial"; }
-#searchform { padding: 10px 10px 0 10px; margin: 0; font-family: "sans-serif"; }
-#opcanvas { width: 100px; height: 46px; float: right; font-family: "sans-serif"; color: "#fff"; font-size: 18px; }
-#impactcanvas { margin: 10px 0 0 0; background: #232323; }
+html,body { margin: 0; padding: 0; background: #fff; font-family: "sans-serif arial"; height: 100%; }
+.page { display: flex; flex-flow: column; height: 100%; }
+#searchform { padding: 10px 10px 10px 10px; margin: 0; font-family: "sans-serif"; font-size: 18px; flex: 0 0 46px;}
+#opcanvas { width: 100px; height: 46px; float: right; font-family: "sans-serif"; color: "#fff"; font-size: 18px; padding: 5px 0; }
+#impactcanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }

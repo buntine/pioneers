@@ -29,7 +29,7 @@ class OpSwitch {
     this.button = this.svg.rect(0, 0, OpSwitch.WIDTH / 2, OpSwitch.HEIGHT, 5);
     this.text = this.svg.text(this.coords[0][1], 28, "or");
     this.text.attr({fill: "#fff", cursor: "pointer"});
-    this.button.attr({fill: "#4484c7", cursor: "pointer"});
+    this.button.attr({fill: "#56abfb", cursor: "pointer"});
 
     return this.svg.group(this.button, this.text);
   }

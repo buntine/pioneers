@@ -10,11 +10,11 @@ $(() => {
   let svg_i = Snap("#impactcanvas");
 
   svg_i.attr({width: $(window).width(),
-              height: $(window).height() - $("#impactcanvas").offset().top + 16});
+              height: $(window).height() - $("#impactcanvas").offset().top});
 
   let people = new People(svg_i);
 
-  $("select.tags").selectivity({placeholder: "Choose one or more topics"});
+  $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
   let op_switch = new OpSwitch(Snap("#opcanvas"));
   op_switch.draw((s:string) => {
