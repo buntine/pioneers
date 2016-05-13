@@ -41,7 +41,7 @@ class People extends Array<Person> {
     // Detract other particles.
     for (let i=0;i<this.length;i++) {
       for (let n=i+1;n<this.length;n++) {
-        this[i].detract(this[n], 9);
+        this[i].detract(this[n], 13);
       }
     }
 

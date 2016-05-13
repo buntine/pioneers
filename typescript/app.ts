@@ -9,8 +9,8 @@ declare var $:any;
 $(() => {
   let svg_i = Snap("#impactcanvas");
 
-  svg_i.attr({width: $(window).width() - 20,
-            height: $(window).height() - $("#impactcanvas").offset().top + 6});
+  svg_i.attr({width: $(window).width(),
+              height: $(window).height() - $("#impactcanvas").offset().top + 16});
 
   let people = new People(svg_i);
 

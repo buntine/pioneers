@@ -2,6 +2,6 @@ h1 { color: green; }
 body { margin: 0; padding: 0; background: #c9c9c9; font-family: "sans-serif arial"; }
 #searchform { padding: 10px 10px 0 10px; margin: 0; font-family: "sans-serif"; }
 #opcanvas { width: 100px; height: 46px; float: right; font-family: "sans-serif"; color: "#fff"; font-size: 18px; }
-#impactcanvas { margin: 10px; background: #eee; }
+#impactcanvas { margin: 10px 0 0 0; background: #232323; }
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
