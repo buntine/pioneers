@@ -7,7 +7,7 @@ class People extends Array<Person> {
   private static MAX_DELTA = 0.7;
   private static DAMPING_FACTOR = 0.25;
   private static REFINEMENT_DELTA = 8;
-  private static REDRAW_THRESHOLD = 22;
+  private static REDRAW_THRESHOLD = 35;
 
   constructor(public svg:Snap.Paper) {
     super();
@@ -21,7 +21,7 @@ class People extends Array<Person> {
   }
 
   private delta() : number {
-    return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.07);
+    return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.05);
   }
 
   public push(p:Person) : number {
@@ -56,9 +56,9 @@ class People extends Array<Person> {
 
     // Refine.
     if (this.alive && iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         this.position(iteration + 1);
-      }, redraw ? 15 : 0);
+      });
     }
   }
 

@@ -32,8 +32,8 @@ $(() => {
         }
 
         for (let p of d.people) {
-          let x = Math.random() * parseInt(svg_i.attr("width"));
-          let y = Math.random() * parseInt(svg_i.attr("height"));
+          let [x, y] = [Math.random() * parseInt(svg_i.attr("width")),
+                        Math.random() * parseInt(svg_i.attr("height"))];
 
           people.push(new Person(p, new Vector(x, y)));
         }
