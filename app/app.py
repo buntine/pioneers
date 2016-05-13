@@ -62,7 +62,7 @@ def index():
 @app.route("/people")
 @db_session
 def people():
-    tags = request.args.getlist("tag")
+    tags = request.args.getlist("tags[]")
     operation = request.args.get("op", "OR")
     people = translate(
                all_achievements_for_tags(tags) if len(tags) > 0 else all_achievements(),

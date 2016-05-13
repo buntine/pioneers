@@ -14,17 +14,17 @@ $(() => {
 
   let people = new People(svg_i);
 
-  $("#tags").selectivity({placeholder: "Choose one or more topics"});
+  $("select.tags").selectivity({placeholder: "Choose one or more topics"});
 
   let op_switch = new OpSwitch(Snap("#opcanvas"));
   op_switch.draw((s:string) => {
     $("#op").val(s).change();
   });
 
-  $("#tags, #op").change((e:any) => {
+  $("div.tags, #op").change((e:any) => {
     e.preventDefault();
 
-    $.getJSON("/people", $("#search").serialize(),
+    $.getJSON("/people", {op: $("#op").val(), tags: $("select.tags").selectivity("value")},
       (d:{people:Array<IPerson>}) => {
         if (people.length > 0) {
           people.alive = false;

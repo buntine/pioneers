@@ -47,7 +47,7 @@ class OpSwitch {
       this.text.animate({x: c[0] + c[1]}, this.speed);
       this.text.attr({text: c[2]});
 
-      f(this.text.attr("text"));
+      f(this.text.attr("text").toUpperCase());
     });
   }
 }
