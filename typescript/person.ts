@@ -30,6 +30,8 @@ class Person {
   public radius : number;
   private initial_point : Vector;
 
+  public static MAX_ZOOM = 250;
+
   constructor(public svg:Snap.Paper, public details:IPerson, public point:Vector) {
     this.initial_point = new Vector(point.x, point.y);
   }
@@ -49,7 +51,7 @@ class Person {
 
     this.avatar.click((e:MouseEvent) => this.show());
     this.avatar.hover((e:MouseEvent) => this.highlight(),
-                      (e:MouseEvent) => this.unhighlight());
+                      (e:MouseEvent) => () => {});
   }
 
   public position() : void {
@@ -89,18 +91,37 @@ class Person {
   }
 
   public highlight() : void {
-    this.title = this.svg.rect(this.point.x - 100, this.point.y + this.radius + 6, 200, 60);
+    this.title = this.svg.rect(this.point.x - 100, this.point.y + (this.radius * 2) + 6, 200, 60, 2);
     this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
 
-    this.avatar.animate({strokeWidth: 6, r: this.radius + 4}, 140, mina.linear, () => {
-      this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500);
+    let imgsrc = "/static/images/" + this.details.picture;
+    let mass = this.radius * 2;
+    let pattern = this.svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
+    let avatar_border = this.svg.circle(this.point.x, this.point.y, this.radius);
+    let avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
+    let g = this.svg.group(pattern, avatar_border);
+    let scale = (Person.MAX_ZOOM / mass);
+
+    avatar_border.attr({fillOpacity: 0, stroke: "#888", strokeWidth: 2});
+    avatar.attr({fill: "#fff"});
+    pattern.attr({mask: avatar});
+
+    g.hover((e:MouseEvent) => {},
+            (e:MouseEvent) => {g.remove(); this.unhighlight()});
+
+    g.animate({transform: `s${scale},${scale},${this.point.x},${this.point.y}`}, 800, mina.backout, () => {
+      if (this.title) {
+        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500);
+      }
     });
   }
 
   public unhighlight() : void {
-    this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
-    this.title.remove();
-    this.title = null;
+    if (this.title) {
+      this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
+      this.title.remove();
+      this.title = null;
+    }
   }
 
 }
