@@ -19,8 +19,13 @@
             {% endfor %}
           </select>
           <input type="hidden" name="op" value="and" id="op" />
-          <svg id="opcanvas">sassas</svg>
+          <svg id="opcanvas"></svg>
         </form>
+      </div>
+      <ul id="frame">
+        <li class="impact active"><a href="#">IMPACT</a></li>
+        <li class="timeline inactive"><a href="#">TIMELINE</a></li>
+      </ul>
       </div>
       {% block body %}{% endblock %}
     </section>
