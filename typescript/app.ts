@@ -16,7 +16,7 @@ $(() => {
 
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
-  let op_switch = new OpSwitch(Snap("#opcanvas"));
+  let op_switch = new OpSwitch(Snap("#opcanvas"), ["or", "and"]);
   op_switch.draw((s:string) => {
     $("#op").val(s).change();
   });

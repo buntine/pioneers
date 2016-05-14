@@ -1,37 +1,44 @@
 class OpSwitch {
-  private button : Snap.Element;
   private text : Snap.Element;
-  private coords : Array<[number, number, string]>;
+  private coords : Array<[number, string]>;
 
-  private static WIDTH = 100;
-  private static HEIGHT = 47;
-
-  constructor(public svg:Snap.Paper, public speed=150) {
+  constructor(public svg:Snap.Paper, public ops:[string, string], public speed=150, public width=100, public height=46) {
     this.coords = [
-      [0, 15, "or"],
-      [OpSwitch.WIDTH / 2, 7, "and"],
+      [0, ops[0]],
+      [this.width / 2, ops[1]],
     ];
   }
 
+  private centerText(txt:Snap.Element) : void {
+    let bbox = txt.getBBox();
+
+    txt.transform(`translate(${(this.width / 4) - (bbox.w / 2)},
+                             ${(this.height / 2) + (bbox.h / 4)})`);
+  }
+
   private drawBg() : void {
-    let bg = this.svg.rect(0, 0, OpSwitch.WIDTH, OpSwitch.HEIGHT, 5);
-    bg.attr({fill: "#fff", cursor: "pointer"});
+    let bg = this.svg.rect(0, 0, this.width, this.height, 5);
+    bg.attr({fill: "#555", cursor: "pointer"});
   }
 
   private drawBgTexts() : void {
     for (let c of this.coords) {
-      let text = this.svg.text(c[0] + c[1], 28, c[2]);
+      let text = this.svg.text(c[0], 0, c[1]);
       text.attr({fill: "#aaa", cursor: "pointer"});
+      this.centerText(text);
     }
   }
 
   private drawOpGroup() : Snap.Element {
-    this.button = this.svg.rect(0, 0, OpSwitch.WIDTH / 2, OpSwitch.HEIGHT, 5);
-    this.text = this.svg.text(this.coords[0][1], 28, "or");
-    this.text.attr({fill: "#fff", cursor: "pointer"});
-    this.button.attr({fill: "#56abfb", cursor: "pointer"});
+    let button = this.svg.rect(0, 0, this.width / 2, this.height, 5);
 
-    return this.svg.group(this.button, this.text);
+    button.attr({fill: "#56abfb", cursor: "pointer"});
+
+    this.text = this.svg.text(0, 0, this.coords[0][1]);
+    this.text.attr({fill: "#fff", cursor: "pointer"});
+    this.centerText(this.text);
+
+    return this.svg.group(button, this.text);
   }
 
   public draw(f: (s:string) => void) : void {
@@ -40,12 +47,13 @@ class OpSwitch {
     let ops = this.drawOpGroup();
 
     this.svg.click((e:MouseEvent) => {
-      let n = (this.text.attr("text") == this.coords[0][2]) ? 1 : 0;
+      let n = (this.text.attr("text") == this.coords[0][1]) ? 1 : 0;
       let c = this.coords[n];
 
-      this.button.animate({x: c[0]}, this.speed);
-      this.text.animate({x: c[0] + c[1]}, this.speed);
-      this.text.attr({text: c[2]});
+      ops.animate({transform: `translate(${c[0]},0)`}, this.speed);
+
+      this.text.attr({text: c[1]});
+      this.centerText(this.text);
 
       f(this.text.attr("text").toUpperCase());
     });
