@@ -89,9 +89,12 @@ class Person {
   }
 
   public highlight() : void {
-    this.avatar.animate({strokeWidth: 6, r: this.radius + 4}, 140);
-    this.title = this.svg.rect(this.point.x, this.point.y, 100, 40);
-    this.title.attr({fill: "red"});
+    this.title = this.svg.rect(this.point.x - 100, this.point.y + this.radius + 6, 200, 60);
+    this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
+
+    this.avatar.animate({strokeWidth: 6, r: this.radius + 4}, 140, mina.linear, () => {
+      this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500);
+    });
   }
 
   public unhighlight() : void {
