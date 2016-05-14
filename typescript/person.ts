@@ -24,16 +24,25 @@ interface IPerson {
   achievements: Array<IAchievement>;
 }
 
+enum ShowState {
+  Unhighlighted = 0,
+  Waiting = 1,
+  Zooming = 2,
+  Done = 3,
+}
+
 class Person {
   public title : Snap.Element;
   public avatar : Snap.Element;
   public radius : number;
+  public showState : ShowState;
   private initial_point : Vector;
 
   public static MAX_ZOOM = 250;
 
   constructor(public svg:Snap.Paper, public details:IPerson, public point:Vector) {
     this.initial_point = new Vector(point.x, point.y);
+    this.showState = ShowState.Unhighlighted;
   }
 
   public draw(unit:number) : void {
@@ -51,7 +60,7 @@ class Person {
 
     this.avatar.click((e:MouseEvent) => this.show());
     this.avatar.hover((e:MouseEvent) => this.highlight(),
-                      (e:MouseEvent) => () => {});
+                      (e:MouseEvent) => { if (this.showState < ShowState.Zooming) { this.unhighlight() }});
   }
 
   public position() : void {
@@ -90,9 +99,8 @@ class Person {
     console.log(this.details.name);
   }
 
-  public highlight() : void {
-    this.title = this.svg.rect(this.point.x - 100, this.point.y + (this.radius * 2) + 6, 200, 60, 2);
-    this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
+  private zoom() : void {
+    if (this.showState != ShowState.Waiting) { return; }
 
     let imgsrc = "/static/images/" + this.details.picture;
     let mass = this.radius * 2;
@@ -102,7 +110,12 @@ class Person {
     let g = this.svg.group(pattern, avatar_border);
     let scale = (Person.MAX_ZOOM / mass);
 
-    avatar_border.attr({fillOpacity: 0, stroke: "#888", strokeWidth: 2});
+    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2), Person.MAX_ZOOM, 60, 2);
+    this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
+
+    this.showState = ShowState.Zooming;
+
+    avatar_border.attr({fillOpacity: 0, stroke: "#888", strokeWidth: (6 / scale)});
     avatar.attr({fill: "#fff"});
     pattern.attr({mask: avatar});
 
@@ -110,18 +123,28 @@ class Person {
             (e:MouseEvent) => {g.remove(); this.unhighlight()});
 
     g.animate({transform: `s${scale},${scale},${this.point.x},${this.point.y}`}, 800, mina.backout, () => {
-      if (this.title) {
-        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500);
+      if (this.showState == ShowState.Zooming) {
+        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500, mina.linear, () => {
+          this.showState = ShowState.Done;
+        });
       }
     });
   }
 
-  public unhighlight() : void {
+  private highlight() : void {
+    this.showState = ShowState.Waiting;
+    setTimeout(() => this.zoom(), 2000);
+  }
+
+  private unhighlight() : void {
     if (this.title) {
       this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
       this.title.remove();
       this.title = null;
     }
+
+    console.log("fasling");
+    this.showState = ShowState.Unhighlighted;
   }
 
 }
