@@ -16,9 +16,12 @@ $(() => {
 
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
-  let op_switch = new OpSwitch(Snap("#opcanvas"), ["or", "and"]);
-  op_switch.draw((s:string) => {
-    $("#op").val(s).change();
+  new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:string) => {
+    $("#op").val(t.toUpperCase()).change();
+  });
+
+  new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:string) => {
+    console.log(s);
   });
 
   $("div.tags, #op").change((e:any) => {
