@@ -8,11 +8,12 @@ declare var $:any;
 
 $(() => {
   let svg_i = Snap("#impactcanvas");
+  let [width, height] = [$(window).width(),
+                         $(window).height() - $("#impactcanvas").offset().top];
 
-  svg_i.attr({width: $(window).width(),
-              height: $(window).height() - $("#impactcanvas").offset().top});
+  svg_i.attr({width: width, height: height});
 
-  let people = new People(svg_i);
+  let people = new People(width, height);
 
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
@@ -31,14 +32,14 @@ $(() => {
       (d:{people:Array<IPerson>}) => {
         if (people.length > 0) {
           people.alive = false;
-          people = new People(svg_i);
+          people = new People(width, height);
         }
 
         for (let p of d.people) {
           let [x, y] = [Math.random() * parseInt(svg_i.attr("width")),
                         Math.random() * parseInt(svg_i.attr("height"))];
 
-          people.push(new Person(p, new Vector(x, y)));
+          people.push(new Person(svg_i, p, new Vector(x, y)));
         }
 
         svg_i.clear();

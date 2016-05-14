@@ -6,14 +6,11 @@ class People extends Array<Person> {
   private static MIN_REFINEMENT = 45;
   private static MAX_DELTA = 0.7;
   private static DAMPING_FACTOR = 0.25;
-  private static REFINEMENT_DELTA = 8;
+  private static REFINEMENT_DELTA = 4;
   private static REDRAW_THRESHOLD = 35;
 
-  constructor(public svg:Snap.Paper) {
+  constructor(width:number, height:number) {
     super();
-
-    let width = parseInt(svg.attr("width"));
-    let height = parseInt(svg.attr("height"));
 
     this.center = new Vector(width / 2.0, height / 2.0);
     this.total = 0;
@@ -47,10 +44,10 @@ class People extends Array<Person> {
 
     // Attract to center point.
     for (let p of this) {
-      p.attract(this.svg, this.center, People.DAMPING_FACTOR / iteration);
+      p.attract(this.center, People.DAMPING_FACTOR / iteration);
 
       if (redraw) {
-        p.position(this.svg);
+        p.position();
       }
     }
 
@@ -68,7 +65,7 @@ class People extends Array<Person> {
     let unit = Math.min(width / this.total, height / this.total) * this.delta();
 
     for (let p of this) {
-      p.draw(this.svg, unit);
+      p.draw(unit);
     }
 
     this.position();

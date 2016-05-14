@@ -25,15 +25,16 @@ interface IPerson {
 }
 
 class Person {
+  public title : Snap.Element;
   public avatar : Snap.Element;
   public radius : number;
   private initial_point : Vector;
 
-  constructor(public details:IPerson, public point:Vector) {
+  constructor(public svg:Snap.Paper, public details:IPerson, public point:Vector) {
     this.initial_point = new Vector(point.x, point.y);
   }
 
-  public draw(svg:Snap.Paper, unit:number) : void {
+  public draw(unit:number) : void {
     let mass = (this.details.impact * unit);
 
     this.radius = mass / 2.0;
@@ -41,9 +42,9 @@ class Person {
     let x = this.point.x - this.radius;
     let y = this.point.y - this.radius;
     let imgsrc = "/static/images/" + this.details.picture;
-    let pattern = svg.image(imgsrc, x, y, mass, mass);
+    let pattern = this.svg.image(imgsrc, x, y, mass, mass);
 
-    this.avatar = svg.circle(this.point.x, this.point.y, this.radius);
+    this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
     this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#888", strokeWidth: 1});
 
     this.avatar.click((e:MouseEvent) => this.show());
@@ -51,7 +52,7 @@ class Person {
                       (e:MouseEvent) => this.unhighlight());
   }
 
-  public position(svg:Snap.Paper) : void {
+  public position() : void {
     let v = Vector.sub(this.point, this.initial_point);
     this.avatar.transform(`translate(${v.x}, ${v.y})`);
   }
@@ -76,7 +77,7 @@ class Person {
     }
   }
 
-  public attract(svg:Snap.Paper, to:Vector, damping:number) : void {
+  public attract(to:Vector, damping:number) : void {
     let v = Vector.sub(this.point, to);
     v.mul(damping);
 
@@ -89,10 +90,14 @@ class Person {
 
   public highlight() : void {
     this.avatar.animate({strokeWidth: 6, r: this.radius + 4}, 140);
+    this.title = this.svg.rect(this.point.x, this.point.y, 100, 40);
+    this.title.attr({fill: "red"});
   }
 
   public unhighlight() : void {
     this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
+    this.title.remove();
+    this.title = null;
   }
 
 }
