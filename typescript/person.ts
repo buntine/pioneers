@@ -118,7 +118,7 @@ class Person {
   }
 
   private drawTitle() : void {
-    let mz = Person.MAX_ZOOM;
+    let mz = Math.max(this.radius * 2, Person.MAX_ZOOM);
     let mid = new Vector(mz / 2, mz / 2);
     let pos = new Vector(this.point.x - mid.x, this.point.y + (mid.y - 30));
 
