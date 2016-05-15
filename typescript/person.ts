@@ -111,7 +111,7 @@ class Person {
     let g = this.svg.group(pattern, avatarBorder);
     let scale = (Person.MAX_ZOOM / mass);
 
-    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 40, Person.MAX_ZOOM, 60, 2);
+    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 30, Person.MAX_ZOOM, 60, 2);
     this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
 
     this.showState = ShowState.Zooming;
@@ -124,9 +124,9 @@ class Person {
             (e:MouseEvent) => {g.remove();
                                this.unhighlight()});
 
-    g.animate({transform: `s${scale},${scale}`}, 800, mina.backout, () => {
+    g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
       if (this.showState == ShowState.Zooming) {
-        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500, mina.linear, () => {
+        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 300, mina.linear, () => {
           this.showState = ShowState.Done;
         });
       }
@@ -137,7 +137,7 @@ class Person {
     this.avatar.animate({strokeWidth: 6}, 800);
     this.showState = ShowState.Waiting;
 
-    setTimeout(() => this.zoom(), 1400);
+    setTimeout(() => this.zoom(), 800);
   }
 
   private unhighlight() : void {
