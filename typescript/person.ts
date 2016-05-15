@@ -36,19 +36,20 @@ class Person {
   public avatar : Snap.Element;
   public radius : number;
   public showState : ShowState;
-  private initial_point : Vector;
+  private initialPoint : Vector;
 
   public static MAX_ZOOM = 250;
+  public static MAX_SIZE = 400;
 
   constructor(public svg:Snap.Paper, public details:IPerson, public point:Vector) {
-    this.initial_point = new Vector(point.x, point.y);
+    this.initialPoint = new Vector(point.x, point.y);
     this.showState = ShowState.Unhighlighted;
   }
 
   public draw(unit:number) : void {
-    let mass = (this.details.impact * unit);
+    let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit));
 
-    this.radius = mass / 2.0;
+    this.radius = mass / 2;
 
     let x = this.point.x - this.radius;
     let y = this.point.y - this.radius;
@@ -56,7 +57,7 @@ class Person {
     let pattern = this.svg.image(imgsrc, x, y, mass, mass);
 
     this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
-    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#888", strokeWidth: 1});
+    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#888", strokeWidth: 1, cursor: "pointer"});
 
     this.avatar.click((e:MouseEvent) => this.show());
     this.avatar.hover((e:MouseEvent) => this.highlight(),
@@ -64,7 +65,7 @@ class Person {
   }
 
   public position() : void {
-    let v = Vector.sub(this.point, this.initial_point);
+    let v = Vector.sub(this.point, this.initialPoint);
     this.avatar.transform(`translate(${v.x}, ${v.y})`);
   }
 
@@ -105,9 +106,9 @@ class Person {
     let imgsrc = "/static/images/" + this.details.picture;
     let mass = this.radius * 2;
     let pattern = this.svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
-    let avatar_border = this.svg.circle(this.point.x, this.point.y, this.radius);
+    let avatarBorder = this.svg.circle(this.point.x, this.point.y, this.radius);
     let avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
-    let g = this.svg.group(pattern, avatar_border);
+    let g = this.svg.group(pattern, avatarBorder);
     let scale = (Person.MAX_ZOOM / mass);
 
     this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2), Person.MAX_ZOOM, 60, 2);
@@ -115,14 +116,15 @@ class Person {
 
     this.showState = ShowState.Zooming;
 
-    avatar_border.attr({fillOpacity: 0, stroke: "#888", strokeWidth: (6 / scale)});
+    avatarBorder.attr({fillOpacity: 0, stroke: "#888", strokeWidth: (6 / scale)});
     avatar.attr({fill: "#fff"});
     pattern.attr({mask: avatar});
 
     g.hover((e:MouseEvent) => {},
-            (e:MouseEvent) => {g.remove(); this.unhighlight()});
+            (e:MouseEvent) => {g.remove();
+                               this.unhighlight()});
 
-    g.animate({transform: `s${scale},${scale},${this.point.x},${this.point.y}`}, 800, mina.backout, () => {
+    g.animate({transform: `s${scale},${scale}`}, 800, mina.backout, () => {
       if (this.showState == ShowState.Zooming) {
         this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 500, mina.linear, () => {
           this.showState = ShowState.Done;
@@ -132,18 +134,20 @@ class Person {
   }
 
   private highlight() : void {
+    this.avatar.animate({strokeWidth: 6}, 800);
     this.showState = ShowState.Waiting;
-    setTimeout(() => this.zoom(), 2000);
+
+    setTimeout(() => this.zoom(), 1400);
   }
 
   private unhighlight() : void {
-    if (this.title) {
+    if (this.showState >= ShowState.Zooming) {
       this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
       this.title.remove();
       this.title = null;
     }
 
-    console.log("fasling");
+    this.avatar.stop().animate({strokeWidth: 1}, 300);
     this.showState = ShowState.Unhighlighted;
   }
 
