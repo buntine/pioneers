@@ -47,7 +47,7 @@ class Person {
   }
 
   public draw(unit:number) : void {
-    let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit));
+    let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit);
 
     this.radius = mass / 2;
 
@@ -111,7 +111,7 @@ class Person {
     let g = this.svg.group(pattern, avatarBorder);
     let scale = (Person.MAX_ZOOM / mass);
 
-    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2), Person.MAX_ZOOM, 60, 2);
+    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 40, Person.MAX_ZOOM, 60, 2);
     this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
 
     this.showState = ShowState.Zooming;
