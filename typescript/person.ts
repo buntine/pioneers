@@ -121,16 +121,21 @@ class Person {
     pattern.attr({mask: avatar});
 
     g.hover((e:MouseEvent) => {},
-            (e:MouseEvent) => {g.remove();
-                               this.unhighlight()});
+            (e:MouseEvent) => {this.unhighlight(); g.animate({transform: "s1,1"}, 200, mina.linear, () => {g.remove();})});
 
-    g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
-      if (this.showState == ShowState.Zooming) {
-        this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
-          this.showState = ShowState.Done;
-        });
-      }
-    });
+    if (scale < 1) {
+      this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
+        this.showState = ShowState.Done;
+      });
+    } else {
+      g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
+        if (this.showState == ShowState.Zooming) {
+          this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
+            this.showState = ShowState.Done;
+          });
+        }
+      });
+    }
   }
 
   private highlight() : void {
