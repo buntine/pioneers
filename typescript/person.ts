@@ -39,7 +39,7 @@ class Person {
   private initialPoint : Vector;
 
   public static MAX_ZOOM = 250;
-  public static MAX_SIZE = 400;
+  public static MAX_SIZE = 350;
 
   constructor(public svg:Snap.Paper, public details:IPerson, public point:Vector) {
     this.initialPoint = new Vector(point.x, point.y);
@@ -111,8 +111,8 @@ class Person {
     let g = this.svg.group(pattern, avatarBorder);
     let scale = (Person.MAX_ZOOM / mass);
 
-    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 30, Person.MAX_ZOOM, 60, 2);
-    this.title.attr({fill: "#fff", stroke: "#888", strokeWidth: 6, strokeOpacity: 0, fillOpacity: 0});
+    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 30, Person.MAX_ZOOM, 60, 6);
+    this.title.attr({fill: "#fff", fillOpacity: 0});
 
     this.showState = ShowState.Zooming;
 
@@ -126,7 +126,7 @@ class Person {
 
     g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
       if (this.showState == ShowState.Zooming) {
-        this.title.animate({fillOpacity: 1, strokeOpacity: 1}, 300, mina.linear, () => {
+        this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
           this.showState = ShowState.Done;
         });
       }
