@@ -49,15 +49,17 @@ class Person {
   public draw(unit:number) : void {
     let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit);
 
-    this.radius = mass / 2;
+    this.radius = mass / 2.0;
 
-    let x = this.point.x - this.radius;
-    let y = this.point.y - this.radius;
-    let imgsrc = "/static/images/" + this.details.picture;
-    let pattern = this.svg.image(imgsrc, x, y, mass, mass);
+    let tl = this.topLeft();
+    let p = this.point;
+    let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
 
-    this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
-    this.avatar.attr({fill: pattern.pattern(x, y, mass, mass), stroke: "#888", strokeWidth: 1, cursor: "pointer"});
+    this.avatar = this.svg.circle(p.x, p.y, this.radius);
+    this.avatar.attr({fill: pattern.pattern(p.x, p.y, mass, mass),
+                      stroke: "#888",
+                      strokeWidth: 1,
+                      cursor: "pointer"});
 
     this.avatar.click((e:MouseEvent) => this.show());
     this.avatar.hover((e:MouseEvent) => this.highlight(),
@@ -71,7 +73,6 @@ class Person {
 
   public distanceFrom(v:Vector) : number {
     let distance = Vector.sub(v, this.point);
-
     return distance.mag();
   }
 
@@ -79,6 +80,7 @@ class Person {
     let dist = this.distanceFrom(p.point);
     let radii = this.radius + p.radius + padding;
 
+    // Overlapping, move away from each other.
     if (dist < radii) {
       let mid = (c:number) => { return (c / dist) * (radii - dist) * 0.5; };
       let v = Vector.sub(p.point, this.point);
@@ -100,40 +102,68 @@ class Person {
     console.log(this.details.name);
   }
 
-  private zoom() : void {
-    if (this.showState != ShowState.Waiting) { return; }
+  private imageSource() : string {
+    return "/static/images/" + this.details.picture;
+  }
 
-    let imgsrc = "/static/images/" + this.details.picture;
-    let mass = this.radius * 2;
-    let pattern = this.svg.image(imgsrc, this.point.x - this.radius, this.point.y - this.radius, mass, mass);
-    let avatarBorder = this.svg.circle(this.point.x, this.point.y, this.radius);
-    let avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
-    let g = this.svg.group(pattern, avatarBorder);
-    let scale = (Person.MAX_ZOOM / mass);
+  private topLeft() : Vector {
+    return Vector.sub(this.point, new Vector(this.radius, this.radius));
+  }
 
-    this.title = this.svg.rect(this.point.x - (Person.MAX_ZOOM / 2), this.point.y + (Person.MAX_ZOOM / 2) - 30, Person.MAX_ZOOM, 60, 6);
-    this.title.attr({fill: "#fff", fillOpacity: 0});
-
-    this.showState = ShowState.Zooming;
-
-    avatarBorder.attr({fillOpacity: 0, stroke: "#888", strokeWidth: (6 / scale)});
-    avatar.attr({fill: "#fff"});
-    pattern.attr({mask: avatar});
-
-    g.hover((e:MouseEvent) => {},
-            (e:MouseEvent) => {this.unhighlight(); g.animate({transform: "s1,1"}, 200, mina.linear, () => {g.remove();})});
-
-    if (scale < 1) {
+  private showTitle() {
+    if (this.showState == ShowState.Zooming) {
       this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
         this.showState = ShowState.Done;
       });
+    }
+  }
+
+  private drawTitle() : void {
+    let mz = Person.MAX_ZOOM;
+    let mid = new Vector(mz / 2, mz / 2);
+    let pos = new Vector(this.point.x - mid.x, this.point.y + (mid.y - 30));
+
+    this.title = this.svg.rect(pos.x, pos.y, mz, 60, 6);
+    this.title.attr({fill: "#fff", fillOpacity: 0});
+  }
+
+  private zoom() : void {
+    if (this.showState != ShowState.Waiting) { return; }
+
+    let mass = this.radius * 2;
+    let scale = Person.MAX_ZOOM / mass;
+    let p = this.point;
+    let tl = this.topLeft();
+
+    // In order to get zoom appearing correctly I need to draw new image over the existing one and
+    // scale it. It's a hack, but without this I get weird behavious depending on the original draw
+    // order of the people. The pattern also does not scale on the original person circle.
+    let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
+    let avatarBorder = this.svg.circle(p.x, p.y, this.radius);
+    let avatar = avatarBorder.clone();
+    let g = this.svg.group(pattern, avatarBorder);
+
+    this.drawTitle();
+    this.showState = ShowState.Zooming;
+
+    avatar.attr({fill: "#fff"});
+    pattern.attr({mask: avatar});
+    avatarBorder.attr({fillOpacity: 0,
+                       stroke: "#888",
+                       strokeWidth: (6 / scale)});
+
+    g.click((e:MouseEvent) => this.show());
+    g.hover((e:MouseEvent) => {},
+            (e:MouseEvent) => {
+              this.unhighlight();
+              g.animate({transform: "s1,1"}, 200, mina.linear, () => {g.remove();})});
+
+    // Person is larger than MAX_ZOOM so skip zoom in.
+    if (scale < 1) {
+      this.showTitle()
     } else {
       g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
-        if (this.showState == ShowState.Zooming) {
-          this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
-            this.showState = ShowState.Done;
-          });
-        }
+        this.showTitle()
       });
     }
   }
@@ -149,11 +179,9 @@ class Person {
     if (this.showState >= ShowState.Zooming) {
       this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
       this.title.remove();
-      this.title = null;
     }
 
     this.avatar.stop().animate({strokeWidth: 1}, 300);
     this.showState = ShowState.Unhighlighted;
   }
-
 }

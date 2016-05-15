@@ -2,7 +2,7 @@ h1 { color: green; }
 html,body { margin: 0; padding: 0; background: #fff; font-family: sans-serif arial; height: 100%; }
 .page { display: flex; flex-flow: column; height: 100%; }
 a { color: #fff; font-family: arial, sans-serif;}
-#logo {position: absolute; background: #ffc3e1; height: 76px; width: 76px; font-size: 60px; text-align: center;}
+#logo {position: absolute; background: #ffc3e1; color: #232323; height: 76px; width: 76px; font-size: 60px; text-align: center;}
 #searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: sans-serif; font-size: 18px; flex: 0 0 46px;}
 #searchform input { color: #232323; }
 #opcanvas { width: 100px; height: 46px; float: right; font-family: sans-serif; color: #fff; font-size: 18px; padding: 5px 0; }
