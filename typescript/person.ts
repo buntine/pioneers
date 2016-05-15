@@ -52,11 +52,10 @@ class Person {
     this.radius = mass / 2.0;
 
     let tl = this.topLeft();
-    let p = this.point;
     let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
 
-    this.avatar = this.svg.circle(p.x, p.y, this.radius);
-    this.avatar.attr({fill: pattern.pattern(p.x, p.y, mass, mass),
+    this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
+    this.avatar.attr({fill: pattern.pattern(tl.x, tl.y, mass, mass),
                       stroke: "#888",
                       strokeWidth: 1,
                       cursor: "pointer"});
