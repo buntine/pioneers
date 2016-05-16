@@ -49,7 +49,7 @@ class Person {
   public draw(unit:number) : void {
     let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit);
 
-    this.radius = mass / 2.0;
+    this.radius = mass / 2;
 
     let tl = this.topLeft();
     let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
@@ -122,7 +122,12 @@ class Person {
     let mid = new Vector(mz / 2, mz / 2);
     let pos = new Vector(this.point.x - mid.x, this.point.y + (mid.y - 30));
 
-    this.title = this.svg.rect(pos.x, pos.y, mz, 60, 6);
+    let box = this.svg.rect(pos.x, pos.y, mz, 60, 6);
+    let details = this.svg.text(pos.x + 76, pos.y + 33, this.details.name);
+
+    details.attr({fill: "#232323", fontSize: "18px"});
+
+    this.title = this.svg.group(box, details);
     this.title.attr({fill: "#fff", fillOpacity: 0});
   }
 
@@ -177,7 +182,9 @@ class Person {
   private unhighlight() : void {
     if (this.showState >= ShowState.Zooming) {
       this.avatar.animate({strokeWidth: 2, r: this.radius}, 140);
-      this.title.remove();
+      this.title.animate({fillOpacity: 0}, 150, mina.linear, () => {
+        this.title.remove();
+      });
     }
 
     this.avatar.stop().animate({strokeWidth: 1}, 300);
