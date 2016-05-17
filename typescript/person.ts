@@ -102,7 +102,7 @@ class Person {
   }
 
   private imageSource() : string {
-    return "/static/images/" + this.details.picture;
+    return "/static/images/people/" + this.details.picture;
   }
 
   private topLeft() : Vector {
