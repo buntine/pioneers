@@ -12,6 +12,7 @@ class Title {
   public title : Snap.Element;
 
   public static WAIT = 800;
+  public static HEIGHT = 60;
 
   constructor(public person:Person) {
     this.state = ShowState.Unhighlighted;
@@ -31,7 +32,7 @@ class Title {
     setTimeout(() => this.zoom(), Title.WAIT);
   }
 
-  public showTitle() {
+  public show() : void {
     if (this.state == ShowState.Zooming) {
       this.title.animate({fillOpacity: 1}, 300, mina.linear, () => {
         this.state = ShowState.Done;
@@ -39,17 +40,17 @@ class Title {
     }
   }
 
-  public drawTitle() : void {
+  public draw() : void {
     let p = this.person;
     let mz = Math.max(p.radius * 2, Person.MAX_ZOOM);
     let mid = new Vector(mz / 2, mz / 2);
     let pos = new Vector(p.point.x - mid.x, p.point.y + (mid.y - 30));
-    let box = p.svg.rect(pos.x, pos.y, mz, 60, 6);
-    let details = p.svg.text(pos.x + 80, pos.y + 33, p.details.name);
-    let flagMask = p.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, 60);
-    let flag = p.svg.rect(pos.x, pos.y, 79, 60, 6);
+    let box = p.svg.rect(pos.x, pos.y, mz, Title.HEIGHT, 6);
+    let details = p.svg.text(pos.x, pos.y, p.details.name);
+    let flagMask = p.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, Title.HEIGHT);
+    let flag = p.svg.rect(pos.x, pos.y, 79, Title.HEIGHT, 6);
 
-    flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, 60)});
+    flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, Title.HEIGHT)});
     details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
 
     this.title = p.svg.group(box, details, flag);
@@ -73,7 +74,7 @@ class Title {
     let avatar = avatarBorder.clone();
     let g = p.svg.group(pattern, avatarBorder);
 
-    this.drawTitle();
+    this.draw();
     this.state = ShowState.Zooming;
 
     avatar.attr({fill: "#fff"});
@@ -90,10 +91,10 @@ class Title {
 
     // Person is larger than MAX_ZOOM so skip zoom in.
     if (scale < 1) {
-      this.showTitle()
+      this.show()
     } else {
       g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
-        this.showTitle()
+        this.show()
       });
     }
   }
