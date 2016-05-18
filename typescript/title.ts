@@ -68,7 +68,7 @@ class Title {
     // In order to get zoom appearing correctly I need to draw new image over the existing one and
     // scale it. It's a hack, but without this I get weird behavious depending on the original draw
     // order of the people. The pattern also does not scale on the original person circle.
-    let pattern = p.svg.image(imageSource("people", p.details.picture), tl.x, tl.y, mass, mass);
+    let pattern = p.svg.image(Helpers.imageSource("people", p.details.picture), tl.x, tl.y, mass, mass);
     let avatarBorder = p.svg.circle(pt.x, pt.y, p.radius);
     let avatar = avatarBorder.clone();
     let g = p.svg.group(pattern, avatarBorder);

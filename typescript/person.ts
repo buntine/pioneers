@@ -47,7 +47,7 @@ class Person {
     this.radius = mass / 2;
 
     let tl = this.topLeft();
-    let pattern = this.svg.image(imageSource("people", this.details.picture), tl.x, tl.y, mass, mass);
+    let pattern = this.svg.image(Helpers.imageSource("people", this.details.picture), tl.x, tl.y, mass, mass);
 
     this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
     this.avatar.attr({fill: pattern.pattern(tl.x, tl.y, mass, mass),
@@ -65,13 +65,8 @@ class Person {
     this.avatar.transform(`translate(${v.x}, ${v.y})`);
   }
 
-  public distanceFrom(v:Vector) : number {
-    let distance = Vector.sub(v, this.point);
-    return distance.mag();
-  }
-
   public detract(p:Person, padding:number) : void {
-    let dist = this.distanceFrom(p.point);
+    let dist = this.point.distanceFrom(p.point);
     let radii = this.radius + p.radius + padding;
 
     // Overlapping, move away from each other.
@@ -100,7 +95,7 @@ class Person {
     return Vector.sub(this.point, new Vector(this.radius, this.radius));
   }
 
-  private highlight() : void {
+  public highlight() : void {
     this.avatar.animate({strokeWidth: 6}, 800);
     this.title.initiate()
   }

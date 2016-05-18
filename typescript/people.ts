@@ -32,7 +32,7 @@ class People extends Array<Person> {
     // Sort from closest->furthest to center point.
     this.sort((a:Person, b:Person) => {
       let c = this.center;
-      return a.distanceFrom(c) - b.distanceFrom(c);
+      return a.point.distanceFrom(c) - b.point.distanceFrom(c);
     });
 
     // Detract other particles.
