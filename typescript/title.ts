@@ -1,3 +1,5 @@
+/// <reference path='helpers.ts'/>
+
 enum ShowState {
   Unhighlighted = 0,
   Waiting = 1,
@@ -38,39 +40,41 @@ class Title {
   }
 
   public drawTitle() : void {
-    let mz = Math.max(this.radius * 2, Person.MAX_ZOOM);
+    let p = this.person;
+    let mz = Math.max(p.radius * 2, Person.MAX_ZOOM);
     let mid = new Vector(mz / 2, mz / 2);
-    let pos = new Vector(this.point.x - mid.x, this.point.y + (mid.y - 30));
-    let box = this.svg.rect(pos.x, pos.y, mz, 60, 6);
-    let details = this.svg.text(pos.x + 80, pos.y + 33, this.details.name);
-    let flagMask = this.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, 60);
-    let flag = this.svg.rect(pos.x, pos.y, 79, 60, 6);
+    let pos = new Vector(p.point.x - mid.x, p.point.y + (mid.y - 30));
+    let box = p.svg.rect(pos.x, pos.y, mz, 60, 6);
+    let details = p.svg.text(pos.x + 80, pos.y + 33, p.details.name);
+    let flagMask = p.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, 60);
+    let flag = p.svg.rect(pos.x, pos.y, 79, 60, 6);
 
     flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, 60)});
     details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
 
-    this.title = this.svg.group(box, details, flag);
+    this.title = p.svg.group(box, details, flag);
     this.title.attr({fill: "#fff", fillOpacity: 0});
   }
 
   public zoom() : void {
-    if (this.showState != ShowState.Waiting) { return; }
+    if (this.state != ShowState.Waiting) { return; }
 
-    let mass = this.radius * 2;
+    let p = this.person;
+    let mass = p.radius * 2;
     let scale = Person.MAX_ZOOM / mass;
-    let p = this.point;
-    let tl = this.topLeft();
+    let pt = p.point;
+    let tl = p.topLeft();
 
     // In order to get zoom appearing correctly I need to draw new image over the existing one and
     // scale it. It's a hack, but without this I get weird behavious depending on the original draw
     // order of the people. The pattern also does not scale on the original person circle.
-    let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
-    let avatarBorder = this.svg.circle(p.x, p.y, this.radius);
+    let pattern = p.svg.image(imageSource("people", p.details.picture), tl.x, tl.y, mass, mass);
+    let avatarBorder = p.svg.circle(pt.x, pt.y, p.radius);
     let avatar = avatarBorder.clone();
-    let g = this.svg.group(pattern, avatarBorder);
+    let g = p.svg.group(pattern, avatarBorder);
 
     this.drawTitle();
-    this.showState = ShowState.Zooming;
+    this.state = ShowState.Zooming;
 
     avatar.attr({fill: "#fff"});
     pattern.attr({mask: avatar});
@@ -78,10 +82,10 @@ class Title {
                        stroke: "#888",
                        strokeWidth: (6 / scale)});
 
-    g.click((e:MouseEvent) => this.show());
+    g.click((e:MouseEvent) => p.show());
     g.hover((e:MouseEvent) => {},
             (e:MouseEvent) => {
-              this.unhighlight();
+              p.unhighlight();
               g.animate({transform: "s1,1"}, 200, mina.linear, () => {g.remove();})});
 
     // Person is larger than MAX_ZOOM so skip zoom in.

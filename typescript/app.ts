@@ -1,6 +1,5 @@
 /// <reference path='person.ts'/>
 /// <reference path='people.ts'/>
-/// <reference path='title.ts'/>
 /// <reference path='vector.ts'/>
 /// <reference path='op_switch.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>

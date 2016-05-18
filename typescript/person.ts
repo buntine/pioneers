@@ -1,3 +1,6 @@
+/// <reference path='helpers.ts'/>
+/// <reference path='title.ts'/>
+
 interface IWin {
   name: string;
   year: number;
@@ -44,7 +47,7 @@ class Person {
     this.radius = mass / 2;
 
     let tl = this.topLeft();
-    let pattern = this.svg.image(this.imageSource(), tl.x, tl.y, mass, mass);
+    let pattern = this.svg.image(imageSource("people", this.details.picture), tl.x, tl.y, mass, mass);
 
     this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
     this.avatar.attr({fill: pattern.pattern(tl.x, tl.y, mass, mass),
@@ -91,10 +94,6 @@ class Person {
 
   public show() : void {
     console.log(this.details.name);
-  }
-
-  private imageSource() : string {
-    return "/static/images/people/" + this.details.picture;
   }
 
   public topLeft() : Vector {
