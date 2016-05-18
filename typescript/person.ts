@@ -121,13 +121,15 @@ class Person {
     let mz = Math.max(this.radius * 2, Person.MAX_ZOOM);
     let mid = new Vector(mz / 2, mz / 2);
     let pos = new Vector(this.point.x - mid.x, this.point.y + (mid.y - 30));
-
     let box = this.svg.rect(pos.x, pos.y, mz, 60, 6);
-    let details = this.svg.text(pos.x + 76, pos.y + 33, this.details.name);
+    let details = this.svg.text(pos.x + 80, pos.y + 33, this.details.name);
+    let flagMask = this.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, 60);
+    let flag = this.svg.rect(pos.x, pos.y, 79, 60, 6);
 
-    details.attr({fill: "#232323", fontSize: "18px"});
+    flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, 60)});
+    details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
 
-    this.title = this.svg.group(box, details);
+    this.title = this.svg.group(box, details, flag);
     this.title.attr({fill: "#fff", fillOpacity: 0});
   }
 
