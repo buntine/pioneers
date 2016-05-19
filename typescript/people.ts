@@ -64,10 +64,18 @@ class People extends Array<Person> {
     let height = this.center.y * 2;
     let unit = Math.min(width / this.total, height / this.total) * this.delta();
 
+    this.alive = true;
+
     for (let p of this) {
       p.draw(unit);
     }
 
     this.position();
+  }
+
+  public clear() : void {
+    this.alive = false;
+    this.total = 0;
+    this.length = 0;
   }
 }

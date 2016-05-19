@@ -7,11 +7,11 @@
 declare var $:any;
 
 $(() => {
-  let svg_i = Snap("#impactcanvas");
+  let svg = Snap("#impactcanvas");
   let [width, height] = [$(window).width(),
                          $(window).height() - $("#impactcanvas").offset().top];
 
-  svg_i.attr({width: width, height: height});
+  svg.attr({width: width, height: height});
 
   let people = new People(width, height);
 
@@ -31,18 +31,17 @@ $(() => {
     $.getJSON("/people", {op: $("#op").val(), tags: $("select.tags").selectivity("value")},
       (d:{people:Array<IPerson>}) => {
         if (people.length > 0) {
-          people.alive = false;
-          people = new People(width, height);
+          people.clear();
         }
 
         for (let p of d.people) {
-          let [x, y] = [Math.random() * parseInt(svg_i.attr("width")),
-                        Math.random() * parseInt(svg_i.attr("height"))];
+          let [x, y] = [Math.random() * parseInt(svg.attr("width")),
+                        Math.random() * parseInt(svg.attr("height"))];
 
-          people.push(new Person(svg_i, p, new Vector(x, y)));
+          people.push(new Person(svg, p, new Vector(x, y)));
         }
 
-        svg_i.clear();
+        svg.clear();
         people.pack();
       }
     );
