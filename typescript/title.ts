@@ -53,17 +53,17 @@ class Title {
     let flag = p.svg.rect(pos.x, pos.y, Title.FLAG_WIDTH - 1, Title.HEIGHT, 6);
 
     flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, Title.FLAG_WIDTH, Title.HEIGHT)});
-    details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial", padding: "30px"});
+    details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
 
     let detailsBBox = details.getBBox();
     let width = Title.FLAG_WIDTH + (Title.PADDING * 2) + detailsBBox.w;
     let box = p.svg.rect(pos.x, pos.y, width, Title.HEIGHT, 6);
 
-    console.log((Title.HEIGHT / 2) - (detailsBBox.h / 2));
     details.transform(`translate(${Title.FLAG_WIDTH + Title.PADDING - 2}, ${(Title.HEIGHT / 2) + (detailsBBox.h / 4)})`);
 
     this.title = p.svg.group(box, details, flag);
     this.title.attr({fill: "#fff", fillOpacity: 0});
+    this.title.transform(`translate(${(mz - width) / 2}, 0)`);
   }
 
   public zoom() : void {
