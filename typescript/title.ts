@@ -53,7 +53,7 @@ class Title {
     let flag = p.svg.rect(pos.x, pos.y, Title.FLAG_WIDTH - 1, Title.HEIGHT, 6);
 
     flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, Title.FLAG_WIDTH, Title.HEIGHT)});
-    details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
+    details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial", padding: "30px"});
 
     let detailsBBox = details.getBBox();
     let width = Title.FLAG_WIDTH + (Title.PADDING * 2) + detailsBBox.w;
