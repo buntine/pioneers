@@ -60,9 +60,8 @@ class People extends Array<Person> {
   }
 
   public pack() : void {
-    let width = this.center.x * 2;
-    let height = this.center.y * 2;
-    let unit = Math.min(width / this.total, height / this.total) * this.delta();
+    let [w, h] = [this.center.x * 2, this.center.y * 2]
+    let unit = Math.min(w / this.total, h / this.total) * this.delta();
 
     this.alive = true;
 

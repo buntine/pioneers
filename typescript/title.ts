@@ -8,6 +8,12 @@ enum ShowState {
 }
 
 class Title {
+
+  // WARNING: Here be skeletons! 
+  // I'm not really sure how to position SVG elements correctly when their dimensions
+  // are dynamic so everything here is calculated at runtime. Please tell me if you know
+  // a better way of doing this...
+
   public state : ShowState;
   public title : Snap.Element;
 
@@ -59,7 +65,7 @@ class Title {
     let width = Title.FLAG_WIDTH + (Title.PADDING * 2) + detailsBBox.w;
     let box = p.svg.rect(pos.x, pos.y, width, Title.HEIGHT, 6);
 
-    // Center into remaining space.
+    // Center in remaining space.
     details.transform(`translate(${Title.FLAG_WIDTH + Title.PADDING - 2}, ${(Title.HEIGHT / 2) + (detailsBBox.h / 4)})`);
 
     this.title = p.svg.group(box, details, flag);
