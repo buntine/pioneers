@@ -27,7 +27,10 @@ $(() => {
 
   $("div.tags, #op").change((e:any) => {
     e.preventDefault();
+    impact();
+  });
 
+  function impact() {
     $.getJSON("/people", {op: $("#op").val(), tags: $("select.tags").selectivity("value")},
       (d:{people:Array<IPerson>}) => {
         if (people.length > 0) {
@@ -45,5 +48,9 @@ $(() => {
         people.pack();
       }
     );
-  });
+  }
+
+  function timeline() {
+    // TODO: Implement.
+  }
 });

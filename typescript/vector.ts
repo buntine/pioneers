@@ -31,7 +31,7 @@ class Vector {
     return Math.sqrt(x * x + y * y);
   }
 
-  public distanceFrom(v:Vector) {
+  public distanceFrom(v:Vector) : number {
     let distance = Vector.sub(v, this);
 
     return distance.mag();
