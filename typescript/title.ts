@@ -47,7 +47,7 @@ class Title {
     let pos = new Vector(p.point.x - mid.x, p.point.y + (mid.y - 30));
     let box = p.svg.rect(pos.x, pos.y, mz, Title.HEIGHT, 6);
     let details = p.svg.text(pos.x, pos.y, p.details.name);
-    let flagMask = p.svg.image("/static/images/flags/us.png", pos.x, pos.y, 80, Title.HEIGHT);
+    let flagMask = p.svg.image(p.flagPath(), pos.x, pos.y, 80, Title.HEIGHT);
     let flag = p.svg.rect(pos.x, pos.y, 79, Title.HEIGHT, 6);
 
     flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, Title.HEIGHT)});
@@ -67,7 +67,7 @@ class Title {
     let tl = p.topLeft();
 
     // In order to get zoom appearing correctly I need to draw new image over the existing one and
-    // scale it. It's a hack, but without this I get weird behavious depending on the original draw
+    // scale it. It's a hack, but without this I get weird behaviour depending on the original draw
     // order of the people. The pattern also does not scale on the original person circle.
     let pattern = p.svg.image(Helpers.imageSource("people", p.details.picture), tl.x, tl.y, mass, mass);
     let avatarBorder = p.svg.circle(pt.x, pt.y, p.radius);

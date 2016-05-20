@@ -95,6 +95,10 @@ class Person {
     return Vector.sub(this.point, new Vector(this.radius, this.radius));
   }
 
+  public flagSource() : string {
+    return Helpers.imageSource("flags", `${this.details.country.toLowerCase()}.png`);
+  }
+
   public highlight() : void {
     this.avatar.animate({strokeWidth: 6}, 800);
     this.title.initiate()
