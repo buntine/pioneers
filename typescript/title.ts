@@ -59,10 +59,13 @@ class Title {
     let width = Title.FLAG_WIDTH + (Title.PADDING * 2) + detailsBBox.w;
     let box = p.svg.rect(pos.x, pos.y, width, Title.HEIGHT, 6);
 
+    // Center into remaining space.
     details.transform(`translate(${Title.FLAG_WIDTH + Title.PADDING - 2}, ${(Title.HEIGHT / 2) + (detailsBBox.h / 4)})`);
 
     this.title = p.svg.group(box, details, flag);
     this.title.attr({fill: "#fff", fillOpacity: 0});
+
+    // Readjust to accommodate dynamic width because of pioneers name.
     this.title.transform(`translate(${(mz - width) / 2}, 0)`);
   }
 
