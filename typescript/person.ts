@@ -95,7 +95,7 @@ class Person {
     return Vector.sub(this.point, new Vector(this.radius, this.radius));
   }
 
-  public flagSource() : string {
+  public flagPath() : string {
     return Helpers.imageSource("flags", `${this.details.country.toLowerCase()}.png`);
   }
 

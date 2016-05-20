@@ -13,6 +13,8 @@ class Title {
 
   public static WAIT = 800;
   public static HEIGHT = 60;
+  public static FLAG_WIDTH = Math.ceil(Title.HEIGHT * 1.3)
+  public static BOTTOM_OFFSET = 30;
 
   constructor(public person:Person) {
     this.state = ShowState.Unhighlighted;
@@ -44,13 +46,13 @@ class Title {
     let p = this.person;
     let mz = Math.max(p.radius * 2, Person.MAX_ZOOM);
     let mid = new Vector(mz / 2, mz / 2);
-    let pos = new Vector(p.point.x - mid.x, p.point.y + (mid.y - 30));
+    let pos = new Vector(p.point.x - mid.x, p.point.y + (mid.y - Title.BOTTOM_OFFSET));
     let box = p.svg.rect(pos.x, pos.y, mz, Title.HEIGHT, 6);
     let details = p.svg.text(pos.x, pos.y, p.details.name);
-    let flagMask = p.svg.image(p.flagPath(), pos.x, pos.y, 80, Title.HEIGHT);
-    let flag = p.svg.rect(pos.x, pos.y, 79, Title.HEIGHT, 6);
+    let flagMask = p.svg.image(p.flagPath(), pos.x, pos.y, Title.FLAG_WIDTH, Title.HEIGHT);
+    let flag = p.svg.rect(pos.x, pos.y, Title.FLAG_WIDTH, Title.HEIGHT, 6);
 
-    flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, 80, Title.HEIGHT)});
+    flag.attr({fill: flagMask.pattern(pos.x - 6, pos.y, Title.FLAG_WIDTH, Title.HEIGHT)});
     details.attr({fill: "#232323", fontSize: "18px", fontFamily: "sans-serif, arial"});
 
     this.title = p.svg.group(box, details, flag);
