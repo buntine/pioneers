@@ -48,7 +48,7 @@ def translate(results, tags=[]):
 def all_achievements_for_tags(tags):
     return left_join((p, a) for p in Person
                             for a in p.achievements
-                            for t in a.tags if t.name in tags)
+                            for t in a.tags if t.slug in tags)
  
 def all_achievements():
     return left_join((p, a) for p in Person
