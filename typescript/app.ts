@@ -33,9 +33,7 @@ $(() => {
   function impact() {
     $.getJSON("/people", {op: $("#op").val(), tags: $("select.tags").selectivity("value")},
       (d:{people:Array<IPerson>}) => {
-        if (people.length > 0) {
-          people.clear();
-        }
+        people.clear();
 
         for (let p of d.people) {
           let [x, y] = [Math.random() * parseInt(svg.attr("width")),
