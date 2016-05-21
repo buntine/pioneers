@@ -16,7 +16,7 @@
         <form method="get" id="search" action="/people">
           <select multiple name="tags[]" class="tags">
             {% for t in tags %}
-            <option value="{{t}}">{{t}}</option>
+            <option value="{{t.1}}">{{t.0}}</option>
             {% endfor %}
           </select>
           <input type="hidden" name="op" value="and" id="op" />

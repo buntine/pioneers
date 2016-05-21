@@ -31,6 +31,7 @@ class Win(db.Entity):
 
 class Tag(db.Entity):
     name = Required(str)
+    slug = Required(str)
     achievements = Set("Achievement")
 
 class Achievement(db.Entity):

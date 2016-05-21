@@ -2,6 +2,7 @@
 
 import subprocess
 import csv
+import re
 
 from models import *
 from pony.orm import *
@@ -35,8 +36,9 @@ def people(rows):
     print "Removed: %d People." % Person.select().delete()
 
     for row in rows:
-        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"], yod = row["Died"] if len(row["Died"]) > 0 else 0,
-               biography = row["Biography"], picture = row["Picture"], source = row["Source"])
+        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"],
+               yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
+               picture = row["Picture"], source = row["Source"])
         print "Created Person: %s" % row["Name"]
 
 def achievements(rows):
@@ -45,11 +47,10 @@ def achievements(rows):
         impact = Impact.get(value = int(row["Impact"]))
 
         if person and impact:
-            tags = map(lambda t: Tag.get(name = t) or Tag(name = t),
-                       map(lambda t: t.strip().lower(), row["Tags"].split(",")))
+            tags = map(fetch_tag, row["Tags"].split(","))
 
-            Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"], source = row["Source"],
-                        tags = tags)
+            Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"],
+                        source = row["Source"], tags = tags)
 
             print "Created Achievement for %s" % person.name
         else:
@@ -70,6 +71,16 @@ def awards(rows):
         else:
             print "WARN: Unknown person (%s). Skipping..." % row["Name"]
             continue
+
+def fetch_tag(t):
+    s = slug(t)
+
+    return Tag.get(slug = s) or Tag(name = t, slug = s)
+
+def slug(s):
+    pattern = re.compile("[^\w\-\+\@\#\$]+")
+
+    return pattern.sub("-", s.strip().lower())
 
 impacts()
 with_csv("data/csv/people.csv", people)
