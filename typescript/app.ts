@@ -30,9 +30,14 @@ $(() => {
     impact();
   });
 
-  function impact() {
-    $.getJSON("/people", {op: $("#op").val(), tags: $("select.tags").selectivity("value")},
+  function impact() : void {
+    let op = $("#op").val();
+    let tags = $("select.tags").selectivity("value");
+
+    $.getJSON("/people", {op: $("#op").val(), tags: tags},
       (d:{people:Array<IPerson>}) => {
+        writeState("impact", op, tags);
+
         people.clear();
 
         for (let p of d.people) {
@@ -48,7 +53,11 @@ $(() => {
     );
   }
 
-  function timeline() {
+  function timeline() : void {
     // TODO: Implement.
+  }
+
+  function writeState(tab:string, op:string, tags:Array<string>) : void {
+    history.pushState(null, null, `/${tab}/${op.toLowerCase()}/${tags.join("+")}`);
   }
 });
