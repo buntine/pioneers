@@ -55,8 +55,10 @@ def all_achievements():
                             for a in p.achievements)
  
 @app.route("/")
+@app.route("/impact/<op>/<tags>")
+@app.route("/timeline/<op>/<tags>")
 @db_session
-def index():
+def index(op="OR", tags=[]):
     return render_template("index.html", tags=select((t.name, t.slug) for t in Tag).order_by(1)[:])
 
 @app.route("/people")

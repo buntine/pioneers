@@ -25,24 +25,32 @@ $(() => {
     console.log(s);
   });
 
-  $("div.tags, #op").change((e:any) => {
-    e.preventDefault();
-    impact();
-  });
+  window.onpopstate = (e:Event) => {
+    // TODO: Implement.
+    // Parse out op and tags.
+    // Cleanse op and tags.
+    // Execute: impact(op, tags);
+    // Ensure correct state in OpSwitchs and tags dropdown.
+  };
 
-  function impact() : void {
+  $("div.tags, #op").change((e:any) => {
     let op = $("#op").val();
     let tags = $("select.tags").selectivity("value");
 
-    $.getJSON("/people", {op: $("#op").val(), tags: tags},
+    e.preventDefault();
+    writeState("impact", op, tags);
+    impact(op, tags);
+  });
+
+  function impact(op:string, tags:Array<string>) : void {
+    $.getJSON("/people", {op: op, tags: tags},
       (d:{people:Array<IPerson>}) => {
-        writeState("impact", op, tags);
+        let [w, h] = ["width", "height"].map((a) => parseInt(svg.attr(a)));
 
         people.clear();
 
         for (let p of d.people) {
-          let [x, y] = [Math.random() * parseInt(svg.attr("width")),
-                        Math.random() * parseInt(svg.attr("height"))];
+          let [x, y] = [Math.random() * w, Math.random() * h];
 
           people.push(new Person(svg, p, new Vector(x, y)));
         }
