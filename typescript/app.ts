@@ -26,6 +26,7 @@ $(() => {
   });
 
   window.onpopstate = (e:Event) => {
+    console.log(history.state);
     // TODO: Implement.
     // Parse out op and tags.
     // Cleanse op and tags.
@@ -66,6 +67,6 @@ $(() => {
   }
 
   function writeState(tab:string, op:string, tags:Array<string>) : void {
-    history.pushState(null, null, `/${tab}/${op.toLowerCase()}/${tags.join("+")}`);
+    history.pushState({tab:tab, op:op, tags:tags}, null, `/${tab}/${op.toLowerCase()}/${tags.join("+")}`);
   }
 });
