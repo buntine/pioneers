@@ -6,6 +6,12 @@
 
 declare var $:any;
 
+interface IAppState {
+  tab: string,
+  op: string,
+  tags: Array<string>,
+}
+
 $(() => {
   let svg = Snap("#impactcanvas");
   let [width, height] = [$(window).width(),
@@ -25,14 +31,25 @@ $(() => {
     console.log(s);
   });
 
-  window.onpopstate = (e:Event) => {
-    console.log(history.state);
-    // TODO: Implement.
+  window.addEventListener("popstate", setState);
+  window.addEventListener("load", setState);
+
+  function setState() : void {
+    let state = history.state || stateFromPath();
+    executeState(state);
+  }
+
+  function stateFromPath() : IAppState {
     // Parse out op and tags.
     // Cleanse op and tags.
-    // Execute: impact(op, tags);
+    return {op: "or", tab: "impact", tags: ["computer"]};
+  }
+
+  function executeState(s:IAppState) : void {
+    // Execute: <tab>(op, tags);
     // Ensure correct state in OpSwitchs and tags dropdown.
-  };
+    console.log(s);
+  }
 
   $("div.tags, #op").change((e:any) => {
     let op = $("#op").val();
