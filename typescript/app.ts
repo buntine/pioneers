@@ -35,14 +35,24 @@ $(() => {
   window.addEventListener("load", setState);
 
   function setState() : void {
-    let state = history.state || stateFromPath();
-    executeState(state);
+    let state : IAppState | boolean = history.state || stateFromPath();
+
+    if (typeof state !== "boolean") {
+      executeState(state);
+    }
   }
 
-  function stateFromPath() : IAppState {
-    // Parse out op and tags.
-    // Cleanse op and tags.
-    return {op: "or", tab: "impact", tags: ["computer"]};
+  function stateFromPath() : IAppState | boolean {
+    let isValid = /^\/(impact|timeline)\/(and|or)\/([\w\-\+]+)$/;
+    let groups = isValid.exec(document.location.pathname);
+
+    if (groups) {
+      return {tab: groups[1],
+              op: groups[2],
+              tags: groups[3].split("+")};
+    } else {
+      return false;
+    }
   }
 
   function executeState(s:IAppState) : void {
