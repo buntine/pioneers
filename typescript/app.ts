@@ -23,43 +23,17 @@ $(() => {
 
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
-  new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:string) => {
+  let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:string) => {
     $("#op").val(t.toUpperCase()).change();
   });
 
-  new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:string) => {
+  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:string) => {
+    // TODO: Implement.
     console.log(s);
   });
 
   window.addEventListener("popstate", setState);
   window.addEventListener("load", setState);
-
-  function setState() : void {
-    let state : IAppState | boolean = history.state || stateFromPath();
-
-    if (typeof state !== "boolean") {
-      executeState(state);
-    }
-  }
-
-  function stateFromPath() : IAppState | boolean {
-    let isValid = /^\/(impact|timeline)\/(and|or)\/([\w\-\+]+)$/;
-    let groups = isValid.exec(document.location.pathname);
-
-    if (groups) {
-      return {tab: groups[1],
-              op: groups[2],
-              tags: groups[3].split("+")};
-    } else {
-      return false;
-    }
-  }
-
-  function executeState(s:IAppState) : void {
-    // Execute: <tab>(op, tags);
-    // Ensure correct state in OpSwitchs and tags dropdown.
-    console.log(s);
-  }
 
   $("div.tags, #op").change((e:any) => {
     let state = {tab: "impact",
@@ -90,8 +64,41 @@ $(() => {
     );
   }
 
-  function timeline() : void {
+  function timeline(state:IAppState) : void {
     // TODO: Implement.
+  }
+
+  function setState() : void {
+    let state : IAppState | boolean = history.state || stateFromPath();
+
+    if (typeof state !== "boolean") {
+      executeState(state);
+    }
+  }
+
+  function stateFromPath() : IAppState | boolean {
+    let isValid = /^\/(impact|timeline)\/(and|or)\/([\w\-\+]+)$/;
+    let groups = isValid.exec(document.location.pathname);
+
+    if (groups) {
+      return {tab: groups[1],
+              op: groups[2],
+              tags: groups[3].split("+")};
+    } else {
+      return false;
+    }
+  }
+
+  function executeState(state:IAppState) : void {
+    let fs : {[K : string]: any} = {"impact": impact, "timeline": timeline};
+    let f = fs[state.tab];
+
+    if (f) {
+      f(state);
+      op.setTo(state.op.toLowerCase());
+      $("select.tags").selectivity("value", state.tags, {triggerChange: false})
+                      .selectivity("rerenderSelection");
+    }
   }
 
   function writeState(state:IAppState) : void {

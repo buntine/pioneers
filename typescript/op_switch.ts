@@ -2,10 +2,12 @@ type OpSwitchState = number;
 
 class OpSwitch {
   private text : Snap.Element;
+  private opGroup : Snap.Element;
   private state : OpSwitchState;
   private coords : Array<[number, string]>;
+  private callback : (s:OpSwitchState, t:string) => void;
 
-  constructor(public svg:Snap.Paper, public ops:[string, string], public speed=150, public width=100, public height=46) {
+  constructor(public svg:Snap.Paper, ops:[string, string], public speed=150, public width=100, public height=46) {
     this.coords = [
       [0, ops[0]],
       [this.width / 2, ops[1]],
@@ -46,21 +48,36 @@ class OpSwitch {
     return this.svg.group(button, this.text);
   }
 
-  public draw(f: (s:OpSwitchState, t:string) => void) : void {
+  private toggleState(triggerCallback=true) : void {
+    this.state = (this.state == 0) ? 1 : 0;
+    let c = this.coords[this.state];
+
+    this.opGroup.animate({transform: `translate(${c[0]},0)`}, this.speed);
+
+    this.text.attr({text: c[1]});
+    this.centerText(this.text);
+
+    if (triggerCallback) {
+      this.callback(this.state, c[1]);
+    }
+  }
+
+  public draw(f: (s:OpSwitchState, t:string) => void) : OpSwitch {
     this.drawBg();
     this.drawBgTexts();
-    let ops = this.drawOpGroup();
+    this.opGroup = this.drawOpGroup();
+    this.callback = f;
 
-    this.svg.click((e:MouseEvent) => {
-      this.state = (this.state == 0) ? 1 : 0;
-      let c = this.coords[this.state];
+    this.svg.click((e:MouseEvent) => this.toggleState());
 
-      ops.animate({transform: `translate(${c[0]},0)`}, this.speed);
+    return this;
+  }
 
-      this.text.attr({text: c[1]});
-      this.centerText(this.text);
+  public setTo(t:string) : void {
+    let current = this.coords[this.state][1];
 
-      f(this.state, c[1]);
-    });
+    if (current !== t) {
+      this.toggleState(false);
+    }
   }
 }
