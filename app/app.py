@@ -28,8 +28,8 @@ def to_list(people):
     return [expand_person(p, a) for p, a in people.iteritems()]
 
 def has_all_tags(achievement, tags):
-    names = [t.name for t in achievement.tags]
-    return all([t in names for t in tags])
+    slugs = [t.slug for t in achievement.tags]
+    return all([t in slugs for t in tags])
 
 def to_dict(people, tags=[]):
     "Collects a list of (person, achievement) into a dict of people->achievements."

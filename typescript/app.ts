@@ -7,7 +7,7 @@
 declare var $:any;
 
 interface IAppState {
-  tab: string,
+  tab?: string,
   op: string,
   tags: Array<string>,
 }
@@ -62,16 +62,17 @@ $(() => {
   }
 
   $("div.tags, #op").change((e:any) => {
-    let op = $("#op").val();
-    let tags = $("select.tags").selectivity("value");
+    let state = {tab: "impact",
+                 op: $("#op").val(),
+                 tags: $("select.tags").selectivity("value")};
 
     e.preventDefault();
-    writeState("impact", op, tags);
-    impact(op, tags);
+    writeState(state);
+    impact(state);
   });
 
-  function impact(op:string, tags:Array<string>) : void {
-    $.getJSON("/people", {op: op, tags: tags},
+  function impact(state:IAppState) : void {
+    $.getJSON("/people", state,
       (d:{people:Array<IPerson>}) => {
         let [w, h] = ["width", "height"].map((a) => parseInt(svg.attr(a)));
 
@@ -93,7 +94,7 @@ $(() => {
     // TODO: Implement.
   }
 
-  function writeState(tab:string, op:string, tags:Array<string>) : void {
-    history.pushState({tab:tab, op:op, tags:tags}, null, `/${tab}/${op.toLowerCase()}/${tags.join("+")}`);
+  function writeState(state:IAppState) : void {
+    history.pushState(state, null, `/${state.tab}/${state.op.toLowerCase()}/${state.tags.join("+")}`);
   }
 });
