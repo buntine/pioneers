@@ -8,7 +8,6 @@ enum ShowState {
 }
 
 class Title {
-
   // WARNING: Here be skeletons! 
   // I'm not really sure how to position SVG elements correctly when their dimensions
   // are dynamic so everything here is calculated at runtime. Please tell me if you know
@@ -116,9 +115,7 @@ class Title {
     if (scale < 1) {
       this.show()
     } else {
-      g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => {
-        this.show()
-      });
+      g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => this.show());
     }
   }
 

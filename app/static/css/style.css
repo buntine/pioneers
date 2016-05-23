@@ -10,4 +10,11 @@ a { color: #fff; font-family: arial, sans-serif;}
 #impactcanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
-.pioneer-overlay {position: relative; background: #FFF; padding: 20px; width: auto; max-width: 500px; margin: 20px auto;}
+.pioneer-overlay {position: relative; background: #FFF; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: sans-serif, arial; color: #232323;}
+.pioneer-overlay a {color: blue;}
+section.person_header { margin-bottom: 40px; height: 250px; }
+section.person_header img.profile { float: left; margin-right: 15px; }
+section.person_header img.flag { margin-right: 10px; }
+section.person_header h2 { font-size: 38px; margin: 0 0 10px 0; font-weight: bold; }
+section.person_header .country { margin: 20px 0; font-weight: bold; }
+section.person_list h3 { font-size: 26px; border-bottom: 1px solid #232323; margin: 20px 0; width: 400px; }
