@@ -96,6 +96,7 @@ $(() => {
     if (f) {
       f(state);
       op.setTo(state.op.toLowerCase());
+      $("#op").val(state.op);
       $("select.tags").selectivity("value", state.tags, {triggerChange: false})
                       .selectivity("rerenderSelection");
     }
