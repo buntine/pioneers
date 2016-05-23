@@ -92,6 +92,8 @@ class Title {
     let avatar = avatarBorder.clone();
     let g = p.svg.group(pattern, avatarBorder);
 
+    g.attr({cursor: "pointer"});
+
     this.draw();
     this.state = ShowState.Zooming;
 
