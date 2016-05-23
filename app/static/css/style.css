@@ -10,3 +10,4 @@ a { color: #fff; font-family: arial, sans-serif;}
 #impactcanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
+.pioneer-overlay {position: relative; background: #FFF; padding: 20px; width: auto; max-width: 500px; margin: 20px auto;}

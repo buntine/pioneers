@@ -55,8 +55,8 @@ class Person {
                       strokeWidth: 1,
                       cursor: "pointer"});
 
-    this.avatar.click(this.highlight);
-    this.avatar.hover(this.highlight,
+    this.avatar.click((e:MouseEvent) => this.highlight());
+    this.avatar.hover((e:MouseEvent) => this.highlight(),
                       (e:MouseEvent) => { if (this.title.unhighlighted()) { this.unhighlight() }});
   }
 
@@ -88,7 +88,18 @@ class Person {
   }
 
   public show() : void {
-    console.log(this.details.name);
+    $.get('/static/templates/person.mst', (template:string) => {
+      let rendered = Mustache.render(template, {person: this.details});
+
+      $.magnificPopup.open({
+        items: {
+            src: `<div class="pioneer-overlay white-popup">${rendered}</div>`,
+            type: "inline"
+        },
+        removalDelay: 300,
+        mainClass: "mfp-fade"
+      });
+    });
   }
 
   public topLeft() : Vector {

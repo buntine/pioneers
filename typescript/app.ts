@@ -3,6 +3,7 @@
 /// <reference path='vector.ts'/>
 /// <reference path='op_switch.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
+/// <reference path='d/mustache.d.ts'/>
 
 declare var $:any;
 
