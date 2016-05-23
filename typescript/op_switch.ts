@@ -48,7 +48,7 @@ class OpSwitch {
     return this.svg.group(button, this.text);
   }
 
-  private toggleState(triggerCallback=true) : void {
+  private toggleState(triggerCallback:boolean) : void {
     this.state = (this.state == 0) ? 1 : 0;
     let c = this.coords[this.state];
 
@@ -68,7 +68,7 @@ class OpSwitch {
     this.opGroup = this.drawOpGroup();
     this.callback = f;
 
-    this.svg.click((e:MouseEvent) => this.toggleState());
+    this.svg.click((e:MouseEvent) => this.toggleState(true));
 
     return this;
   }
