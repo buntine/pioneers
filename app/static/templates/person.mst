@@ -7,7 +7,17 @@
 </section>
 <section class="person_list">
   <h3>Achievements</h3>
+  <ul>
+    {{#person.achievements}}
+    <li>{{year}}: {{description}} <a href="{{source}}">Read more</a></li>
+    {{/person.achievements}}
+  </ul>
 </section>
 <section class="person_list">
   <h3>Awards</h3>
+  <ul>
+    {{#person.wins}}
+    <li>{{year}}: {{name}}</li>
+    {{/person.wins}}
+  </ul>
 </section>
