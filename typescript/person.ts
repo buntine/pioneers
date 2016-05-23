@@ -55,8 +55,8 @@ class Person {
                       strokeWidth: 1,
                       cursor: "pointer"});
 
-    this.avatar.click((e:MouseEvent) => this.highlight());
-    this.avatar.hover((e:MouseEvent) => this.highlight(),
+    this.avatar.click(this.highlight);
+    this.avatar.hover(this.highlight,
                       (e:MouseEvent) => { if (this.title.unhighlighted()) { this.unhighlight() }});
   }
 

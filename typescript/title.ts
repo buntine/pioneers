@@ -91,23 +91,26 @@ class Title {
     let avatarBorder = p.svg.circle(pt.x, pt.y, p.radius);
     let avatar = avatarBorder.clone();
     let g = p.svg.group(pattern, avatarBorder);
-
-    g.attr({cursor: "pointer"});
+    let close = () => {
+      p.unhighlight();
+      g.animate({transform: "s1,1"}, 200, mina.linear, () => g.remove());
+    };
 
     this.draw();
     this.state = ShowState.Zooming;
 
+    g.attr({cursor: "pointer"});
     avatar.attr({fill: "#fff"});
     pattern.attr({mask: avatar});
     avatarBorder.attr({fillOpacity: 0,
                        stroke: "#888",
                        strokeWidth: (6 / scale)});
 
-    g.click((e:MouseEvent) => p.show());
-    g.hover((e:MouseEvent) => {},
-            (e:MouseEvent) => {
-              p.unhighlight();
-              g.animate({transform: "s1,1"}, 200, mina.linear, () => {g.remove();})});
+    g.click((e:MouseEvent) => {
+      close();
+      p.show();
+    });
+    g.hover(null, close);
 
     // Person is larger than MAX_ZOOM so skip zoom in.
     if (scale < 1) {
