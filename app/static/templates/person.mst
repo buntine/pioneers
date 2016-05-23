@@ -12,12 +12,16 @@
     <li>{{year}}: {{description}} <a href="{{source}}">Read more</a></li>
     {{/person.achievements}}
   </ul>
+  <a href="#">+ 7 more</a>
 </section>
 <section class="person_list">
   <h3>Awards</h3>
   <ul>
     {{#person.wins}}
     <li>{{year}}: {{name}}</li>
+    {{/person.wins}}
+    {{^person.wins}}
+    <p>None yet!</p>
     {{/person.wins}}
   </ul>
 </section>
