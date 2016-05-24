@@ -54,6 +54,7 @@ $(() => {
     $.getJSON("/people", state,
       (d:{people:Array<IPerson>}) => {
         let [w, h] = ["width", "height"].map((a) => parseInt(svg.attr(a)));
+        let nr = $("#noresults");
 
         people.clear();
 
@@ -64,7 +65,13 @@ $(() => {
         }
 
         svg.clear();
-        people.pack();
+
+        if (people.length > 0) {
+          nr.hide();
+          people.pack();
+        } else {
+          nr.show();
+        }
       }
     );
   }
