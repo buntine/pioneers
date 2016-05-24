@@ -89,7 +89,10 @@ class Person {
 
   public show() : void {
     $.get('/static/templates/person.mst', (template:string) => {
-      let rendered = Mustache.render(template, {person: this.details, flag: this.flagPath()});
+      let rendered = Mustache.render(template, {
+        person: this.details, 
+        years: () => { return `${this.details.yob} - ${this.details.yod || ""}` },
+        flag: this.flagPath()});
 
       $.magnificPopup.open({
         items: {
