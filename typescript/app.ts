@@ -42,8 +42,12 @@ $(() => {
                  tags: $("select.tags").selectivity("value")};
 
     e.preventDefault();
-    writeState(state);
-    impact(state);
+
+    // Catch for changing and/or op before searching as it should have no effect.
+    if (people.length > 0 || state.tags.length > 0) {
+      writeState(state);
+      executeState(state);
+    }
   });
 
   function impact(state:IAppState) : void {
@@ -69,15 +73,18 @@ $(() => {
     // TODO: Implement.
   }
 
-  function setState() : void {
-    let state : IAppState | boolean = history.state || stateFromPath();
-
-    if (typeof state !== "boolean") {
-      executeState(state);
-    }
+  function splash() : void {
+    svg.clear();
+    formToState({op: "or", tags: []});
+    $("#splash").show();
   }
 
-  function stateFromPath() : IAppState | boolean {
+  function setState() : void {
+    let state : IAppState = history.state || stateFromPath();
+    executeState(state, true);
+  }
+
+  function stateFromPath() : IAppState {
     let isValid = /^\/(impact|timeline)\/(and|or)\/([\w\-\+]+)$/;
     let groups = isValid.exec(document.location.pathname);
 
@@ -85,25 +92,36 @@ $(() => {
       return {tab: groups[1],
               op: groups[2],
               tags: groups[3].split("+")};
-    } else {
-      return false;
     }
+
+    // Default.
+    return {tab: "impact", op: "or", tags: []};
   }
 
-  function executeState(state:IAppState) : void {
+  function executeState(state:IAppState, updateForm=false) : void {
     let fs : {[K : string]: any} = {"impact": impact, "timeline": timeline};
     let f = fs[state.tab];
 
-    if (f) {
-      f(state);
+    if (state.tags.length > 0) {
+      if (f) {
+        $("#splash").hide();
+        f(state);
+        if (updateForm) { formToState(state); }
+      }
+    } else {
+      splash();
+    }
+  }
+
+  function formToState(state:IAppState) : void {
       op.setTo(state.op.toLowerCase());
       $("#op").val(state.op);
       $("select.tags").selectivity("value", state.tags, {triggerChange: false})
                       .selectivity("rerenderSelection");
-    }
   }
 
   function writeState(state:IAppState) : void {
-    history.pushState(state, null, `/${state.tab}/${state.op.toLowerCase()}/${state.tags.join("+")}`);
+    let path = state.tags.length > 0 ? `/${state.tab}/${state.op.toLowerCase()}/${state.tags.join("+")}` : "/";
+    history.pushState(state, null, path);
   }
 });
