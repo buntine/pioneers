@@ -20,6 +20,10 @@ class Vector {
     return new Vector(v1.x - v2.x, v1.y - v2.y);
   }
 
+  public static randomized(x:number, y:number) : Vector {
+    return new Vector(Math.random() * x, Math.random() * y);
+  }
+
   public div(n:number) : void {
     this.x /= n;
     this.y /= n;

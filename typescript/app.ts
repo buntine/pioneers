@@ -15,23 +15,19 @@ interface IAppState {
 
 $(() => {
   let svg = Snap("#impactcanvas");
-  let [width, height] = [$(window).width(),
-                         $(window).height() - $("#impactcanvas").offset().top];
-
-  svg.attr({width: width, height: height});
-
+  let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
   let people = new People(width, height);
-
-  $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
   let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:OpSwitchOption) => {
     $("#op").val(t.toUpperCase());
     search();
   });
 
-  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:OpSwitchOption) => {
-    search();
-  });
+  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw(search);
+
+  svg.attr({width: width, height: height});
+
+  $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
   window.addEventListener("popstate", setState);
   window.addEventListener("load", setState);
@@ -63,9 +59,7 @@ $(() => {
         people.clear();
 
         for (let p of d.people) {
-          let [x, y] = [Math.random() * w, Math.random() * h];
-
-          people.push(new Person(svg, p, new Vector(x, y)));
+          people.push(new Person(svg, p, Vector.randomized(w, h)));
         }
 
         svg.clear();
@@ -114,12 +108,11 @@ $(() => {
     let fs : {[K : string]: any} = {"impact": impact, "timeline": timeline};
     let f = fs[state.tab];
 
-    if (state.tags.length > 0) {
-      if (f) {
-        $("#splash").hide();
-        f(state);
-        if (updateForm) { formToState(state); }
-      }
+    if (state.tags.length > 0 && f) {
+      $("#splash").hide();
+      f(state);
+
+      if (updateForm) { formToState(state); }
     } else {
       splash();
     }
