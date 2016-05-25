@@ -1,12 +1,12 @@
-type OpSwitchState = number;
-type OpSwitchOption = string;
+type TogglerState = number;
+type TogglerOption = string;
 
-class OpSwitch {
+class Toggler {
   private text : Snap.Element;
   private opGroup : Snap.Element;
-  private state : OpSwitchState;
-  private options : [OpSwitchOption, OpSwitchOption];
-  private callback : (s:OpSwitchState, o:OpSwitchOption) => void;
+  private state : TogglerState;
+  private options : [TogglerOption, TogglerOption];
+  private callback : (s:TogglerState, o:TogglerOption) => void;
 
   constructor(public svg:Snap.Paper, ops:[string, string], public speed=150, public width=100, public height=46) {
     this.options = ops;
@@ -60,7 +60,7 @@ class OpSwitch {
     }
   }
 
-  public draw(f: (s:OpSwitchState, t:string) => void) : OpSwitch {
+  public draw(f: (s:TogglerState, t:string) => void) : Toggler {
     this.drawBg();
     this.drawBgTexts();
     this.opGroup = this.drawOpGroup();
@@ -71,7 +71,7 @@ class OpSwitch {
     return this;
   }
 
-  public getState() : [OpSwitchState, OpSwitchOption] {
+  public getState() : [TogglerState, TogglerOption] {
     return [this.state, this.options[this.state]];
   }
 

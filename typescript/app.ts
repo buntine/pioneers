@@ -1,7 +1,7 @@
 /// <reference path='person.ts'/>
 /// <reference path='people.ts'/>
 /// <reference path='vector.ts'/>
-/// <reference path='op_switch.ts'/>
+/// <reference path='toggler.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
 /// <reference path='d/mustache.d.ts'/>
 
@@ -18,12 +18,12 @@ $(() => {
   let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
   let people = new People(width, height);
 
-  let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:OpSwitchOption) => {
+  let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_:TogglerState, t:TogglerOption) => {
     $("#op").val(t.toUpperCase());
     search();
   });
 
-  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw(search);
+  let tab = new Toggler(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw(search);
 
   svg.attr({width: width, height: height});
 
