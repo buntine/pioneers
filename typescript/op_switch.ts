@@ -1,18 +1,15 @@
 type OpSwitchState = number;
+type OpSwitchOption = string;
 
 class OpSwitch {
   private text : Snap.Element;
   private opGroup : Snap.Element;
   private state : OpSwitchState;
-  private coords : Array<[number, string]>;
-  private callback : (s:OpSwitchState, t:string) => void;
+  private options : [OpSwitchOption, OpSwitchOption];
+  private callback : (s:OpSwitchState, o:OpSwitchOption) => void;
 
   constructor(public svg:Snap.Paper, ops:[string, string], public speed=150, public width=100, public height=46) {
-    this.coords = [
-      [0, ops[0]],
-      [this.width / 2, ops[1]],
-    ];
-
+    this.options = ops;
     this.state = 0;
   }
 
@@ -29,8 +26,8 @@ class OpSwitch {
   }
 
   private drawBgTexts() : void {
-    for (let c of this.coords) {
-      let text = this.svg.text(c[0], 0, c[1]);
+    for (let n of [0, 1]) {
+      let text = this.svg.text((this.width / 2) * n, 0, this.options[n]);
       text.attr({fill: "#aaa", cursor: "pointer"});
       this.centerText(text);
     }
@@ -41,7 +38,7 @@ class OpSwitch {
 
     button.attr({fill: "#56abfb", cursor: "pointer"});
 
-    this.text = this.svg.text(0, 0, this.coords[0][1]);
+    this.text = this.svg.text(0, 0, this.options[0]);
     this.text.attr({fill: "#fff", cursor: "pointer"});
     this.centerText(this.text);
 
@@ -50,15 +47,16 @@ class OpSwitch {
 
   private toggleState(triggerCallback:boolean) : void {
     this.state = (this.state == 0) ? 1 : 0;
-    let c = this.coords[this.state];
 
-    this.opGroup.animate({transform: `translate(${c[0]},0)`}, this.speed);
+    let o = this.options[this.state];
 
-    this.text.attr({text: c[1]});
+    this.opGroup.animate({transform: `translate(${(this.width / 2) * this.state},0)`}, this.speed);
+
+    this.text.attr({text: o});
     this.centerText(this.text);
 
     if (triggerCallback) {
-      this.callback(this.state, c[1]);
+      this.callback(this.state, o);
     }
   }
 
@@ -73,8 +71,12 @@ class OpSwitch {
     return this;
   }
 
+  public getState() : [OpSwitchState, OpSwitchOption] {
+    return [this.state, this.options[this.state]];
+  }
+
   public setTo(t:string) : void {
-    let current = this.coords[this.state][1];
+    let current = this.options[this.state];
 
     if (current !== t) {
       this.toggleState(false);

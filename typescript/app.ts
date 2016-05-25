@@ -24,11 +24,11 @@ $(() => {
 
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
-  let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:string) => {
+  let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:OpSwitchOption) => {
     $("#op").val(t.toUpperCase()).change();
   });
 
-  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:string) => {
+  let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:OpSwitchOption) => {
     // TODO: Implement.
     console.log(s);
   });
@@ -37,7 +37,8 @@ $(() => {
   window.addEventListener("load", setState);
 
   $("div.tags, #op").change((e:any) => {
-    let state = {tab: "impact",
+    let currentTab = tab.getState()[1].toLowerCase();
+    let state = {tab: currentTab,
                  op: $("#op").val(),
                  tags: $("select.tags").selectivity("value")};
 
