@@ -25,31 +25,34 @@ $(() => {
   $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
 
   let op = new OpSwitch(Snap("#opcanvas"), ["or", "and"]).draw((_:OpSwitchState, t:OpSwitchOption) => {
-    $("#op").val(t.toUpperCase()).change();
+    $("#op").val(t.toUpperCase());
+    search();
   });
 
   let tab = new OpSwitch(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw((s:OpSwitchState, _:OpSwitchOption) => {
-    // TODO: Implement.
-    console.log(s);
+    search();
   });
 
   window.addEventListener("popstate", setState);
   window.addEventListener("load", setState);
 
   $("div.tags, #op").change((e:any) => {
+    e.preventDefault();
+    search();
+  });
+
+  function search() : void {
     let currentTab = tab.getState()[1].toLowerCase();
     let state = {tab: currentTab,
                  op: $("#op").val(),
                  tags: $("select.tags").selectivity("value")};
-
-    e.preventDefault();
 
     // Catch for changing and/or op before searching as it should have no effect.
     if (people.length > 0 || state.tags.length > 0) {
       writeState(state);
       executeState(state);
     }
-  });
+  }
 
   function impact(state:IAppState) : void {
     $.getJSON("/people", state,
@@ -79,6 +82,7 @@ $(() => {
 
   function timeline(state:IAppState) : void {
     // TODO: Implement.
+    console.log("timeline");
   }
 
   function splash() : void {
