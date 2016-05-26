@@ -3,7 +3,7 @@ class People extends Array<Person> {
   private center:Vector;
   public alive:boolean;
 
-  private static MIN_REFINEMENT = 45;
+  private static MIN_REFINEMENT = 50;
   private static MAX_DELTA = 0.7;
   private static DAMPING_FACTOR = 0.25;
   private static REFINEMENT_DELTA = 4;

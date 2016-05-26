@@ -27,7 +27,11 @@ $(() => {
 
   svg.attr({width: width, height: height});
 
-  $("select.tags").selectivity({placeholder: "Choose one or more topics..."});
+  $("select.tags").selectivity({
+    placeholder: "Choose one or more topics...",
+    minimumInputLength: 2,
+    quiteMillis: 250,
+  });
 
   window.addEventListener("popstate", setState);
   window.addEventListener("load", setState);
