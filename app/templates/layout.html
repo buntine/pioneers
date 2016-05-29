@@ -18,9 +18,16 @@
       <div id="searchform">
         <form method="get" id="search" action="/people">
           <select multiple name="tags[]" class="tags">
-            {% for t in tags %}
-            <option value="{{t.1}}">{{t.0}}</option>
-            {% endfor %}
+            <optgroup label="Fields">
+              {% for t in parent_tags %}
+              <option value="{{t.1}}">{{t.0}}</option>
+              {% endfor %}
+            </optgroup>
+            <optgroup label="Tags">
+              {% for t in child_tags %}
+              <option value="{{t.1}}">{{t.0}}</option>
+              {% endfor %}
+            </optgroup>
           </select>
           <input type="hidden" name="op" value="OR" id="op" />
           <svg id="opcanvas"></svg>

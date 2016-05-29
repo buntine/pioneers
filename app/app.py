@@ -59,7 +59,10 @@ def all_achievements():
 @app.route("/timeline/<op>/<tags>")
 @db_session
 def index(op="OR", tags=[]):
-    return render_template("index.html", tags=select((t.name, t.slug) for t in Tag).order_by(1)[:])
+    return render_template("index.html",
+            parent_tags = select((t.name, t.slug) for t in Tag if t.parent == None).order_by(1)[:],
+            child_tags = select((t.name, t.slug) for t in Tag if t.parent != None).order_by(1)[:]
+           )
 
 @app.route("/people")
 @db_session
