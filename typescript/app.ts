@@ -78,9 +78,9 @@ $(() => {
     console.log("timeline");
   }
 
-  function graphs(state:IAppState) : void {
+  function geography(state:IAppState) : void {
     // TODO: Implement.
-    console.log("graphs");
+    console.log("geography");
   }
 
   function splash() : void {
@@ -104,7 +104,7 @@ $(() => {
   }
 
   function stateFromPath() : IAppState {
-    let isValid = /^\/(impact|timeline|graphs)\/(and|or)\/([\w\-\+]+)$/;
+    let isValid = /^\/(impact|timeline|geography)\/(and|or)\/([\w\-\+]+)$/;
     let groups = isValid.exec(document.location.pathname);
 
     if (groups) {
@@ -118,7 +118,7 @@ $(() => {
   }
 
   function executeState(state:IAppState, updateForm=false) : void {
-    let fs : {[K : string]: (s:IAppState) => void} = {"impact": impact, "timeline": timeline, "graphs": graphs};
+    let fs : {[K : string]: (s:IAppState) => void} = {"impact": impact, "timeline": timeline, "geography": geography};
     let f = fs[state.tab];
 
     if (state.tags.length > 0 && f) {
