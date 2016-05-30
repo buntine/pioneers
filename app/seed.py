@@ -47,10 +47,11 @@ def achievements(rows):
         impact = Impact.get(value = int(row["Impact"]))
 
         if person and impact:
-            tags = map(fetch_tag, row["Tags"].split(","))
+            tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
+            topics = map(lambda t: fetch_tag(t, "Topic"), row["Topics"].split(","))
 
             Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"],
-                        source = row["Source"], tags = tags)
+                        source = row["Source"], tags = (topics + tags))
 
             print "Created Achievement for %s" % person.name
         else:
@@ -72,10 +73,10 @@ def awards(rows):
             print "WARN: Unknown person (%s). Skipping..." % row["Name"]
             continue
 
-def fetch_tag(t):
+def fetch_tag(t, style):
     s = slug(t)
 
-    return Tag.get(slug = s) or Tag(name = t, slug = s)
+    return Tag.get(slug = s, style = style) or Tag(name = t, slug = s, style = style)
 
 def slug(s):
     pattern = re.compile("[^\w\-\+\@\#\$]+")

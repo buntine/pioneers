@@ -30,9 +30,8 @@ class Win(db.Entity):
     year = Required(int)
 
 class Tag(db.Entity):
-    parent = Optional("Tag", reverse="children")
-    children = Set("Tag", reverse="parent")
     name = Required(str)
+    style = Required(str)
     slug = Required(str)
     achievements = Set("Achievement")
 
