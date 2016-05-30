@@ -22,26 +22,27 @@ $(() => {
     search();
   });
 
-  let tab = new Toggler(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw(search);
-
   $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
   $(window).on("popstate", setState)
            .on("load", () => {setDimensions(); setState();})
            .on("resize", setDimensions);
 
-  $("div.tags, #op").change((e:Event) => {
+  $("#tab").selectivity({
+    allowClear: false,
+    showSearchInputInDropdown: false});
+
+  $("div.tags, #op, #tab").change((e:Event) => {
     e.preventDefault();
     search();
   });
 
   function search() : void {
-    let currentTab = tab.getState()[1].toLowerCase();
-    let state = {tab: currentTab,
+    let state = {tab: $("#tab").val(),
                  op: $("#op").val(),
                  tags: $("select.tags").selectivity("value")};
 
-    // Catch for changing and/or op before searching as it should have no effect.
+    // Catch for changing and/or operator or tab before searching as it should have no effect.
     if (people.length > 0 || state.tags.length > 0) {
       writeState(state);
       executeState(state);

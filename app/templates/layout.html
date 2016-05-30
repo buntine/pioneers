@@ -33,12 +33,18 @@
           <svg id="opcanvas"></svg>
         </form>
       </div>
-      <svg id="switchcanvas"></svg>
+      <section id="tab_switcher">
+        <select id="tab">
+          <option value="impact">Impact</option>
+          <option value="timeline">Timeline</option>
+          <option value="graphs">Graphs</option>
+        </select>
+      </section>
 
       <section id="links">
-        <div class="circle"><a href="/about">?</a></div>
-        <div class="circle"><a href="https://github.com/buntine/pioneers">{}</a></div>
-        <div class="circle"><a href="/add">+</a></div>
+        <div class="circle"><a href="/about" title="About">?</a></div>
+        <div class="circle"><a href="https://github.com/buntine/pioneers" title="Code">{}</a></div>
+        <div class="circle"><a href="/add" title="Add new / Report error">+</a></div>
       </section>
 
       {% block body %}{% endblock %}

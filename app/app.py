@@ -57,6 +57,7 @@ def all_achievements():
 @app.route("/")
 @app.route("/impact/<op>/<tags>")
 @app.route("/timeline/<op>/<tags>")
+@app.route("/graphs/<op>/<tags>")
 @db_session
 def index(op="OR", tags=[]):
     get_tags = lambda s: select((t.name, t.slug) for t in Tag if t.style == s).order_by(1)[:]
