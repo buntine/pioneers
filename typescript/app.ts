@@ -26,9 +26,10 @@ $(() => {
 
   $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
-  $(window).on("popstate", setState);
-  $(window).on("load", () => {setDimensions(); setState();});
-  $(window).on("resize", setDimensions);
+  $(window).on("popstate", setState)
+           .on("load", () => {setDimensions(); setState();})
+           .on("resize", setDimensions);
+
   $("div.tags, #op").change((e:Event) => {
     e.preventDefault();
     search();
