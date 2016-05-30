@@ -9,16 +9,19 @@ class People extends Array<Person> {
   private static REFINEMENT_DELTA = 4;
   private static REDRAW_THRESHOLD = 35;
 
-  constructor(width:number, height:number) {
+  constructor() {
     super();
 
-    this.center = new Vector(width / 2.0, height / 2.0);
     this.total = 0;
     this.alive = true;
   }
 
   private delta() : number {
     return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.07);
+  }
+
+  public centerize(width:number, height:number) : void {
+    this.center = new Vector(width / 2.0, height / 2.0);
   }
 
   public push(p:Person) : number {

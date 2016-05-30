@@ -15,8 +15,7 @@ interface IAppState {
 
 $(() => {
   let svg = Snap("#impactcanvas");
-  let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
-  let people = new People(width, height);
+  let people = new People();
 
   let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_:TogglerState, t:TogglerOption) => {
     $("#op").val(t.toUpperCase());
@@ -25,14 +24,12 @@ $(() => {
 
   let tab = new Toggler(Snap("#switchcanvas"), ["IMPACT", "TIMELINE"], 200, 220, 80).draw(search);
 
-  svg.attr({width: width, height: height});
-
   $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
-  window.addEventListener("popstate", setState);
-  window.addEventListener("load", setState);
-
-  $("div.tags, #op").change((e:any) => {
+  $(window).on("popstate", setState);
+  $(window).on("load", () => {setDimensions(); setState();});
+  $(window).on("resize", setDimensions);
+  $("div.tags, #op").change((e:Event) => {
     e.preventDefault();
     search();
   });
@@ -85,6 +82,15 @@ $(() => {
     $("#splash").show();
   }
 
+  function setDimensions() : void {
+    let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
+
+    people.centerize(width, height);
+    svg.attr({width: width, height: height});
+
+    setState();
+  }
+
   function setState() : void {
     let state : IAppState = history.state || stateFromPath();
     executeState(state, true);
@@ -105,7 +111,7 @@ $(() => {
   }
 
   function executeState(state:IAppState, updateForm=false) : void {
-    let fs : {[K : string]: any} = {"impact": impact, "timeline": timeline};
+    let fs : {[K : string]: (s:IAppState) => void} = {"impact": impact, "timeline": timeline};
     let f = fs[state.tab];
 
     if (state.tags.length > 0 && f) {
