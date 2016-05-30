@@ -6,6 +6,7 @@ import re
 
 from models import *
 from pony.orm import *
+from geopy.geocoders import Nominatim
 
 # Seeds the database from the CSV files in ./data/csv.
 # WARNING: This import is destructive. All existing data will be purged!
@@ -13,6 +14,8 @@ from pony.orm import *
 # sql_debug(True)
 
 print "Opened database."
+
+geolocator = Nominatim()
 
 @db_session
 def with_csv(path, f):
@@ -36,9 +39,13 @@ def people(rows):
     print "Removed: %d People." % Person.select().delete()
 
     for row in rows:
-        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], yob = row["Born"],
+        location = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]))
+
+        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], birthplace = row["Birthplace"],
+               lat = location.latitude, lng = location.longitude, yob = row["Born"], source = row["Source"],
                yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
-               picture = row["Picture"], source = row["Source"])
+               picture = row["Picture"])
+
         print "Created Person: %s" % row["Name"]
 
 def achievements(rows):
