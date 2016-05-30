@@ -39,10 +39,14 @@ def people(rows):
     print "Removed: %d People." % Person.select().delete()
 
     for row in rows:
-        location = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]))
+        if row["Latitude"] == "" or row["Longitude"] == "":
+            geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]))
+            location = (geocoded.latitude, geocoded.longitude)
+        else:
+            location = (row["Latitude"], row["Longitude"])
 
         Person(name = row["Name"], gender = row["Gender"], country = row["Country"], birthplace = row["Birthplace"],
-               lat = location.latitude, lng = location.longitude, yob = row["Born"], source = row["Source"],
+               lat = location[0], lng = location[1], yob = row["Born"], source = row["Source"],
                yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
                picture = row["Picture"])
 
