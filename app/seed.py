@@ -41,7 +41,11 @@ def people(rows):
     for row in rows:
         if row["Latitude"] == "" or row["Longitude"] == "":
             geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]))
-            location = (geocoded.latitude, geocoded.longitude)
+
+            if geocoded:
+                location = (geocoded.latitude, geocoded.longitude)
+            else:
+                raise RuntimeError("Cannot geolocate: %s" % row["Name"])
         else:
             location = (row["Latitude"], row["Longitude"])
 
