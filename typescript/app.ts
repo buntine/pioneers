@@ -1,9 +1,7 @@
 /// <reference path='impact/person.ts'/>
 /// <reference path='impact/people.ts'/>
 /// <reference path='impact/title.ts'/>
-/// <reference path='person_detail.ts'/>
-/// <reference path='win.ts'/>
-/// <reference path='achievement.ts'/>
+/// <reference path='structure/interfaces.ts'/>
 /// <reference path='vector.ts'/>
 /// <reference path='helpers.ts'/>
 /// <reference path='toggler.ts'/>
@@ -55,7 +53,7 @@ $(() => {
     }
 
     function impact(state: AppState): void {
-        $.getJSON("/people", state, (d: {people:Array<PersonDetail>}) => {
+        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
             let nr = $("#noresults");
 

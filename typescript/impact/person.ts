@@ -8,7 +8,7 @@ namespace Impact {
         public static MAX_ZOOM = 250;
         public static MAX_SIZE = 350;
 
-        constructor(public svg: Snap.Paper, public details: PersonDetail, public point: Vector) {
+        constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector) {
             this.initialPoint = new Vector(point.x, point.y);
             this.title = new Title(this);
         }
