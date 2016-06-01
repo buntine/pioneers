@@ -6,7 +6,7 @@ namespace Structure {
     }
 
     export interface Achievement {
-        person?: Person,
+        person_id?: number,
         year?: number;
         description: string;
         source: string;
@@ -25,5 +25,10 @@ namespace Structure {
         yod: number;
         wins?: Array<Structure.Win>;
         achievements?: Array<Structure.Achievement>;
+    }
+
+    export interface Group {
+        year: number,
+        achievements: Array<Structure.Achievement>,
     }
 }
