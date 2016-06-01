@@ -19,6 +19,7 @@ interface AppState {
 $(() => {
     let svg = Snap("#impactcanvas");
     let people = new Impact.People();
+    let nr = $("#noresults");
 
     let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_: TogglerState, t: TogglerOption) => {
         $("#op").val(t.toUpperCase());
@@ -28,7 +29,7 @@ $(() => {
     $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
     $(window).on("popstate", setState)
-             .on("load", () => {setDimensions(); setState();})
+             .on("load", setDimensions)
              .on("resize", setDimensions);
 
     $("#tab").selectivity({
@@ -55,7 +56,6 @@ $(() => {
     function impact(state: AppState): void {
         $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
-            let nr = $("#noresults");
 
             people.clear();
 
@@ -75,8 +75,10 @@ $(() => {
     }
 
     function timeline(state: AppState): void {
-        // TODO: Implement.
-        console.log("timeline");
+        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
+            // Translate from d.people into [{year: 1929, achievements: [{impact: 5, description: "Seomthing", source: "x.com", person: {name: "Tom Wells"}, ...], ...]
+          // Build Timeline of 
+        });
     }
 
     function geography(state: AppState): void {
