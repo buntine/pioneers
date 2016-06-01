@@ -1,6 +1,11 @@
-/// <reference path='person.ts'/>
-/// <reference path='people.ts'/>
+/// <reference path='impact/person.ts'/>
+/// <reference path='impact/people.ts'/>
+/// <reference path='impact/title.ts'/>
+/// <reference path='person_detail.ts'/>
+/// <reference path='win.ts'/>
+/// <reference path='achievement.ts'/>
 /// <reference path='vector.ts'/>
+/// <reference path='helpers.ts'/>
 /// <reference path='toggler.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
 /// <reference path='d/mustache.d.ts'/>
@@ -15,7 +20,7 @@ interface AppState {
 
 $(() => {
     let svg = Snap("#impactcanvas");
-    let people = new People();
+    let people = new Impact.People();
 
     let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_: TogglerState, t: TogglerOption) => {
         $("#op").val(t.toUpperCase());
@@ -50,14 +55,14 @@ $(() => {
     }
 
     function impact(state: AppState): void {
-        $.getJSON("/people", state, (d: {people:Array<IPerson>}) => {
+        $.getJSON("/people", state, (d: {people:Array<PersonDetail>}) => {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
             let nr = $("#noresults");
 
             people.clear();
 
             for (let p of d.people) {
-                people.push(new Person(svg, p, Vector.randomized(w, h)));
+                people.push(new Impact.Person(svg, p, Vector.randomized(w, h)));
             }
 
             svg.clear();
