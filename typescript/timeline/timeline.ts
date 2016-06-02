@@ -4,7 +4,7 @@
 namespace Timeline {
     export class Timeline implements Structure.Tab {
         private people: Array<Timeline.Person>;
-        private years: Array<Timeline.Year>;
+        private years: {[K: number]: number}
         private yearWidth: number;
 
         private static YEARS_ON_SCREEN = 9;
@@ -16,12 +16,32 @@ namespace Timeline {
         }
 
         public build(set: Array<Structure.Person>): boolean {
-            // Translate "set" into something usable.
-            //   this.people = [{name: "Tom Jones", dob: 1920, etc} ...]
-            //   this.years = [{year: 1929, achievements: [{impact: 5, description: "Something", source: "x.com", person_id: 1, ...], ...]
- 
-            // Run through all set, build array of Years [1990, 1992, 2001] and count of achievements in each year.
-            // Run through again, annotate each achievement with row (offset year) and col (number in same year).
+          // Run through all, create array of People[details, achievements] and Years[year, count]
+          // Translate this.years into [[year, count], ...] and sort by year
+          // Run through again and annotate People.achievements.row/col with Years offset and count--.
+
+          this.years = [];
+          this.people = [];
+
+            for (let p of set) {
+                let person = new Person(p);
+
+                for (let a of p.achievements) {
+                    let achievement = new Achievement(a);
+
+                    if (this.years[a.year] == undefined) {
+                        this.years[a.year] = 0;
+                    } else {
+                        this.years[a.year] += 1;
+                    }
+
+                    achievement.row = this.years[a.year];
+
+                    person.achievements.push(achievement);
+                }
+
+                this.people.push(person);
+            }
 
             return true;
         }
@@ -30,7 +50,7 @@ namespace Timeline {
             if (this.built()) {
                 for (let p of this.people) {
                     for (let a of p.achievements) {
-                        a.draw(this.svg);
+                        a.draw(p.details, this.svg);
                     }
                 }
 

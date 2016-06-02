@@ -1,9 +1,17 @@
 namespace Timeline {
-    export class Achievement implements Structure.Achievement {
-        constructor(public description: string, public source: string, public impact: number, private row: number, private column: number) {
+    export class Achievement {
+        public details: Structure.Achievement;
+        public row: number;
+        public column: number;
+
+        constructor(achievement: Structure.Achievement) {
+            this.details = achievement;
+            this.row = 0;
+            this.column = 0;
         }
 
-        public draw(svg: Snap.Paper): void {
+        public draw(person: Structure.Person, svg: Snap.Paper): void {
+            console.log(`${person.name}, ${this.details.year}, ${this.row}`);
         }
     }
 }
