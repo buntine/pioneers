@@ -19,9 +19,9 @@ $(() => {
     let svg = Snap("#impactcanvas");
     let state: Structure.AppState = stateFromPath();
     let tabs: {[K: string]: Structure.Tab} = {
-      "impact": new Impact.Impact(svg),
-      "timeline": new Timeline.Timeline(svg),
-      "geography": new Impact.Impact(svg),
+        "impact": new Impact.Impact(svg),
+        "timeline": new Timeline.Timeline(svg),
+        "geography": new Impact.Impact(svg),
     };
 
     let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_: TogglerState, t: TogglerOption) => {
@@ -79,7 +79,14 @@ $(() => {
 
     function setState(): void {
         state = history.state || stateFromPath();
-        executeState(true);
+
+        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
+            for (let t in tabs) {
+                tabs[t].build(d.people);
+            }
+
+            executeState(true);
+        });
     }
 
     function stateFromPath(): Structure.AppState {
@@ -100,7 +107,7 @@ $(() => {
         if (state.tags.length > 0) {
             $("#splash, #noresults").hide();
 
-            if (!tabs[state.tab].execute(state)) {
+            if (!tabs[state.tab].execute()) {
                 $("#noresults").show();
             }
 

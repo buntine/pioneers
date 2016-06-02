@@ -3,29 +3,28 @@ namespace Impact {
         public people: Impact.People;
 
         constructor(public svg: Snap.Paper) {
-          this.people = new People();
+            this.people = new People();
         }
 
-        public execute(state: Structure.AppState): boolean {
-            // TODO: Move AJAX into app.ts so I don't waste calls and also so the nested returns work.
-            $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
-                let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
+        public build(set: Array<Structure.Person>) : boolean {
+            let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
 
-                this.people.clear();
+            this.people.clear();
 
-                for (let p of d.people) {
-                    this.people.push(new Person(this.svg, p, Vector.randomized(w, h)));
-                }
+            for (let p of set) {
+                this.people.push(new Person(this.svg, p, Vector.randomized(w, h)));
+            }
 
-                if (this.people.length > 0) {
-                    this.people.pack();
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+            return this.built();
+        }
 
-            return true;
+        public execute(): boolean {
+            if (this.built()) {
+                this.people.pack();
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public unfocus(): void {
@@ -41,7 +40,7 @@ namespace Impact {
         }
 
         public built(): boolean {
-          return this.people.length > 0;
+            return this.people.length > 0;
         }
     }
 }

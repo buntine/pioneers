@@ -4,7 +4,11 @@ namespace Timeline {
         constructor(public svg: Snap.Paper) {
         }
 
-        public execute(state: Structure.AppState): boolean {
+        public build(set: Array<Structure.Person>): boolean {
+            return true;
+        }
+
+        public execute(): boolean {
             this.svg.text(200, 200, "TIMELINE");
 
             return true;
