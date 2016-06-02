@@ -3,7 +3,6 @@
 /// <reference path='impact/people.ts'/>
 /// <reference path='impact/title.ts'/>
 /// <reference path='timeline/timeline.ts'/>
-/// <reference path='timeline/groups.ts'/>
 /// <reference path='structure/interfaces.ts'/>
 /// <reference path='structure/tab.ts'/>
 /// <reference path='structure/app_state.ts'/>
@@ -120,9 +119,14 @@ $(() => {
 
     function executeState(updateForm = false): void {
         if (state.tags.length > 0) {
+            let t = tabs[state.tab];
+
             $("#splash, #noresults").hide();
 
-            if (!tabs[state.tab].execute()) {
+            // Adjust tab to current window size.
+            t.resize();
+
+            if (!t.execute()) {
                 $("#noresults").show();
             }
 
