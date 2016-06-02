@@ -28,7 +28,7 @@ namespace Impact {
         }
 
         public unfocus(): void {
-            this.people.clear();
+            this.people.reset();
             this.svg.clear();
         }
 

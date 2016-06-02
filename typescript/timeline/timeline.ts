@@ -25,7 +25,7 @@ namespace Timeline {
         }
 
         public built(): boolean {
-          return true;
+            return true;
         }
     }
 }

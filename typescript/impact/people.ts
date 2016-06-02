@@ -76,6 +76,14 @@ namespace Impact {
             this.position();
         }
 
+        public reset(): void {
+            this.alive = false;
+
+            for (let p of this) {
+                p.reset();
+            }
+        }
+
         public clear(): void {
             this.alive = false;
             this.total = 0;

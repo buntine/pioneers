@@ -32,7 +32,7 @@ $(() => {
     $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
     $(window).on("popstate", setState)
-             .on("load", setDimensions)
+             .on("load", () => setDimensions(true))
              .on("resize", setDimensions);
 
     $("#tab").selectivity({
@@ -41,7 +41,9 @@ $(() => {
 
     $("div.tags, #op, div#tab").change((e: Event) => {
         e.preventDefault();
-        search();
+
+        // If user is not changing tags or operation then do not rebuild tabs (aka Send AJAX).
+        search(!((<Element>e.target).id == "tab"));
     });
 
     function clearTab(): void {
@@ -52,7 +54,7 @@ $(() => {
         }
     }
 
-    function search(): void {
+    function search(rebuild = true): void {
         clearTab();
 
         state = {tab: $("#tab").val(),
@@ -62,8 +64,23 @@ $(() => {
         // Catch for changing and/or operator or tab before searching as it should have no effect.
         if (tabs[state.tab].built() || state.tags.length > 0) {
             writeState();
-            executeState();
+
+            if (rebuild) {
+                buildTabs(executeState);
+            } else {
+                executeState();
+            }
         }
+    }
+
+    function buildTabs(f: () => any): void {
+        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
+            for (let t in tabs) {
+                tabs[t].build(d.people);
+            }
+
+            f();
+        });
     }
 
     function splash(): void {
@@ -72,21 +89,19 @@ $(() => {
         $("#splash").show();
     }
 
-    function setDimensions(): void {
+    function setDimensions(rebuild = false): void {
         tabs[state.tab].resize();
-        setState();
+        setState(rebuild);
     }
 
-    function setState(): void {
+    function setState(rebuild = true): void {
         state = history.state || stateFromPath();
 
-        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
-            for (let t in tabs) {
-                tabs[t].build(d.people);
-            }
-
+        if (rebuild) {
+            buildTabs(() => executeState(true));
+        } else {
             executeState(true);
-        });
+        }
     }
 
     function stateFromPath(): Structure.AppState {

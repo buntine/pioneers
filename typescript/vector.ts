@@ -48,5 +48,9 @@ class Vector {
             this.div(m);
         }
     }
+
+    public clone(): Vector {
+        return new Vector(this.x, this.y);
+    }
 }
 

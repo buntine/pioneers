@@ -37,6 +37,10 @@ namespace Impact {
             this.avatar.transform(`translate(${v.x}, ${v.y})`);
         }
 
+        public reset(): void {
+            this.point = this.initialPoint.clone();
+        }
+
         public detract(p: Person, padding: number): void {
             let dist = this.point.distanceFrom(p.point);
             let radii = this.radius + p.radius + padding;
