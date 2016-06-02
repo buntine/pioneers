@@ -1,12 +1,8 @@
 /// <reference path='impact/impact.ts'/>
-/// <reference path='impact/person.ts'/>
-/// <reference path='impact/people.ts'/>
-/// <reference path='impact/title.ts'/>
 /// <reference path='timeline/timeline.ts'/>
 /// <reference path='structure/interfaces.ts'/>
 /// <reference path='structure/tab.ts'/>
 /// <reference path='structure/app_state.ts'/>
-/// <reference path='vector.ts'/>
 /// <reference path='helpers.ts'/>
 /// <reference path='toggler.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>

@@ -1,3 +1,8 @@
+/// <reference path='person.ts'/>
+/// <reference path='people.ts'/>
+/// <reference path='title.ts'/>
+/// <reference path='../vector.ts'/>
+
 namespace Impact {
     export class Impact implements Structure.Tab {
         public people: Impact.People;

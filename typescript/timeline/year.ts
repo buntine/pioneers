@@ -1,9 +1,9 @@
 namespace Timeline {
     export class Year {
-        public year: number;
-        public achievements: Array<Structure.Achievement>;
+        public count: number;
 
-        public draw(svg: Snap.Paper): void {
+        constructor(public year: number) {
+            this.count = 0;
         }
-    } 
+    }
 }

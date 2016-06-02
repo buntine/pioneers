@@ -1,12 +1,11 @@
 namespace Structure {
     export interface Win {
-        person?: Person,
+        person?: Person;
         name: string;
         year: number;
     }
 
     export interface Achievement {
-        person_id?: number,
         year?: number;
         description: string;
         source: string;
@@ -28,7 +27,7 @@ namespace Structure {
     }
 
     export interface Group {
-        year: number,
-        achievements: Array<Structure.Achievement>,
+        year: number;
+        achievements: Array<Structure.Achievement>;
     }
 }
