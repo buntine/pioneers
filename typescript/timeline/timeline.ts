@@ -16,12 +16,8 @@ namespace Timeline {
         }
 
         public build(set: Array<Structure.Person>): boolean {
-          // Run through all, create array of People[details, achievements] and Years[year, count]
-          // Translate this.years into [[year, count], ...] and sort by year
-          // Run through again and annotate People.achievements.row/col with Years offset and count--.
-
-          this.years = [];
-          this.people = [];
+            this.years = [];
+            this.people = [];
 
             for (let p of set) {
                 let person = new Person(p);
@@ -41,6 +37,16 @@ namespace Timeline {
                 }
 
                 this.people.push(person);
+            }
+
+            let allYears = Object.keys(this.years)
+                                 .map((k:string, i:number) => parseInt(k))
+                                 .sort();
+
+            for (let p of this.people) {
+                for (let a of p.achievements) {
+                    a.column = allYears.indexOf(a.details.year);
+                }
             }
 
             return true;
@@ -73,7 +79,7 @@ namespace Timeline {
         }
 
         public built(): boolean {
-            return true;
+            return this.people.length > 0;
         }
     }
 }

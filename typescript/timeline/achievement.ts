@@ -11,7 +11,7 @@ namespace Timeline {
         }
 
         public draw(person: Structure.Person, svg: Snap.Paper): void {
-            console.log(`${person.name}, ${this.details.year}, ${this.row}`);
+            console.log(`${person.name}, ${this.details.year}, ${this.row}, ${this.column}`);
         }
     }
 }
