@@ -49,7 +49,7 @@ $(() => {
                  tags: $("select.tags").selectivity("value")};
 
         // Catch for changing and/or operator or tab before searching as it should have no effect.
-        if (people.length > 0 || state.tags.length > 0) {
+        if (tabs[state.tab].built() || state.tags.length > 0) {
             writeState();
             executeState();
         }
@@ -81,7 +81,7 @@ $(() => {
     }
 
     function setState(): void {
-        state : Structure.AppState = history.state || stateFromPath();
+        state = history.state || stateFromPath();
         executeState(true);
     }
 
@@ -100,23 +100,23 @@ $(() => {
     }
 
     function executeState(updateForm = false): void {
-        if (state.tags.length > 0 && f) {
+        if (state.tags.length > 0) {
             $("#splash, #noresults").hide();
 
             if (tabs[state.tab].execute(state)) {
                 $("#noresults").show();
             }
 
-            if (updateForm) { formToState(); }
+            if (updateForm) { formToState(state); }
         } else {
             splash();
         }
     }
 
-    function formToState(): void {
-        op.setTo(state.op.toLowerCase());
-        $("#op").val(state.op);
-        $("select.tags").selectivity("value", state.tags, {triggerChange: false})
+    function formToState(s: Structure.AppState): void {
+        op.setTo(s.op.toLowerCase());
+        $("#op").val(s.op);
+        $("select.tags").selectivity("value", s.tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
     }
 
