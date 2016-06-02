@@ -2,6 +2,7 @@
 /// <reference path='impact/person.ts'/>
 /// <reference path='impact/people.ts'/>
 /// <reference path='impact/title.ts'/>
+/// <reference path='timeline/timeline.ts'/>
 /// <reference path='timeline/groups.ts'/>
 /// <reference path='structure/interfaces.ts'/>
 /// <reference path='structure/tab.ts'/>
@@ -19,7 +20,7 @@ $(() => {
     let state: Structure.AppState = stateFromPath();
     let tabs: {[K: string]: Structure.Tab} = {
       "impact": new Impact.Impact(svg),
-      "timeline": new Impact.Impact(svg),
+      "timeline": new Timeline.Timeline(svg),
       "geography": new Impact.Impact(svg),
     };
 
@@ -86,8 +87,8 @@ $(() => {
         let groups = isValid.exec(document.location.pathname);
 
         if (groups) {
-            return {tab: groups[1],
-                    op: groups[2],
+            return {tab: <Structure.TabState>groups[1],
+                    op: <Structure.OpState>groups[2],
                     tags: groups[3].split("+")};
         }
 
