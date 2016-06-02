@@ -39,7 +39,7 @@ $(() => {
         allowClear: false,
         showSearchInputInDropdown: false});
 
-    $("div.tags, #op, #tab").change((e: Event) => {
+    $("div.tags, #op, div#tab").change((e: Event) => {
         e.preventDefault();
         search();
     });
