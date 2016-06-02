@@ -1,7 +1,10 @@
 namespace Impact {
     export class Impact implements Structure.Tab {
         public people: Impact.People;
-        public svg: Snap.Paper;
+
+        constructor(public svg: Snap.Paper) {
+          this.people = new People();
+        }
 
         public execute(state: Structure.AppState): boolean {
             // TODO: Move AJAX into app.ts so I don't waste calls and also so the nested returns work.
@@ -14,8 +17,6 @@ namespace Impact {
                     this.people.push(new Person(this.svg, p, Vector.randomized(w, h)));
                 }
 
-                this.svg.clear();
-
                 if (this.people.length > 0) {
                     this.people.pack();
                     return true;
@@ -27,10 +28,9 @@ namespace Impact {
             return true;
         }
 
-        public focus(): void {
-        }
-
         public unfocus(): void {
+            this.people.clear();
+            this.svg.clear();
         }
 
         public resize(): void {

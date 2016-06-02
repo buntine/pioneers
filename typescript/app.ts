@@ -16,11 +16,11 @@ declare var $: any;
 
 $(() => {
     let svg = Snap("#impactcanvas");
-    let state: Structure.AppState;
+    let state: Structure.AppState = stateFromPath();
     let tabs: {[K: string]: Structure.Tab} = {
-      "impact": new Impact.Impact(),
-      "timeline": new Impact.Impact(),
-      "geography": new Impact.Impact(),
+      "impact": new Impact.Impact(svg),
+      "timeline": new Impact.Impact(svg),
+      "geography": new Impact.Impact(svg),
     };
 
     let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_: TogglerState, t: TogglerOption) => {
@@ -43,7 +43,17 @@ $(() => {
         search();
     });
 
+    function clearTab(): void {
+        let tab = tabs[state.tab];
+
+        if (tab.built()) {
+            tab.unfocus();
+        }
+    }
+
     function search(): void {
+        clearTab();
+
         state = {tab: $("#tab").val(),
                  op: $("#op").val(),
                  tags: $("select.tags").selectivity("value")};
@@ -53,20 +63,6 @@ $(() => {
             writeState();
             executeState();
         }
-    }
-
-    function timeline(): void {
-        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
-            let groups = new Timeline.Groups(svg);
-            
-            groups.build(d.people);
-            groups.draw();
-        });
-    }
-
-    function geography(): void {
-       // TODO: Implement.
-       console.log("geography");
     }
 
     function splash(): void {
@@ -103,7 +99,7 @@ $(() => {
         if (state.tags.length > 0) {
             $("#splash, #noresults").hide();
 
-            if (tabs[state.tab].execute(state)) {
+            if (!tabs[state.tab].execute(state)) {
                 $("#noresults").show();
             }
 
