@@ -4,7 +4,7 @@
 namespace Timeline {
     export class Timeline implements Structure.Tab {
         private people: Array<Timeline.Person>;
-        private years: {[K: number]: number}
+        private years: Array<Timeline.Year>;
         private yearWidth: number;
 
         private static YEARS_ON_SCREEN = 9;
@@ -16,31 +16,33 @@ namespace Timeline {
 
         public build(set: Array<Structure.Person>): boolean {
             this.reset();
-            this.buildPeople(set);
 
-            let allYears = Object.keys(this.years)
-                                 .map((k:string) => parseInt(k))
-                                 .sort((a, b) => a - b);
+            let years = this.buildPeople(set);
+            this.years = Object.keys(years)
+                               .map((k: string) => years[parseInt(k)])
+                               .sort((a, b) => a.year - b.year);
 
             // Set Y-axis position for each achievement based on where 'a.year' sits in sorted array of years.
-            for (let p of this.people) {
-                for (let a of p.achievements) {
-                    a.column = allYears.indexOf(a.details.year);
+            // This is not good. But it's not O(n^3).
+            return this.forAchievements((a, p) => {
+                for (let i = 0; i < this.years.length; i++) {
+                    if (this.years[i].year == a.details.year) {
+                        a.column = i;
+                        return true;
+                    }
                 }
-            }
 
-            return true;
+                return false;
+            });
         }
 
         public execute(): boolean {
             if (this.built()) {
-                for (let p of this.people) {
-                    for (let a of p.achievements) {
-                        a.draw(p.details, this.svg);
-                    }
+                for (let i = 0; i < this.years.length; i++) {
+                    this.years[i].draw(i, this.svg);
                 }
 
-                return true;
+                return this.forAchievements((a, p) => {a.draw(p.details, this.svg)}, false);
             } else {
                 return false;
             }
@@ -62,34 +64,51 @@ namespace Timeline {
             return this.people.length > 0;
         }
 
+        private forAchievements(f: (a: Achievement, p: Person) => void, ensureTrue = true): boolean {
+            for (let p of this.people) {
+                for (let a of p.achievements) {
+                    if (!f(a, p) && ensureTrue) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         private reset(): void {
             this.years = [];
             this.people = [];
         }
 
-        private buildPeople(set: Array<Structure.Person>): void {
+        private buildPeople(set: Array<Structure.Person>): {[K: number]: Timeline.Year} {
+            // Temporarily store as a map to allow for faster lookups.
+            let years: {[K: number]: Timeline.Year} = {};
+
             for (let p of set) {
                 let person = new Person(p);
 
                 for (let a of p.achievements) {
                     let achievement = new Achievement(a);
 
-                    achievement.row = this.rowFor(a.year);
+                    achievement.row = this.rowFor(years, a.year);
                     person.achievements.push(achievement);
                 }
 
                 this.people.push(person);
             }
+
+            return years;
         }
 
-        private rowFor(year: number): number {
-            if (this.years[year] == undefined) {
-                this.years[year] = 0;
+        private rowFor(years: {[K: number]: Timeline.Year}, year: number): number {
+            if (years[year] == undefined) {
+                years[year] = new Year(year);
             } else {
-                this.years[year] += 1;
+                years[year].increment();
             }
 
-            return this.years[year];
+            return years[year].count;
         }
     }
 }
