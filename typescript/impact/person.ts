@@ -1,3 +1,5 @@
+/// <reference path='../helpers.ts'/>
+
 namespace Impact {
     export class Person {
         public title: Title;

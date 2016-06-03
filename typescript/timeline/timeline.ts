@@ -20,8 +20,9 @@ namespace Timeline {
 
             let allYears = Object.keys(this.years)
                                  .map((k:string) => parseInt(k))
-                                 .sort((a,b) => a - b);
+                                 .sort((a, b) => a - b);
 
+            // Set Y-axis position for each achievement based on where 'a.year' sits in sorted array of years.
             for (let p of this.people) {
                 for (let a of p.achievements) {
                     a.column = allYears.indexOf(a.details.year);

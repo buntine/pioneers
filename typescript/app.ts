@@ -3,7 +3,6 @@
 /// <reference path='structure/interfaces.ts'/>
 /// <reference path='structure/tab.ts'/>
 /// <reference path='structure/app_state.ts'/>
-/// <reference path='helpers.ts'/>
 /// <reference path='toggler.ts'/>
 /// <reference path='d/snapsvg.d.ts'/>
 /// <reference path='d/mustache.d.ts'/>

@@ -1,3 +1,5 @@
+/// <reference path='../helpers.ts'/>
+
 namespace Impact {
     enum ShowState {
         Unhighlighted = 0,
