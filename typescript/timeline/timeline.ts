@@ -41,7 +41,7 @@ namespace Timeline {
 
             let allYears = Object.keys(this.years)
                                  .map((k:string, i:number) => parseInt(k))
-                                 .sort();
+                                 .sort((a,b) => a - b);
 
             for (let p of this.people) {
                 for (let a of p.achievements) {
