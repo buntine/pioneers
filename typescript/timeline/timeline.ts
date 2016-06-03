@@ -11,36 +11,15 @@ namespace Timeline {
 
         constructor(public svg: Snap.Paper) {
             this.yearWidth = 100;
-            this.years = [];
-            this.people = [];
+            this.reset();
         }
 
         public build(set: Array<Structure.Person>): boolean {
-            this.years = [];
-            this.people = [];
-
-            for (let p of set) {
-                let person = new Person(p);
-
-                for (let a of p.achievements) {
-                    let achievement = new Achievement(a);
-
-                    if (this.years[a.year] == undefined) {
-                        this.years[a.year] = 0;
-                    } else {
-                        this.years[a.year] += 1;
-                    }
-
-                    achievement.row = this.years[a.year];
-
-                    person.achievements.push(achievement);
-                }
-
-                this.people.push(person);
-            }
+            this.reset();
+            this.buildPeople(set);
 
             let allYears = Object.keys(this.years)
-                                 .map((k:string, i:number) => parseInt(k))
+                                 .map((k:string) => parseInt(k))
                                  .sort((a,b) => a - b);
 
             for (let p of this.people) {
@@ -80,6 +59,36 @@ namespace Timeline {
 
         public built(): boolean {
             return this.people.length > 0;
+        }
+
+        private reset(): void {
+            this.years = [];
+            this.people = [];
+        }
+
+        private buildPeople(set: Array<Structure.Person>): void {
+            for (let p of set) {
+                let person = new Person(p);
+
+                for (let a of p.achievements) {
+                    let achievement = new Achievement(a);
+
+                    achievement.row = this.rowFor(a.year);
+                    person.achievements.push(achievement);
+                }
+
+                this.people.push(person);
+            }
+        }
+
+        private rowFor(year: number): number {
+            if (this.years[year] == undefined) {
+                this.years[year] = 0;
+            } else {
+                this.years[year] += 1;
+            }
+
+            return this.years[year];
         }
     }
 }
