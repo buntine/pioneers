@@ -13,14 +13,19 @@ namespace Timeline {
         }
 
         public draw(columnWidth: number, person: Structure.Person, svg: Snap.Paper): void {
-            let x = (columnWidth * this.column) + ((columnWidth / 2) - this.RADIUS / 2);
-            let y = ((columnWidth / 3) * this.row) + ((columnWidth / 6) - this.RADIUS / 2);
-
-            let core = svg.circle(x, y, this.RADIUS);
-            let halo = svg.circle(x, y, this.RADIUS * this.details.impact);
+            let coords = this.coords(columnWidth);
+            let core = svg.circle(coords.x, coords.y, this.RADIUS);
+            let halo = svg.circle(coords.x, coords.y, this.RADIUS * this.details.impact);
 
             core.attr({fill: "green"});
             halo.attr({fill: "green", opacity: 0.3});
+        }
+
+        public coords(columnWidth: number): Vector {
+            let c = (axis: number, factor = 1) => ((columnWidth / factor) * axis) + ((columnWidth / (factor * 2)) - this.RADIUS / 2);
+
+            return new Vector(c(this.column), c(this.row, 3));
+
         }
     }
 }
