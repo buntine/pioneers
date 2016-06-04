@@ -5,12 +5,12 @@ namespace Timeline {
     export class Timeline implements Structure.Tab {
         private people: Array<Timeline.Person>;
         private years: Array<Timeline.Year>;
-        private yearWidth: number;
+        private columnWidth: number;
 
-        private static YEARS_ON_SCREEN = 9;
+        private static YEARS_ON_SCREEN = 11;
 
         constructor(public svg: Snap.Paper) {
-            this.yearWidth = 100;
+            this.columnWidth = 100;
             this.reset();
         }
 
@@ -23,7 +23,7 @@ namespace Timeline {
                                .sort((a, b) => a.year - b.year);
 
             // Set Y-axis position for each achievement based on where 'a.year' sits in sorted array of years.
-            // This is not good. But it's not O(n^3).
+            // This is not good. But it's not O(n^3) despite the nested loops.
             return this.forAchievements((a, p) => {
                 for (let i = 0; i < this.years.length; i++) {
                     if (this.years[i].year == a.details.year) {
@@ -39,10 +39,10 @@ namespace Timeline {
         public execute(): boolean {
             if (this.built()) {
                 for (let i = 0; i < this.years.length; i++) {
-                    this.years[i].draw(i, this.svg);
+                    this.years[i].draw(this.columnWidth, i, this.svg);
                 }
 
-                return this.forAchievements((a, p) => {a.draw(p.details, this.svg)}, false);
+                return this.forAchievements((a, p) => {a.draw(this.columnWidth, p.details, this.svg)}, false);
             } else {
                 return false;
             }
@@ -55,7 +55,7 @@ namespace Timeline {
         public resize(): void {
             let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
             
-            this.yearWidth = width / Timeline.YEARS_ON_SCREEN;
+            this.columnWidth = width / Timeline.YEARS_ON_SCREEN;
 
             this.svg.attr({width: width, height: height});
         }

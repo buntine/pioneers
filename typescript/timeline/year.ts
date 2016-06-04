@@ -10,7 +10,7 @@ namespace Timeline {
             this.count++;
         }
 
-        public draw(offset: number, svg: Snap.Paper): void {
+        public draw(columnWidth: number, offset: number, svg: Snap.Paper): void {
             console.log(`${offset}, ${this.year}`);
         }
 
