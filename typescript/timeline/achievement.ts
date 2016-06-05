@@ -4,7 +4,8 @@ namespace Timeline {
         public row: number;
         public column: number;
 
-        private RADIUS: number = 9;
+        private RADIUS_FACTOR = 0.065;
+        private SPACING = 1.35;
         private COLOURS: Array<string> = [
             "#7336a8",
             "#4a8cdb",
@@ -20,20 +21,22 @@ namespace Timeline {
         }
 
         public draw(columnWidth: number, person: Structure.Person, svg: Snap.Paper): void {
-            let coords = this.coords(columnWidth);
-            let core = svg.circle(coords.x, coords.y, this.RADIUS);
-            let halo = svg.circle(coords.x, coords.y, this.RADIUS * this.details.impact);
+            let radius = columnWidth * this.RADIUS_FACTOR;
+            let coords = this.coords(columnWidth, radius);
+            let halo = svg.circle(coords.x, coords.y, radius);
+            let core = halo.clone();
             let fill = this.COLOURS[this.details.impact - 1];
 
             core.attr({fill: fill});
             halo.attr({fill: fill, opacity: 0.3});
+            halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
-        public coords(columnWidth: number): Vector {
-            let c = (axis: number, factor = 1) => ((columnWidth / factor) * axis) + ((columnWidth / (factor * 2)) - this.RADIUS / 2);
+        public coords(columnWidth: number, radius: number): Vector {
+            let x = (columnWidth * this.column) + ((columnWidth / 2) - radius / 2);
+            let y = this.row * radius * this.COLOURS.length * this.SPACING;
 
-            return new Vector(c(this.column), c(this.row, 3));
-
+            return new Vector(x, y);
         }
     }
 }

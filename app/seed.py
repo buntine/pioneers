@@ -3,6 +3,7 @@
 import subprocess
 import csv
 import re
+import time
 
 from models import *
 from pony.orm import *
@@ -40,10 +41,11 @@ def people(rows):
 
     for row in rows:
         if row["Latitude"] == "" or row["Longitude"] == "":
-            geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]))
+            geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]), timeout=12)
 
             if geocoded:
                 location = (geocoded.latitude, geocoded.longitude)
+                time.sleep(1.2);
             else:
                 raise RuntimeError("Cannot geolocate: %s" % row["Name"])
         else:
