@@ -5,6 +5,13 @@ namespace Timeline {
         public column: number;
 
         private RADIUS: number = 9;
+        private COLOURS: Array<string> = [
+            "#7336a8",
+            "#4a8cdb",
+            "#ed5f55",
+            "#f8e71c",
+            "#00ffe6",
+        ];
 
         constructor(achievement: Structure.Achievement) {
             this.details = achievement;
@@ -16,9 +23,10 @@ namespace Timeline {
             let coords = this.coords(columnWidth);
             let core = svg.circle(coords.x, coords.y, this.RADIUS);
             let halo = svg.circle(coords.x, coords.y, this.RADIUS * this.details.impact);
+            let fill = this.COLOURS[this.details.impact - 1];
 
-            core.attr({fill: "green"});
-            halo.attr({fill: "green", opacity: 0.3});
+            core.attr({fill: fill});
+            halo.attr({fill: fill, opacity: 0.3});
         }
 
         public coords(columnWidth: number): Vector {

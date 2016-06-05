@@ -27,7 +27,7 @@ $(() => {
 
     $(window).on("popstate", setState)
              .on("load", () => setDimensions(true))
-             .on("resize", setDimensions);
+             .on("resize", (e:Event) => setDimensions());
 
     $("#tab").selectivity({
         allowClear: false,
@@ -84,6 +84,7 @@ $(() => {
     }
 
     function setDimensions(rebuild = false): void {
+        clearTab();
         tabs[state.tab].resize();
         setState(rebuild);
     }
