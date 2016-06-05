@@ -57,7 +57,7 @@ namespace Timeline {
             
             this.columnWidth = width / Timeline.YEARS_ON_SCREEN;
 
-            this.svg.attr({width: width, height: height});
+            this.svg.attr({width: Math.max(width, this.columnWidth * this.years.length), height: height});
         }
 
         public built(): boolean {

@@ -4,7 +4,7 @@ namespace Timeline {
         public row: number;
         public column: number;
 
-        private RADIUS_FACTOR = 0.065;
+        private RADIUS_FACTOR = 0.056;
         private SPACING = 1.35;
         private COLOURS: Array<string> = [
             "#7336a8",
@@ -28,7 +28,7 @@ namespace Timeline {
             let fill = this.COLOURS[this.details.impact - 1];
 
             core.attr({fill: fill});
-            halo.attr({fill: fill, opacity: 0.3});
+            halo.attr({fill: fill, opacity: 0.1});
             halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
