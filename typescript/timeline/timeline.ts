@@ -7,10 +7,10 @@ namespace Timeline {
         private years: Array<Timeline.Year>;
         private columnWidth: number;
 
-        private static YEARS_ON_SCREEN = 11;
-
         constructor(public svg: Snap.Paper) {
             this.columnWidth = 100;
+            this.years = [];
+            this.people = [];
             this.reset();
         }
 
@@ -55,9 +55,9 @@ namespace Timeline {
         public resize(): void {
             let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
             
-            this.columnWidth = width / Timeline.YEARS_ON_SCREEN;
+            this.columnWidth = (width - 20) / this.years.length;
 
-            this.svg.attr({width: Math.max(width, this.columnWidth * this.years.length), height: height - 20});
+            this.svg.attr({width: width, height: height});
         }
 
         public built(): boolean {

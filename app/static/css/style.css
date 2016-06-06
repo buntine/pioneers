@@ -7,7 +7,6 @@ a { color: #fff; font-family: arial, sans-serif;}
 #searchform input { color: #232323; }
 #opcanvas { width: 100px; height: 46px; float: right; font-family: sans-serif; color: #fff; font-size: 18px; padding: 5px 0; }
 #datacanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
-#svg_wrapper { overflow-x: scroll; }
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
 .pioneer_overlay {position: relative; background: #fff; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: sans-serif, arial; color: #232323;}

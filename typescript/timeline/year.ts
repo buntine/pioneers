@@ -11,8 +11,6 @@ namespace Timeline {
         }
 
         public draw(columnWidth: number, offset: number, svg: Snap.Paper): void {
-            console.log(`${offset}, ${this.year}`);
         }
-
     }
 }
