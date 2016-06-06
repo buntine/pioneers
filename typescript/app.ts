@@ -10,7 +10,7 @@
 declare var $: any;
 
 $(() => {
-    let svg = Snap("#impactcanvas");
+    let svg = Snap("#datacanvas");
     let state: Structure.AppState = stateFromPath();
     let tabs: {[K: string]: Structure.Tab} = {
         "impact": new Impact.Impact(svg),

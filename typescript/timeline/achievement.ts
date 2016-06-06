@@ -6,6 +6,7 @@ namespace Timeline {
 
         private RADIUS_FACTOR = 0.056;
         private SPACING = 1.35;
+        private HEADER_OFFSET = 15;
         private COLOURS: Array<string> = [
             "#7336a8",
             "#4a8cdb",
@@ -34,7 +35,7 @@ namespace Timeline {
 
         public coords(columnWidth: number, radius: number): Vector {
             let x = (columnWidth * this.column) + ((columnWidth / 2) - radius / 2);
-            let y = this.row * radius * this.COLOURS.length * this.SPACING;
+            let y = this.row * radius * this.COLOURS.length * this.SPACING + (radius * this.HEADER_OFFSET);
 
             return new Vector(x, y);
         }

@@ -38,7 +38,7 @@ namespace Impact {
         }
 
         public resize(): void {
-            let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
+            let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
 
             this.people.centerize(width, height);
             this.svg.attr({width: width, height: height});

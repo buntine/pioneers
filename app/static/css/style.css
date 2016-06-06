@@ -6,7 +6,7 @@ a { color: #fff; font-family: arial, sans-serif;}
 #searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: sans-serif; font-size: 18px; flex: 0 0 46px;}
 #searchform input { color: #232323; }
 #opcanvas { width: 100px; height: 46px; float: right; font-family: sans-serif; color: #fff; font-size: 18px; padding: 5px 0; }
-#impactcanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
+#datacanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
 #svg_wrapper { overflow-x: scroll; }
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
@@ -26,4 +26,3 @@ section#links { position: absolute; bottom: 10px; right: 10px; }
 div.circle { background-color: #56abfb; border-radius: 30px; width: 60px; height: 60px; margin: 10px 0 0 0;}
 div.circle a { padding: 6px 20px; font-size: 32px; line-height: 58px; text-decoration: none; }
 #tab_switcher { position: absolute; bottom: 10px; left: 10px; }
-.ass { background-color: "red"; fill: "red"; }

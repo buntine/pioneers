@@ -53,11 +53,11 @@ namespace Timeline {
         }
 
         public resize(): void {
-            let [width, height] = [$(window).width(), $(window).height() - $("#impactcanvas").offset().top];
+            let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
             
             this.columnWidth = width / Timeline.YEARS_ON_SCREEN;
 
-            this.svg.attr({width: Math.max(width, this.columnWidth * this.years.length), height: height});
+            this.svg.attr({width: Math.max(width, this.columnWidth * this.years.length), height: height - 20});
         }
 
         public built(): boolean {
