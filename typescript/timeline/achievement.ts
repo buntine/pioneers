@@ -3,6 +3,7 @@ namespace Timeline {
         public details: Structure.Achievement;
         public row: number;
         public column: number;
+        public element: Snap.Element;
 
         private RADIUS_FACTOR = 0.256;
         private MAX_RADIUS = 15;
@@ -27,6 +28,8 @@ namespace Timeline {
             let halo = svg.circle(coords.x, coords.y, radius);
             let core = halo.clone();
             let fill = this.COLOURS[this.details.impact - 1];
+
+            this.element = svg.group(core, halo);
 
             core.attr({fill: fill});
             halo.attr({fill: fill, opacity: 0.07});

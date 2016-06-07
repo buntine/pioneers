@@ -57,9 +57,7 @@ namespace Impact {
 
             // Refine.
             if (this.alive && iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
-                requestAnimationFrame(() => {
-                    this.position(iteration + 1);
-                });
+                requestAnimationFrame(() => this.position(iteration + 1));
             }
         }
 
