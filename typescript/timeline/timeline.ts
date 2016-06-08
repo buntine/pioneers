@@ -5,10 +5,12 @@ namespace Timeline {
     export class Timeline implements Structure.Tab {
         private people: Array<Timeline.Person>;
         private years: Array<Timeline.Year>;
-        private columnWidth: number;
+        private columnSize: number;
+
+        public static PADDING: [number, number] = [80, 20];
 
         constructor(public svg: Snap.Paper) {
-            this.columnWidth = 100;
+            this.columnSize = 100;
             this.years = [];
             this.people = [];
             this.reset();
@@ -38,7 +40,10 @@ namespace Timeline {
 
         public execute(): boolean {
             if (this.built()) {
-                return this.forAchievements((a, p) => a.draw(this.columnWidth, p.details, this.svg), false);
+                let startYear = this.svg.text(20, 20, this.years[0].year);
+                startYear.attr({stroke: "#ffffff", fontSize: "16px"});
+
+                return this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg), false);
             } else {
                 return false;
             }
@@ -51,7 +56,7 @@ namespace Timeline {
         public resize(): void {
             let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
             
-            this.columnWidth = (width - 20) / this.years.length;
+            this.columnSize = (width - (Timeline.PADDING[1] * 2)) / this.years.length;
 
             this.svg.attr({width: width, height: height});
         }

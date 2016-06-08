@@ -21,9 +21,9 @@ namespace Timeline {
             this.column = 0;
         }
 
-        public draw(columnWidth: number, person: Structure.Person, svg: Snap.Paper): void {
-            let radius = Math.min(this.MAX_RADIUS, columnWidth * this.RADIUS_FACTOR);
-            let coords = this.coords(columnWidth, radius);
+        public draw(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
+            let radius = Math.min(this.MAX_RADIUS, columnSize * this.RADIUS_FACTOR);
+            let coords = this.coords(columnSize, radius);
             let halo = svg.circle(coords.x, coords.y, radius);
             let core = halo.clone();
             let fill = this.COLOURS[this.details.impact - 1];
@@ -35,9 +35,9 @@ namespace Timeline {
             halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
-        public coords(columnWidth: number, radius: number): Vector {
-            let x = (columnWidth * this.column) + ((columnWidth / 2) - radius / 2) + 20;
-            let y = (columnWidth * this.row) + ((columnWidth / 2) - radius / 2) + 50;
+        public coords(columnSize: number, radius: number): Vector {
+            let x = (columnSize * this.column) + ((columnSize / 2) - radius / 2) + Timeline.PADDING[1];
+            let y = (columnSize * this.row) + ((columnSize / 2) - radius / 2) + Timeline.PADDING[0];
 
             return new Vector(x, y);
         }
