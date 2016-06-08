@@ -38,11 +38,7 @@ namespace Timeline {
 
         public execute(): boolean {
             if (this.built()) {
-                for (let i = 0; i < this.years.length; i++) {
-                    this.years[i].draw(this.columnWidth, i, this.svg);
-                }
-
-                return this.forAchievements((a, p) => {a.draw(this.columnWidth, p.details, this.svg)}, false);
+                return this.forAchievements((a, p) => a.draw(this.columnWidth, p.details, this.svg), false);
             } else {
                 return false;
             }
@@ -105,7 +101,7 @@ namespace Timeline {
             if (years[year] == undefined) {
                 years[year] = new Year(year);
             } else {
-                years[year].increment();
+                years[year].inc();
             }
 
             return years[year].count;

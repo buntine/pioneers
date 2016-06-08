@@ -6,11 +6,8 @@ namespace Timeline {
             this.count = 0;
         }
 
-        public increment(): void {
+        public inc(): void {
             this.count++;
-        }
-
-        public draw(columnWidth: number, offset: number, svg: Snap.Paper): void {
         }
     }
 }

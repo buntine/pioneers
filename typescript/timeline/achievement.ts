@@ -7,7 +7,6 @@ namespace Timeline {
 
         private RADIUS_FACTOR = 0.256;
         private MAX_RADIUS = 15;
-        private SPACING = 1.35;
         private COLOURS: Array<string> = [
             "#7336a8",
             "#4a8cdb",
@@ -32,7 +31,7 @@ namespace Timeline {
             this.element = svg.group(core, halo);
 
             core.attr({fill: fill});
-            halo.attr({fill: fill, opacity: 0.07});
+            halo.attr({fill: fill, opacity: 0.1});
             halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
