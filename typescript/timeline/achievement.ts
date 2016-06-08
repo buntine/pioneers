@@ -36,10 +36,10 @@ namespace Timeline {
         }
 
         public coords(columnSize: number, radius: number): Vector {
-            let x = (columnSize * this.column) + ((columnSize / 2) - radius / 2) + Timeline.PADDING[1];
-            let y = (columnSize * this.row) + ((columnSize / 2) - radius / 2) + Timeline.PADDING[0];
+            let padding = Timeline.PADDING;
+            let c = (a:number, p:number) => (columnSize * a) + ((columnSize / 2) - radius / 2) + padding[p];
 
-            return new Vector(x, y);
+            return new Vector(c(this.column, 1), c(this.row, 0));
         }
     }
 }

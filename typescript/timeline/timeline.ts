@@ -40,8 +40,20 @@ namespace Timeline {
 
         public execute(): boolean {
             if (this.built()) {
-                let startYear = this.svg.text(20, 20, this.years[0].year);
-                startYear.attr({stroke: "#ffffff", fontSize: "16px"});
+                let width = parseInt(this.svg.attr("width"));
+                let padding = Timeline.PADDING[1];
+                let scale = this.svg.line(padding, 20, width - padding, 20);
+                let pointer = this.svg.path("M0,20l20,0l-10,10l-10,-10Z");
+
+                pointer.attr({fill:"#ffffff"});
+                pointer.transform(`translate(${padding},0)`);
+                scale.attr({stroke: "#ffffff"});
+
+                this.svg.mousemove((e:MouseEvent) => {
+                  let x = Math.max(Math.min(e.clientX, width - (padding * 1.5)), (padding * 1.5)) - (padding / 2);
+
+                  pointer.transform(`translate(${x},0)`);
+                });
 
                 return this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg), false);
             } else {
