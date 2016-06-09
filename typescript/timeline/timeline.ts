@@ -44,20 +44,22 @@ namespace Timeline {
                 let padding = Timeline.PADDING[1];
                 let scale = this.svg.line(padding, 20, width - padding, 20);
                 let pointer = this.svg.path("M0,23l20,0l-10,10l-10,-10Z");
-                let year = this.svg.text(20, 16, this.years[0].year);
+                let year = this.svg.text(0, 16, this.years[0].year);
                 let g = this.svg.group(pointer, year);
 
-                year.attr({fill:"#ffffff", fontSize: "1em", fontFamily: "sans-serif, arial"});
+                year.attr({fill:"#ffffff", fontSize: "0.8em", fontFamily: "sans-serif, arial"});
                 pointer.attr({fill:"#ffffff"});
-                pointer.transform(`translate(${padding},0)`);
                 scale.attr({stroke: "#ffffff"});
+                g.transform(`translate(${padding},0)`);
 
                 this.svg.mousemove((e:MouseEvent) => {
                   let x = Math.max(Math.min(e.clientX, width - (padding * 1.5)), (padding * 1.5)) - (padding / 2);
-                  let i = Math.round(e.clientX / this.columnSize);
+                  let i = Math.floor((e.clientX - padding) / this.columnSize);
 
-                  year.attr({text: this.years[i].year});
-                  g.transform(`translate(${x},0)`);
+                  if (i >= 0 && i < this.years.length) {
+                      year.attr({text: this.years[i].year});
+                      g.transform(`translate(${x},0)`);
+                  }
                 });
 
                 return this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg), false);
