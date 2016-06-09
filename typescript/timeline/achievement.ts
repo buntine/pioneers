@@ -5,6 +5,10 @@ namespace Timeline {
         public column: number;
         public element: Snap.Element;
 
+        private core: Snap.Element;
+        private halo: Snap.Element;
+        private point: Vector;
+
         private RADIUS_FACTOR = 0.256;
         private MAX_RADIUS = 15;
         private COLOURS: Array<string> = [
@@ -23,16 +27,25 @@ namespace Timeline {
 
         public draw(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
             let radius = Math.min(this.MAX_RADIUS, columnSize * this.RADIUS_FACTOR);
-            let coords = this.coords(columnSize, radius);
-            let halo = svg.circle(coords.x, coords.y, radius);
-            let core = halo.clone();
             let fill = this.COLOURS[this.details.impact - 1];
 
-            this.element = svg.group(core, halo);
+            this.point = this.coords(columnSize, radius);
+            this.halo = svg.circle(this.point.x, this.point.y, radius);
+            this.core = this.halo.clone();
+            this.element = svg.group(this.core, this.halo);
 
-            core.attr({fill: fill});
-            halo.attr({fill: fill, opacity: 0.1});
-            halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
+            this.core.attr({fill: fill});
+            this.halo.attr({fill: fill, opacity: 0.1});
+        }
+
+        public position(): void {
+            this.point.add(new Vector(4, 4));
+            this.element.transform(`translate(${this.point.x}, ${this.point.y})`);
+        }
+
+        private drawHalo(): void {
+            let radius = parseInt(this.halo.attr("radius"));
+            this.halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
         public coords(columnSize: number, radius: number): Vector {
