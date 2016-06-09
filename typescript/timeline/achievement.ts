@@ -7,7 +7,8 @@ namespace Timeline {
 
         private core: Snap.Element;
         private halo: Snap.Element;
-        private point: Vector;
+        private destination_point: Vector;
+        private initial_point: Vector;
 
         private RADIUS_FACTOR = 0.256;
         private MAX_RADIUS = 15;
@@ -29,8 +30,10 @@ namespace Timeline {
             let radius = Math.min(this.MAX_RADIUS, columnSize * this.RADIUS_FACTOR);
             let fill = this.COLOURS[this.details.impact - 1];
 
-            this.point = this.coords(columnSize, radius);
-            this.halo = svg.circle(this.point.x, this.point.y, radius);
+            this.destination_point = this.coords(columnSize, radius);
+            this.initial_point = this.coords(columnSize, radius);
+
+            this.halo = svg.circle(this.initial_point.x, this.initial_point.y, radius);
             this.core = this.halo.clone();
             this.element = svg.group(this.core, this.halo);
 
@@ -39,8 +42,8 @@ namespace Timeline {
         }
 
         public position(): void {
-            this.point.add(new Vector(4, 4));
-            this.element.transform(`translate(${this.point.x}, ${this.point.y})`);
+            this.initial_point.add(new Vector(4, 4));
+            this.element.transform(`translate(${this.initial_point.x}, ${this.initial_point.y})`);
         }
 
         private drawHalo(): void {
