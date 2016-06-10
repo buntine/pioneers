@@ -8,6 +8,7 @@ namespace Timeline {
         private core: Snap.Element;
         private halo: Snap.Element;
         private destination_point: Vector;
+        private current_point: Vector;
         private initial_point: Vector;
 
         private RADIUS_FACTOR = 0.256;
@@ -29,11 +30,14 @@ namespace Timeline {
         public draw(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
             let radius = Math.min(this.MAX_RADIUS, columnSize * this.RADIUS_FACTOR);
             let fill = this.COLOURS[this.details.impact - 1];
+            let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+            let point = Vector.randomized(w, h);
 
             this.destination_point = this.coords(columnSize, radius);
-            this.initial_point = this.coords(columnSize, radius);
+            this.current_point = point.clone();
+            this.initial_point = point.clone();
 
-            this.halo = svg.circle(this.initial_point.x, this.initial_point.y, radius);
+            this.halo = svg.circle(this.current_point.x, this.current_point.y, radius);
             this.core = this.halo.clone();
             this.element = svg.group(this.core, this.halo);
 
@@ -42,8 +46,14 @@ namespace Timeline {
         }
 
         public position(): void {
-            this.initial_point.add(new Vector(4, 4));
-            this.element.transform(`translate(${this.initial_point.x}, ${this.initial_point.y})`);
+            let v = Vector.sub(this.current_point, this.destination_point);
+
+            v.mul(0.1);
+            this.current_point.sub(v);
+
+            let p = Vector.sub(this.current_point, this.initial_point);
+
+            this.element.transform(`translate(${p.x}, ${p.y})`);
         }
 
         private drawHalo(): void {
@@ -59,4 +69,3 @@ namespace Timeline {
         }
     }
 }
- 

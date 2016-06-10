@@ -54,7 +54,7 @@ namespace Timeline {
         private position(iteration = 0): void {
             this.forAchievements((a, p) => a.position(), false);
 
-            if (iteration < 45) {
+            if (iteration < 150) {
                 requestAnimationFrame(() => this.position(iteration + 1));
             }
         }
