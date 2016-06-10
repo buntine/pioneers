@@ -56,6 +56,9 @@ namespace Timeline {
 
             if (iteration < 150) {
                 requestAnimationFrame(() => this.position(iteration + 1));
+            } else {
+              // Move this into achievement.position() so when distance moved is < x then snap to pos and then call drawHalo.
+                this.forAchievements((a, p) => a.drawHalo(), false);
             }
         }
 

@@ -56,8 +56,8 @@ namespace Timeline {
             this.element.transform(`translate(${p.x}, ${p.y})`);
         }
 
-        private drawHalo(): void {
-            let radius = parseInt(this.halo.attr("radius"));
+        public drawHalo(): void {
+            let radius = parseInt(this.halo.attr("r"));
             this.halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
