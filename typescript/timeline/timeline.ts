@@ -35,14 +35,14 @@ namespace Timeline {
                 }
 
                 return false;
-            });
+            }, true);
         }
 
         public execute(): boolean {
             if (this.built()) {
                 this.drawScale();
 
-                this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg), false);
+                this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg));
                 this.position();
 
                 return true;
@@ -51,14 +51,14 @@ namespace Timeline {
             }
         }
 
-        private position(iteration = 0): void {
-            this.forAchievements((a, p) => a.position(), false);
+        private position(iteration = 1): void {
+            this.forAchievements((a, p) => a.position());
 
-            if (iteration < 150) {
+            // Approximation of visually effective number of iterations before snapping achievements into place.
+            if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
                 requestAnimationFrame(() => this.position(iteration + 1));
             } else {
-              // Move this into achievement.position() so when distance moved is < x then snap to pos and then call drawHalo.
-                this.forAchievements((a, p) => a.drawHalo(), false);
+                this.forAchievements((a, p) => a.snap());
             }
         }
 
@@ -78,7 +78,7 @@ namespace Timeline {
             return this.people.length > 0;
         }
 
-        private forAchievements(f: (a: Achievement, p: Person) => void, ensureTrue = true): boolean {
+        private forAchievements(f: (a: Achievement, p: Person) => void, ensureTrue = false): boolean {
             for (let p of this.people) {
                 for (let a of p.achievements) {
                     if (!f(a, p) && ensureTrue) {

@@ -11,9 +11,10 @@ namespace Timeline {
         private current_point: Vector;
         private initial_point: Vector;
 
-        private RADIUS_FACTOR = 0.256;
-        private MAX_RADIUS = 15;
-        private COLOURS: Array<string> = [
+        public static ATTRACTION_SPEED = 0.13;
+        private static RADIUS_FACTOR = 0.256;
+        private static MAX_RADIUS = 15;
+        private static COLOURS: Array<string> = [
             "#7336a8",
             "#4a8cdb",
             "#ed5f55",
@@ -28,8 +29,8 @@ namespace Timeline {
         }
 
         public draw(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
-            let radius = Math.min(this.MAX_RADIUS, columnSize * this.RADIUS_FACTOR);
-            let fill = this.COLOURS[this.details.impact - 1];
+            let radius = Math.min(Achievement.MAX_RADIUS, columnSize * Achievement.RADIUS_FACTOR);
+            let fill = Achievement.COLOURS[this.details.impact - 1];
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
             let point = Vector.randomized(w, h);
 
@@ -45,10 +46,10 @@ namespace Timeline {
             this.halo.attr({fill: fill, opacity: 0.1});
         }
 
-        public position(): void {
+        public position(damping = Achievement.ATTRACTION_SPEED): void {
             let v = Vector.sub(this.current_point, this.destination_point);
 
-            v.mul(0.1);
+            v.mul(damping);
             this.current_point.sub(v);
 
             let p = Vector.sub(this.current_point, this.initial_point);
@@ -56,8 +57,10 @@ namespace Timeline {
             this.element.transform(`translate(${p.x}, ${p.y})`);
         }
 
-        public drawHalo(): void {
+        public snap(): void {
             let radius = parseInt(this.halo.attr("r"));
+
+            this.position(1); // Snap to exact position.
             this.halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
         }
 
