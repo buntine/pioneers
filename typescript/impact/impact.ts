@@ -23,13 +23,8 @@ namespace Impact {
             return this.built();
         }
 
-        public execute(): boolean {
-            if (this.built()) {
-                this.people.pack();
-                return true;
-            } else {
-                return false;
-            }
+        public execute(): void {
+            this.people.pack();
         }
 
         public unfocus(): void {

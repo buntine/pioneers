@@ -7,9 +7,9 @@ namespace Timeline {
 
         private core: Snap.Element;
         private halo: Snap.Element;
-        private destination_point: Vector;
-        private current_point: Vector;
-        private initial_point: Vector;
+        private destinationPoint: Vector;
+        private currentPoint: Vector;
+        private initialPoint: Vector;
 
         public static ATTRACTION_SPEED = 0.13;
         private static RADIUS_FACTOR = 0.256;
@@ -32,13 +32,12 @@ namespace Timeline {
             let radius = Math.min(Achievement.MAX_RADIUS, columnSize * Achievement.RADIUS_FACTOR);
             let fill = Achievement.COLOURS[this.details.impact - 1];
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
-            let point = Vector.randomized(w, h);
 
-            this.destination_point = this.coords(columnSize, radius);
-            this.current_point = point.clone();
-            this.initial_point = point.clone();
+            this.destinationPoint = this.coords(columnSize, radius);
+            this.currentPoint = Vector.randomized(w, h);
+            this.initialPoint = this.currentPoint.clone();
 
-            this.halo = svg.circle(this.current_point.x, this.current_point.y, radius);
+            this.halo = svg.circle(this.currentPoint.x, this.currentPoint.y, radius);
             this.core = this.halo.clone();
             this.element = svg.group(this.core, this.halo);
 
@@ -47,12 +46,12 @@ namespace Timeline {
         }
 
         public position(damping = Achievement.ATTRACTION_SPEED): void {
-            let v = Vector.sub(this.current_point, this.destination_point);
+            let v = Vector.sub(this.currentPoint, this.destinationPoint);
 
             v.mul(damping);
-            this.current_point.sub(v);
+            this.currentPoint.sub(v);
 
-            let p = Vector.sub(this.current_point, this.initial_point);
+            let p = Vector.sub(this.currentPoint, this.initialPoint);
 
             this.element.transform(`translate(${p.x}, ${p.y})`);
         }

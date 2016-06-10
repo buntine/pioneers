@@ -38,23 +38,16 @@ namespace Timeline {
             }, true);
         }
 
-        public execute(): boolean {
-            if (this.built()) {
-                this.drawScale();
-
-                this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg));
-                this.position();
-
-                return true;
-            } else {
-                return false;
-            }
+        public execute(): void {
+            this.drawScale();
+            this.forAchievements((a, p) => a.draw(this.columnSize, p.details, this.svg));
+            this.position();
         }
 
         private position(iteration = 1): void {
             this.forAchievements((a, p) => a.position());
 
-            // Approximation of visually effective number of iterations before snapping achievements into place.
+            // Approximation of iterations that's visually effective.
             if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
                 requestAnimationFrame(() => this.position(iteration + 1));
             } else {
@@ -70,7 +63,6 @@ namespace Timeline {
             let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
             
             this.columnSize = (width - (Timeline.PADDING[1] * 2)) / this.years.length;
-
             this.svg.attr({width: width, height: height});
         }
 

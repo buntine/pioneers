@@ -1,6 +1,6 @@
 namespace Structure {
     export interface Tab {
-        execute(): boolean;
+        execute(): void;
         build(set: Array<Structure.Person>): boolean;
         built(): boolean;
         unfocus(): void;

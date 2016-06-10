@@ -122,7 +122,9 @@ $(() => {
             // Adjust tab to current window size.
             t.resize();
 
-            if (!t.execute()) {
+            if (t.built()) {
+                t.execute();
+            } else {
                 $("#noresults").show();
             }
 
