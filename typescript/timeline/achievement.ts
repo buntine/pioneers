@@ -36,14 +36,14 @@ namespace Timeline {
             this.halo.attr({fill: this.fill(), opacity: 0});
         }
 
-        public drawCore(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
+        public drawCore(columnSize: number, person: Timeline.Person, svg: Snap.Paper): void {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
 
             this.currentPoint = Vector.randomized(w, h);
             this.initialPoint = this.currentPoint.clone();
 
             this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
-            this.core.mouseover((e:MouseEvent) => console.log(this.details.impact));
+            this.core.mouseover((e:MouseEvent) => console.log(person.details.name));
             this.core.attr({fill: this.fill()});
         }
 

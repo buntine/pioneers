@@ -1,7 +1,8 @@
 /// <reference path='../helpers.ts'/>
+/// <reference path='../pioneer.ts'/>
 
 namespace Impact {
-    export class Person {
+    export class Person extends Pioneer {
         public title: Title;
         public avatar: Snap.Element;
         public radius: number;
@@ -11,6 +12,8 @@ namespace Impact {
         public static MAX_SIZE = 350;
 
         constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector) {
+            super();
+
             this.initialPoint = new Vector(point.x, point.y);
             this.title = new Title(this);
         }
@@ -65,30 +68,8 @@ namespace Impact {
             this.point.sub(v);
         }
 
-        public show(): void {
-            $.get('/static/templates/person.mst', (template: string) => {
-                let rendered = Mustache.render(template, {
-                person: this.details, 
-                years: () => { `${this.details.yob} - ${this.details.yod || ""}` },
-                flag: this.flagPath()});
-
-                $.magnificPopup.open({
-                    items: {
-                        src: `<div class="pioneer_overlay white-popup">${rendered}</div>`,
-                        type: "inline"
-                    },
-                    removalDelay: 300,
-                    mainClass: "mfp-fade"
-                });
-            });
-        }
-
         public topLeft(): Vector {
             return Vector.sub(this.point, new Vector(this.radius, this.radius));
-        }
-
-        public flagPath(): string {
-            return Helpers.imageSource("flags", `${this.details.country.toLowerCase()}.png`);
         }
 
         public highlight(): void {
