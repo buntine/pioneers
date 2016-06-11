@@ -6,11 +6,13 @@ namespace Timeline {
         private people: Array<Timeline.Person>;
         private years: Array<Timeline.Year>;
         private columnSize: number;
+        private id: number;
 
         public static PADDING: [number, number] = [80, 20];
 
         constructor(public svg: Snap.Paper) {
             this.columnSize = 100;
+            this.id = 0;
             this.years = [];
             this.people = [];
             this.reset();
@@ -42,21 +44,27 @@ namespace Timeline {
             this.drawScale();
             this.forAchievements((a, p) => a.drawHalo(this.columnSize, this.svg)); // Halos must be all drawm before cores to prevent layering issues.
             this.forAchievements((a, p) => a.drawCore(this.columnSize, p.details, this.svg));
-            this.position();
+
+            this.position(this.id);
         }
 
-        private position(iteration = 1): void {
-            this.forAchievements((a, p) => a.position());
+        private position(id: number, iteration = 1): void {
+            if (this.id == id) {
+                this.forAchievements((a, p) => a.position());
 
-            // Approximation of iterations that's visually effective.
-            if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
-                requestAnimationFrame(() => this.position(iteration + 1));
-            } else {
-                this.forAchievements((a, p) => a.snap());
+                // Approximation of iterations that's visually effective.
+                if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
+                    requestAnimationFrame(() => this.position(id, iteration + 1));
+                } else {
+                    this.forAchievements((a, p) => a.snap());
+                }
             }
         }
 
         public unfocus(): void {
+            // Cheap way for me to kill obsolete recursions on this.position() when user is actively resizing window.
+            this.id++;
+
             this.svg.clear();
         }
 
