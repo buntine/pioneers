@@ -53,4 +53,3 @@ class Vector {
         return new Vector(this.x, this.y);
     }
 }
-

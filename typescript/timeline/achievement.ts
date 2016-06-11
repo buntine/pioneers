@@ -3,7 +3,6 @@ namespace Timeline {
         public details: Structure.Achievement;
         public row: number;
         public column: number;
-        public element: Snap.Element;
 
         private core: Snap.Element;
         private halo: Snap.Element;
@@ -28,21 +27,24 @@ namespace Timeline {
             this.column = 0;
         }
 
-        public draw(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
-            let radius = Math.min(Achievement.MAX_RADIUS, columnSize * Achievement.RADIUS_FACTOR);
-            let fill = Achievement.COLOURS[this.details.impact - 1];
-            let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+        public drawHalo(columnSize: number, svg: Snap.Paper): void {
+            let radius = this.radius(columnSize);
 
             this.destinationPoint = this.coords(columnSize, radius);
+
+            this.halo = svg.circle(this.destinationPoint.x, this.destinationPoint.y, radius);
+            this.halo.attr({fill: this.fill(), opacity: 0});
+        }
+
+        public drawCore(columnSize: number, person: Structure.Person, svg: Snap.Paper): void {
+            let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+
             this.currentPoint = Vector.randomized(w, h);
             this.initialPoint = this.currentPoint.clone();
 
-            this.halo = svg.circle(this.currentPoint.x, this.currentPoint.y, radius);
-            this.core = this.halo.clone();
-            this.element = svg.group(this.core, this.halo);
-
-            this.core.attr({fill: fill});
-            this.halo.attr({fill: fill, opacity: 0.1});
+            this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
+            this.core.mouseover((e:MouseEvent) => console.log(this.details.impact));
+            this.core.attr({fill: this.fill()});
         }
 
         public position(damping = Achievement.ATTRACTION_SPEED): void {
@@ -53,14 +55,14 @@ namespace Timeline {
 
             let p = Vector.sub(this.currentPoint, this.initialPoint);
 
-            this.element.transform(`translate(${p.x}, ${p.y})`);
+            this.core.transform(`translate(${p.x}, ${p.y})`);
         }
 
         public snap(): void {
             let radius = parseInt(this.halo.attr("r"));
 
             this.position(1); // Snap to exact position.
-            this.halo.animate({r: radius * this.details.impact}, (220 * this.details.impact), mina.easein);
+            this.halo.animate({r: radius * this.details.impact, opacity: 0.1}, (220 * this.details.impact), mina.easein);
         }
 
         public coords(columnSize: number, radius: number): Vector {
@@ -68,6 +70,14 @@ namespace Timeline {
             let c = (a:number, p:number) => (columnSize * a) + ((columnSize / 2) - radius / 2) + padding[p];
 
             return new Vector(c(this.column, 1), c(this.row, 0));
+        }
+
+        private fill(): string {
+            return Achievement.COLOURS[this.details.impact - 1];
+        }
+
+        private radius(columnSize: number) {
+            return Math.min(Achievement.MAX_RADIUS, columnSize * Achievement.RADIUS_FACTOR);
         }
     }
 }
