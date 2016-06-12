@@ -23,6 +23,10 @@ namespace Impact {
             return this.built();
         }
 
+        public preload(callback: () => void) {
+            callback();
+        }
+
         public execute(): void {
             this.people.pack();
         }

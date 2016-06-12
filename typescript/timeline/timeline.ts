@@ -40,6 +40,10 @@ namespace Timeline {
             }, true);
         }
 
+        public preload(callback: () => void) {
+            callback();
+        }
+
         public execute(): void {
             this.drawScale();
             this.forAchievements((a, p) => a.drawHalo(this.columnSize, this.svg)); // Halos must be all drawm before cores to prevent layering issues.

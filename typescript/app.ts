@@ -123,7 +123,12 @@ $(() => {
             t.resize();
 
             if (t.built()) {
-                t.execute();
+                $("#loading").show();
+
+                t.preload(() => {
+                    $("#loading").hide();
+                    t.execute();
+                });
             } else {
                 $("#noresults").show();
             }
