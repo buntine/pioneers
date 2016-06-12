@@ -26,3 +26,6 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Seymour Papert", "Male", "South Africa", "Pretoria", "", "", "1928", "", "A computer scientist, mathematician and pioneer of artificial intelligence.", "seymour_papert.jpg", "https://en.wikipedia.org/wiki/Seymour_Papert"
 "Cynthia Solomon", "Female", "USA", "New York", "", "", "1943", "", "A pioneer in the fields of artificial intelligence and educational computing.", "cynthia_solomon.jpg", "https://en.wikipedia.org/wiki/Cynthia_Solomon"
 "Leonard Adleman", "Male", "USA", "San Francisco", "", "", "1945", "", "An American mathematician, computer scientist and amateur boxer.", "leonard_adleman.jpg", "https://en.wikipedia.org/wiki/Leonard_Adleman"
+"Manindra Agrawal", "Male", "India", "Allahabad", "", "", "1966", "", "An Indian mathematician and computer scientist.", "manindra_agrawal.jpg", "https://en.wikipedia.org/wiki/Manindra_Agrawal"
+"Nitin Saxena", "Male", "India", "Allahabad", "", "", "1981", "", "An Indian mathematician and computer scientist.", "unknown.jpg", "https://en.wikipedia.org/wiki/Nitin_Saxena"
+"Neeraj Kayal", "Male", "India", "Guwahati", "", "", "1980", "", "An Indian computer scientist and researcher.", "neeraj_kayal.jpg", "https://en.wikipedia.org/wiki/Neeraj_Kayal"
