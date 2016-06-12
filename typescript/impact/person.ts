@@ -7,6 +7,7 @@ namespace Impact {
         public avatar: Snap.Element;
         public radius: number;
         private initialPoint: Vector;
+        private image: HTMLImageElement;
 
         public static MAX_ZOOM = 250;
         public static MAX_SIZE = 350;
@@ -16,6 +17,8 @@ namespace Impact {
 
             this.initialPoint = new Vector(point.x, point.y);
             this.title = new Title(this);
+            this.image = new Image();
+            this.image.src = Helpers.imageSource("people", this.details.picture);
         }
 
         public draw(unit: number): void {
@@ -24,7 +27,7 @@ namespace Impact {
             this.radius = mass / 2;
 
             let tl = this.topLeft();
-            let pattern = this.svg.image(Helpers.imageSource("people", this.details.picture), tl.x, tl.y, mass, mass);
+            let pattern = this.svg.image(this.image.src, tl.x, tl.y, mass, mass);
 
             this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
             this.avatar.attr({fill: pattern.pattern(tl.x, tl.y, mass, mass),
@@ -66,6 +69,10 @@ namespace Impact {
             v.mul(damping);
 
             this.point.sub(v);
+        }
+
+        public preloaded(): boolean {
+            return this.image.complete && this.image.naturalHeight != 0;
         }
 
         public topLeft(): Vector {

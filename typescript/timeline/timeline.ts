@@ -40,7 +40,8 @@ namespace Timeline {
             }, true);
         }
 
-        public preload(callback: () => void) {
+        public preload(callback: () => void, iteration = 1) {
+            // No preload required. Move along, nothing to see here.
             callback();
         }
 

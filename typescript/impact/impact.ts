@@ -7,6 +7,8 @@ namespace Impact {
     export class Impact implements Structure.Tab {
         public people: Impact.People;
 
+        private static PRELOAD_INTERVAL: number = 100;
+
         constructor(public svg: Snap.Paper) {
             this.people = new People();
         }
@@ -23,7 +25,17 @@ namespace Impact {
             return this.built();
         }
 
-        public preload(callback: () => void) {
+        public preload(callback: () => void, iteration = 1): void {
+            // Wait up to 6 seconds for images to load.
+            if (iteration < 60) {
+                for (let p of this.people) {
+                    if (!p.preloaded()) {
+                        setTimeout(() => this.preload(callback, iteration + 1), Impact.PRELOAD_INTERVAL);
+                        return;
+                    }
+                }
+            }
+
             callback();
         }
 

@@ -1,6 +1,6 @@
 namespace Structure {
     export interface Tab {
-        preload(callback: () => void): void;
+        preload(callback: () => void, iteration?: number): void;
         execute(): void;
         build(set: Array<Structure.Person>): boolean;
         built(): boolean;
