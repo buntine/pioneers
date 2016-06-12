@@ -19,3 +19,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Douglas Engelbart", "Male", "USA", "Oregon", "", "", "1925", "2013", "An Californian engineer, inventor and Computer pioneer.", "douglas_engelbart.jpg", "https://en.wikipedia.org/wiki/Douglas_Engelbart"
 "E. Allen Emerson", "Male", "USA", "Texas", "", "", "1954", "", "An computer scientist from Texas, USA.", "e_allen_emerson.jpg", "https://en.wikipedia.org/wiki/E._Allen_Emerson"
 "Stephen Cook", "Male", "USA", "New York", "", "", "1939", "", "An American-Canadian computer scientist and mathematician.", "stephen_cook.jpg", "https://en.wikipedia.org/wiki/Stephen_Cook"
+"Wil van der Aalst", "Male", "Netherlands", "Eersel, North Brabant", "", "", "1966", "", "A Dutch computer scientist and professor at the Eindhoven University.", "wil_van_der_aalst.jpg", "https://en.wikipedia.org/wiki/Wil_van_der_Aalst"
+"Carl Adam Petri", "Male", "Germany", "Leipzig", "", "", "1926", "2010", "A German mathematician and computer scientist.", "carl_adam_petri.jpg", "https://en.wikipedia.org/wiki/Carl_Adam_Petri"
