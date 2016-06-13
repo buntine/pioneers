@@ -31,3 +31,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Neeraj Kayal", "Male", "India", "Guwahati", "", "", "1980", "", "An Indian computer scientist and researcher.", "neeraj_kayal.jpg", "https://en.wikipedia.org/wiki/Neeraj_Kayal"
 "Luis von Ahn", "Male", "Guatemala", "Guatemala City", "", "", "1978", "", "A Guatemalan entrepreneur and computer scientist.", "luis_von_ahn.jpg", "https://en.wikipedia.org/wiki/Luis_von_Ahn"
 "Alfred Aho", "Male", "Canada", "Timmins, Ontario", "", "", "1941", "", "A Canadian computer scientist and author.", "alfred_aho.jpg", "https://en.wikipedia.org/wiki/Alfred_Aho"
+"Frances E. Allen", "Female", "USA", "Peru, New York", "", "", "1932", "", "An American computer and optimising compiler pioneer.", "frances_e_allen.jpg", "https://en.wikipedia.org/wiki/Frances_E._Allen"
