@@ -51,7 +51,7 @@ def people(rows):
         else:
             location = (row["Latitude"], row["Longitude"])
 
-        Person(name = row["Name"], gender = row["Gender"], country = row["Country"], birthplace = row["Birthplace"],
+        Person(name = unicode(row["Name"], 'utf-8'), gender = row["Gender"], country = row["Country"], birthplace = row["Birthplace"],
                lat = location[0], lng = location[1], yob = row["Born"], source = row["Source"],
                yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
                picture = row["Picture"])
@@ -60,14 +60,14 @@ def people(rows):
 
 def achievements(rows):
     for row in rows:
-        person = Person.get(name = row["Name"])
+        person = Person.get(name = unicode(row["Name"], 'utf-8'))
         impact = Impact.get(value = int(row["Impact"]))
 
         if person and impact:
             tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
             topics = map(lambda t: fetch_tag(t, "Topic"), row["Topics"].split(","))
 
-            Achievement(person = person, impact = impact, year = row["Date"], description = row["Achievement"],
+            Achievement(person = person, impact = impact, year = row["Date"], description = unicode(row["Achievement"], 'utf-8'),
                         source = row["Source"], tags = (topics + tags))
 
             print "Created Achievement for %s" % person.name
