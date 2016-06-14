@@ -38,3 +38,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Rudolf Bayer", "Male", "Germany", "Munich", "", "", "1939", "", "An German computer scientist.", "rudolf_bayer.jpg", "https://en.wikipedia.org/wiki/Rudolf_Bayer"
 "Gordon Bell", "Male", "USA", "Kirksville, Missouri", "", "", "1934", "", "An American electrical engineer and entrepreneur.", "gordon_bell.jpg", "https://en.wikipedia.org/wiki/Gordon_Bell"
 "David Blei", "Male", "USA", "Rhode Island", "", "", "1975", "", "An American computer scientist. Date of birth approximate.", "david_blei.jpg", "https://en.wikipedia.org/wiki/David_Blei"
+"Manuel Blum", "Male", "Venezuela", "Caracas", "", "", "1938", "", "A Venezuelan computer scientist.", "manuel_blum.jpg", "https://en.wikipedia.org/wiki/Manuel_Blum"
