@@ -34,3 +34,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Frances E. Allen", "Female", "USA", "Peru, New York", "", "", "1932", "", "An American computer and optimising compiler pioneer.", "frances_e_allen.jpg", "https://en.wikipedia.org/wiki/Frances_E._Allen"
 "Sanjeev Arora", "Male", "India", "Jodhpur, Rajasthan", "", "", "1968", "", "An Indian theoretical computer scientist.", "sanjeev_arora.jpg", "https://en.wikipedia.org/wiki/Sanjeev_Arora"
 "Charles Bachman", "Male", "USA", "Manhattan, Kansas", "", "", "1924", "", "An American computer scientist and software practitioner.", "charles_bachman.jpg", "https://en.wikipedia.org/wiki/Charles_Bachman"
+"Victor Bahl", "Male", "India", "New Delhi", "", "", "1964", "", "An Indian/American computer scientist and researcher.", "victor_bahl.jpg", "https://en.wikipedia.org/wiki/Victor_Bahl"
+"Rudolf Bayer", "Male", "Germany", "Munich", "", "", "1939", "", "An German computer scientist.", "rudolf_bayer.jpg", "https://en.wikipedia.org/wiki/Rudolf_Bayer"
