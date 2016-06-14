@@ -33,3 +33,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Alfred Aho", "Male", "Canada", "Timmins, Ontario", "", "", "1941", "", "A Canadian computer scientist and author.", "alfred_aho.jpg", "https://en.wikipedia.org/wiki/Alfred_Aho"
 "Frances E. Allen", "Female", "USA", "Peru, New York", "", "", "1932", "", "An American computer and optimising compiler pioneer.", "frances_e_allen.jpg", "https://en.wikipedia.org/wiki/Frances_E._Allen"
 "Sanjeev Arora", "Male", "India", "Jodhpur, Rajasthan", "", "", "1968", "", "An Indian theoretical computer scientist.", "sanjeev_arora.jpg", "https://en.wikipedia.org/wiki/Sanjeev_Arora"
+"Charles Bachman", "Male", "USA", "Manhattan, Kansas", "", "", "1924", "", "An American computer scientist and software practitioner.", "charles_bachman.jpg", "https://en.wikipedia.org/wiki/Charles_Bachman"

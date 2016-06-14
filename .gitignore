@@ -1,6 +1,7 @@
 NOTES
 TODO
 IDEAS
+BLOG
 .*.sw*
 venv/*
 db/*.sqlite3
