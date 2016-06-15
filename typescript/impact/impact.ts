@@ -49,6 +49,8 @@ namespace Impact {
 
         public unfocus(): void {
             $("#peopleList").hide();
+            $("#peopleList ul").empty();
+
             this.people.reset();
             this.svg.clear();
         }

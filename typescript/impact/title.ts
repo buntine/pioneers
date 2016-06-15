@@ -11,7 +11,7 @@ namespace Impact {
     export class Title {
         public state: ShowState;
         public point: Vector;
-        public title: Snap.Element;
+        public title: any; // Zepto element.
 
         private static WAIT = 600;
 
@@ -37,16 +37,16 @@ namespace Impact {
         public draw(): void {
             let p = this.person;
 
-            //this.title = p.svg.text(this.point.x, this.point.y, p.details.name);
-            //this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "11px"});
+            this.title = $(`<li><a href="#">${p.details.name}</a>`);
+            $("#peopleList ul").append(this.title);
         }
 
         private highlight(): void {
-            //this.title.attr({fontWeight: "bold"});
+            this.title.addClass("selected");
         }
 
         private unhighlight(): void {
-            //this.title.attr({fontWeight: "normal"});
+            this.title.removeClass("selected");
         }
 
         public show(): void {
