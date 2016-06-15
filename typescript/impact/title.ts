@@ -13,7 +13,7 @@ namespace Impact {
 
         private static WAIT = 600;
 
-        constructor(public person: Person) {
+        constructor(public person: Person, private offset: number) {
             this.state = ShowState.Unhighlighted;
         }
 
@@ -29,6 +29,13 @@ namespace Impact {
             this.state = ShowState.Waiting;
 
             setTimeout(() => this.zoom(), Title.WAIT);
+        }
+
+        public draw(): void {
+            let p = this.person;
+            let title = p.svg.text(30, 30 + (this.offset * 20), p.details.name);
+
+            title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "13px"});
         }
 
         public show(): void {
