@@ -17,7 +17,7 @@ namespace Impact {
 
         constructor(public person: Person, private offset: number) {
             this.state = ShowState.Unhighlighted;
-            this.point = new Vector(30, 30 + (offset * 20));
+            this.point = new Vector(30, 30 + (offset * 25));
         }
 
         public unhighlighted(): boolean {
@@ -37,20 +37,16 @@ namespace Impact {
         public draw(): void {
             let p = this.person;
 
-            this.title = p.svg.text(this.point.x, this.point.y, p.details.name);
-            this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "11px"});
+            //this.title = p.svg.text(this.point.x, this.point.y, p.details.name);
+            //this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "11px"});
         }
 
         private highlight(): void {
-            let p = this.person;
-            let bbox = this.title.getBBox();
-            let [x, y] = [p.point.x - (Person.MAX_ZOOM / 2) - 8, p.point.y];
-
-            this.title.attr({fontWeight: "bold"});
+            //this.title.attr({fontWeight: "bold"});
         }
 
         private unhighlight(): void {
-            this.title.attr({fontWeight: "normal"});
+            //this.title.attr({fontWeight: "normal"});
         }
 
         public show(): void {
