@@ -10,11 +10,15 @@ namespace Impact {
 
     export class Title {
         public state: ShowState;
+        public point: Vector;
+        public line: Snap.Element;
+        public title: Snap.Element;
 
         private static WAIT = 600;
 
         constructor(public person: Person, private offset: number) {
             this.state = ShowState.Unhighlighted;
+            this.point = new Vector(30, 30 + (offset * 20));
         }
 
         public unhighlighted(): boolean {
@@ -33,14 +37,29 @@ namespace Impact {
 
         public draw(): void {
             let p = this.person;
-            let title = p.svg.text(30, 30 + (this.offset * 20), p.details.name);
 
-            title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "13px"});
+            this.title = p.svg.text(this.point.x, this.point.y, p.details.name);
+            this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "13px"});
+        }
+
+        private drawLine(): void {
+            let p = this.person;
+            let bbox = this.title.getBBox();
+            let [x, y] = [p.point.x - (Person.MAX_ZOOM / 2) - 8, p.point.y];
+
+            this.line = p.svg.line(x, y, this.point.x + bbox.w + 5, this.point.y - (bbox.h / 2));
+            this.line.attr({stroke: "#ffffff", strokeWidth: "2px"});
+            this.title.attr({fontWeight: "bold"});
+        }
+
+        private removeLine(): void {
+            this.line.remove();
+            this.title.attr({fontWeight: "normal"});
         }
 
         public show(): void {
             if (this.state == ShowState.Zooming) {
-                // drawline()
+                this.drawLine()
                 this.state = ShowState.Done;
             }
         }
@@ -91,7 +110,7 @@ namespace Impact {
 
         public finalize(): void {
             if (this.shown()) {
-                // removeLine()
+                this.removeLine();
             }
 
             this.state = ShowState.Unhighlighted;
