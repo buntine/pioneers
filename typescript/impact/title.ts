@@ -11,7 +11,6 @@ namespace Impact {
     export class Title {
         public state: ShowState;
         public point: Vector;
-        public line: Snap.Element;
         public title: Snap.Element;
 
         private static WAIT = 600;
@@ -39,27 +38,24 @@ namespace Impact {
             let p = this.person;
 
             this.title = p.svg.text(this.point.x, this.point.y, p.details.name);
-            this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "13px"});
+            this.title.attr({fill: "#888888", fontFamily: "sans-serif, arial", fontSize: "11px"});
         }
 
-        private drawLine(): void {
+        private highlight(): void {
             let p = this.person;
             let bbox = this.title.getBBox();
             let [x, y] = [p.point.x - (Person.MAX_ZOOM / 2) - 8, p.point.y];
 
-            this.line = p.svg.line(x, y, this.point.x + bbox.w + 5, this.point.y - (bbox.h / 2));
-            this.line.attr({stroke: "#ffffff", strokeWidth: "2px"});
             this.title.attr({fontWeight: "bold"});
         }
 
-        private removeLine(): void {
-            this.line.remove();
+        private unhighlight(): void {
             this.title.attr({fontWeight: "normal"});
         }
 
         public show(): void {
             if (this.state == ShowState.Zooming) {
-                this.drawLine()
+                this.highlight()
                 this.state = ShowState.Done;
             }
         }
@@ -110,7 +106,7 @@ namespace Impact {
 
         public finalize(): void {
             if (this.shown()) {
-                this.removeLine();
+                this.unhighlight();
             }
 
             this.state = ShowState.Unhighlighted;
