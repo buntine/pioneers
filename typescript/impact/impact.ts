@@ -15,8 +15,8 @@ namespace Impact {
 
         public build(set: Array<Structure.Person>) : boolean {
             let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
-            let [low, high] = [new Vector(0, 0),
-                               new Vector(w, h)];
+            let [low, high] = [new Vector(150, 20),
+                               new Vector(w, h - 20)];
 
             this.people.clear();
 

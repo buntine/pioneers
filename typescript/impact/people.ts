@@ -9,6 +9,7 @@ namespace Impact {
         private static DAMPING_FACTOR = 0.25;
         private static REFINEMENT_DELTA = 4;
         private static REDRAW_THRESHOLD = 35;
+        private static SIZING_DELTA = 0.057;
 
         constructor() {
             super();
@@ -18,7 +19,7 @@ namespace Impact {
         }
 
         private delta(): number {
-            return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * 0.07);
+            return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
         }
 
         public centerize(width: number, height: number): void {
