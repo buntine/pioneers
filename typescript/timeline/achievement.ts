@@ -39,7 +39,7 @@ namespace Timeline {
         public drawCore(columnSize: number, person: Timeline.Person, svg: Snap.Paper): void {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
 
-            this.currentPoint = Vector.randomized(w, h);
+            this.currentPoint = Vector.randomized(new Vector(0, 0), new Vector(w, h));
             this.initialPoint = this.currentPoint.clone();
 
             this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
