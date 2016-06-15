@@ -41,3 +41,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Manuel Blum", "Male", "Venezuela", "Caracas", "", "", "1938", "", "A Venezuelan computer scientist.", "manuel_blum.jpg", "https://en.wikipedia.org/wiki/Manuel_Blum"
 "Tommy Flowers", "Male", "England", "London", "", "", "1905", "", "A British engineer and War hero.", "tommy_flowers.jpg", "https://en.wikipedia.org/wiki/Tommy_Flowers"
 "Corrado Böhm", "Male", "Italy", "Milan", "", "", "1923", "", "An Italian theoretical computer scientist.", "corrado_bohm.jpg", "https://en.wikipedia.org/wiki/Corrado_B%C3%B6hm"
+"Gottlob Frege", "Male", "Germany", "Wismar", "", "", "1848", "", "A German logician, philosopher and mathematician.", "gottlob_frege.jpg", "https://en.wikipedia.org/wiki/Gottlob_Frege"
