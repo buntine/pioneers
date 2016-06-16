@@ -5,7 +5,6 @@ namespace Impact {
         None = 0,
         Waiting = 1,
         Zooming = 2,
-        Done = 3,
     }
 
     export class Title {
@@ -46,12 +45,6 @@ namespace Impact {
             $("#peopleList ul").append(this.title);
         }
 
-        public complete(): void {
-            if (this.state == ShowState.Zooming) {
-                this.state = ShowState.Done;
-            }
-        }
-
         public zoom(): void {
             if (this.state != ShowState.Waiting) { return; }
 
@@ -69,8 +62,6 @@ namespace Impact {
             let avatar = avatarBorder.clone();
 
             this.group = p.svg.group(pattern, avatarBorder);
-            this.highlight()
-
             this.state = ShowState.Zooming;
 
             this.group.attr({cursor: "pointer"});
@@ -80,17 +71,17 @@ namespace Impact {
                                stroke: "#888",
                                strokeWidth: (6 / scale)});
 
+            this.highlight()
+
             this.group.click((e: MouseEvent) => {
                 this.close();
                 p.show();
             });
-            this.group.hover(null, (e:MouseEvent) => this.close());
+            this.group.hover(null, (_:MouseEvent) => this.close());
 
             // Person is larger than MAX_ZOOM so skip zoom in.
-            if (scale < 1) {
-                this.complete()
-            } else {
-                this.group.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => this.complete());
+            if (scale >= 1) {
+                this.group.animate({transform: `s${scale},${scale}`}, 500, mina.backout);
             }
         }
 
@@ -119,7 +110,10 @@ namespace Impact {
 
         private close(): void {
             this.person.unhighlight();
-            this.group.animate({transform: "s1,1"}, 200, mina.linear, () => this.group.remove());
+
+            if (this.group) {
+                this.group.animate({transform: "s1,1"}, 200, mina.linear, () => this.group.remove());
+            }
         }
     }
 }
