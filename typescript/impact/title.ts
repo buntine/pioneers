@@ -38,7 +38,8 @@ namespace Impact {
             let p = this.person;
 
             this.title = $(`<li><a href="#">${p.details.name}</a></li>`);
-            this.title.on("mouseenter", (_:MouseEvent) => this.person.highlight())
+            this.title.find("a")
+                      .on("mouseenter", (_:MouseEvent) => this.person.highlight())
                       .on("mouseleave", (_:MouseEvent) => this.andClose(() => this.person.unhighlight()))
                       .on("click", (_:MouseEvent) => this.andClose(() => this.person.show()));
 

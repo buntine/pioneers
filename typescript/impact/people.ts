@@ -88,7 +88,5 @@ namespace Impact {
         private delta(): number {
             return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
         }
-
-
     }
 }
