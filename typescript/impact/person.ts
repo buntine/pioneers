@@ -87,7 +87,6 @@ namespace Impact {
         }
 
         public unhighlight(): void {
-            this.avatar.animate({strokeWidth: 2}, 140);
             this.avatar.stop().animate({strokeWidth: 1}, 300);
             this.title.finalize();
         }

@@ -11,6 +11,7 @@ namespace Impact {
     export class Title {
         public state: ShowState;
         public point: Vector;
+        public group: Snap.Element;
         public title: any; // Zepto element.
 
         private static WAIT = 600;
@@ -37,8 +38,11 @@ namespace Impact {
         public draw(): void {
             let p = this.person;
 
-            this.title = $(`<li><a href="#">${p.details.name}</a>`);
+            this.title = $(`<li><a href="#">${p.details.name}</a></li>`);
             $("#peopleList ul").append(this.title);
+            this.title.on("mouseenter", (e:MouseEvent) => this.person.highlight());
+            this.title.on("mouseleave", (e:MouseEvent) => {this.person.unhighlight(); this.close()});
+            this.title.on("click", (e:MouseEvent) => {this.person.show(); this.close(); return false});
         }
 
         private highlight(): void {
@@ -49,11 +53,15 @@ namespace Impact {
             this.title.removeClass("selected");
         }
 
-        public show(): void {
+        public complete(): void {
             if (this.state == ShowState.Zooming) {
-                this.highlight()
                 this.state = ShowState.Done;
             }
+        }
+
+        private close(): void {
+            this.person.unhighlight();
+            this.group.animate({transform: "s1,1"}, 200, mina.linear, () => this.group.remove());
         }
 
         public zoom(): void {
@@ -71,32 +79,30 @@ namespace Impact {
             let pattern = p.svg.image(Helpers.imageSource("people", p.details.picture), tl.x, tl.y, mass, mass);
             let avatarBorder = p.svg.circle(pt.x, pt.y, p.radius);
             let avatar = avatarBorder.clone();
-            let g = p.svg.group(pattern, avatarBorder);
-            let close = () => {
-                p.unhighlight();
-                g.animate({transform: "s1,1"}, 200, mina.linear, () => g.remove());
-            };
+
+            this.group = p.svg.group(pattern, avatarBorder);
+            this.highlight()
 
             this.state = ShowState.Zooming;
 
-            g.attr({cursor: "pointer"});
+            this.group.attr({cursor: "pointer"});
             avatar.attr({fill: "#fff"});
             pattern.attr({mask: avatar});
             avatarBorder.attr({fillOpacity: 0,
                                stroke: "#888",
                                strokeWidth: (6 / scale)});
 
-            g.click((e: MouseEvent) => {
-                close();
+            this.group.click((e: MouseEvent) => {
+                this.close();
                 p.show();
             });
-            g.hover(null, close);
+            this.group.hover(null, (e:MouseEvent) => this.close());
 
             // Person is larger than MAX_ZOOM so skip zoom in.
             if (scale < 1) {
-                this.show()
+                this.complete()
             } else {
-                g.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => this.show());
+                this.group.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => this.complete());
             }
         }
 
