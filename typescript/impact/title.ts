@@ -2,7 +2,7 @@
 
 namespace Impact {
     enum ShowState {
-        Unhighlighted = 0,
+        None = 0,
         Waiting = 1,
         Zooming = 2,
         Done = 3,
@@ -17,11 +17,11 @@ namespace Impact {
         private static WAIT = 600;
 
         constructor(public person: Person, private offset: number) {
-            this.state = ShowState.Unhighlighted;
+            this.state = ShowState.None;
             this.point = new Vector(30, 30 + (offset * 25));
         }
 
-        public unhighlighted(): boolean {
+        public waiting(): boolean {
             return this.state < ShowState.Zooming;
         }
 
@@ -39,29 +39,17 @@ namespace Impact {
             let p = this.person;
 
             this.title = $(`<li><a href="#">${p.details.name}</a></li>`);
+            this.title.on("mouseenter", (_:MouseEvent) => this.person.highlight())
+                      .on("mouseleave", (_:MouseEvent) => this.andClose(() => this.person.unhighlight()))
+                      .on("click", (_:MouseEvent) => this.andClose(() => this.person.show()));
+
             $("#peopleList ul").append(this.title);
-            this.title.on("mouseenter", (e:MouseEvent) => this.person.highlight());
-            this.title.on("mouseleave", (e:MouseEvent) => {this.person.unhighlight(); this.close()});
-            this.title.on("click", (e:MouseEvent) => {this.person.show(); this.close(); return false});
-        }
-
-        private highlight(): void {
-            this.title.addClass("selected");
-        }
-
-        private unhighlight(): void {
-            this.title.removeClass("selected");
         }
 
         public complete(): void {
             if (this.state == ShowState.Zooming) {
                 this.state = ShowState.Done;
             }
-        }
-
-        private close(): void {
-            this.person.unhighlight();
-            this.group.animate({transform: "s1,1"}, 200, mina.linear, () => this.group.remove());
         }
 
         public zoom(): void {
@@ -111,7 +99,27 @@ namespace Impact {
                 this.unhighlight();
             }
 
-            this.state = ShowState.Unhighlighted;
+            this.state = ShowState.None;
+        }
+
+        private andClose(f: () => void): boolean {
+          f();
+          this.close();
+
+          return false;
+        }
+
+        private highlight(): void {
+            this.title.addClass("selected");
+        }
+
+        private unhighlight(): void {
+            this.title.removeClass("selected");
+        }
+
+        private close(): void {
+            this.person.unhighlight();
+            this.group.animate({transform: "s1,1"}, 200, mina.linear, () => this.group.remove());
         }
     }
 }

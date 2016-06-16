@@ -18,10 +18,6 @@ namespace Impact {
             this.alive = true;
         }
 
-        private delta(): number {
-            return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
-        }
-
         public centerize(width: number, height: number): void {
             this.center = new Vector(width / 2.0, height / 2.0);
         }
@@ -31,7 +27,34 @@ namespace Impact {
             return super.push(p);
         }
 
-        public position(iteration = 1): void {
+        public pack(): void {
+            let [w, h] = [this.center.x * 2, this.center.y * 2]
+            let unit = Math.min(w / this.total, h / this.total) * this.delta();
+
+            this.alive = true;
+
+            for (let p of this) {
+                p.draw(unit);
+            }
+
+            this.position();
+        }
+
+        public reset(): void {
+            this.alive = false;
+
+            for (let p of this) {
+                p.reset();
+            }
+        }
+
+        public clear(): void {
+            this.alive = false;
+            this.total = 0;
+            this.length = 0;
+        }
+
+        private position(iteration = 1): void {
             let redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
 
             // Sort from closest->furthest to center point.
@@ -62,31 +85,10 @@ namespace Impact {
             }
         }
 
-        public pack(): void {
-            let [w, h] = [this.center.x * 2, this.center.y * 2]
-            let unit = Math.min(w / this.total, h / this.total) * this.delta();
-
-            this.alive = true;
-
-            for (let p of this) {
-                p.draw(unit);
-            }
-
-            this.position();
+        private delta(): number {
+            return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
         }
 
-        public reset(): void {
-            this.alive = false;
 
-            for (let p of this) {
-                p.reset();
-            }
-        }
-
-        public clear(): void {
-            this.alive = false;
-            this.total = 0;
-            this.length = 0;
-        }
     }
 }

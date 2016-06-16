@@ -37,7 +37,8 @@ namespace Impact {
 
             this.avatar.click((e: MouseEvent) => this.highlight());
             this.avatar.hover((e: MouseEvent) => this.highlight(),
-                              (e: MouseEvent) => { if (this.title.unhighlighted()) { this.unhighlight() }});
+                              // Only call unhighlight here if the zoomed in picture from Title is not covering this.avatar.
+                              (e: MouseEvent) => { if (this.title.waiting()) { this.unhighlight() }});
 
             this.title.draw();
         }

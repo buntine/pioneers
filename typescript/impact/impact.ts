@@ -44,6 +44,7 @@ namespace Impact {
 
         public execute(): void {
             $("#peopleList").show();
+
             this.people.pack();
         }
 
