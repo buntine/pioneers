@@ -31,6 +31,8 @@ namespace Impact {
         public initiate(): void {
             this.state = ShowState.Waiting;
 
+            this.highlight();
+
             setTimeout(() => this.zoom(), Title.WAIT);
         }
 
@@ -72,7 +74,6 @@ namespace Impact {
                                stroke: "#888",
                                strokeWidth: (6 / scale)});
 
-            this.highlight()
 
             this.group.click((e: MouseEvent) => {
                 this.close();
@@ -87,9 +88,7 @@ namespace Impact {
         }
 
         public finalize(): void {
-            if (this.shown()) {
-                this.unhighlight();
-            }
+            this.unhighlight();
 
             this.state = ShowState.None;
         }

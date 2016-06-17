@@ -31,4 +31,4 @@ div.circle a { padding: 6px 20px; font-size: 32px; line-height: 58px; text-decor
 #innerScroll ul { margin: 0; padding: 0; list-style: none; }
 #innerScroll ul li { padding: 0 0 14px 30px; }
 #innerScroll ul li a { color: #fff; font-size: 13px; text-decoration: none; }
-#innerScroll ul li.selected { font-weight: bold; background-color: #e81e48; }
+#innerScroll ul li.selected { background-color: #e81e48;  transition: background-color 1.3s; }
