@@ -20,9 +20,9 @@ namespace Impact {
 
             this.people.clear();
 
-            set.forEach((p, i) => {
+            set.forEach((p) => {
                 this.people.push(
-                    new Person(this.svg, p, Vector.randomized(low, high), i));
+                    new Person(this.svg, p, Vector.randomized(low, high)));
             });
 
             return this.built();

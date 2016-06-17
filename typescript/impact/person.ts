@@ -12,11 +12,11 @@ namespace Impact {
         public static MAX_ZOOM = 250;
         public static MAX_SIZE = 350;
 
-        constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector, offset: number) {
+        constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector) {
             super();
 
             this.initialPoint = new Vector(point.x, point.y);
-            this.title = new Title(this, offset);
+            this.title = new Title(this);
             this.image = new Image();
             this.image.src = Helpers.imageSource("people", this.details.picture);
         }

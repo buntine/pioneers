@@ -1,6 +1,7 @@
 /// <reference path='../helpers.ts'/>
 
 namespace Impact {
+
     enum ShowState {
         None = 0,
         Waiting = 1,
@@ -9,15 +10,13 @@ namespace Impact {
 
     export class Title {
         public state: ShowState;
-        public point: Vector;
         public group: Snap.Element;
-        public title: any; // Zepto element.
+        public title: any; // Zepto object.
 
         private static WAIT = 600;
 
-        constructor(public person: Person, private offset: number) {
+        constructor(public person: Person) {
             this.state = ShowState.None;
-            this.point = new Vector(30, 30 + (offset * 25));
         }
 
         public waiting(): boolean {
@@ -42,7 +41,7 @@ namespace Impact {
             this.title = $(`<li><a href="#">${p.details.name}</a></li>`);
             this.title.find("a")
                       .on("mouseenter", (_:MouseEvent) => this.person.highlight())
-                      .on("mouseleave", (_:MouseEvent) => this.andClose(() => this.person.unhighlight()))
+                      .on("mouseleave", (_:MouseEvent) => this.andClose())
                       .on("click", (_:MouseEvent) => this.andClose(() => this.person.show()));
 
             $("#peopleList ul").append(this.title);
@@ -93,8 +92,8 @@ namespace Impact {
             this.state = ShowState.None;
         }
 
-        private andClose(f: () => void): boolean {
-          f();
+        private andClose(f?: () => void): boolean {
+          if (typeof f === "function") { f(); }
           this.close();
 
           return false;
