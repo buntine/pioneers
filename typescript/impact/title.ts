@@ -33,7 +33,7 @@ namespace Impact {
             let distance = this.distanceFromView();
 
             if (distance != 0) {
-                this.doScroll(distance / 11);
+                this.doScroll(distance / 9);
             }
 
             this.highlight();
@@ -117,7 +117,7 @@ namespace Impact {
             }
         }
 
-        private doScroll(jump: number, remaining = 10): void {
+        private doScroll(jump: number, remaining = 8): void {
             if (this.state == ShowState.Waiting) {
                 $("#innerScroll")[0].scrollTop += jump;
 
