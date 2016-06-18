@@ -30,6 +30,7 @@ namespace Impact {
         public initiate(): void {
             this.state = ShowState.Waiting;
 
+            $("#innerScroll")[0].scrollTop += this.distanceFromView();
             this.highlight();
 
             setTimeout(() => this.zoom(), Title.WAIT);
@@ -49,12 +50,6 @@ namespace Impact {
 
         public zoom(): void {
             if (this.state != ShowState.Waiting) { return; }
-
-            let distance = this.distanceFromView();
-            
-            if (distance != 0) {
-                console.log(`Scroll ${(distance > 0) ? "down" : "up"} ${Math.abs(distance)} pixels.`);
-            }
 
             let p = this.person;
             let mass = p.radius * 2;
