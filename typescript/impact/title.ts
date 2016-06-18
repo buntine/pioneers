@@ -30,7 +30,12 @@ namespace Impact {
         public initiate(): void {
             this.state = ShowState.Waiting;
 
-            $("#innerScroll")[0].scrollTop += this.distanceFromView();
+            let distance = this.distanceFromView();
+
+            if (distance != 0) {
+                this.doScroll(distance / 11);
+            }
+
             this.highlight();
 
             setTimeout(() => this.zoom(), Title.WAIT);
@@ -109,6 +114,16 @@ namespace Impact {
             // Above.
             } else {
                 return tOffset.top - sOffset.top;
+            }
+        }
+
+        private doScroll(jump: number, remaining = 10): void {
+            if (this.state == ShowState.Waiting) {
+                $("#innerScroll")[0].scrollTop += jump;
+
+                if (remaining > 0) {
+                    requestAnimationFrame(() => this.doScroll(jump, remaining - 1));
+                }
             }
         }
 
