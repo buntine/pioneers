@@ -50,6 +50,12 @@ namespace Impact {
         public zoom(): void {
             if (this.state != ShowState.Waiting) { return; }
 
+            let distance = this.distanceFromView();
+            
+            if (distance != 0) {
+                console.log(`Scroll ${(distance > 0) ? "down" : "up"} ${Math.abs(distance)} pixels.`);
+            }
+
             let p = this.person;
             let mass = p.radius * 2;
             let scale = Person.MAX_ZOOM / mass;
@@ -90,6 +96,25 @@ namespace Impact {
             this.unhighlight();
 
             this.state = ShowState.None;
+        }
+
+        private distanceFromView(): number {
+            let tOffset = this.title.offset();
+            let sOffset = $("#innerScroll").offset();
+            let sBottom = sOffset.top + sOffset.height;
+
+            if (tOffset.top > sOffset.top) {
+                // On screen.
+                if (tOffset.top < sBottom) {
+                    return 0;
+                // Below.
+                } else {
+                    return (tOffset.top - sBottom) + tOffset.height;
+                }
+            // Above.
+            } else {
+                return tOffset.top - sOffset.top;
+            }
         }
 
         private andClose(f?: () => void): boolean {
