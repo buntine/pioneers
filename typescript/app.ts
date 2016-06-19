@@ -25,9 +25,16 @@ $(() => {
 
     $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
 
-    $(window).on("popstate", () => {clearTab(); setState();})
-             .on("load", () => setDimensions(true))
-             .on("resize", (e:Event) => setDimensions());
+    $(window).on("popstate", () => {clearTab(); fetchState();})
+             .on("resize", (_:Event) => setDimensions())
+             .on("load", () => {
+                 setDimensions(true);
+
+                 // Show initial intro screen if user is coming to homepage.
+                 if (!searched()) {
+                     $("#intro").show();
+                 }
+             });
 
     $("#tab").selectivity({
         allowClear: false,
@@ -68,13 +75,17 @@ $(() => {
     }
 
     function buildTabs(f: () => any): void {
-        $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
-            for (let t in tabs) {
-                tabs[t].build(d.people);
-            }
+        if (searched()) {
+            $.getJSON("/people", state, (d: {people:Array<Structure.Person>}) => {
+                for (let t in tabs) {
+                    tabs[t].build(d.people);
+                }
 
+                f();
+            });
+        } else {
             f();
-        });
+        }
     }
 
     function splash(): void {
@@ -86,10 +97,10 @@ $(() => {
     function setDimensions(rebuild = false): void {
         clearTab();
         tabs[state.tab].resize();
-        setState(rebuild);
+        fetchState(rebuild);
     }
 
-    function setState(rebuild = true): void {
+    function fetchState(rebuild = true): void {
         state = history.state || stateFromPath();
 
         if (rebuild) {
