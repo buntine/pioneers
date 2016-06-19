@@ -47,6 +47,13 @@ $(() => {
         search(!((<Element>e.target).id == "tab"));
     });
 
+    $("#start").click((e:Event) => {
+        e.preventDefault();
+
+        $("#intro").hide();
+        $("select.tags").selectivity("add", "algorithms-data-structures");
+    });
+
     function clearTab(): void {
         let tab = tabs[state.tab];
 
