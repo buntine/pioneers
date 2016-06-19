@@ -8,3 +8,4 @@ db/*.sqlite3
 *.pyc
 app/static/js/*.js
 app/static/js/*.map
+typescript/lib/app.js

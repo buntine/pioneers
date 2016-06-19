@@ -3,7 +3,7 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outFile": "app/static/js/app.js",
+    "outFile": "typescript/lib/app.js",
         "sourceMap": true
     },
   "files": [
