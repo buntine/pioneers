@@ -56,7 +56,7 @@ $(() => {
                  tags: $("select.tags").selectivity("value")};
 
         // Catch for changing and/or operator or tab before searching as it should have no effect.
-        if (tabs[state.tab].built() || state.tags.length > 0) {
+        if (tabs[state.tab].built() || searched()) {
             writeState();
 
             if (rebuild) {
@@ -114,7 +114,7 @@ $(() => {
     }
 
     function executeState(updateForm = false): void {
-        if (state.tags.length > 0) {
+        if (searched()) {
             let t = tabs[state.tab];
 
             $("#splash, #noresults").hide();
@@ -147,7 +147,11 @@ $(() => {
     }
 
     function writeState(): void {
-        let path = state.tags.length > 0 ? `/${state.tab}/${state.op.toLowerCase()}/${state.tags.join("+")}` : "/";
+        let path = searched() ? `/${state.tab}/${state.op.toLowerCase()}/${state.tags.join("+")}` : "/";
         history.pushState(state, null, path);
+    }
+
+    function searched(): boolean {
+        return state.tags.length > 0;
     }
 });

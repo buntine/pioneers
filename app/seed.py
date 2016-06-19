@@ -51,7 +51,7 @@ def people(rows):
         else:
             location = (row["Latitude"], row["Longitude"])
 
-        Person(name = unicode(row["Name"], 'utf-8'), gender = row["Gender"], country = row["Country"], birthplace = row["Birthplace"],
+        Person(name = unicode(row["Name"], 'utf-8'), gender = row["Gender"], country = row["Country"], birthplace = unicode(row["Birthplace"], 'utf-8'),
                lat = location[0], lng = location[1], yob = row["Born"], source = row["Source"],
                yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
                picture = row["Picture"])
