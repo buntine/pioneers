@@ -47,12 +47,18 @@ namespace Timeline {
             this.core.attr({fill: this.fill()});
         }
 
-        public position(damping = Achievement.ATTRACTION_SPEED): void {
+        public position(redraw = true, damping = Achievement.ATTRACTION_SPEED): void {
             let v = Vector.sub(this.currentPoint, this.destinationPoint);
 
             v.mul(damping);
             this.currentPoint.sub(v);
 
+            if (redraw) {
+                this.redraw();
+            }
+        }
+
+        public redraw(): void {
             let p = Vector.sub(this.currentPoint, this.initialPoint);
 
             this.core.transform(`translate(${p.x}, ${p.y})`);
@@ -61,7 +67,8 @@ namespace Timeline {
         public snap(): void {
             let radius = parseInt(this.halo.attr("r"));
 
-            this.position(1); // Snap to exact position.
+            this.position(true, 1); // Snap to exact position.
+            this.redraw();
             this.halo.animate({r: radius * this.details.impact, opacity: 0.1}, (220 * this.details.impact), mina.easein);
         }
 

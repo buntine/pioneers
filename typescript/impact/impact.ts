@@ -67,7 +67,7 @@ namespace Impact {
             return this.people.length > 0;
         }
 
-        public resolution(r: Structure.Resolution): void {
+        public setResolution(r: Structure.Resolution): void {
             this.people.resolution = r;
         }
     }

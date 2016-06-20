@@ -7,6 +7,7 @@ namespace Timeline {
         private years: Array<Timeline.Year>;
         private columnSize: number;
         private id: number;
+        private resolution: Structure.Resolution;
 
         public static PADDING: [number, number] = [80, 20];
 
@@ -15,6 +16,8 @@ namespace Timeline {
             this.id = 0;
             this.years = [];
             this.people = [];
+            this.resolution = "High";
+
             this.reset();
         }
 
@@ -55,11 +58,15 @@ namespace Timeline {
 
         private position(id: number, iteration = 1): void {
             if (this.id == id) {
-                this.forAchievements((a, p) => a.position());
+                this.forAchievements((a, p) => a.position(this.resolution == "High"));
 
                 // Approximation of iterations that's visually effective.
                 if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
-                    requestAnimationFrame(() => this.position(id, iteration + 1));
+                    if (this.resolution == "High") {
+                        requestAnimationFrame(() => this.position(id, iteration + 1));
+                    } else {
+                        this.position(id, iteration + 1);
+                    }
                 } else {
                     this.forAchievements((a, p) => a.snap());
                 }
@@ -155,7 +162,8 @@ namespace Timeline {
             });
         }
 
-        public resolution(r: Structure.Resolution): void {
+        public setResolution(r: Structure.Resolution): void {
+            this.resolution = r;
         }
     }
 }
