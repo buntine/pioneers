@@ -7,7 +7,7 @@ namespace Impact {
     export class Impact implements Structure.Tab {
         public people: Impact.People;
 
-        private static PRELOAD_INTERVAL: number = 100;
+        private static PRELOAD_INTERVAL = 100;
 
         constructor(public svg: Snap.Paper) {
             this.people = new People();

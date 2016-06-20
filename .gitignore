@@ -10,3 +10,4 @@ app/static/js/*.js
 app/static/css/app.css
 app/static/js/*.map
 typescript/lib/app.js
+typescript/lib/*.map

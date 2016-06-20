@@ -56,6 +56,7 @@ namespace Impact {
 
         private position(iteration = 1): void {
             let redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
+            let iterations = Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA);
 
             // Sort from closest->furthest to center point.
             this.sort((a: Person, b: Person) => {
@@ -80,7 +81,7 @@ namespace Impact {
             }
 
             // Refine.
-            if (this.alive && iteration < Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA)) {
+            if (this.alive && iteration < iterations) {
                 requestAnimationFrame(() => this.position(iteration + 1));
             }
         }
