@@ -1,8 +1,11 @@
+/// <reference path='../structure/resolution.ts'/>
+
 namespace Impact {
     export class People extends Array<Person> {
         private total: number;
         private center: Vector;
         public alive: boolean;
+        public resolution: Structure.Resolution;
 
         private static MIN_REFINEMENT = 50;
         private static MAX_DELTA = 0.7;
@@ -14,6 +17,7 @@ namespace Impact {
         constructor() {
             super();
 
+            this.resolution = "High";
             this.total = 0;
             this.alive = true;
         }
@@ -55,8 +59,14 @@ namespace Impact {
         }
 
         private position(iteration = 1): void {
-            let redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
+            let redraw = false;
             let iterations = Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA);
+
+            if (this.resolution == "High") {
+                redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
+            } else {
+                redraw = iteration == iterations;
+            }
 
             // Sort from closest->furthest to center point.
             this.sort((a: Person, b: Person) => {
@@ -82,7 +92,11 @@ namespace Impact {
 
             // Refine.
             if (this.alive && iteration < iterations) {
-                requestAnimationFrame(() => this.position(iteration + 1));
+                if (this.resolution == "High") {
+                    requestAnimationFrame(() => this.position(iteration + 1));
+                } else {
+                    this.position(iteration + 1);
+                }
             }
         }
 
