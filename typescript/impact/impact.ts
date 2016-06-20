@@ -66,5 +66,9 @@ namespace Impact {
         public built(): boolean {
             return this.people.length > 0;
         }
+
+        public resolution(r: Structure.Resolution): void {
+            this.people.resolution = r;
+        }
     }
 }

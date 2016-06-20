@@ -6,5 +6,6 @@ namespace Structure {
         built(): boolean;
         unfocus(): void;
         resize(): void;
+        resolution(r: Structure.Resolution): void;
     }
 }

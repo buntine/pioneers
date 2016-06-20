@@ -154,5 +154,8 @@ namespace Timeline {
               }
             });
         }
+
+        public resolution(r: Structure.Resolution): void {
+        }
     }
 }
