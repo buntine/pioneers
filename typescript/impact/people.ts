@@ -92,11 +92,7 @@ namespace Impact {
 
             // Refine.
             if (this.alive && iteration < iterations) {
-                if (this.resolution == "High") {
-                    requestAnimationFrame(() => this.position(iteration + 1));
-                } else {
-                    this.position(iteration + 1);
-                }
+                Helpers.onHighRes(this.resolution, () => this.position(iteration + 1));
             }
         }
 

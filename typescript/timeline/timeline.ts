@@ -62,11 +62,7 @@ namespace Timeline {
 
                 // Approximation of iterations that's visually effective.
                 if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
-                    if (this.resolution == "High") {
-                        requestAnimationFrame(() => this.position(id, iteration + 1));
-                    } else {
-                        this.position(id, iteration + 1);
-                    }
+                    Helpers.onHighRes(this.resolution, () => this.position(id, iteration + 1));
                 } else {
                     this.forAchievements((a, p) => a.snap());
                 }
