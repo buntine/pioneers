@@ -45,3 +45,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Seymour Ginsberg", "Male", "USA", "Brooklyn, New York", "", "", "1927", "", "An American pioneer in formal language, automata and database theory.", "seymour_ginsberg.jpg", "https://en.wikipedia.org/wiki/Seymour_Ginsburg"
 "Kurt Gödel", "Male", "Austria", "Brünn", "", "", "1906", "1978", "An Austrian/American logician, mathematician and philosopher.", "kurt_godel.jpg", "https://en.wikipedia.org/wiki/Kurt_G%C3%B6del"
 "Lois Haibt", "Female", "USA", "Lower Westchester, New York", "", "", "1934", "", "An American computer scientist and early software practitioner.", "lois_haibt.jpg", "https://en.wikipedia.org/wiki/Lois_Haibt"
+"Margaret Hamilton", "Female", "USA", "Paoli, Indiana", "", "", "1936", "", "An American computer scientist and pioneering software engineer.", "margaret_hamilton.jpg", "https://en.wikipedia.org/wiki/Margaret_Hamilton_(scientist)"
