@@ -57,15 +57,22 @@ namespace Timeline {
         }
 
         private position(id: number, iteration = 1): void {
-            if (this.id == id) {
-                this.forAchievements((a, p) => a.position(this.resolution == "High"));
+            // Stop if this recursion is no longer active.
+            if (this.id !== id) { return; }
+
+            let snapAll = () => this.forAchievements((a, p) => a.snap());
+
+            if (this.resolution == "High") {
+                this.forAchievements((a, p) => a.position());
 
                 // Approximation of iterations that's visually effective.
                 if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
-                    Helpers.onHighRes(this.resolution, () => this.position(id, iteration + 1));
+                    requestAnimationFrame(() => this.position(id, iteration + 1));
                 } else {
-                    this.forAchievements((a, p) => a.snap());
+                    snapAll();
                 }
+            } else {
+                snapAll();
             }
         }
 
