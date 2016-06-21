@@ -79,7 +79,6 @@ namespace Impact {
                                stroke: "#888",
                                strokeWidth: (6 / scale)});
 
-
             this.group.click((e: MouseEvent) => {
                 this.close();
                 p.show();

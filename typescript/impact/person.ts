@@ -28,12 +28,17 @@ namespace Impact {
 
             let tl = this.topLeft();
             let pattern = this.svg.image(this.image.src, tl.x, tl.y, mass, mass);
+            let avatarBorder = this.svg.circle(this.point.x, this.point.y, this.radius);
+            let avatar = avatarBorder.clone();
 
-            this.avatar = this.svg.circle(this.point.x, this.point.y, this.radius);
-            this.avatar.attr({fill: pattern.pattern(tl.x, tl.y, mass, mass),
-                              stroke: "#888",
-                              strokeWidth: 1,
-                              cursor: "pointer"});
+            this.avatar = this.svg.group(pattern, avatarBorder);
+
+            this.avatar.attr({cursor: "pointer"});
+            avatar.attr({fill: "#fff"});
+            pattern.attr({mask: avatar});
+            avatarBorder.attr({fillOpacity: 0,
+                               stroke: "#888",
+                               strokeWidth: 1});
 
             this.avatar.click((e: MouseEvent) => this.highlight());
             this.avatar.hover((e: MouseEvent) => this.highlight(),
