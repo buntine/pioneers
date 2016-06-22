@@ -23,7 +23,17 @@ $(() => {
         search();
     });
 
-    $("select.tags").selectivity({placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency"});
+    $("select.tags").selectivity({
+        placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency",
+        templates: {
+            multipleSelectedItem: function(item: any) {
+              return (`<span class="selectivity-multiple-selected-item" data-item-id="${item.id}">
+                         ${item.text}
+                         <a class="selectivity-multiple-selected-item-remove"><span class="fa fa-remove"></span></a>
+                       </span>`);
+            }
+        },
+    });
 
     $(window).on("popstate", () => {clearTab(); fetchState();})
              .on("resize", (_:Event) => setDimensions())
