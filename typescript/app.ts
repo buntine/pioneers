@@ -36,18 +36,23 @@ $(() => {
                  }
              });
 
-    $("#tab").selectivity({
-        allowClear: false,
-        showSearchInputInDropdown: false});
+    $("#tab_switcher a").click((e: Event) => {
+        e.preventDefault();
 
-    $("div.tags, #op, div#tab").change((e: Event) => {
+        $("#tab_switcher a").removeClass("selected");
+        $(e.target).addClass("selected");
+
+        search(false);
+    });
+
+    $("div.tags, #op").change((e: Event) => {
         e.preventDefault();
 
         // If user is not changing tags or operation then do not rebuild tabs (aka Send AJAX).
-        search(!((<Element>e.target).id == "tab"));
+        search();
     });
 
-    $("#start").click((e:Event) => {
+    $("#start").click((e: Event) => {
         e.preventDefault();
 
         $("#intro").hide();
@@ -65,7 +70,7 @@ $(() => {
     function search(rebuild = true): void {
         clearTab();
 
-        state = {tab: $("#tab").val(),
+        state = {tab: $("#tab_switcher a.selected").data("tab"),
                  op: $("#op").val(),
                  tags: $("select.tags").selectivity("value")};
 
