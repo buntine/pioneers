@@ -19,7 +19,9 @@
     <div id="noresults">
       NO RESULTS
     </div>
-    <section class=page>
+    <div id="flex_container">
+    <header>
+      ass
       <div id="searchform">
         <form method="get" id="search" action="/people">
           <select multiple name="tags[]" class="tags">
@@ -45,15 +47,19 @@
           <option value="geography">Geography</option>
         </select>
       </section>
-
+    </header>
+    <div id="page">
+      {% block body %}{% endblock %}
+    </div>
+    <footer>
+      ass
       <section id="links">
         <div class="circle"><a href="/about" title="About">?</a></div>
         <div class="circle"><a href="https://github.com/buntine/pioneers" title="Code">{}</a></div>
         <div class="circle"><a href="/add" title="Add new / Report error">+</a></div>
       </section>
-
-      {% block body %}{% endblock %}
-    </section>
+    </footer>
+    </div>
 
     <script src="/static/js/app.js"></script>
   </body>

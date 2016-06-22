@@ -57,7 +57,8 @@ namespace Impact {
         }
 
         public resize(): void {
-            let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
+            let page = $("div#page");
+            let [width, height] = [page.width(), page.height()];
 
             this.people.centerize(width, height);
             this.svg.attr({width: width, height: height});

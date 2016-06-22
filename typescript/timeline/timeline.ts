@@ -84,7 +84,8 @@ namespace Timeline {
         }
 
         public resize(): void {
-            let [width, height] = [$(window).width(), $(window).height() - $("#datacanvas").offset().top];
+            let page = $("div#page");
+            let [width, height] = [page.width(), page.height()];
             
             this.columnSize = (width - (Timeline.PADDING[1] * 2)) / this.years.length;
             this.svg.attr({width: width, height: height});
