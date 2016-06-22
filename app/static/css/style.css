@@ -1,15 +1,14 @@
-h1 { color: green; }
-html,body { background: #fff; font-family: sans-serif arial; height: 100%; }
+h1 { font-family: 'Share Tech Mono'; font-size: 20px; text-transform: 'uppercase'; }
+html,body { background: #1f1f1f; font-family: 'Share Tech Mono'; height: 100%; }
 .page { display: flex; flex-flow: column; height: 100%; }
-a { color: #fff; font-family: arial, sans-serif;}
-#logo {position: absolute; background: #ffc3e1; color: #232323; height: 76px; width: 76px; font-size: 60px; text-align: center;}
-#searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: sans-serif; font-size: 18px; flex: 0 0 46px;}
-#searchform input { color: #232323; }
-#opcanvas { width: 100px; height: 46px; float: right; font-family: sans-serif; color: #fff; font-size: 18px; padding: 5px 0; }
-#datacanvas { margin: 0; background: #232323; padding: 0; border: 0; flex: 1 1 auto;}
+a { color: #fff; font-family: 'Share Tech Mono';}
+#searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: 'Share Tech Mono'; font-size: 18px; flex: 0 0 46px;}
+#searchform input { color: #2b2b2b; }
+#opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #fff; font-size: 18px; padding: 5px 0; }
+#datacanvas { margin: 0; background: #2b2b2b; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
-.pioneer_overlay {position: relative; background: #fff; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: sans-serif, arial; color: #232323;}
+.pioneer_overlay {position: relative; background: #fff; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: 'Share Tech Mono'; color: #2b2b2b;}
 .pioneer_overlay a {color: blue;}
 section.person_header { margin-bottom: 40px; height: 250px; }
 section.person_header img.profile { float: left; margin-right: 15px; }
@@ -20,7 +19,7 @@ section.person_list h3 { font-size: 24px; border-bottom: 1px solid #aaa; margin:
 section.person_list ul { list-style: none; margin: 10px 0 10px 20px; padding: 0; }
 section.person_list ul li { padding: 5px 0; }
 #splash { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
-#intro { display: none; background-color: #232323; color: #fff; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; }
+#intro { display: none; background-color: #2b2b2b; color: #fff; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; }
 #noresults { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
 #loading { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
 section#links { position: absolute; bottom: 10px; right: 10px; }
