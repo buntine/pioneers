@@ -5,7 +5,7 @@ namespace Structure {
         build(set: Array<Structure.Person>): boolean;
         built(): boolean;
         unfocus(): void;
-        resize(): void;
+        resize(w: number, h: number): void;
         setResolution(r: Structure.Resolution): void;
     }
 }

@@ -101,9 +101,17 @@ $(() => {
         $("#splash").show();
     }
 
+    function resizeTab() {
+        let page = $("div#page");
+        let [width, height] = [page.width(), page.height()];
+
+        svg.attr({width: width, height: height});
+        tabs[state.tab].resize(width, height);
+    }
+
     function setDimensions(rebuild = false): void {
         clearTab();
-        tabs[state.tab].resize();
+        resizeTab();
         fetchState(rebuild);
     }
 
@@ -138,7 +146,7 @@ $(() => {
             $("#splash, #noresults").hide();
 
             // Adjust tab to current window size.
-            t.resize();
+            resizeTab();
 
             if (t.built()) {
                 $("#loading").show();

@@ -56,12 +56,8 @@ namespace Impact {
             this.svg.clear();
         }
 
-        public resize(): void {
-            let page = $("div#page");
-            let [width, height] = [page.width(), page.height()];
-
-            this.people.centerize(width, height);
-            this.svg.attr({width: width, height: height});
+        public resize(w: number, h: number): void {
+            this.people.centerize(w, h);
         }
 
         public built(): boolean {

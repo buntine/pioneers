@@ -83,12 +83,8 @@ namespace Timeline {
             this.svg.clear();
         }
 
-        public resize(): void {
-            let page = $("div#page");
-            let [width, height] = [page.width(), page.height()];
-            
-            this.columnSize = (width - (Timeline.PADDING[1] * 2)) / this.years.length;
-            this.svg.attr({width: width, height: height});
+        public resize(w: number, h: number): void {
+            this.columnSize = (w - (Timeline.PADDING[1] * 2)) / this.years.length;
         }
 
         public built(): boolean {
