@@ -100,8 +100,31 @@ a {
   border-width: 1px;
 }
 
-#searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: 'Share Tech Mono'; font-size: 18px; flex: 0 0 46px;}
-#searchform input { color: #2b2b2b; }
+.selectivity-multiple-input-container {
+  background: none;
+  border: none;
+}
+
+#looking_glass {
+  float: left;
+  width: 34px;
+  height: 34px;
+  background-color: #e81e48;
+  border: 1px solid #efefef;
+}
+
+#searchform {
+  margin-left: 20px;
+  padding: 0;
+  font-family: 'Share Tech Mono';
+  flex: 0 0 46px;
+}
+
+#searchform input {
+  background: none;
+  color: #efefef;
+}
+
 #opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #efefef; font-size: 18px; padding: 5px 0; }
 #datacanvas { margin: 0; background: #2b2b2b; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
