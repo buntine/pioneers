@@ -21,7 +21,6 @@
     </div>
     <div id="flex_container">
     <header>
-      ass
       <div id="searchform">
         <form method="get" id="search" action="/people">
           <select multiple name="tags[]" class="tags">
@@ -52,12 +51,14 @@
       {% block body %}{% endblock %}
     </div>
     <footer>
-      ass
-      <section id="links">
-        <div class="circle"><a href="/about" title="About">?</a></div>
-        <div class="circle"><a href="https://github.com/buntine/pioneers" title="Code">{}</a></div>
-        <div class="circle"><a href="/add" title="Add new / Report error">+</a></div>
-      </section>
+      <div class="content">
+        <div id="logo">THE PIONEERS</div>
+        <ul id="links">
+          <li><a href="/about" title="About">About</a></li>
+          <li><a href="https://github.com/buntine/pioneers" title="Code">Source</a></li>
+          <li><a href="/add" title="Add new / Report error">Report bug</a></li>
+        </ul>
+      </div>
     </footer>
     </div>
 

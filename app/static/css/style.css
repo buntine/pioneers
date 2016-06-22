@@ -7,6 +7,7 @@ h1 {
 html,body {
   background: #1f1f1f;
   font-family: 'Share Tech Mono';
+  font-size: 14px;
   height: 100%;
   width: 100%;
   margin: 0px;
@@ -45,14 +46,40 @@ footer {
   background-color: #1f1f1f;
   height:34px;
 }
-a { color: #fff; font-family: 'Share Tech Mono';}
+
+footer .content {
+  margin: 10px 20px;
+  height: 14px;
+}
+
+#logo {
+  float: left;
+  color: #efefef;
+  letter-spacing: 6px;
+}
+
+#links {
+  float: right;
+}
+
+#links li {
+  display: inline;
+  padding: 0 0 0 30px;
+  text-transform: lowercase;
+}
+
+a {
+  color: #e81e48;
+  font-family: 'Share Tech Mono';
+  font-size: 14px;
+}
 #searchform {margin-left: 69px; padding: 10px 10px 10px 10px; font-family: 'Share Tech Mono'; font-size: 18px; flex: 0 0 46px;}
 #searchform input { color: #2b2b2b; }
-#opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #fff; font-size: 18px; padding: 5px 0; }
+#opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #efefef; font-size: 18px; padding: 5px 0; }
 #datacanvas { margin: 0; background: #2b2b2b; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
 .fa-remove:before { content: "\2718"; }
-.pioneer_overlay {position: relative; background: #fff; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: 'Share Tech Mono'; color: #2b2b2b;}
+.pioneer_overlay {position: relative; background: #efefef; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: 'Share Tech Mono'; color: #2b2b2b;}
 .pioneer_overlay a {color: blue;}
 section.person_header { margin-bottom: 40px; height: 250px; }
 section.person_header img.profile { float: left; margin-right: 15px; }
@@ -62,17 +89,14 @@ section.person_header .country { margin: 20px 0; font-weight: bold; }
 section.person_list h3 { font-size: 24px; border-bottom: 1px solid #aaa; margin: 20px 0; }
 section.person_list ul { list-style: none; margin: 10px 0 10px 20px; padding: 0; }
 section.person_list ul li { padding: 5px 0; }
-#splash { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
-#intro { display: none; background-color: #2b2b2b; color: #fff; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; }
-#noresults { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
-#loading { display: none; color: #fff; position: absolute; top: 300px; left: 300px;}
-section#links { position: absolute; bottom: 10px; right: 10px; }
-div.circle { background-color: #56abfb; border-radius: 30px; width: 60px; height: 60px; margin: 10px 0 0 0;}
-div.circle a { padding: 6px 20px; font-size: 32px; line-height: 58px; text-decoration: none; }
-#tab_switcher { position: absolute; bottom: 10px; left: 10px; }
-#peopleList { height: 80%; width: 200px; overflow: hidden; position: absolute; top: 100px; left: 0px; display: none; }
+#splash { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
+#intro { display: none; background-color: #2b2b2b; color: #efefef; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; }
+#noresults { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
+#loading { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
+#tab_switcher { position: absolute; bottom: 33px; left: 10px; }
+#peopleList { height: 80%; width: 200px; overflow: hidden; position: absolute; top: 80px; left: 0px; display: none; }
 #innerScroll { position: absolute; top: 0px; bottom: 0px; left: 0px; right: -15px; overflow: auto; }
 #innerScroll ul { margin: 0; padding: 0; list-style: none; }
-#innerScroll ul li { padding: 0 0 14px 30px; }
-#innerScroll ul li a { color: #fff; font-size: 13px; text-decoration: none; }
+#innerScroll ul li { padding: 0; padding: 7px 0 5px 20px; }
+#innerScroll ul li a { color: #efefef; font-size: 14px; text-decoration: none; }
 #innerScroll ul li.selected { background-color: #e81e48;  transition: background-color 1.3s; }
