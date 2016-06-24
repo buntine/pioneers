@@ -46,3 +46,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Kurt Gödel", "Male", "Austria", "Brünn", "", "", "1906", "1978", "An Austrian/American logician, mathematician and philosopher.", "kurt_godel.jpg", "https://en.wikipedia.org/wiki/Kurt_G%C3%B6del"
 "Lois Haibt", "Female", "USA", "Lower Westchester, New York", "", "", "1934", "", "An American computer scientist and early software practitioner.", "lois_haibt.jpg", "https://en.wikipedia.org/wiki/Lois_Haibt"
 "Margaret Hamilton", "Female", "USA", "Paoli, Indiana", "", "", "1936", "", "An American computer scientist and pioneering software engineer.", "margaret_hamilton.jpg", "https://en.wikipedia.org/wiki/Margaret_Hamilton_(scientist)"
+"C. A. R. Hoare", "Male", "England", "Colombo, British Ceylon", "6.9271", "79.8612", "1934", "", "An English computer scientist and programming language pioneer.", "car_hoare.jpg", "https://en.wikipedia.org/wiki/Tony_Hoare"

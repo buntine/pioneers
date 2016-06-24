@@ -18,19 +18,33 @@ $(() => {
         "geography": new Impact.Impact(svg),
     };
 
-    $("#op_switcher a").click((e:Event) => {
-        e.preventDefault();
+//    $("#op_switcher a").click((e:Event) => {
+//        e.preventDefault();
+//
+//        let element = $(e.target);
+//        let op = element.data("op");
+//        let cached = $("#op");
+//
+//        if (cached.val() !== op) {
+//            $("#op_switcher a").removeClass("selected");
+//            element.addClass("selected");
+//
+//            cached.val(op);
+//            search();
+//        }
+//    });
 
-        let element = $(e.target);
-        let op = element.data("op");
-        let cached = $("#op");
+    let op_switcher = new Toggler({
+        selector: "#op_switcher",
+        ops: [["AND", "AND"], ["OR", "OR"]],
+        callback: (p: [string, string]) => {
+        }
+    });
 
-        if (cached.val() !== op) {
-            $("#op_switcher a").removeClass("selected");
-            element.addClass("selected");
-
-            cached.val(op);
-            search();
+    let tab_switcher = new Toggler({
+        selector: "#tab_switcher",
+        ops: [["Who are they?", "impact"], ["What did they do?", "timeline"], ["Where are they from?", "geography"]],
+        callback: (p: [string, string]) => {
         }
     });
 
@@ -57,14 +71,14 @@ $(() => {
                  }
              });
 
-    $("#tab_switcher a").click((e: Event) => {
-        e.preventDefault();
-
-        $("#tab_switcher a").removeClass("selected");
-        $(e.target).addClass("selected");
-
-        search(false);
-    });
+//    $("#tab_switcher a").click((e: Event) => {
+//        e.preventDefault();
+//
+//        $("#tab_switcher a").removeClass("selected");
+//        $(e.target).addClass("selected");
+//
+//        search(false);
+//    });
 
     $("div.tags, #op").change((e: Event) => {
         e.preventDefault();
