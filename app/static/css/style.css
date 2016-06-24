@@ -125,10 +125,16 @@ a {
   color: #efefef;
 }
 
+.fa-remove {
+  vertical-align: middle;
+}
+
+.fa-remove:before {
+  content: url('/static/images/icons/x.svg');
+}
 #opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #efefef; font-size: 18px; padding: 5px 0; }
 #datacanvas { margin: 0; background: #2b2b2b; padding: 0; border: 0; flex: 1 1 auto;}
 .tags { width: calc(100% - 112px); }
-.fa-remove:before { content: url('/static/images/icons/x.svg'); }
 .pioneer_overlay {position: relative; background: #efefef; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: 'Share Tech Mono'; color: #2b2b2b;}
 .pioneer_overlay a {color: blue;}
 section.person_header { margin-bottom: 40px; height: 250px; }
