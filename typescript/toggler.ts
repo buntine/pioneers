@@ -38,7 +38,7 @@ class Toggler {
     }
 
     public get(): Possibility {
-        let e = this.element.find("a.selected")[0];
+        let e = this.element.find("a.selected").first();
 
         if (e) {
             return [e.text(), e.data("val")];
@@ -60,7 +60,8 @@ class Toggler {
             return false;
         } else {
             if (!e.hasClass("selected")) {
-                console.log(e.text());
+                this.element.find("a").removeClass("selected");
+                e.addClass("selected");
 
                 if (triggerCallback) { this.callback([e.text(), e.data("val")]); }
             }

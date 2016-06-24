@@ -18,26 +18,11 @@ $(() => {
         "geography": new Impact.Impact(svg),
     };
 
-//    $("#op_switcher a").click((e:Event) => {
-//        e.preventDefault();
-//
-//        let element = $(e.target);
-//        let op = element.data("op");
-//        let cached = $("#op");
-//
-//        if (cached.val() !== op) {
-//            $("#op_switcher a").removeClass("selected");
-//            element.addClass("selected");
-//
-//            cached.val(op);
-//            search();
-//        }
-//    });
-
     let opSwitcher = new Toggler({
         selector: "#op_switcher",
-        ops: [["AND", "AND"], ["OR", "OR"]],
+        ops: [["OR", "OR"], ["AND", "AND"]],
         callback: (p: [string, string]) => {
+            search();
         }
     }).draw();
 
@@ -45,6 +30,7 @@ $(() => {
         selector: "#tab_switcher",
         ops: [["Who?", "impact"], ["What?", "timeline"], ["Where?", "geography"]],
         callback: (p: [string, string]) => {
+            search(false);
         }
     }).draw();
 
@@ -70,15 +56,6 @@ $(() => {
                      $("#intro").show();
                  }
              });
-
-//    $("#tab_switcher a").click((e: Event) => {
-//        e.preventDefault();
-//
-//        $("#tab_switcher a").removeClass("selected");
-//        $(e.target).addClass("selected");
-//
-//        search(false);
-//    });
 
     $("div.tags").change((e: Event) => {
         e.preventDefault();
@@ -135,7 +112,7 @@ $(() => {
 
     function splash(): void {
         svg.clear();
-        formToState({op: "or", tags: []});
+        formToState({op: "OR", tags: []});
         $("#splash").show();
     }
 
@@ -169,12 +146,12 @@ $(() => {
 
         if (groups) {
             return {tab: <Structure.TabState>groups[1],
-                    op: <Structure.OpState>groups[2],
+                    op: <Structure.OpState>groups[2].toUpperCase(),
                     tags: groups[3].split("+")};
         }
 
         // Default.
-        return {tab: "impact", op: "or", tags: []};
+        return {tab: "impact", op: "OR", tags: []};
     }
 
     function executeState(updateForm = false): void {
@@ -205,7 +182,6 @@ $(() => {
 
     function formToState(s: Structure.AppState): void {
         opSwitcher.setTo(s.op);
-        //$("#op").val(s.op);
         $("select.tags").selectivity("value", s.tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
     }
