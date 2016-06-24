@@ -18,9 +18,20 @@ $(() => {
         "geography": new Impact.Impact(svg),
     };
 
-    let op = new Toggler(Snap("#opcanvas"), ["or", "and"]).draw((_: TogglerState, t: TogglerOption) => {
-        $("#op").val(t.toUpperCase());
-        search();
+    $("#op_switcher a").click((e:Event) => {
+        e.preventDefault();
+
+        let element = $(e.target);
+        let op = element.data("op");
+        let cached = $("#op");
+
+        if (cached.val() !== op) {
+            $("#op_switcher a").removeClass("selected");
+            element.addClass("selected");
+
+            cached.val(op);
+            search();
+        }
     });
 
     $("select.tags").selectivity({
@@ -181,7 +192,7 @@ $(() => {
     }
 
     function formToState(s: Structure.AppState): void {
-        op.setTo(s.op.toLowerCase());
+        $(`#op_switcher a[data-op='${s.op}']`).click();
         $("#op").val(s.op);
         $("select.tags").selectivity("value", s.tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
