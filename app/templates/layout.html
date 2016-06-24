@@ -20,6 +20,7 @@
       NO RESULTS
     </div>
     <div id="flex_container">
+          <svg id="opcanvas" style="display: none;"></svg>
     <header>
       <div id="searchform">
         <div id="looking_glass"></div>
@@ -37,10 +38,13 @@
             </optgroup>
           </select>
           <input type="hidden" name="op" value="OR" id="op" />
-          <svg id="opcanvas"></svg>
+          <div id="op_switcher" class="switcher">
+            <a href="#" class="selected" data-op="AND">AND</a>
+            <a href="#" data-op="OR">OR</a>
+          </div>
         </form>
       </div>
-      <section id="tab_switcher">
+      <section id="tab_switcher" class="switcher">
         <a href="#" class="selected" data-tab="impact">Who are they?</a>
         <a href="#" data-tab="timeline">What did they do?</a>
         <a href="#" data-tab="geography">Where are they from?</a>
