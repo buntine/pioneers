@@ -34,14 +34,14 @@ $(() => {
 //        }
 //    });
 
-    let op_switcher = new Toggler({
+    let opSwitcher = new Toggler({
         selector: "#op_switcher",
         ops: [["AND", "AND"], ["OR", "OR"]],
         callback: (p: [string, string]) => {
         }
     }).draw();
 
-    let tab_switcher = new Toggler({
+    let tabSwitcher = new Toggler({
         selector: "#tab_switcher",
         ops: [["Who?", "impact"], ["What?", "timeline"], ["Where?", "geography"]],
         callback: (p: [string, string]) => {
@@ -80,10 +80,8 @@ $(() => {
 //        search(false);
 //    });
 
-    $("div.tags, #op").change((e: Event) => {
+    $("div.tags").change((e: Event) => {
         e.preventDefault();
-
-        // If user is not changing tags or operation then do not rebuild tabs (aka Send AJAX).
         search();
     });
 
@@ -105,8 +103,8 @@ $(() => {
     function search(rebuild = true): void {
         clearTab();
 
-        state = {tab: $("#tab_switcher a.selected").data("tab"),
-                 op: $("#op").val(),
+        state = {tab: <Structure.TabState>tabSwitcher.getSelectedVal(),
+                 op: <Structure.OpState>opSwitcher.getSelectedVal(),
                  tags: $("select.tags").selectivity("value")};
 
         // Catch for changing and/or operator or tab before searching as it should have no effect.
@@ -206,8 +204,8 @@ $(() => {
     }
 
     function formToState(s: Structure.AppState): void {
-        $(`#op_switcher a[data-op='${s.op}']`).click();
-        $("#op").val(s.op);
+        opSwitcher.setTo(s.op);
+        //$("#op").val(s.op);
         $("select.tags").selectivity("value", s.tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
     }

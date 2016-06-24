@@ -16,7 +16,7 @@ class Toggler {
         this.callback = options.callback;
     }
 
-    public draw() {
+    public draw(): Toggler {
         this.ops.forEach((p: Possibility, i: number) => {
             let link = $(`<a href="#" data-val="${p[1]}" title="${p[0]}">${p[0]}</a>`);
 
@@ -33,6 +33,8 @@ class Toggler {
 
             this.element.append(link);
         });
+
+        return this;
     }
 
     public get(): Possibility {
@@ -43,15 +45,25 @@ class Toggler {
         }
     }
 
+    public getSelectedVal(): string {
+        let v = this.get();
+
+        if (v) {
+            return v[1];
+        }
+    }
+
     public setTo(v: string, triggerCallback = false): boolean {
         let e = this.element.find(`a[data-val='${v}']`);
 
         if (!e) {
             return false;
         } else {
-            console.log(e.text());
+            if (!e.hasClass("selected")) {
+                console.log(e.text());
 
-            if (triggerCallback) { this.callback([e.text(), e.data("val")]); }
+                if (triggerCallback) { this.callback([e.text(), e.data("val")]); }
+            }
 
             return true;
         }
