@@ -101,6 +101,7 @@ a {
   border-style: solid;
   border-color: #efefef;
   color: #efefef;
+  background-color: #1f1f1f;
 }
 
 .switcher a.selected {

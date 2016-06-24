@@ -17,8 +17,12 @@ class Toggler {
     }
 
     public draw() {
-        this.ops.forEach((p: Possibility) => {
-            let link = $(`<a href="#" data-val="${e[1]}" title="${e[0]}">${e[0]}</a>`);
+        this.ops.forEach((p: Possibility, i: number) => {
+            let link = $(`<a href="#" data-val="${p[1]}" title="${p[0]}">${p[0]}</a>`);
+
+            if (i == 0) {
+                link.addClass("selected");
+            }
 
             link.click((e:Event) => {
                 e.preventDefault();
@@ -35,7 +39,7 @@ class Toggler {
         let e = this.element.find("a.selected")[0];
 
         if (e) {
-            return [e.text(), a.data("val")];
+            return [e.text(), e.data("val")];
         }
     }
 
@@ -47,7 +51,7 @@ class Toggler {
         } else {
             console.log(e.text());
 
-            if (triggerCallback) { this.callback(xxxx); }
+            if (triggerCallback) { this.callback([e.text(), e.data("val")]); }
 
             return true;
         }

@@ -39,14 +39,14 @@ $(() => {
         ops: [["AND", "AND"], ["OR", "OR"]],
         callback: (p: [string, string]) => {
         }
-    });
+    }).draw();
 
     let tab_switcher = new Toggler({
         selector: "#tab_switcher",
-        ops: [["Who are they?", "impact"], ["What did they do?", "timeline"], ["Where are they from?", "geography"]],
+        ops: [["Who?", "impact"], ["What?", "timeline"], ["Where?", "geography"]],
         callback: (p: [string, string]) => {
         }
-    });
+    }).draw();
 
     $("select.tags").selectivity({
         placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency",
