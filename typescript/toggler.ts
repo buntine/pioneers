@@ -1,4 +1,5 @@
 type Possibility = [string, string];
+
 interface TogglerOptions {
     selector: string;
     ops: Array<Possibility>;
@@ -24,7 +25,7 @@ class Toggler {
                 link.addClass("selected");
             }
 
-            link.click((e:Event) => {
+            link.click((e: Event) => {
                 e.preventDefault();
 
                 let selected = $(e.target);
@@ -63,7 +64,7 @@ class Toggler {
                 this.element.find("a").removeClass("selected");
                 e.addClass("selected");
 
-                if (triggerCallback) { this.callback([e.text(), e.data("val")]); }
+                if (triggerCallback) { this.callback(this.get()); }
             }
 
             return true;
