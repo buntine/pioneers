@@ -50,7 +50,7 @@ namespace Impact {
                       .on("mouseleave", (_:MouseEvent) => this.andClose())
                       .on("click", (_:MouseEvent) => this.andClose(() => this.person.show()));
 
-            $("#peopleList ul").append(this.title);
+            $("#people_list ul").append(this.title);
         }
 
         public zoom(): void {
@@ -99,7 +99,7 @@ namespace Impact {
 
         private distanceFromView(): number {
             let tOffset = this.title.offset();
-            let sOffset = $("#innerScroll").offset();
+            let sOffset = $("#inner_scroll").offset();
             let sBottom = sOffset.top + sOffset.height;
 
             if (tOffset.top > sOffset.top) {
@@ -118,7 +118,7 @@ namespace Impact {
 
         private doScroll(jump: number, remaining = 8): void {
             if (this.state == ShowState.Waiting) {
-                $("#innerScroll")[0].scrollTop += jump;
+                $("#inner_scroll")[0].scrollTop += jump;
 
                 if (remaining > 0) {
                     requestAnimationFrame(() => this.doScroll(jump, remaining - 1));

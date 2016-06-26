@@ -1,4 +1,10 @@
-<section class="person_header">
+<section class="person_details">
+</section>
+<section class="person_footer">
+  <div class="person_country">{{person.country}}</div>
+  <div class="person_flag"><img class="flag" src="{{flag}}" title="{{person.country}}" width="40" height="25" /></div>
+</section>
+<!--<section class="person_header">
   <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="250" height="250" />
   <h2>{{person.name}}</h2>
   <div>{{years}}</div>
@@ -24,4 +30,4 @@
     <p>None yet!</p>
     {{/person.wins}}
   </ul>
-</section>
+</section>-->

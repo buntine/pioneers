@@ -14,7 +14,7 @@ class Pioneer {
 
             $.magnificPopup.open({
                 items: {
-                    src: `<div class="pioneer_overlay white-popup">${rendered}</div>`,
+                    src: `<div class="pioneer_overlay">${rendered}</div>`,
                     type: "inline"
                 },
                 removalDelay: 300,

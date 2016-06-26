@@ -43,14 +43,14 @@ namespace Impact {
         }
 
         public execute(): void {
-            $("#peopleList").show();
+            $("#people_list").show();
 
             this.people.pack();
         }
 
         public unfocus(): void {
-            $("#peopleList").hide();
-            $("#peopleList ul").empty();
+            $("#people_list").hide();
+            $("#people_list ul").empty();
 
             this.people.reset();
             this.svg.clear();

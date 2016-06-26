@@ -157,9 +157,79 @@ a {
   width: calc(100% - 220px);
 }
 
+#people_list {
+  height: calc(100% - 134px);
+  width: 200px;
+  position: absolute;
+  overflow: hidden;
+  top: 80px;
+  left: 0;
+  display: none;
+}
+
+#inner_scroll {
+  position: absolute;
+  right: -15px;
+  top: 0;
+  overflow: auto;
+}
+
+#inner_scroll ul {
+  list-style: none;
+}
+
+#inner_scroll ul li {
+  padding: 7px 0 5px 20px;
+}
+
+#inner_scroll ul li a {
+  color: #efefef;
+}
+
+#inner_scroll ul li.selected {
+  background-color: #e81e48;
+  transition: background-color 1.3s;
+}
+
+.pioneer_overlay {
+  background-color: #2b2b2b;
+  position: relative; 
+  width: 720px;
+  margin: 20px auto;
+  font-family: 'Share Tech Mono';
+  color: #efefef;
+  border: 1px solid #aaa;
+}
+
+.pioneer_overlay .person_details {
+  height: 450px;
+}
+
+.pioneer_overlay .person_footer {
+  height: 25px;
+  border-width: 1px 0 0 0;
+  border-color: #aaa;
+  border-style: solid;
+}
+
+.pioneer_overlay .person_footer .person_country {
+  float: left;
+  width: 669px;
+  height: 25px;
+  line-height: 25px;
+  border-width: 0 1px 0 0;
+  border-color: #aaa;
+  border-style: solid;
+  padding: 0 0 0 10px;
+}
+
+.pioneer_overlay .person_footer .person_flag {
+  float: left;
+  width: 40px;
+  height: 25px;
+}
+
 #opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #efefef; font-size: 18px; padding: 5px 0; }
-.pioneer_overlay {position: relative; background: #efefef; padding: 20px; min-height: 500px; width: auto; max-width: 750px; margin: 20px auto; border-radius: 6px; font-family: 'Share Tech Mono'; color: #2b2b2b;}
-.pioneer_overlay a {color: blue;}
 section.person_header { margin-bottom: 40px; height: 250px; }
 section.person_header img.profile { float: left; margin-right: 15px; }
 section.person_header img.flag { margin-right: 10px; }
@@ -172,9 +242,3 @@ section.person_list ul li { padding: 5px 0; }
 #intro { display: none; background-color: #2b2b2b; color: #efefef; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; z-index: 100; }
 #noresults { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
 #loading { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
-#peopleList { height: calc(100% - 134px); width: 200px; overflow: hidden; position: absolute; top: 80px; left: 0px; display: none; }
-#innerScroll { position: absolute; top: 0px; bottom: 0px; left: 0px; right: -15px; overflow: auto; }
-#innerScroll ul { margin: 0; padding: 0; list-style: none; }
-#innerScroll ul li { padding: 0; padding: 7px 0 5px 20px; }
-#innerScroll ul li a { color: #efefef; font-size: 14px; text-decoration: none; }
-#innerScroll ul li.selected { background-color: #e81e48;  transition: background-color 1.3s; }
