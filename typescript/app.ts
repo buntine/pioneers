@@ -21,7 +21,7 @@ $(() => {
     let opSwitcher = new Toggler({
         selector: "#op_switcher",
         ops: [["OR", "OR"], ["AND", "AND"]],
-        callback: (p: [string, string]) => {
+        callback: (_: [string, string]) => {
             search();
         }
     }).draw();
@@ -29,7 +29,7 @@ $(() => {
     let tabSwitcher = new Toggler({
         selector: "#tab_switcher",
         ops: [["Who?", "impact"], ["What?", "timeline"], ["Where?", "geography"]],
-        callback: (p: [string, string]) => {
+        callback: (_: [string, string]) => {
             search(false);
         }
     }).draw();
@@ -47,7 +47,7 @@ $(() => {
     });
 
     $(window).on("popstate", () => {clearTab(); fetchState();})
-             .on("resize", (_:Event) => setDimensions())
+             .on("resize", (_: Event) => setDimensions())
              .on("load", () => {
                  setDimensions(true);
 

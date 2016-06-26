@@ -55,6 +55,8 @@ class Toggler {
     }
 
     public setTo(v: string, triggerCallback = false): boolean {
+        if (!v) { return false; }
+
         let e = this.element.find(`a[data-val='${v}']`);
 
         if (!e) {
