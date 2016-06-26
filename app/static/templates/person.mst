@@ -1,4 +1,14 @@
 <section class="person_details">
+  <div class="person_core">
+    <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
+    <h3>{{person.name}}</h3>
+    <span>{{years}}</span>
+    <p>{{person.biography}}</p>
+    <a class="button" href="{{person.source}}" title="Read more">Find out more</a>
+  </div>
+  <div class="person_impact_details">
+    Hello
+  </div>
 </section>
 <section class="person_footer">
   <div class="person_country">{{person.country}}</div>

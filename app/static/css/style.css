@@ -75,6 +75,18 @@ a {
   text-decoration: none;
 }
 
+a.button {
+  text-transform: uppercase;
+  padding: 4px 20px;
+  color: #fff;
+  font-size: 12px;
+  border: 1px solid #aaa;
+}
+
+a.button:hover {
+  background-color: #e81e48;
+}
+
 #tab_switcher {
   position: absolute;
   left: 50%;
@@ -194,7 +206,7 @@ a {
 .pioneer_overlay {
   background-color: #2b2b2b;
   position: relative; 
-  width: 720px;
+  width: 1000px;
   margin: 20px auto;
   font-family: 'Share Tech Mono';
   color: #efefef;
@@ -214,7 +226,7 @@ a {
 
 .pioneer_overlay .person_footer .person_country {
   float: left;
-  width: 669px;
+  width: 949px;
   height: 25px;
   line-height: 25px;
   border-width: 0 1px 0 0;
@@ -227,6 +239,42 @@ a {
   float: left;
   width: 40px;
   height: 25px;
+}
+
+.pioneer_overlay .person_details .person_core {
+  float: left;
+  width: 260px;
+  height: 430px;
+  padding: 10px;
+  text-align: center;
+  border-width: 0 1px 0 0;
+  border-color: #aaa;
+  border-style: solid;
+}
+
+.pioneer_overlay .person_details .person_core img {
+  border-radius: 50%;
+  border: 2px solid #aaa;
+}
+
+.pioneer_overlay .person_details .person_core h3 {
+  background-color: #e81e48;
+  display: table;
+  margin: 8px auto;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #fff;
+}
+
+.pioneer_overlay .person_details .person_core p {
+  margin: 20px auto 40px auto;
+  padding: 0 20px;
+}
+
+.pioneer_overlay .person_details .person_details_impact {
+  width: 500px;
+  height: 450px;
 }
 
 #opcanvas { width: 100px; height: 46px; float: right; font-family: 'Share Tech Mono'; color: #efefef; font-size: 18px; padding: 5px 0; }
