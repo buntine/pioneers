@@ -182,6 +182,7 @@ $(() => {
 
     function formToState(s: Structure.AppState): void {
         opSwitcher.setTo(s.op);
+        tabSwitcher.setTo(s.tab);
         $("select.tags").selectivity("value", s.tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
     }
