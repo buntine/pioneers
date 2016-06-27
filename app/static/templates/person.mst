@@ -7,7 +7,19 @@
     <a class="button" href="{{person.source}}" title="Read more">Find out more</a>
   </div>
   <div class="person_impact_details">
-    Hello
+    <ul>
+      {{#person.achievements}}
+      <li>{{year}}: {{description}} <a href="{{source}}">Read more</a></li>
+      {{/person.achievements}}
+    </ul>
+    <ul>
+      {{#person.wins}}
+      <li>{{year}}: {{name}}</li>
+      {{/person.wins}}
+      {{^person.wins}}
+      <p>None yet!</p>
+      {{/person.wins}}
+    </ul>
   </div>
 </section>
 <section class="person_footer">

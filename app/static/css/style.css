@@ -241,6 +241,18 @@ a.button:hover {
   height: 25px;
 }
 
+.pioneer_overlay .person_details .person_impact_details {
+  float: left;
+  overflow: auto;
+  width: 719px;
+  height: 450px;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul {
+  width: 349px;
+  display: inline-table;
+}
+
 .pioneer_overlay .person_details .person_core {
   float: left;
   width: 260px;
