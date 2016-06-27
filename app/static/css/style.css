@@ -255,6 +255,16 @@ a.button:hover {
   display: inline-table;
 }
 
+.pioneer_overlay .person_details .person_impact_details ul li:first-child {
+  margin: 0 0 10px 0;
+  padding: 0 10px;
+  line-height: 30px;
+  text-transform: uppercase;
+  border-width: 0 0 1px 0;
+  border-color: #aaa;
+  border-style: solid;
+}
+
 .pioneer_overlay .person_details .person_impact_details ul li {
   margin: 10px 10px 20px 10px;
 }
