@@ -9,7 +9,7 @@
   <div class="person_impact_details">
     <ul>
       {{#person.achievements}}
-      <li>{{year}}: {{description}} <a href="{{source}}">Read more</a></li>
+      <li><span>{{year}}</span> <p>{{description}} <a href="{{source}}">Read more</a></p></li>
       {{/person.achievements}}
     </ul>
     <ul>

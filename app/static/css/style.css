@@ -210,6 +210,8 @@ a.button:hover {
   margin: 20px auto;
   font-family: 'Share Tech Mono';
   color: #efefef;
+  font-size: 12px;
+  line-height: 18px;
   border: 1px solid #aaa;
 }
 
@@ -245,12 +247,20 @@ a.button:hover {
   float: left;
   overflow: auto;
   width: 719px;
-  height: 450px;
+  height: 440px;
 }
 
 .pioneer_overlay .person_details .person_impact_details ul {
   width: 349px;
   display: inline-table;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul li {
+  margin: 10px 10px 20px 10px;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul li p {
+  margin: 5px 0 0 0;
 }
 
 .pioneer_overlay .person_details .person_core {
