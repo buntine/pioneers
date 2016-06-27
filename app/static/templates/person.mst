@@ -10,7 +10,12 @@
     <ul>
       <li>Achievements</li>
       {{#person.achievements}}
-      <li><span>{{year}}</span><p>{{description}} <a href="{{source}}">Read more</a></p></li>
+      <li>
+        <span>{{year}}</span>
+        {{#parseDescription}}
+        <p>{{description}} <a href="{{source}}">Read more</a></p>
+        {{/parseDescription}}
+      </li>
       {{/person.achievements}}
     </ul>
     <ul>
