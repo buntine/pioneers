@@ -69,6 +69,16 @@ $(() => {
         $("select.tags").selectivity("add", "algorithms-data-structures");
     });
 
+    $(document).on("click", "a.add_tag", (e: Event) => {
+        e.preventDefault();
+
+        let tag = $(e.target).data("tag");
+
+        $.magnificPopup.close();
+        setTags([tag]);
+        search();
+    });
+
     function clearTab(): void {
         let tab = tabs[state.tab];
 
@@ -183,7 +193,11 @@ $(() => {
     function formToState(s: Structure.AppState): void {
         opSwitcher.setTo(s.op);
         tabSwitcher.setTo(s.tab);
-        $("select.tags").selectivity("value", s.tags, {triggerChange: false})
+        setTags(s.tags);
+    }
+
+    function setTags(tags: Array<string>): void {
+        $("select.tags").selectivity("value", tags, {triggerChange: false})
                         .selectivity("rerenderSelection");
     }
 

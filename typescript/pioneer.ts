@@ -14,12 +14,10 @@ class Pioneer {
               return (text: string, render: (s: string) => string) => {
                 let rendered = render(text);
 
-                return rendered.replace(/\#\{(.+?)\}/g, (_: string, t: string) => {
+                return rendered.replace(/\#\{(.+?|.+?)\}/g, (_: string, t: string) => {
                   let [title, tag] = t.split("|");
 
-                  if (!tag) { tag = title; }
-
-                  return `<a href="#" data-tag="${tag}">${title}</a>`;
+                  return `<a href="#" class="add_tag" data-tag="${tag}">${title}</a>`;
                 });
               }
             },
