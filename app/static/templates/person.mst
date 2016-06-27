@@ -10,13 +10,13 @@
     <ul>
       <li>Achievements</li>
       {{#person.achievements}}
-      <li><span>{{year}}</span> <p>{{description}} <a href="{{source}}">Read more</a></p></li>
+      <li><span>{{year}}</span><p>{{description}} <a href="{{source}}">Read more</a></p></li>
       {{/person.achievements}}
     </ul>
     <ul>
       <li>Awards</li>
       {{#person.wins}}
-      <li>{{year}}: {{name}}</li>
+      <li><span>{{year}}: {{name}}</span><p>{{reason}}</p></li>
       {{/person.wins}}
       {{^person.wins}}
       <p>None yet!</p>

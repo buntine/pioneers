@@ -31,6 +31,7 @@ class Win(db.Entity):
     person = Required(Person)
     award = Required(Award)
     year = Required(int)
+    reason = Required(str)
 
 class Tag(db.Entity):
     name = Required(str)

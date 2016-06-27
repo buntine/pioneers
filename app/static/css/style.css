@@ -260,7 +260,7 @@ a.button:hover {
   padding: 0 10px;
   line-height: 30px;
   text-transform: uppercase;
-  border-width: 0 0 1px 0;
+  border-width: 0 1px 1px 0;
   border-color: #aaa;
   border-style: solid;
 }

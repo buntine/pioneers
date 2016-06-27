@@ -13,7 +13,7 @@ def expand_achievements(achievements):
                           "source": a.source}, achievements)
 
 def expand_wins(wins):
-    return map(lambda w: {"name": w.award.name, "year": w.year}, wins)
+    return map(lambda w: {"name": w.award.name, "year": w.year, "reason": w.reason}, wins)
 
 def expand_person(person, achievements):
     p = person.to_dict(only=["name", "country", "gender", "yob", "yod", "biography", "picture", "source"])

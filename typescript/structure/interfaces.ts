@@ -3,6 +3,7 @@ namespace Structure {
         person?: Person;
         name: string;
         year: number;
+        reason: string;
     }
 
     export interface Achievement {

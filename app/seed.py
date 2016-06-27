@@ -83,7 +83,7 @@ def awards(rows):
         person = Person.get(name = row["Name"])
 
         if person:
-            Win(award = award, person = person, year = row["Year"])
+            Win(award = award, person = person, year = row["Year"], reason = row["Reason"])
 
             print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
         else:
