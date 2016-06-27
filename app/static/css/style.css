@@ -269,6 +269,10 @@ a.button:hover {
   margin: 10px 10px 20px 10px;
 }
 
+.pioneer_overlay .person_details .person_impact_details ul li span {
+  font-weight: bold;
+}
+
 .pioneer_overlay .person_details .person_impact_details ul li p {
   margin: 5px 0 0 0;
 }
