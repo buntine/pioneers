@@ -51,7 +51,7 @@ def people(rows):
         else:
             location = (row["Latitude"], row["Longitude"])
 
-        Person(name = unicode(row["Name"], 'utf-8'), gender = row["Gender"], country = row["Country"], birthplace = unicode(row["Birthplace"], 'utf-8'),
+        Person(name = unicode(row["Name"], "utf-8"), gender = row["Gender"], country = row["Country"], birthplace = unicode(row["Birthplace"], "utf-8"),
                lat = location[0], lng = location[1], yob = row["Born"], source = row["Source"],
                yod = row["Died"] if len(row["Died"]) > 0 else 0, biography = row["Biography"],
                picture = row["Picture"])
@@ -60,14 +60,18 @@ def people(rows):
 
 def achievements(rows):
     for row in rows:
-        person = Person.get(name = unicode(row["Name"], 'utf-8'))
+        person = Person.get(name = unicode(row["Name"], "utf-8"))
         impact = Impact.get(value = int(row["Impact"]))
 
         if person and impact:
             tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
             topics = map(lambda t: fetch_tag(t, "Topic"), row["Topics"].split(","))
 
-            Achievement(person = person, impact = impact, year = row["Date"], description = unicode(row["Achievement"], 'utf-8'),
+            desc = unicode(row["Achievement"], "utf-8")
+            desc = re.sub("\#\{(.+?)\|(.+?)\}", lambda m: "#{%s|%s}" % (m.groups()[0], slug(m.groups()[1])), desc)
+            desc = re.sub("\#\{([^|]+?)\}", lambda m: "#{%s|%s}" % (m.groups()[0], slug(m.groups()[0])), desc)
+
+            Achievement(person = person, impact = impact, year = row["Date"], description = desc,
                         source = row["Source"], tags = (topics + tags))
 
             print "Created Achievement for %s" % person.name
