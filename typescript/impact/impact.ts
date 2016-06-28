@@ -53,7 +53,6 @@ namespace Impact {
             $("#people_list ul").empty();
 
             this.people.reset();
-            this.svg.clear();
         }
 
         public resize(w: number, h: number): void {

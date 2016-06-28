@@ -67,6 +67,7 @@ def achievements(rows):
             tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
             topics = map(lambda t: fetch_tag(t, "Topic"), row["Topics"].split(","))
 
+            # Add appropriate slugged tag into all tag-linking syntax in description field.
             desc = unicode(row["Achievement"], "utf-8")
             desc = re.sub("\#\{(.+?)\|(.+?)\}", lambda m: "#{%s|%s}" % (m.groups()[0], slug(m.groups()[1])), desc)
             desc = re.sub("\#\{([^|]+?)\}", lambda m: "#{%s|%s}" % (m.groups()[0], slug(m.groups()[0])), desc)

@@ -79,8 +79,6 @@ namespace Timeline {
         public unfocus(): void {
             // Cheap way for me to kill obsolete recursions on this.position() when user is actively resizing window.
             this.id++;
-
-            this.svg.clear();
         }
 
         public resize(w: number, h: number): void {

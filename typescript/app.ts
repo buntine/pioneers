@@ -84,6 +84,7 @@ $(() => {
 
         if (tab.built()) {
             tab.unfocus();
+            svg.clear();
         }
     }
 

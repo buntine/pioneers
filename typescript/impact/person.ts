@@ -15,7 +15,7 @@ namespace Impact {
         constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector) {
             super();
 
-            this.initialPoint = new Vector(point.x, point.y);
+            this.initialPoint = this.point.clone();
             this.title = new Title(this);
             this.image = new Image();
             this.image.src = Helpers.imageSource("people", this.details.picture);
@@ -35,10 +35,10 @@ namespace Impact {
                               strokeWidth: 1,
                               cursor: "pointer"});
 
-            this.avatar.click((e: MouseEvent) => this.highlight());
-            this.avatar.hover((e: MouseEvent) => this.highlight(),
+            this.avatar.click((_: MouseEvent) => this.highlight());
+            this.avatar.hover((_: MouseEvent) => this.highlight(),
                               // Only call unhighlight here if the zoomed in picture from Title is not covering this.avatar.
-                              (e: MouseEvent) => { if (this.title.waiting()) { this.unhighlight() }});
+                              (_: MouseEvent) => { if (this.title.waiting()) { this.unhighlight() }});
 
             this.title.draw();
         }

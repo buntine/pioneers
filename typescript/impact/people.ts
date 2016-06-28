@@ -2,7 +2,7 @@
 
 namespace Impact {
     export class People extends Array<Person> {
-        private total: number;
+        private totalImpact: number;
         private center: Vector;
         public alive: boolean;
         public resolution: Structure.Resolution;
@@ -18,7 +18,7 @@ namespace Impact {
             super();
 
             this.resolution = "High";
-            this.total = 0;
+            this.totalImpact = 0;
             this.alive = true;
         }
 
@@ -27,13 +27,13 @@ namespace Impact {
         }
 
         public push(p: Person): number {
-            this.total += p.details.impact;
+            this.totalImpact += p.details.impact;
             return super.push(p);
         }
 
         public pack(): void {
             let [w, h] = [this.center.x * 2, this.center.y * 2]
-            let unit = Math.min(w / this.total, h / this.total) * this.delta();
+            let unit = Math.min(w / this.totalImpact, h / this.totalImpact) * this.delta();
 
             this.alive = true;
 
@@ -54,12 +54,12 @@ namespace Impact {
 
         public clear(): void {
             this.alive = false;
-            this.total = 0;
+            this.totalImpact = 0;
             this.length = 0;
         }
 
         private position(iteration = 1): void {
-            let redraw = false;
+            let redraw: boolean;
             let iterations = Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA);
 
             if (this.resolution == "High") {
