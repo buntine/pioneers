@@ -49,10 +49,10 @@ namespace Impact {
         }
 
         public unfocus(): void {
+            this.people.reset();
+
             $("#people_list").hide();
             $("#people_list ul").empty();
-
-            this.people.reset();
         }
 
         public resize(w: number, h: number): void {

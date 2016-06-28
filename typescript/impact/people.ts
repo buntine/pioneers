@@ -59,6 +59,8 @@ namespace Impact {
         }
 
         private position(iteration = 1): void {
+            if (!this.alive) { return; }
+
             let redraw: boolean;
             let iterations = Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA);
 
@@ -91,7 +93,7 @@ namespace Impact {
             }
 
             // Refine.
-            if (this.alive && iteration < iterations) {
+            if (iteration < iterations) {
                 Helpers.onHighRes(this.resolution, () => this.position(iteration + 1));
             }
         }
