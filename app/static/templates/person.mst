@@ -14,7 +14,7 @@
         <li>
           <span>{{year}}</span>
           {{#parseDescription}}
-          <p>{{description}} <a href="{{source}}">Read more</a></p>
+          <p>{{description}} <a href="{{source}}">More</a></p>
           {{/parseDescription}}
         </li>
         {{/person.achievements}}

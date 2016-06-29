@@ -87,6 +87,12 @@ a.button:hover {
   background-color: #e81e48;
 }
 
+a[href^="http://"]:after, 
+a[href^="https://"]:after {
+  content: url(/static/images/icons/external.png);
+  margin: 0 0 0 5px;
+}
+
 #tab_switcher {
   position: absolute;
   left: 50%;
@@ -253,12 +259,12 @@ a.button:hover {
   height: 440px;
 }
 
-.pioneer_overlay .person_details .person_impact_details ul {
+.pioneer_overlay .person_details .person_impact_details div {
   width: 349px;
   display: inline-table;
 }
 
-.pioneer_overlay .person_details .person_impact_details ul li:first-child {
+.pioneer_overlay .person_details .person_impact_details h3 {
   margin: 0 0 10px 0;
   padding: 0 10px;
   line-height: 30px;
@@ -269,10 +275,11 @@ a.button:hover {
 }
 
 .pioneer_overlay .person_details .person_impact_details ul li {
-  margin: 10px 10px 20px 10px;
+  margin: 10px 10px 22px 10px;
 }
 
 .pioneer_overlay .person_details .person_impact_details ul li span {
+  font-size: 14px;
   font-weight: bold;
 }
 
