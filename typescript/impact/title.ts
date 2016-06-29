@@ -108,7 +108,7 @@ namespace Impact {
                     return 0;
                 // Below.
                 } else {
-                    return (tOffset.top - sBottom) + tOffset.height;
+                    return (tOffset.top - sBottom) + tOffset.height + 8;
                 }
             // Above.
             } else {

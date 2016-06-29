@@ -54,8 +54,6 @@ footer .content {
 
 #logo {
   float: left;
-  color: #efefef;
-  letter-spacing: 6px;
 }
 
 #links {
@@ -91,6 +89,11 @@ a[href^="http://"]:after,
 a[href^="https://"]:after {
   content: url(/static/images/icons/external.png);
   margin: 0 0 0 5px;
+}
+
+a[href*="//github.com/"]:after {
+  content: '';
+  margin: 0;
 }
 
 #tab_switcher {
@@ -154,6 +157,7 @@ a[href^="https://"]:after {
 #searchform input {
   background: none;
   color: #efefef;
+  margin-left: 5px;
 }
 
 #datacanvas {
