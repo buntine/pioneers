@@ -14,6 +14,7 @@ namespace Structure {
     }
 
     export interface Person {
+        id: number;
         name: string;
         country: string;
         gender: string;

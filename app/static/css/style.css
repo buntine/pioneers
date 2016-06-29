@@ -118,6 +118,7 @@ a.button:hover {
 
 .switcher a.selected {
   background-color: #e81e48;
+  transition: background-color 0.5s;
 }
 
 .switcher a:last-child {

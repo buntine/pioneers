@@ -16,7 +16,7 @@ def expand_wins(wins):
     return map(lambda w: {"name": w.award.name, "year": w.year, "reason": w.reason}, wins)
 
 def expand_person(person, achievements):
-    p = person.to_dict(only=["name", "country", "gender", "yob", "yod", "biography", "picture", "source"])
+    p = person.to_dict(only=["id", "name", "country", "gender", "yob", "yod", "biography", "picture", "source"])
     p["total_achievements"] = select(a for a in Achievement if a.person == person).count()
     p["achievements"] = expand_achievements(achievements)
     p["wins"] = expand_wins(person.wins)
@@ -77,6 +77,11 @@ def people():
                tags if operation == "AND" else [])
 
     return jsonify(people=people)
+
+@app.route("/people/<id>/achievements")
+@db_session
+def achievements():
+    return jsonify(achievements=[{year: 1920, description: "Ass", source: "Swole", impact: 5}])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
