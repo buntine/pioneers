@@ -328,6 +328,12 @@ a[href*="//github.com/"]:after {
 }
 
 .takeover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #efefef;
+  font-size: 20px;
 }
 
 #intro {
