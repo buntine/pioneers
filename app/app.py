@@ -78,10 +78,12 @@ def people():
 
     return jsonify(people=people)
 
-@app.route("/people/<id>/achievements")
+@app.route("/people/<person_id>/achievements")
 @db_session
-def achievements(id):
-    return jsonify(achievements=[{"year": 1920, "description": "Ass", "source": "Swole", "impact": 5}])
+def achievements(person_id):
+    achievements = select(a for a in Achievement if a.person.id == person_id).order_by(Achievement.year)
+
+    return jsonify(achievements=expand_achievements(achievements))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

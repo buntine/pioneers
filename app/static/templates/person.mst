@@ -7,29 +7,33 @@
     <a class="button" href="{{person.source}}" title="Read more">Find out more</a>
   </div>
   <div class="person_impact_details">
-    <ul>
-      <li>Achievements</li>
-      {{#person.achievements}}
-      <li>
-        <span>{{year}}</span>
-        {{#parseDescription}}
-        <p>{{description}} <a href="{{source}}">Read more</a></p>
-        {{/parseDescription}}
-      </li>
-      {{/person.achievements}}
-      {{#remainingAchievements}}
-      <li><a class="button all_achievements" href="#" title="See all achievements">Plus {{remainingAchievements}} more</a></li>
-      {{/remainingAchievements}}
-    </ul>
-    <ul>
-      <li>Awards</li>
-      {{#person.wins}}
-      <li><span>{{year}}: {{name}}</span><p>{{reason}}</p></li>
-      {{/person.wins}}
-      {{^person.wins}}
-      <p>None yet!</p>
-      {{/person.wins}}
-    </ul>
+    <div>
+      <h3>Achievements</h3>
+      <ul class="person_achievements">
+        {{#person.achievements}}
+        <li>
+          <span>{{year}}</span>
+          {{#parseDescription}}
+          <p>{{description}} <a href="{{source}}">Read more</a></p>
+          {{/parseDescription}}
+        </li>
+        {{/person.achievements}}
+        {{#remainingAchievements}}
+        <li><a class="button all_achievements" href="#" title="See all achievements">Plus {{remainingAchievements}} more</a></li>
+        {{/remainingAchievements}}
+      </ul>
+    </div>
+    <div>
+      <h3>Awards</h3>
+      <ul class="person_awards">
+        {{#person.wins}}
+        <li><span>{{year}}: {{name}}</span><p>{{reason}}</p></li>
+        {{/person.wins}}
+        {{^person.wins}}
+        <li><p>None yet!</p></li>
+        {{/person.wins}}
+      </ul>
+    </div>
   </div>
 </section>
 <section class="person_footer">

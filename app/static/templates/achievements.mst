@@ -1,8 +1,8 @@
-      {{#achievements}}
-      <li>
-        <span>{{year}}</span>
-        {{#parseDescription}}
-        <p>{{description}} <a href="{{source}}">Read more</a></p>
-        {{/parseDescription}}
-      </li>
-      {{/achievements}}
+{{#achievements}}
+<li>
+  <span>{{year}}</span>
+  {{#parseDescription}}
+  <p>{{description}} <a href="{{source}}">Read more</a></p>
+  {{/parseDescription}}
+</li>
+{{/achievements}}

@@ -33,7 +33,8 @@ class Pioneer {
                     parseDescription: this.parseDescription,
                 });
 
-                console.log(rendered);
+                $(".pioneer_overlay ul.person_achievements").html(rendered);
+                $(".pioneer_overlay a.all_achievements").hide();
             });
         }, "json");
     }
