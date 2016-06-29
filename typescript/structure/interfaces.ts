@@ -23,6 +23,7 @@ namespace Structure {
         source: string;
         yob: number;
         yod: number;
+        total_achievements: number;
         wins?: Array<Structure.Win>;
         achievements?: Array<Structure.Achievement>;
     }

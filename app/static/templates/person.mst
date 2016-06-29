@@ -17,6 +17,9 @@
         {{/parseDescription}}
       </li>
       {{/person.achievements}}
+      {{#remainingAchievements}}
+      <li><a class="button all_achievements" href="#" title="See all achievements">Plus {{remainingAchievements}} more</a></li>
+      {{/remainingAchievements}}
     </ul>
     <ul>
       <li>Awards</li>

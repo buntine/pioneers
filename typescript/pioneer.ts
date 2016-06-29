@@ -10,6 +10,7 @@ class Pioneer {
             let rendered = Mustache.render(template, {
             person: this.details, 
             years: () => { return `${this.details.yob} - ${this.details.yod || ""}` },
+            remainingAchievements: () => { return this.details.total_achievements - this.details.achievements.length },
             parseDescription: () => {
               return (text: string, render: (s: string) => string) => {
                 let rendered = render(text);

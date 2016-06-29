@@ -17,6 +17,7 @@ def expand_wins(wins):
 
 def expand_person(person, achievements):
     p = person.to_dict(only=["name", "country", "gender", "yob", "yod", "biography", "picture", "source"])
+    p["total_achievements"] = select(a for a in Achievement if a.person == person).count()
     p["achievements"] = expand_achievements(achievements)
     p["wins"] = expand_wins(person.wins)
     p["impact"] = reduce(lambda t, a: t + a["impact"], p["achievements"], 0)
