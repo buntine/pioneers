@@ -7,53 +7,45 @@
     <link rel="stylesheet" type="text/css" href="/static/css/app.css">
   </head>
   <body>
-    <div id="loading">
-      LOADING
-    </div>
-    <div id="splash">
-      SPLASH
-    </div>
-    <div id="intro">
-      Welcome to Pioneers. Let's <a id="start" href="#">get started</a>.
-    </div>
-    <div id="noresults">
-      NO RESULTS
-    </div>
+    {% include "intro.tpl" %}
+    {% include "splash.tpl" %}
+    {% include "loading.tpl" %}
+    {% include "noresults.tpl" %}
     <div id="flex_container">
-    <header>
-      <div id="searchform">
-        <div id="looking_glass"></div>
-        <form method="get" id="search" action="/people">
-          <select multiple name="tags[]" class="tags">
-            <optgroup label="Fields">
-              {% for t in topics %}
-              <option value="{{t.1}}">{{t.0}}</option>
-              {% endfor %}
-            </optgroup>
-            <optgroup label="Tags">
-              {% for t in tags %}
-              <option value="{{t.1}}">{{t.0}}</option>
-              {% endfor %}
-            </optgroup>
-          </select>
-          <div id="op_switcher" class="switcher"></div>
-        </form>
+      <header>
+        <div id="searchform">
+          <div id="looking_glass"></div>
+          <form method="get" id="search" action="/people">
+            <select multiple name="tags[]" class="tags">
+              <optgroup label="Fields">
+                {% for t in topics %}
+                <option value="{{t.1}}">{{t.0}}</option>
+                {% endfor %}
+              </optgroup>
+              <optgroup label="Tags">
+                {% for t in tags %}
+                <option value="{{t.1}}">{{t.0}}</option>
+                {% endfor %}
+              </optgroup>
+            </select>
+            <div id="op_switcher" class="switcher"></div>
+          </form>
+        </div>
+        <section id="tab_switcher" class="switcher"></section>
+      </header>
+      <div id="page">
+        {% block body %}{% endblock %}
       </div>
-      <section id="tab_switcher" class="switcher"></section>
-    </header>
-    <div id="page">
-      {% block body %}{% endblock %}
-    </div>
-    <footer>
-      <div class="content">
-        <div id="logo"><a href="/"><img src="/static/images/ui/logo-small.png" title="Pioneers" /></a></div>
-        <ul id="links">
-          <li><a href="/about" title="About">About</a></li>
-          <li><a href="https://github.com/buntine/pioneers" title="Code">Source</a></li>
-          <li><a href="/add" title="Add new / Report error">Report bug</a></li>
-        </ul>
-      </div>
-    </footer>
+      <footer>
+        <div class="content">
+          <div id="logo"><a href="/"><img src="/static/images/ui/logo-small.png" title="Pioneers" /></a></div>
+          <ul id="links">
+            <li><a href="/about" title="About">About</a></li>
+            <li><a href="https://github.com/buntine/pioneers" title="Code">Source</a></li>
+            <li><a href="/add" title="Add new / Report error">Report bug</a></li>
+          </ul>
+        </div>
+      </footer>
     </div>
 
     <script src="/static/js/app.js"></script>

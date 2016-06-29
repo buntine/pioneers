@@ -52,8 +52,8 @@ $(() => {
                  setDimensions(true);
 
                  // Show initial intro screen if user is coming to homepage.
-                 if (!searched()) {
-                     $("#intro").show();
+                 if (searched()) {
+                     $("#intro").hide();
                  }
              });
 
