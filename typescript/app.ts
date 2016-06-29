@@ -175,7 +175,7 @@ $(() => {
             resizeTab();
 
             if (t.built()) {
-                $("#loading").css("display", "flex");
+                $("#loading").show();
 
                 t.preload(() => {
                     $("#loading").hide();

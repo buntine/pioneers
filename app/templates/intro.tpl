@@ -1,4 +1,4 @@
-<div class="takeover" id="intro">
+<div id="intro">
   <div id="intro_container">
     <img src="/static/images/ui/logo-full.png" title="P I O N E E R S" alt="P I O N E E R S" />
     <div id="intro_content">

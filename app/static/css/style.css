@@ -328,6 +328,11 @@ a[href*="//github.com/"]:after {
 }
 
 .takeover {
+}
+
+#intro {
+  background-color: #2b2b2b;
+  color: #efefef;
   position: absolute;
   top: 0;
   left: 0;
@@ -339,11 +344,6 @@ a[href*="//github.com/"]:after {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-}
-
-#intro {
-  background-color: #2b2b2b;
-  color: #efefef;
 }
 
 #intro_container {
@@ -371,9 +371,8 @@ a[href*="//github.com/"]:after {
   width: 100px;
 }
 
-#loading {
+#loading,
+#splash,
+#noresults {
   display: none;
 }
-
-#splash { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
-#noresults { display: none; color: #efefef; position: absolute; top: 300px; left: 300px;}
