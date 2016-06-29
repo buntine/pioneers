@@ -15,22 +15,21 @@ class Pioneer {
                 flag: this.flagPath(),
             });
 
-            $.magnificPopup.open({
-                items: {
-                    src: `<div class="pioneer_overlay">${rendered}</div>`,
-                    type: "inline"
-                },
-                removalDelay: 300,
-                mainClass: "mfp-fade"
+            Helpers.openPopup(`<div class="pioneer_overlay">${rendered}</div>`);
+
+            // Add click event for this particular pioneers "show all" link.
+            $(".pioneer_overlay a.all_achievements").click((e: Event) => {
+                e.preventDefault();
+                this.allAchievements();
             });
         });
     }
 
     public allAchievements(): void {
-        $.get(`/people/${this.details.id}/achievements`, (achievements: Array<Structure.Achievement>) => {
-            $.get('/static/templates/achievement.mst', (template: string) => {
+        $.get(`/people/${this.details.id}/achievements`, (resp: {achievements: Array<Structure.Achievement>}) => {
+            $.get('/static/templates/achievements.mst', (template: string) => {
                 let rendered = Mustache.render(template, {
-                    achievements: achievements, 
+                    achievements: resp.achievements, 
                     parseDescription: this.parseDescription,
                 });
 

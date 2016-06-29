@@ -80,8 +80,8 @@ def people():
 
 @app.route("/people/<id>/achievements")
 @db_session
-def achievements():
-    return jsonify(achievements=[{year: 1920, description: "Ass", source: "Swole", impact: 5}])
+def achievements(id):
+    return jsonify(achievements=[{"year": 1920, "description": "Ass", "source": "Swole", "impact": 5}])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

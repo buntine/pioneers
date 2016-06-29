@@ -10,4 +10,15 @@ namespace Helpers {
             f();
         }
     }
+
+    export function openPopup(content: string): void {
+        $.magnificPopup.open({
+            items: {
+                src: content,
+                type: "inline"
+            },
+            removalDelay: 300,
+            mainClass: "mfp-fade"
+        });
+    }
 }
