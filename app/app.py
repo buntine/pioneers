@@ -1,3 +1,4 @@
+import random
 from flask import Flask, request, render_template, jsonify
 from models import *
 from pony.orm import *
@@ -5,6 +6,11 @@ from collections import defaultdict
 
 app = Flask(__name__)
 app.config.from_envvar("SETTINGS", silent=True)
+
+SUGGESTED_TAGS = [
+ {"slug": "algorithms-data-structures", "name": "Algorithm's and data structures"},       
+ {"slug": "women-in-computing", "name": "Women in Computing"},       
+]
 
 def expand_achievements(achievements):
     return map(lambda a: {"description": a.description,
@@ -64,6 +70,7 @@ def index(op="OR", tags=[]):
     get_tags = lambda s: select((t.name, t.slug) for t in Tag if t.style == s).order_by(1)[:]
 
     return render_template("index.html",
+            suggested_tag = random.choice(SUGGESTED_TAGS),
             topics = get_tags("Topic"),
             tags = get_tags("Tag"))
 

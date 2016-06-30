@@ -64,9 +64,13 @@ $(() => {
 
     $("#start").click((e: Event) => {
         e.preventDefault();
-
         $("#intro").hide();
-        $("select.tags").selectivity("add", "algorithms-data-structures");
+
+        let tags = $(e.target).data("tags");
+
+        tags.split(",").forEach((t: string) => {
+            $("select.tags").selectivity("add", t);
+        });
     });
 
     $(document).on("click", "a.add_tag", (e: Event) => {
