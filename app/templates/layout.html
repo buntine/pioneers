@@ -11,6 +11,8 @@
     {% include "splash.tpl" %}
     {% include "loading.tpl" %}
     {% include "noresults.tpl" %}
+    {% include "about.tpl" %}
+    {% include "bug.tpl" %}
     <div id="flex_container">
       <header>
         <div id="searchform">
@@ -40,9 +42,9 @@
         <div class="content">
           <div id="logo"><a href="/"><img src="/static/images/ui/logo-small.png" title="Pioneers" /></a></div>
           <ul id="links">
-            <li><a href="/about" title="About">About</a></li>
             <li><a href="https://github.com/buntine/pioneers" title="Code">Source</a></li>
-            <li><a href="/add" title="Add new / Report error">Report bug</a></li>
+            <li><a href="#about_popup" class="simple_popup" title="About">About</a></li>
+            <li><a href="#bug_popup" class="simple_popup" title="Add new / Report error">Report bug</a></li>
           </ul>
         </div>
       </footer>

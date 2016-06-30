@@ -112,6 +112,8 @@ a[href*="//github.com/"]:after {
   line-height: 37px;
   padding: 0;
   width: 70px;
+  display: block;
+  text-align: center;
 }
 
 .switcher a {
@@ -408,4 +410,13 @@ a[href*="//github.com/"]:after {
 #splash,
 #noresults {
   display: none;
+}
+
+.white_popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
 }

@@ -83,6 +83,11 @@ $(() => {
         search();
     });
 
+    $('.simple_popup').magnificPopup({
+        type:'inline',
+         midClick: true,
+    });
+
     function clearTab(): void {
         let tab = tabs[state.tab];
 
