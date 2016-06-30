@@ -109,7 +109,7 @@ a[href*="//github.com/"]:after {
 }
 
 #op_switcher a {
-  line-height: 38px;
+  line-height: 37px;
   padding: 0;
   width: 70px;
 }
@@ -260,11 +260,11 @@ a[href*="//github.com/"]:after {
   float: left;
   overflow: auto;
   width: 719px;
-  height: 440px;
+  height: 449px;
 }
 
 .pioneer_overlay .person_details .person_impact_details div {
-  width: 349px;
+  width: 348px;
   display: inline-table;
 }
 
@@ -285,6 +285,33 @@ a[href*="//github.com/"]:after {
 .pioneer_overlay .person_details .person_impact_details ul li span {
   font-size: 14px;
   font-weight: bold;
+  margin-right: 10px;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul li span div.rating {
+  display: inline;
+  margin-left: 15px;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul li span div.rating div {
+  display: inline-table;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 5px;
+}
+
+.pioneer_overlay .person_details .person_impact_details ul li span div.rating div.on {
+  background-color: #e81e48;
+}
+
+.pioneer_overlay .person_details .person_impact_details ol {
+  list-style: circle;
+}
+
+.pioneer_overlay .person_details .person_impact_details ol li {
+  display: inline;
 }
 
 .pioneer_overlay .person_details .person_impact_details ul li p {

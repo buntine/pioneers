@@ -12,6 +12,7 @@ class Pioneer {
                 years: () => { return `${this.details.yob} - ${this.details.yod || ""}` },
                 remainingAchievements: () => { return this.details.total_achievements - this.details.achievements.length },
                 parseDescription: this.parseDescription,
+                rating: this.rating,
                 flag: this.flagPath(),
             });
 
@@ -30,6 +31,7 @@ class Pioneer {
             $.get('/static/templates/achievements.mst', (template: string) => {
                 let rendered = Mustache.render(template, {
                     achievements: resp.achievements, 
+                    rating: this.rating,
                     parseDescription: this.parseDescription,
                 });
 
@@ -37,6 +39,16 @@ class Pioneer {
                 $(".pioneer_overlay a.all_achievements").hide();
             });
         }, "json");
+    }
+
+    private rating(): (text: string, render: (s: string) => string) => string {
+        return (text: string, render: (s: string) => string) => {
+            let impact = parseInt(render(text));
+
+            return [1,2,3,4,5].map((n) => {
+                return (impact >= n) ? "<div class='on'></div>" : "<div></div>";
+            }).join("");
+        }
     }
 
     private parseDescription(): (text: string, render: (s: string) => string) => string {

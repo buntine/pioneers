@@ -12,7 +12,7 @@
       <ul class="person_achievements">
         {{#person.achievements}}
         <li>
-          <span>{{year}}</span>
+          <span>{{year}} <div class="rating">{{#rating}}{{impact}}{{/rating}}</div></span>
           {{#parseDescription}}
           <p>{{description}} <a href="{{source}}">More</a></p>
           {{/parseDescription}}
