@@ -364,7 +364,7 @@ a[href*="//github.com/"]:after {
 }
 
 #intro {
-  background-color: #2b2b2b;
+  background: #2b2b2b url('/static/images/ui/tube.svg') 92% 89% no-repeat;
   color: #efefef;
   position: absolute;
   top: 0;
