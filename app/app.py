@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config.from_envvar("SETTINGS", silent=True)
 
 SUGGESTED_TAGS = [
- {"slug": "algorithms-data-structures", "name": "Algorithm's and data structures"},       
+ {"slug": "algorithms-data-structures", "name": "Algorithms and data structures"},       
  {"slug": "women-in-computing", "name": "Women in Computing"},       
 ]
 
