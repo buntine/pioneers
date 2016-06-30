@@ -182,6 +182,7 @@ $(() => {
                     t.execute();
                 });
             } else {
+                t.unfocus();
                 $("#noresults").show();
             }
 

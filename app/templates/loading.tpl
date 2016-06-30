@@ -1,3 +1,3 @@
 <div class="takeover" id="loading">
-  <img src="/static/images/icons/gears.svg" />
+  <div class="uil-ripple"><div></div><div></div></div>
 </div>
