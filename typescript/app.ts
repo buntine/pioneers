@@ -83,9 +83,9 @@ $(() => {
         search();
     });
 
-    $('.simple_popup').magnificPopup({
-        type:'inline',
-         midClick: true,
+    $(".popup").magnificPopup({
+        type: 'inline',
+        midClick: true,
     });
 
     function clearTab(): void {

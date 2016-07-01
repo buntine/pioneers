@@ -14,6 +14,10 @@ html,body {
   padding: 0px;
 }
 
+strong {
+  font-weight: bold;
+}
+
 div#flex_container {
   width: 100%;
   height: 100%;
@@ -91,7 +95,7 @@ a[href^="https://"]:after {
   margin: 0 0 0 5px;
 }
 
-a[href*="//github.com/"]:after {
+a.source:after {
   content: '';
   margin: 0;
 }
@@ -412,11 +416,29 @@ a[href*="//github.com/"]:after {
   display: none;
 }
 
-.white_popup {
+.simple_popup {
   position: relative;
   background: #FFF;
   padding: 20px;
   width: auto;
-  max-width: 500px;
+  max-width: 640px;
   margin: 20px auto;
+  line-height: 20px;
+}
+
+.simple_popup h3 {
+  font-size: 26px;
+  margin: 0 0 35px 0;
+}
+
+.simple_popup p {
+  margin: 10px 0 20px 0;
+}
+
+.simple_popup ul {
+  list-style: circle;
+}
+
+.simple_popup ul li {
+  margin-left: 35px;
 }
