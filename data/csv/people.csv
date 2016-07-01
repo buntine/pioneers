@@ -49,3 +49,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "C. A. R. Hoare", "Male", "England", "Colombo, British Ceylon", "6.9271", "79.8612", "1934", "", "An English computer scientist and programming language pioneer.", "car_hoare.jpg", "https://en.wikipedia.org/wiki/Tony_Hoare"
 "Herman Hollerith", "Male", "USA", "Buffalo, New York", "", "", "1860", "1929", "An American inventor and mechanical engineer.", "herman_hollerith.jpg", "https://en.wikipedia.org/wiki/Herman_Hollerith"
 "Grace Hopper", "Female", "USA", "New York City, New York", "", "", "1906", "1992", "An American computer scientist and United States Navy Rear Admiral.", "grace_hopper.jpg", "https://en.wikipedia.org/wiki/Grace_Hopper"
+"Cuthbert Hurd", "Male", "USA", "Esthervile, Iowa", "", "", "1911", "1996", "An American computer scientist and entrepreneur.", "cuthbert_hurd.jpg", "https://en.wikipedia.org/wiki/Cuthbert_Hurd"
