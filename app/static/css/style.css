@@ -6,7 +6,7 @@ h1 {
 
 html,body {
   background: #1f1f1f;
-  font-family: 'Share Tech Mono';
+  font-family: 'Fira Sans';
   font-size: 14px;
   height: 100%;
   width: 100%;
@@ -72,7 +72,7 @@ footer .content {
 
 a {
   color: #e81e48;
-  font-family: 'Share Tech Mono';
+  font-family: 'Fira Sans';
   font-size: 14px;
   text-decoration: none;
 }
@@ -122,6 +122,7 @@ a.source:after {
 
 .switcher a {
   text-transform: uppercase;
+  font-family: 'Share Tech Mono';
   padding: 7px 30px;
   float: left;
   border-width: 1px 0 1px 1px;
@@ -215,6 +216,7 @@ a.source:after {
 
 #inner_scroll ul li a {
   color: #efefef;
+  font-family: 'Share Tech Mono';
 }
 
 #inner_scroll ul li.selected {
@@ -227,7 +229,7 @@ a.source:after {
   position: relative; 
   width: 1000px;
   margin: 20px auto;
-  font-family: 'Share Tech Mono';
+  font-family: 'Fira Sans';
   color: #efefef;
   font-size: 12px;
   line-height: 18px;
