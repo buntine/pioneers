@@ -45,6 +45,7 @@ namespace Impact {
         public execute(): void {
             $("#people_list").show();
 
+            this.setResolution("High");
             this.people.pack();
         }
 

@@ -13,6 +13,7 @@ namespace Impact {
         private static REFINEMENT_DELTA = 4;
         private static REDRAW_THRESHOLD = 35;
         private static SIZING_DELTA = 0.057;
+        private static MAX_FRAME_DIFF = 100; // Miliseconds.
 
         constructor() {
             super();
@@ -41,7 +42,7 @@ namespace Impact {
                 p.draw(unit);
             }
 
-            this.position();
+            this.position(performance.now(), 1);
         }
 
         public reset(): void {
@@ -58,7 +59,7 @@ namespace Impact {
             this.length = 0;
         }
 
-        private position(iteration = 1): void {
+        private position(ts: number, iteration: number): void {
             if (!this.alive) { return; }
 
             let redraw: boolean;
@@ -94,11 +95,13 @@ namespace Impact {
 
             // Refine.
             if (iteration < iterations) {
-                Helpers.onHighRes(this.resolution, (ts: number) => {
-                    // TODO:
-                    // if ts too long then:
-                    //     this.resolution = "Low";
-                    this.position(iteration + 1)
+                Helpers.onHighRes(this.resolution, (next_ts: number) => {
+                    // Performance is too bad, so use low-res mode.
+                    if (iteration > 2 && (next_ts - ts) > People.MAX_FRAME_DIFF) {
+                        this.resolution = "Low";
+                    }
+
+                    this.position(next_ts, iteration + 1)
                 });
             }
         }
