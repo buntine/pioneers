@@ -47,3 +47,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Lois Haibt", "Female", "USA", "Lower Westchester, New York", "", "", "1934", "", "An American computer scientist and early software practitioner.", "lois_haibt.jpg", "https://en.wikipedia.org/wiki/Lois_Haibt"
 "Margaret Hamilton", "Female", "USA", "Paoli, Indiana", "", "", "1936", "", "An American computer scientist and pioneering software engineer.", "margaret_hamilton.jpg", "https://en.wikipedia.org/wiki/Margaret_Hamilton_(scientist)"
 "C. A. R. Hoare", "Male", "England", "Colombo, British Ceylon", "6.9271", "79.8612", "1934", "", "An English computer scientist and programming language pioneer.", "car_hoare.jpg", "https://en.wikipedia.org/wiki/Tony_Hoare"
+"Herman Hollerith", "Male", "USA", "Buffalo, New York", "", "", "1860", "1929", "An American inventor and mechanical engineer.", "herman_hollerith.jpg", "https://en.wikipedia.org/wiki/Herman_Hollerith"
+"Grace Hopper", "Female", "USA", "New York City, New York", "", "", "1906", "1992", "An American computer scientist and United States Navy Rear Admiral.", "grace_hopper.jpg", "https://en.wikipedia.org/wiki/Grace_Hopper"

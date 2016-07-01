@@ -21,6 +21,7 @@ namespace Structure {
         impact: number;
         biography: string;
         picture: string;
+        birthplace: string;
         source: string;
         yob: number;
         yod: number;
