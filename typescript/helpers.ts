@@ -3,11 +3,11 @@ namespace Helpers {
         return `/static/images/${category}/${file}`;
     }
 
-    export function onHighRes(resolution: Structure.Resolution, f: () => void): void {
+    export function onHighRes(resolution: Structure.Resolution, f: (ts: number) => void): void {
         if (resolution == "High") {
             requestAnimationFrame(f);
         } else {
-            f();
+            f(performance.now());
         }
     }
 

@@ -94,7 +94,12 @@ namespace Impact {
 
             // Refine.
             if (iteration < iterations) {
-                Helpers.onHighRes(this.resolution, () => this.position(iteration + 1));
+                Helpers.onHighRes(this.resolution, (ts: number) => {
+                    // TODO:
+                    // if ts too long then:
+                    //     this.resolution = "Low";
+                    this.position(iteration + 1)
+                });
             }
         }
 
