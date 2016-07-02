@@ -9,7 +9,7 @@ namespace Timeline {
         private id: number;
         private resolution: Structure.Resolution;
 
-        public static TOP_PADDING = 80;
+        public static TOP_PADDING = 65;
 
         constructor(public svg: Snap.Paper) {
             this.columnSize = 100;
@@ -144,16 +144,16 @@ namespace Timeline {
             let bg = this.svg.rect(0, 2, this.columnSize, 28);
             let year = this.svg.text(0, 20, this.years[0].year);
             let guideline = this.svg.line(0, 32, 0, height);
+            let g = this.svg.group(bg, year);
             let bbox = year.getBBox();
-            let g = this.svg.group(bg, year); // GO
 
             guideline.attr({stroke: "#e81e48"});
             guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, 0)})`);
             year.transform(`translateX(${Helpers.centerize(this.columnSize, bbox.w, 0)})`);
-            year.attr({fill: "#ffffff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
+            year.attr({fill: "#fff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
             bg.attr({fill: "#e81e48"});
-            scaleTop.attr({stroke: "#ffffff"});
-            scaleBottom.attr({stroke: "#ffffff"});
+            scaleTop.attr({stroke: "#fff"});
+            scaleBottom.attr({stroke: "#fff"});
 
             this.svg.mousemove((e:MouseEvent) => {
                 let i = Math.floor(e.clientX / this.columnSize);
@@ -162,7 +162,7 @@ namespace Timeline {
                     let x = this.columnSize * i;
 
                     year.attr({text: this.years[i].year});
-                    g.transform(`translate(${x},0)`);
+                    g.transform(`translateX(${x})`);
                     guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, i)})`);
                 }
             });

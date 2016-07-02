@@ -11,8 +11,10 @@ namespace Timeline {
         private initialPoint: Vector;
 
         public static ATTRACTION_SPEED = 0.13;
-        private static RADIUS_FACTOR = 0.256;
+        private static RADIUS_FACTOR = 0.125;
         private static MAX_RADIUS = 15;
+        private static HALO_MULTIPLIER = 1.36;
+
         private static COLOURS: Array<string> = [
             "#7336a8",
             "#4a8cdb",
@@ -43,7 +45,7 @@ namespace Timeline {
             this.initialPoint = this.currentPoint.clone();
 
             this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
-            this.core.mouseover((e:MouseEvent) => console.log(person.details.name));
+            this.core.mouseover((e:MouseEvent) => console.log(this.halo.attr("r")));
             this.core.attr({fill: this.fill()});
         }
 
@@ -62,17 +64,17 @@ namespace Timeline {
             let radius = parseInt(this.halo.attr("r"));
 
             this.position(1); // Snap to exact position.
-            this.halo.animate({r: radius * this.details.impact, opacity: 0.1}, (220 * this.details.impact), mina.easein);
+            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.1}, (220 * this.details.impact), mina.easein);
+        }
+
+        public fill(): string {
+            return Achievement.COLOURS[this.details.impact - 1];
         }
 
         public coords(columnSize: number, radius: number): Vector {
             let c = (a:number) => Helpers.centerize(columnSize, radius, a);
 
             return new Vector(c(this.column), c(this.row) + Timeline.TOP_PADDING);
-        }
-
-        private fill(): string {
-            return Achievement.COLOURS[this.details.impact - 1];
         }
 
         private radius(columnSize: number) {
