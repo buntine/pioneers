@@ -445,3 +445,45 @@ a.source:after {
 .simple_popup ul li {
   margin-left: 35px;
 }
+
+#impact_key {
+  position: absolute;
+  bottom: 52px;
+  left: 20px;
+  display: none;
+  text-align: center;
+}
+
+#impact_key h3 {
+  font-family: "Share Tech Mono, arial";
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+#impact_key ul li {
+  padding: 7px 15px;
+  float: left;
+  margin-right: 2px;
+}
+ 
+#impact_key ul li.one {
+  background-color: #7336a8;
+}
+
+#impact_key ul li.two {
+  background-color: #4a8cdb;
+}
+
+#impact_key ul li.three {
+  background-color: #ed5f55;
+}
+
+#impact_key ul li.four {
+  background-color: #f8e71c;
+}
+
+#impact_key ul li.five {
+  background-color: #00ffe6;
+}

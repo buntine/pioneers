@@ -49,6 +49,8 @@ namespace Timeline {
         }
 
         public execute(): void {
+            $("#impact_key").show();
+
             this.drawScale();
             this.forAchievements((a, p) => a.drawHalo(this.columnSize, this.svg)); // Halos must be all drawm before cores to prevent layering issues.
             this.forAchievements((a, p) => a.drawCore(this.columnSize, p, this.svg));
@@ -77,6 +79,8 @@ namespace Timeline {
         }
 
         public unfocus(): void {
+            $("#impact_key").hide();
+
             // Cheap way for me to kill obsolete recursions on this.position() when user is actively resizing window.
             this.id++;
         }

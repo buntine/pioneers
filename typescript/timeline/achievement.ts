@@ -35,7 +35,7 @@ namespace Timeline {
             this.destinationPoint = this.coords(columnSize, radius);
 
             this.halo = svg.circle(this.destinationPoint.x, this.destinationPoint.y, radius);
-            this.halo.attr({fill: this.fill(), opacity: 0});
+            this.halo.attr({fill: "none", borderWidth: 1, stroke: "#fff", opacity: 0});
         }
 
         public drawCore(columnSize: number, person: Timeline.Person, svg: Snap.Paper): void {
@@ -64,7 +64,7 @@ namespace Timeline {
             let radius = parseInt(this.halo.attr("r"));
 
             this.position(1); // Snap to exact position.
-            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.1}, (220 * this.details.impact), mina.easein);
+            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.3}, (220 * this.details.impact), mina.easein);
         }
 
         public fill(): string {
