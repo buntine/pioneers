@@ -141,23 +141,27 @@ namespace Timeline {
         }
 
         private drawScale() {
+            let lastYearIndex = this.years.length - 1;
             let width = parseInt(this.svg.attr("width"));
             let height = parseInt(this.svg.attr("height"));
             let scaleTop = this.svg.line(0, 1, width, 1);
             let scaleBottom = this.svg.line(0, 31, width, 31);
             let bg = this.svg.rect(0, 2, this.columnSize, 28);
-            let year = this.svg.text(0, 20, this.years[0].year);
+            let year = this.svg.text(0, 20, this.years[lastYearIndex].year);
             let guideline = this.svg.line(0, 32, 0, height);
             let g = this.svg.group(bg, year);
             let bbox = year.getBBox();
 
             guideline.attr({stroke: "#e81e48"});
-            guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, 0)})`);
             year.transform(`translateX(${Helpers.centerize(this.columnSize, bbox.w, 0)})`);
             year.attr({fill: "#fff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
             bg.attr({fill: "#e81e48"});
             scaleTop.attr({stroke: "#fff"});
             scaleBottom.attr({stroke: "#fff"});
+
+            // Move guideline so it's initial position is in the last (most recent) row.
+            guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, lastYearIndex)})`);
+            g.transform(`translateX(${this.columnSize * lastYearIndex})`);
 
             this.svg.mousemove((e:MouseEvent) => {
                 let i = Math.floor(e.clientX / this.columnSize);

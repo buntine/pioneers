@@ -16,11 +16,11 @@ namespace Timeline {
         private static HALO_MULTIPLIER = 1.36;
 
         private static COLOURS: Array<string> = [
-            "#7336a8",
-            "#4a8cdb",
-            "#ed5f55",
-            "#f8e71c",
-            "#00ffe6",
+            "#494848",
+            "#888888",
+            "#f396a4",
+            "#e0536f",
+            "#f51f4c",
         ];
 
         constructor(achievement: Structure.Achievement) {
