@@ -66,7 +66,7 @@ namespace Timeline {
         }
 
         public coords(columnSize: number, radius: number): Vector {
-            let c = (a:number) => (columnSize * a) + ((columnSize / 2) - radius / 2);
+            let c = (a:number) => Helpers.centerize(columnSize, radius, a);
 
             return new Vector(c(this.column), c(this.row) + Timeline.TOP_PADDING);
         }

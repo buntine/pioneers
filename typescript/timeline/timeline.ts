@@ -138,23 +138,33 @@ namespace Timeline {
 
         private drawScale() {
             let width = parseInt(this.svg.attr("width"));
+            let height = parseInt(this.svg.attr("height"));
             let scaleTop = this.svg.line(0, 1, width, 1);
             let scaleBottom = this.svg.line(0, 31, width, 31);
+            let bg = this.svg.rect(0, 2, this.columnSize, 28);
             let year = this.svg.text(0, 20, this.years[0].year);
-            let g = this.svg.group(year); // GO
+            let guideline = this.svg.line(0, 32, 0, height);
+            let bbox = year.getBBox();
+            let g = this.svg.group(bg, year); // GO
 
+            guideline.attr({stroke: "#e81e48"});
+            guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, 0)})`);
+            year.transform(`translateX(${Helpers.centerize(this.columnSize, bbox.w, 0)})`);
             year.attr({fill: "#ffffff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
+            bg.attr({fill: "#e81e48"});
             scaleTop.attr({stroke: "#ffffff"});
             scaleBottom.attr({stroke: "#ffffff"});
 
             this.svg.mousemove((e:MouseEvent) => {
-              let x = Math.min(e.clientX, width);
-              let i = Math.floor(e.clientX / this.columnSize);
+                let i = Math.floor(e.clientX / this.columnSize);
 
-              if (i >= 0 && i < this.years.length) {
-                  year.attr({text: this.years[i].year});
-                  g.transform(`translate(${x},0)`);
-              }
+                if (i >= 0 && i < this.years.length) {
+                    let x = this.columnSize * i;
+
+                    year.attr({text: this.years[i].year});
+                    g.transform(`translate(${x},0)`);
+                    guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, i)})`);
+                }
             });
         }
 

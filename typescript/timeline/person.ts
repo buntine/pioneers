@@ -7,7 +7,7 @@ namespace Timeline {
 
         constructor(p: Structure.Person) {
             super();
-            // TODO: This is wasteful and kind of weird as it's still got the achievements nested inside it.
+            // TODO: This is wasteful and kind of weird as 'p' has still got the achievements nested inside it.
             //       This should be just storing the details with Wins and Achievements.
             this.details = p;
             this.achievements = [];
