@@ -16,11 +16,11 @@ namespace Timeline {
         private static HALO_MULTIPLIER = 1.36;
 
         private static COLOURS: Array<string> = [
-            "#494848",
-            "#888888",
-            "#f396a4",
-            "#e0536f",
-            "#f51f4c",
+            "#313c53",
+            "#3f4d69",
+            "#1b48a1",
+            "#0677d8",
+            "#00fffd",
         ];
 
         constructor(achievement: Structure.Achievement) {
@@ -35,7 +35,7 @@ namespace Timeline {
             this.destinationPoint = this.coords(columnSize, radius);
 
             this.halo = svg.circle(this.destinationPoint.x, this.destinationPoint.y, radius);
-            this.halo.attr({fill: "none", borderWidth: 1, stroke: "#fff", opacity: 0});
+            this.halo.attr({fill: "none", borderWidth: 1, stroke: Achievement.COLOURS[1], opacity: 0});
         }
 
         public drawCore(columnSize: number, person: Timeline.Person, svg: Snap.Paper): void {
@@ -64,7 +64,7 @@ namespace Timeline {
             let radius = parseInt(this.halo.attr("r"));
 
             this.position(1); // Snap to exact position.
-            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.3}, (220 * this.details.impact), mina.easein);
+            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
         public fill(): string {

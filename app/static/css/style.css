@@ -467,23 +467,23 @@ a.source:after {
   float: left;
   margin-right: 2px;
 }
- 
+
 #impact_key ul li.one {
-  background-color: #494848;
+  background-color: #313c53;
 }
 
 #impact_key ul li.two {
-  background-color: #888888;
+  background-color: #3f4d69;
 }
 
 #impact_key ul li.three {
-  background-color: #f396a4;
+  background-color: #1b48a1;
 }
 
 #impact_key ul li.four {
-  background-color: #e0536f;
+  background-color: #0677d8;
 }
 
 #impact_key ul li.five {
-  background-color: #f51f4c;
+  background-color: #00fffd;
 }
