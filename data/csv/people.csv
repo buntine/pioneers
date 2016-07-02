@@ -51,3 +51,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Grace Hopper", "Female", "USA", "New York City, New York", "", "", "1906", "1992", "An American computer scientist and United States Navy Rear Admiral.", "grace_hopper.jpg", "https://en.wikipedia.org/wiki/Grace_Hopper"
 "Cuthbert Hurd", "Male", "USA", "Estherville, Iowa", "", "", "1911", "1996", "An American computer scientist and entrepreneur.", "cuthbert_hurd.jpg", "https://en.wikipedia.org/wiki/Cuthbert_Hurd"
 "Kenneth E. Iverson", "Male", "Canada", "Camrose, Alberta", "", "", "1920", "2004", "A Canadian computer scientist.", "kenneth_e_iverson.jpg", "https://en.wikipedia.org/wiki/Kenneth_E._Iverson"
+"Joseph Marie Jacquard", "Male", "France", "Oullins", "", "", "1752", "1834", "A French weaver, merchant and inventor.", "joseph_jacquard.jpg", "https://en.wikipedia.org/wiki/Joseph_Marie_Jacquard"
