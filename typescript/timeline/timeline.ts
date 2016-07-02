@@ -9,7 +9,7 @@ namespace Timeline {
         private id: number;
         private resolution: Structure.Resolution;
 
-        public static PADDING: [number, number] = [80, 20];
+        public static TOP_PADDING = 80;
 
         constructor(public svg: Snap.Paper) {
             this.columnSize = 100;
@@ -82,7 +82,7 @@ namespace Timeline {
         }
 
         public resize(w: number, h: number): void {
-            this.columnSize = (w - (Timeline.PADDING[1] * 2)) / this.years.length;
+            this.columnSize = w / this.years.length;
         }
 
         public built(): boolean {
@@ -138,20 +138,18 @@ namespace Timeline {
 
         private drawScale() {
             let width = parseInt(this.svg.attr("width"));
-            let padding = Timeline.PADDING[1];
-            let scale = this.svg.line(padding, 20, width - padding, 20);
-            let pointer = this.svg.path("M0,23l20,0l-10,10l-10,-10Z");
-            let year = this.svg.text(0, 16, this.years[0].year);
-            let g = this.svg.group(pointer, year);
+            let scaleTop = this.svg.line(0, 1, width, 1);
+            let scaleBottom = this.svg.line(0, 31, width, 31);
+            let year = this.svg.text(0, 20, this.years[0].year);
+            let g = this.svg.group(year); // GO
 
-            year.attr({fill:"#ffffff", fontSize: "0.8em", fontFamily: "sans-serif, arial"});
-            pointer.attr({fill:"#ffffff"});
-            scale.attr({stroke: "#ffffff"});
-            g.transform(`translate(${padding},0)`);
+            year.attr({fill: "#ffffff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
+            scaleTop.attr({stroke: "#ffffff"});
+            scaleBottom.attr({stroke: "#ffffff"});
 
             this.svg.mousemove((e:MouseEvent) => {
-              let x = Math.max(Math.min(e.clientX, width - (padding * 1.5)), (padding * 1.5)) - (padding / 2);
-              let i = Math.floor((e.clientX - padding) / this.columnSize);
+              let x = Math.min(e.clientX, width);
+              let i = Math.floor(e.clientX / this.columnSize);
 
               if (i >= 0 && i < this.years.length) {
                   year.attr({text: this.years[i].year});

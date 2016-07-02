@@ -66,10 +66,9 @@ namespace Timeline {
         }
 
         public coords(columnSize: number, radius: number): Vector {
-            let padding = Timeline.PADDING;
-            let c = (a:number, p:number) => (columnSize * a) + ((columnSize / 2) - radius / 2) + padding[p];
+            let c = (a:number) => (columnSize * a) + ((columnSize / 2) - radius / 2);
 
-            return new Vector(c(this.column, 1), c(this.row, 0));
+            return new Vector(c(this.column), c(this.row) + Timeline.TOP_PADDING);
         }
 
         private fill(): string {
