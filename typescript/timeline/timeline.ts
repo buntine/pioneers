@@ -160,7 +160,7 @@ namespace Timeline {
             scaleBottom.attr({stroke: "#fff"});
 
             // Move guideline so it's initial position is in the last (most recent) row.
-            guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, lastYearIndex)})`);
+            guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 1, lastYearIndex)})`);
             g.transform(`translateX(${this.columnSize * lastYearIndex})`);
 
             this.svg.mousemove((e:MouseEvent) => {
@@ -171,7 +171,7 @@ namespace Timeline {
 
                     year.attr({text: this.years[i].year});
                     g.transform(`translateX(${x})`);
-                    guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 2, i)})`);
+                    guideline.transform(`translateX(${Helpers.centerize(this.columnSize, 1, i)})`);
                 }
             });
         }
