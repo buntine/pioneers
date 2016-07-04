@@ -25,4 +25,16 @@ namespace Helpers {
     export function centerize(container_width: number, width: number, offset: number): number {
         return (offset * container_width) + ((container_width / 2) - (width / 2));
     }
+
+    export function parseDescription(): (text: string, render: (s: string) => string) => string {
+        return (text: string, render: (s: string) => string) => {
+            let rendered = render(text);
+
+            return rendered.replace(/\#\{(.+?|.+?)\}/g, (_: string, t: string) => {
+                let [title, tag] = t.split("|");
+
+                return `<a href="#" class="add_tag" data-tag="${tag}">${title}</a>`;
+            });
+        };
+    }
 }

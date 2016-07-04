@@ -85,14 +85,28 @@ namespace Timeline {
 
         public snap(): void {
             let radius = parseInt(this.halo.attr("r"));
+            let haloRadius = radius * (this.details.impact * Achievement.HALO_MULTIPLIER);
 
-            this.position(1); // Snap to exact position.
-            this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.85}, (220 * this.details.impact), mina.easein);
+            // Snap to exact position.
+            this.position(1);
+            this.halo.animate({r: haloRadius, opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
-        public show(p: Timeline.Person) {
-            console.log(p.details)
-            this.state = ShowState.Shown;
+        public show(p: Timeline.Person): void {
+            $.get('/static/templates/achievement.mst', (template: string) => {
+                this.state = ShowState.Shown;
+
+                let rendered = Mustache.render(template, {
+                    person: p.details, 
+                    achievement: this.details, 
+                    parseDescription: Helpers.parseDescription,
+                });
+
+                $("#achievement_overlay")
+                    .html(rendered)
+                    .css({top: this.currentPoint.y, left: this.currentPoint.x})
+                    .show();
+            });
         }
 
         private fill(): string {

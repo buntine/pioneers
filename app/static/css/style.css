@@ -488,3 +488,14 @@ a.source:after {
 #impact_key ul li.five {
   background-color: #00fffd;
 }
+
+#achievement_overlay {
+  display: none;
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  top: 0;
+  left: 0;
+  background: #2b2b2b;
+  border: 1px solid #fff;
+}
