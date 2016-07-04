@@ -1,5 +1,6 @@
 /// <reference path='impact/impact.ts'/>
 /// <reference path='timeline/timeline.ts'/>
+/// <reference path='geography/geography.ts'/>
 /// <reference path='structure/interfaces.ts'/>
 /// <reference path='structure/tab.ts'/>
 /// <reference path='structure/app_state.ts'/>
@@ -15,7 +16,7 @@ $(() => {
     let tabs: {[K: string]: Structure.Tab} = {
         "impact": new Impact.Impact(svg),
         "timeline": new Timeline.Timeline(svg),
-        "geography": new Impact.Impact(svg),
+        "geography": new Geography.Geography(svg),
     };
 
     let opSwitcher = new Toggler({
