@@ -11,6 +11,7 @@ namespace Timeline {
 
         public static TOP_PADDING = 65;
         public static MAX_ROW_SIZE = 150;
+        private static MAX_FRAME_DIFF = 100; // Miliseconds.
 
         constructor(public svg: Snap.Paper) {
             this.columnSize = 100;
@@ -52,30 +53,32 @@ namespace Timeline {
         public execute(): void {
             $("#impact_key").show();
 
+            this.setResolution("High");
             this.drawScale();
             this.forAchievements((a, p) => a.drawHalo(this.columnSize, this.svg)); // Halos must be all drawm before cores to prevent layering issues.
             this.forAchievements((a, p) => a.drawCore(this.columnSize, p, this.svg));
 
-            this.position(this.id);
+            this.position(performance.now(), this.id);
         }
 
-        private position(id: number, iteration = 1): void {
+        private position (ts: number, id: number, iteration = 1): void {
             // Stop if this recursion is no longer active.
             if (this.id !== id) { return; }
 
-            let snapAll = () => this.forAchievements((a, p) => a.snap());
+            this.forAchievements((a, _) => a.position());
 
-            if (this.resolution == "High") {
-                this.forAchievements((a, p) => a.position());
+            // Approximation of iterations that's visually effective.
+            if (this.resolution == "High" && iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
+                requestAnimationFrame((next_ts: number) => {
+                    // Performance is too bad, so use low-res mode.
+                    if (iteration > 2 && (next_ts - ts) > Timeline.MAX_FRAME_DIFF) {
+                        this.setResolution("Low");
+                    }
 
-                // Approximation of iterations that's visually effective.
-                if (iteration < (5.5 / Achievement.ATTRACTION_SPEED)) {
-                    requestAnimationFrame(() => this.position(id, iteration + 1));
-                } else {
-                    snapAll();
-                }
+                    this.position(next_ts, id, iteration + 1)
+                });
             } else {
-                snapAll();
+                this.forAchievements((a, _) => a.snap());
             }
         }
 
