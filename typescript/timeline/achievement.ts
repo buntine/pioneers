@@ -1,8 +1,16 @@
 namespace Timeline {
+
+    enum ShowState {
+        None = 0,
+        Zooming = 1,
+        Shown = 2,
+    }
+
     export class Achievement {
         public details: Structure.Achievement;
         public row: number;
         public column: number;
+        public state: ShowState;
 
         private core: Snap.Element;
         private halo: Snap.Element;
@@ -24,6 +32,7 @@ namespace Timeline {
         ];
 
         constructor(achievement: Structure.Achievement) {
+            this.state = ShowState.None;
             this.details = achievement;
             this.row = 0;
             this.column = 0;
@@ -38,15 +47,29 @@ namespace Timeline {
             this.halo.attr({fill: "none", borderWidth: 1, stroke: Achievement.COLOURS[1], opacity: 0});
         }
 
-        public drawCore(columnSize: number, person: Timeline.Person, svg: Snap.Paper): void {
+        public drawCore(columnSize: number, p: Timeline.Person, svg: Snap.Paper): void {
             let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+            let radius = this.radius(columnSize);
 
             this.currentPoint = Vector.randomized(new Vector(0, 0), new Vector(w, h));
             this.initialPoint = this.currentPoint.clone();
 
-            this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
-            this.core.mouseover((e:MouseEvent) => console.log(this.halo.attr("r")));
+            this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, radius);
             this.core.attr({fill: this.fill(), cursor: "pointer"});
+
+            this.core.hover((_: MouseEvent) => {
+                let r = this.halo.attr("r");
+
+                this.state = ShowState.Zooming;
+
+                this.core.animate({r: r}, 700, mina.easeout, () => this.show(p));
+            },
+            (_: MouseEvent) => {
+                if (this.state == ShowState.Zooming) {
+                    this.state = ShowState.None;
+                    this.core.stop().animate({r: radius}, 300, mina.easein);
+                }
+            });
         }
 
         public position(damping = Achievement.ATTRACTION_SPEED): void {
@@ -67,11 +90,16 @@ namespace Timeline {
             this.halo.animate({r: radius * (this.details.impact * Achievement.HALO_MULTIPLIER), opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
-        public fill(): string {
+        public show(p: Timeline.Person) {
+            console.log(p.details)
+            this.state = ShowState.Shown;
+        }
+
+        private fill(): string {
             return Achievement.COLOURS[this.details.impact - 1];
         }
 
-        public coords(columnSize: number, radius: number): Vector {
+        private coords(columnSize: number, radius: number): Vector {
             let c = (a: number, max = 99999) => Helpers.centerize(Math.min(max, columnSize), radius / 4, a);
 
             return new Vector(c(this.column),

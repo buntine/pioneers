@@ -158,7 +158,7 @@ namespace Timeline {
 
             guideline.attr({stroke: "#e81e48"});
             year.transform(`translateX(${Helpers.centerize(this.columnSize, bbox.w, 0)})`);
-            year.attr({fill: "#fff", fontSize: "0.9em", fontFamily: "Share Tech Mono, arial"});
+            year.attr({fill: "#fff", fontSize: "0.8em", fontFamily: "Share Tech Mono, arial"});
             bg.attr({fill: "#e81e48"});
             scaleTop.attr({stroke: "#fff"});
             scaleBottom.attr({stroke: "#fff"});
