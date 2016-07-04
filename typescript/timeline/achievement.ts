@@ -72,9 +72,10 @@ namespace Timeline {
         }
 
         public coords(columnSize: number, radius: number): Vector {
-            let c = (a:number) => Helpers.centerize(columnSize, radius / 4, a);
+            let c = (a: number, max = 99999) => Helpers.centerize(Math.min(max, columnSize), radius / 4, a);
 
-            return new Vector(c(this.column), c(this.row) + Timeline.TOP_PADDING);
+            return new Vector(c(this.column),
+                              c(this.row, Timeline.MAX_ROW_SIZE) + Timeline.TOP_PADDING);
         }
 
         private radius(columnSize: number) {
