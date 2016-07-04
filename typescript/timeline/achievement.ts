@@ -46,7 +46,7 @@ namespace Timeline {
 
             this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius(columnSize));
             this.core.mouseover((e:MouseEvent) => console.log(this.halo.attr("r")));
-            this.core.attr({fill: this.fill()});
+            this.core.attr({fill: this.fill(), cursor: "pointer"});
         }
 
         public position(damping = Achievement.ATTRACTION_SPEED): void {
