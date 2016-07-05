@@ -58,14 +58,25 @@ namespace Timeline {
             this.core.attr({fill: this.fill(), cursor: "pointer"});
 
             this.core.hover((_: MouseEvent) => {
-                let r = this.halo.attr("r");
+                let r = parseInt(this.halo.attr("r"));
 
                 this.state = ShowState.Zooming;
 
-                this.core.animate({r: r}, 700, mina.easeout, () => this.show(p));
+                this.core.animate({r: r}, 700, mina.easeout, () => {
+                    this.state = ShowState.Shown;
+
+                    let pop = svg.rect(this.currentPoint.x - r, this.currentPoint.y - r, r * 2, r * 2, r, r);
+                    pop.attr({fill: "#2b2b2b", borderWidth: "1px", stroke: Achievement.COLOURS[1]});
+                    pop.animate({rx: 3, ry: 3}, 220, mina.easein, () => {
+                        pop.animate({height: 400, width: 300, x: this.currentPoint.x - 150}, 220, mina.easeout, () => {
+                            this.show(p);
+                        });
+                    });
+                });
             },
             (_: MouseEvent) => {
                 if (this.state == ShowState.Zooming) {
+                  console.log("off");
                     this.state = ShowState.None;
                     this.core.stop().animate({r: radius}, 300, mina.easein);
                 }
@@ -94,8 +105,6 @@ namespace Timeline {
 
         public show(p: Timeline.Person): void {
             $.get('/static/templates/achievement.mst', (template: string) => {
-                this.state = ShowState.Shown;
-
                 let rendered = Mustache.render(template, {
                     person: p.details, 
                     achievement: this.details, 
@@ -104,7 +113,7 @@ namespace Timeline {
 
                 $("#achievement_overlay")
                     .html(rendered)
-                    .css({top: this.currentPoint.y, left: this.currentPoint.x})
+                    .css({top: this.currentPoint.y + 80, left: this.currentPoint.x - 150})
                     .show();
             });
         }

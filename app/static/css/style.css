@@ -342,7 +342,9 @@ a.source:after {
   border: 2px solid #aaa;
 }
 
-.pioneer_overlay .person_details .person_core h3 {
+.pioneer_overlay .person_details .person_core h3,
+#achievement_overlay h3
+{
   background-color: #e81e48;
   display: table;
   margin: 8px auto;
@@ -496,6 +498,6 @@ a.source:after {
   height: 400px;
   top: 0;
   left: 0;
-  background: #2b2b2b;
-  border: 1px solid #fff;
+  background: none;
+  color: #fff;
 }
