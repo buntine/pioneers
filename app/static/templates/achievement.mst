@@ -4,5 +4,5 @@
     {{#parseDescription}}
     <p>{{achievement.description}} <a href="{{achievement.source}}">More</a></p>
     {{/parseDescription}}
-    <a class="button" href="#" title="See all achievements">See all achievements</a>
+    <a class="button all_achievements" href="#" title="See all achievements">See all achievements</a>
 </section>

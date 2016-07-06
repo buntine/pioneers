@@ -130,7 +130,13 @@ namespace Timeline {
                 $("#achievement_overlay")
                     .html(rendered)
                     .css({top: this.destinationPoint.y + 60 - r, left: this.destinationPoint.x - 150})
-                    .show();
+                    .show()
+                    .find(".all_achievements")
+                    .click((e: MouseEvent) => {
+                        e.preventDefault();
+                        // TODO: this.unfocus();
+                        p.show();
+                    });
             });
         }
 
