@@ -124,6 +124,7 @@ namespace Timeline {
                     person: p.details, 
                     achievement: this.details, 
                     parseDescription: Helpers.parseDescription,
+                    remainingAchievements: () => { return p.details.total_achievements - p.details.achievements.length },
                 });
 
                 $("#achievement_overlay")
@@ -131,10 +132,6 @@ namespace Timeline {
                     .css({top: this.destinationPoint.y + 60 - r, left: this.destinationPoint.x - 150})
                     .show();
             });
-        }
-
-        private unfocus() {
-            console.log("Off");           
         }
 
         private fill(): string {
