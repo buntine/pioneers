@@ -1,5 +1,6 @@
-namespace Timeline {
+/// <reference path='popper.ts'/>
 
+namespace Timeline {
     enum ShowState {
         None = 0,
         Zooming = 1,
@@ -14,6 +15,7 @@ namespace Timeline {
 
         private core: Snap.Element;
         private halo: Snap.Element;
+        private popper: Timeline.Popper;
         private destinationPoint: Vector;
         private currentPoint: Vector;
         private initialPoint: Vector;
@@ -34,6 +36,7 @@ namespace Timeline {
         constructor(achievement: Structure.Achievement, public svg: Snap.Paper) {
             this.state = ShowState.None;
             this.details = achievement;
+            this.popper = new Timeline.Popper(svg);
             this.row = 0;
             this.column = 0;
         }
@@ -62,38 +65,15 @@ namespace Timeline {
 
                 this.state = ShowState.Zooming;
 
+                // If user lets animation complete, continue to show full achievement details.
                 this.core.animate({r: r}, 700, mina.easeout, () => {
                     this.state = ShowState.Shown;
-
-                    let pop = this.svg.rect(this.currentPoint.x - r, this.currentPoint.y - r, r * 2, r * 2, r, r);
-                    pop.attr({fill: "#2b2b2b", borderWidth: "1px", stroke: Achievement.COLOURS[1]});
-                    pop.animate({rx: 3, ry: 3}, 220, mina.easein, () => {
-                        pop.animate({height: 400, width: 300, x: this.currentPoint.x - 150}, 220, mina.easeout, () => {
-                            this.show(p, r);
-
-                            let f = (e: MouseEvent) => {
-                                $("#achievement_overlay").hide();
-
-                                pop.animate({height: r * 2, width: r * 2, x: this.currentPoint.x - r}, 220, mina.easein, () => {
-                                    pop.animate({rx: r, ry: r}, 220, mina.easeout, () => {
-                                        pop.remove();
-                                        this.state = ShowState.None;
-                                        this.core.stop().animate({r: radius}, 300, mina.easein);
-                                    });
-                                });
-
-                                this.svg.unmouseover(f);
-                            };
-
-                            this.svg.mouseover(f);
-                        });
-                    });
+                    this.popper.expand(p, this.details, r, () => this.unfocus());
                 });
             },
             (_: MouseEvent) => {
                 if (this.state == ShowState.Zooming) {
-                    this.state = ShowState.None;
-                    this.core.stop().animate({r: radius}, 300, mina.easein);
+                    this.unfocus();
                 }
             });
         }
@@ -118,26 +98,9 @@ namespace Timeline {
             this.halo.animate({r: haloRadius, opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
-        public show(p: Timeline.Person, r: number): void {
-            $.get("/static/templates/achievement.mst", (template: string) => {
-                let rendered = Mustache.render(template, {
-                    person: p.details, 
-                    achievement: this.details, 
-                    parseDescription: Helpers.parseDescription,
-                    remainingAchievements: () => { return p.details.total_achievements - p.details.achievements.length },
-                });
-
-                $("#achievement_overlay")
-                    .html(rendered)
-                    .css({top: this.destinationPoint.y + 60 - r, left: this.destinationPoint.x - 150})
-                    .show()
-                    .find(".all_achievements")
-                    .click((e: MouseEvent) => {
-                        e.preventDefault();
-                        // TODO: this.unfocus();
-                        p.show();
-                    });
-            });
+        private unfocus(): void {
+            this.state = ShowState.None;
+            this.core.stop().animate({r: radius}, 300, mina.easein);
         }
 
         private fill(): string {
