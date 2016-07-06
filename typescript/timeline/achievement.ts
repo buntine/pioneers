@@ -31,30 +31,30 @@ namespace Timeline {
             "#00fffd",
         ];
 
-        constructor(achievement: Structure.Achievement) {
+        constructor(achievement: Structure.Achievement, public svg: Snap.Paper) {
             this.state = ShowState.None;
             this.details = achievement;
             this.row = 0;
             this.column = 0;
         }
 
-        public drawHalo(columnSize: number, svg: Snap.Paper): void {
+        public drawHalo(columnSize: number): void {
             let radius = this.radius(columnSize);
 
             this.destinationPoint = this.coords(columnSize, radius);
 
-            this.halo = svg.circle(this.destinationPoint.x, this.destinationPoint.y, radius);
+            this.halo = this.svg.circle(this.destinationPoint.x, this.destinationPoint.y, radius);
             this.halo.attr({fill: "none", borderWidth: 1, stroke: Achievement.COLOURS[1], opacity: 0});
         }
 
-        public drawCore(columnSize: number, p: Timeline.Person, svg: Snap.Paper): void {
-            let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+        public drawCore(columnSize: number, p: Timeline.Person): void {
+            let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
             let radius = this.radius(columnSize);
 
             this.currentPoint = Vector.randomized(new Vector(0, 0), new Vector(w, h));
             this.initialPoint = this.currentPoint.clone();
 
-            this.core = svg.circle(this.initialPoint.x, this.initialPoint.y, radius);
+            this.core = this.svg.circle(this.initialPoint.x, this.initialPoint.y, radius);
             this.core.attr({fill: this.fill(), cursor: "pointer"});
 
             this.core.hover((_: MouseEvent) => {
@@ -65,18 +65,33 @@ namespace Timeline {
                 this.core.animate({r: r}, 700, mina.easeout, () => {
                     this.state = ShowState.Shown;
 
-                    let pop = svg.rect(this.currentPoint.x - r, this.currentPoint.y - r, r * 2, r * 2, r, r);
+                    let pop = this.svg.rect(this.currentPoint.x - r, this.currentPoint.y - r, r * 2, r * 2, r, r);
                     pop.attr({fill: "#2b2b2b", borderWidth: "1px", stroke: Achievement.COLOURS[1]});
                     pop.animate({rx: 3, ry: 3}, 220, mina.easein, () => {
                         pop.animate({height: 400, width: 300, x: this.currentPoint.x - 150}, 220, mina.easeout, () => {
-                            this.show(p);
+                            this.show(p, r);
+
+                            let f = (e: MouseEvent) => {
+                                $("#achievement_overlay").hide();
+
+                                pop.animate({height: r * 2, width: r * 2, x: this.currentPoint.x - r}, 220, mina.easein, () => {
+                                    pop.animate({rx: r, ry: r}, 220, mina.easeout, () => {
+                                        pop.remove();
+                                        this.state = ShowState.None;
+                                        this.core.stop().animate({r: radius}, 300, mina.easein);
+                                    });
+                                });
+
+                                this.svg.unmouseover(f);
+                            };
+
+                            this.svg.mouseover(f);
                         });
                     });
                 });
             },
             (_: MouseEvent) => {
                 if (this.state == ShowState.Zooming) {
-                  console.log("off");
                     this.state = ShowState.None;
                     this.core.stop().animate({r: radius}, 300, mina.easein);
                 }
@@ -103,8 +118,8 @@ namespace Timeline {
             this.halo.animate({r: haloRadius, opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
-        public show(p: Timeline.Person): void {
-            $.get('/static/templates/achievement.mst', (template: string) => {
+        public show(p: Timeline.Person, r: number): void {
+            $.get("/static/templates/achievement.mst", (template: string) => {
                 let rendered = Mustache.render(template, {
                     person: p.details, 
                     achievement: this.details, 
@@ -113,9 +128,13 @@ namespace Timeline {
 
                 $("#achievement_overlay")
                     .html(rendered)
-                    .css({top: this.currentPoint.y + 80, left: this.currentPoint.x - 150})
+                    .css({top: this.destinationPoint.y + 60 - r, left: this.destinationPoint.x - 150})
                     .show();
             });
+        }
+
+        private unfocus() {
+            console.log("Off");           
         }
 
         private fill(): string {

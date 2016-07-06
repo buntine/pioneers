@@ -55,8 +55,8 @@ namespace Timeline {
 
             this.setResolution("High");
             this.drawScale();
-            this.forAchievements((a, p) => a.drawHalo(this.columnSize, this.svg)); // Halos must be all drawm before cores to prevent layering issues.
-            this.forAchievements((a, p) => a.drawCore(this.columnSize, p, this.svg));
+            this.forAchievements((a, p) => a.drawHalo(this.columnSize)); // Halos must be all drawm before cores to prevent layering issues.
+            this.forAchievements((a, p) => a.drawCore(this.columnSize, p));
 
             this.position(performance.now(), this.id);
         }
@@ -122,7 +122,7 @@ namespace Timeline {
                 let person = new Person(p);
 
                 for (let a of p.achievements) {
-                    let achievement = new Achievement(a);
+                    let achievement = new Achievement(a, this.svg);
 
                     achievement.row = this.rowFor(years, a.year);
                     person.achievements.push(achievement);
