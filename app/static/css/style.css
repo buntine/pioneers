@@ -337,14 +337,14 @@ a.source:after {
   border-style: solid;
 }
 
-.pioneer_overlay .person_details .person_core img {
+.pioneer_overlay .person_details .person_core img,
+#achievement_overlay img {
   border-radius: 50%;
   border: 2px solid #aaa;
 }
 
 .pioneer_overlay .person_details .person_core h3,
-#achievement_overlay h3
-{
+#achievement_overlay h3 {
   background-color: #e81e48;
   display: table;
   margin: 8px auto;
@@ -354,7 +354,8 @@ a.source:after {
   color: #fff;
 }
 
-.pioneer_overlay .person_details .person_core p {
+.pioneer_overlay .person_details .person_core p,
+#achievement_overlay p {
   margin: 20px auto 40px auto;
   padding: 0 20px;
 }
@@ -500,4 +501,13 @@ a.source:after {
   left: 0;
   background: none;
   color: #fff;
+}
+
+#achievement_overlay .achievement_details {
+  text-align: center;
+  padding: 20px 0;
+  border: 1px solid #3f4d69;
+  border-radius: 3px;
+  background: #2b2b2b;
+  min-height: 400px;
 }

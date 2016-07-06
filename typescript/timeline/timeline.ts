@@ -84,6 +84,7 @@ namespace Timeline {
 
         public unfocus(): void {
             $("#impact_key").hide();
+            $("#achievement_overlay").hide();
 
             // Cheap way for me to kill obsolete recursions on this.position() when user is actively resizing window.
             this.id++;

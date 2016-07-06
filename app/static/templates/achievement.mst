@@ -1,8 +1,8 @@
 <section class="achievement_details">
-  <div class="person_core">
     <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
     <h3>{{person.name}}</h3>
-    <p>{{achievement.description}}</p>
+    {{#parseDescription}}
+    <p>{{achievement.description}} <a href="{{achievement.source}}">More</a></p>
+    {{/parseDescription}}
     <a class="button" href="#" title="See all achievements">See all achievements</a>
-  </div>
 </section>
