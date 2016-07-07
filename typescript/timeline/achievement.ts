@@ -69,7 +69,7 @@ namespace Timeline {
                 // If user lets animation complete, continue to show full achievement details.
                 this.core.animate({r: r}, 700, mina.easeout, () => {
                     this.state = ShowState.Shown;
-                    this.popper.expand(p, this.details, () => this.unfocus());
+                    this.popper.expand(p, this);
                 });
             },
             (_: MouseEvent) => {
@@ -96,7 +96,7 @@ namespace Timeline {
             this.halo.animate({r: this.haloRadius(), opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
-        private unfocus(): void {
+        public unfocus(): void {
             this.state = ShowState.None;
             this.core.stop().animate({r: this.radius}, 300, mina.easein);
         }
