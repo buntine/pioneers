@@ -59,7 +59,7 @@ namespace Timeline {
             this.core = this.svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius);
             this.core.attr({fill: this.fill(), cursor: "pointer"});
 
-            this.popper.draw(this.destinationPoint, this.radius);
+            this.popper.draw(this.destinationPoint, this.haloRadius());
 
             this.core.hover((_: MouseEvent) => {
                 let r = parseInt(this.halo.attr("r"));
@@ -91,11 +91,9 @@ namespace Timeline {
         }
 
         public snap(): void {
-            let haloRadius = this.radius * (this.details.impact * Achievement.HALO_MULTIPLIER);
-
             // Snap to exact position.
             this.position(1);
-            this.halo.animate({r: haloRadius, opacity: 0.85}, (220 * this.details.impact), mina.easein);
+            this.halo.animate({r: this.haloRadius(), opacity: 0.85}, (220 * this.details.impact), mina.easein);
         }
 
         private unfocus(): void {
@@ -105,6 +103,10 @@ namespace Timeline {
 
         private fill(): string {
             return Achievement.COLOURS[this.details.impact - 1];
+        }
+
+        private haloRadius(): number {
+            return this.radius * (this.details.impact * Achievement.HALO_MULTIPLIER);
         }
 
         private coords(columnSize: number): Vector {
