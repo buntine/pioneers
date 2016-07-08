@@ -54,3 +54,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Joseph Marie Jacquard", "Male", "France", "Oullins", "", "", "1752", "1834", "A French weaver, merchant and inventor.", "joseph_jacquard.jpg", "https://en.wikipedia.org/wiki/Joseph_Marie_Jacquard"
 "Maurice Karnaugh", "Male", "USA", "New York City, New York", "", "", "1924", "", "An American physicist and mathematician.", "maurice_karnaugh.jpg", "https://en.wikipedia.org/wiki/Maurice_Karnaugh"
 "Jacek Karpiński", "Male", "Poland", "Biała Podlaska", "", "", "1927", "2010", "A Polish engineer and early computer scientist.", "jacek_karpinski.jpg", "https://en.wikipedia.org/wiki/Jacek_Karpi%C5%84ski"
+"Alan Kay", "Male", "USA", "Springfield, Massachusetts", "", "", "1940", "", "An American computer scientist and programming pioneer.", "alan_kay.jpg", "https://en.wikipedia.org/wiki/Alan_Kay"
