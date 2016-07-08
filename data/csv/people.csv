@@ -55,3 +55,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Maurice Karnaugh", "Male", "USA", "New York City, New York", "", "", "1924", "", "An American physicist and mathematician.", "maurice_karnaugh.jpg", "https://en.wikipedia.org/wiki/Maurice_Karnaugh"
 "Jacek Karpiński", "Male", "Poland", "Biała Podlaska", "", "", "1927", "2010", "A Polish engineer and early computer scientist.", "jacek_karpinski.jpg", "https://en.wikipedia.org/wiki/Jacek_Karpi%C5%84ski"
 "Alan Kay", "Male", "USA", "Springfield, Massachusetts", "", "", "1940", "", "An American computer scientist and programming pioneer.", "alan_kay.jpg", "https://en.wikipedia.org/wiki/Alan_Kay"
+"Stephen Cole Kleene", "Male", "USA", "Hartford, Connecticut", "", "", "1909", "1994", "An American mathematician and pioneering theoretical computer scientist.", "stephen_cole_kleene.jpg", "https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
+"Donald Knuth", "Male", "USA", "Milwaukee, Wisconsin", "", "", "1938", "", "An American mathematician and computer scientist.", "donald_knuth.jpg", "https://en.wikipedia.org/wiki/Donald_Knuth"
