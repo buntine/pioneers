@@ -28,7 +28,7 @@ namespace Timeline {
                 .animate({rx: 3, ry: 3}, Popper.SPEED, mina.easein, () => {
                     this.rect.animate({height: h, width: w, x: this.point.x - (w / 2)}, Popper.SPEED, mina.easeout, () => {
                         this.show(p, a);
- 
+
                         let f = (e: MouseEvent) => {
                             this.unfocus(a);
                             this.svg.unmouseover(f);
@@ -47,16 +47,23 @@ namespace Timeline {
                     parseDescription: Helpers.parseDescription,
                 });
 
-                $("#achievement_overlay")
+                let overlay = $("#achievement_overlay")
                     .html(rendered)
-                    .css({top: this.point.y + 60 - this.radius, left: this.point.x - 150})
-                    .show()
-                    .find(".all_achievements")
-                    .click((e: MouseEvent) => {
-                        e.preventDefault();
-                        this.unfocus(a);
-                        p.show();
-                    });
+                    .css({top: this.point.y + 60 - this.radius, left: this.point.x - (Popper.WIDTH / 2)})
+                    .show();
+
+                overlay.find(".all_achievements").click((e: MouseEvent) => {
+                    e.preventDefault();
+                    this.unfocus(a);
+                    p.show();
+                });
+
+                let adjust = this.leftAdjustment();
+
+                if (adjust !== 0) {
+                    overlay.css({left: `${overlay.position().left - adjust}px`});
+                    this.rect.transform(`translateX(${-adjust})`);
+                }
             });
         }
 
@@ -64,6 +71,7 @@ namespace Timeline {
             let r = this.radius
 
             $("#achievement_overlay").hide();
+            this.rect.transform(`translateX(${0})`); // Move to original point incase we did a left adjustment.
     
             this.rect.animate({height: r * 2, width: r * 2, x: this.point.x - r}, Popper.SPEED, mina.easein, () => {
                 this.rect.animate({rx: r, ry: r}, Popper.SPEED, mina.easeout, () => {
@@ -71,6 +79,22 @@ namespace Timeline {
                     a.unfocus();
                 });
             });
+        }
+
+        // Returns the pixel amount to move left or right in case popper has expanded to be partially off-screen.
+        private leftAdjustment(): number {
+            let canvasW = parseInt(this.svg.attr("width"));
+            let mid = Popper.WIDTH / 2;
+            let right = (this.point.x + mid) - canvasW
+            let left = (this.point.x - mid);
+
+            if (left < 0) {
+                return left;
+            } else if (right > 0) {
+                return right;
+            } else {
+                return 0;
+            }
         }
     }
 }
