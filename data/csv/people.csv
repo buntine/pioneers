@@ -58,3 +58,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Stephen Cole Kleene", "Male", "USA", "Hartford, Connecticut", "", "", "1909", "1994", "An American mathematician and pioneering theoretical computer scientist.", "stephen_cole_kleene.jpg", "https://en.wikipedia.org/wiki/Stephen_Cole_Kleene"
 "Donald Knuth", "Male", "USA", "Milwaukee, Wisconsin", "", "", "1938", "", "An American mathematician and computer scientist.", "donald_knuth.jpg", "https://en.wikipedia.org/wiki/Donald_Knuth"
 "Leslie Lamport", "Male", "USA", "New York City, New York", "", "", "1941", "", "An American computer scientist.", "leslie_lamport.jpg", "https://en.wikipedia.org/wiki/Leslie_Lamport"
+"Sergey Lebedev", "Male", "Russia", " Nizhny Novgorod", "", "", "1902", "1974", "A Soviet electrical engineer and computer scientist.", "sergey_lebedev.jpg", "https://en.wikipedia.org/wiki/Sergey_Lebedev_(scientist)"
