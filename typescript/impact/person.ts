@@ -22,7 +22,7 @@ namespace Impact {
         }
 
         public draw(unit: number): void {
-            let mass = Math.min(Person.MAX_SIZE, this.details.impact * unit);
+            let mass = Math.round(Math.min(Person.MAX_SIZE, this.details.impact * unit));
 
             this.radius = mass / 2;
 
