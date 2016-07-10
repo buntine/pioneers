@@ -102,23 +102,21 @@ namespace Impact {
 
         private moveToView(scale: number, dimensions: Vector): void {
             let bbox = this.group.getBBox();
-            let movement = new Vector(0, 0);
-
-            if (bbox.y < 0) {
-                movement.y = -bbox.y;
-            } else if (bbox.y2 > dimensions.y) {
-                movement.y = -(bbox.y2 - dimensions.y);
-            }
-
-            if (bbox.x < 0) {
-                movement.x = -bbox.x;
-            } else if (bbox.x2 > dimensions.x) {
-                movement.x = -(bbox.x2 - dimensions.x);
-            }
+            let checkCoords = (a: number, b: number, c: number) => {
+                if (a < 0) {
+                    return -a;
+                } else if (b > c) {
+                    return -(b - c);
+                } else {
+                    return 0;
+                }
+            };
+            let movement = new Vector(checkCoords(bbox.x, bbox.x2, dimensions.x),
+                                      checkCoords(bbox.y, bbox.y2, dimensions.y));
 
             // Scaled avatar is partially off-screen, so move into view.
             if (!movement.isEmpty()) {
-                this.group.animate({transform: `s${scale},${scale} t${movement.x / scale},${movement.y / scale}`}, 130);
+                this.group.animate({transform: `s${scale},${scale} t${movement.x / scale},${movement.y / scale}`}, 120);
             }
         }
 
