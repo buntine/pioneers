@@ -37,4 +37,10 @@ namespace Helpers {
             });
         };
     }
+
+    export function canvasDimensions(svg: Snap.Paper): Vector {
+        let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
+
+        return new Vector(w, h);
+    }
 }

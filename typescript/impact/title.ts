@@ -61,6 +61,7 @@ namespace Impact {
             let scale = Person.MAX_ZOOM / mass;
             let pt = p.point;
             let tl = p.topLeft();
+            let dimensions = Helpers.canvasDimensions(p.svg);
 
             // In order to get zoom appearing correctly I need to draw new image over the existing one and
             // scale it. It's a hack, but without this I get weird behaviour depending on the original draw
@@ -85,9 +86,11 @@ namespace Impact {
             });
             this.group.hover(null, (_:MouseEvent) => this.close());
 
-            // Person is larger than MAX_ZOOM so skip zoom in.
+            // Ensure Person is not already larger than MAX_ZOOM.
             if (scale >= 1) {
-                this.group.animate({transform: `s${scale},${scale}`}, 500, mina.backout);
+                this.group.animate({transform: `s${scale},${scale}`}, 500, mina.backout, () => this.moveToView(scale, dimensions));
+            } else {
+                this.moveToView(scale, dimensions);
             }
         }
 
@@ -95,6 +98,28 @@ namespace Impact {
             this.unhighlight();
 
             this.state = ShowState.None;
+        }
+
+        private moveToView(scale: number, dimensions: Vector): void {
+            let bbox = this.group.getBBox();
+            let movement = new Vector(0, 0);
+
+            if (bbox.y < 0) {
+                movement.y = -bbox.y;
+            } else if (bbox.y2 > dimensions.y) {
+                movement.y = -(bbox.y2 - dimensions.y);
+            }
+
+            if (bbox.x < 0) {
+                movement.x = -bbox.x;
+            } else if (bbox.x2 > dimensions.x) {
+                movement.x = -(bbox.x2 - dimensions.x);
+            }
+
+            // Scaled avatar is partially off-screen, so move into view.
+            if (!movement.isEmpty()) {
+                this.group.animate({transform: `s${scale},${scale} t${movement.x / scale},${movement.y / scale}`}, 130);
+            }
         }
 
         private distanceFromView(): number {

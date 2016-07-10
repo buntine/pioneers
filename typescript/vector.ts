@@ -53,4 +53,8 @@ class Vector {
     public clone(): Vector {
         return new Vector(this.x, this.y);
     }
+
+    public isEmpty(): boolean {
+        return (this.x === 0 && this.y === 0);
+    }
 }

@@ -83,7 +83,7 @@ namespace Impact {
         }
 
         public highlight(): void {
-            this.avatar.animate({strokeWidth: 6}, 800);
+            this.avatar.animate({strokeWidth: 6}, 720);
             this.title.initiate()
         }
 

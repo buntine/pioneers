@@ -14,15 +14,16 @@ namespace Impact {
         }
 
         public build(set: Array<Structure.Person>) : boolean {
-            let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
-            let [low, high] = [new Vector(150, 20),
-                               new Vector(w, h - 20)];
+            let canvas = Helpers.canvasDimensions(this.svg);
 
+            canvas.sub(new Vector(0, 20));
             this.people.clear();
 
             set.forEach((p) => {
+                let randomPosition = Vector.randomized(new Vector(150, 20), canvas)
+
                 this.people.push(
-                    new Person(this.svg, p, Vector.randomized(low, high)));
+                    new Person(this.svg, p, randomPosition));
             });
 
             return this.built();
