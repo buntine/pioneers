@@ -13,8 +13,6 @@ namespace Impact {
         public group: Snap.Element;
         public title: any; // Zepto object.
 
-        private static WAIT = 600;
-
         constructor(public person: Person) {
             this.state = ShowState.None;
         }
@@ -37,8 +35,6 @@ namespace Impact {
             }
 
             this.highlight();
-
-            setTimeout(() => this.zoom(), Title.WAIT);
         }
 
         public draw(): void {

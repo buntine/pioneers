@@ -83,13 +83,26 @@ namespace Impact {
         }
 
         public highlight(): void {
-            this.avatar.animate({strokeWidth: 6}, 720);
             this.title.initiate()
+            this.avatar.animate({strokeWidth: 6}, 690, mina.easein, () => {
+                this.hide();
+                this.title.zoom();
+            });
         }
 
         public unhighlight(): void {
             this.avatar.stop().animate({strokeWidth: 1}, 300);
+            this.unhide();
             this.title.finalize();
         }
+
+        private hide(): void {
+            this.avatar.attr({display: "none"});
+        }
+
+        private unhide(): void {
+            this.avatar.attr({display: ""});
+        }
+
     }
 }
