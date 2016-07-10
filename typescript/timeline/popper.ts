@@ -83,9 +83,9 @@ namespace Timeline {
 
         // Returns the pixel amount to move left or right in case popper has expanded to be partially off-screen.
         private leftAdjustment(): number {
-            let canvasW = parseInt(this.svg.attr("width"));
+            let dimensions = Helpers.canvasDimensions(this.svg);
             let mid = Popper.WIDTH / 2;
-            let right = (this.point.x + mid) - canvasW
+            let right = (this.point.x + mid) - dimensions.x;
             let left = (this.point.x - mid);
 
             if (left < 0) {

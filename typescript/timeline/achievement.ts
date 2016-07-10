@@ -51,9 +51,7 @@ namespace Timeline {
         }
 
         public drawCore(columnSize: number, p: Timeline.Person): void {
-            let [w, h] = ["width", "height"].map(a => parseInt(this.svg.attr(a)));
-
-            this.currentPoint = Vector.randomized(new Vector(0, 0), new Vector(w, h));
+            this.currentPoint = Vector.randomized(new Vector(0, 0), Helpers.canvasDimensions(this.svg));
             this.initialPoint = this.currentPoint.clone();
 
             this.core = this.svg.circle(this.initialPoint.x, this.initialPoint.y, this.radius);

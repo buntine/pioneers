@@ -147,13 +147,12 @@ namespace Timeline {
 
         private drawScale() {
             let lastYearIndex = this.years.length - 1;
-            let width = parseInt(this.svg.attr("width"));
-            let height = parseInt(this.svg.attr("height"));
-            let scaleTop = this.svg.line(0, 1, width, 1);
-            let scaleBottom = this.svg.line(0, 31, width, 31);
+            let dimensions = Helpers.canvasDimensions(this.svg);
+            let scaleTop = this.svg.line(0, 1, dimensions.x, 1);
+            let scaleBottom = this.svg.line(0, 31, dimensions.x, 31);
             let bg = this.svg.rect(0, 2, this.columnSize, 28);
             let year = this.svg.text(0, 20, this.years[lastYearIndex].year);
-            let guideline = this.svg.line(0, 32, 0, height);
+            let guideline = this.svg.line(0, 32, 0, dimensions.y);
             let g = this.svg.group(bg, year);
             let bbox = year.getBBox();
 
