@@ -1,11 +1,11 @@
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-family: 'Share Tech Mono';
   text-transform: uppercase;
   color: #fff;
 }
 
-h4 {
-  font-size: 18px;
+h1 {
+  font-size: 32px;
 }
 
 h2 {
@@ -16,9 +16,14 @@ h3 {
   font-size: 22px;
 }
 
-h1 {
-  font-size: 32px;
+h4 {
+  font-size: 18px;
 }
+
+h5 {
+  font-size: 16px;
+}
+
 
 html,body {
   background: #1f1f1f;
@@ -29,9 +34,14 @@ html,body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+  color: #fff;
 }
 
 p {
+  line-height: 22px;
+}
+
+ul li {
   line-height: 22px;
 }
 
@@ -102,7 +112,7 @@ a.button {
   text-transform: uppercase;
   padding: 4px 20px;
   color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #aaa;
   cursor: pointer;
   font-family: 'Share Tech Mono';
 }
@@ -237,6 +247,7 @@ a.source:after {
 
 #inner_scroll ul li {
   padding: 7px 0 5px 20px;
+  line-height: 16px;
 }
 
 #inner_scroll ul li a {
@@ -442,7 +453,6 @@ a.source:after {
 .simple_popup {
   position: relative;
   background: #2b2b2b;
-  color: #fff;
   padding: 50px 70px;
   width: auto;
   max-width: 500px;
@@ -474,15 +484,16 @@ a.source:after {
   text-align: center;
 }
 
-#impact_key h4 {
-  color: #fff;
+#impact_key h5 {
   margin-bottom: 6px;
 }
 
 #impact_key ul li {
-  padding: 7px 15px;
+  height: 22px;
+  width: 22px;
   float: left;
-  margin-right: 2px;
+  margin-right: 6px;
+  border-radius: 11px;
 }
 
 #impact_key ul li.one {
@@ -512,7 +523,6 @@ a.source:after {
   top: 0;
   left: 0;
   background: none;
-  color: #fff;
 }
 
 #achievement_overlay .achievement_details {
