@@ -4,7 +4,7 @@ namespace Timeline {
         private point: Vector;
         private radius: number;
 
-        private static WIDTH = 300;
+        private static WIDTH = 380;
         private static HEIGHT = 400;
         private static SPEED = 220;
 

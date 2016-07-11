@@ -1,7 +1,7 @@
 h1, h2, h3, h4 {
   font-family: 'Share Tech Mono';
   text-transform: uppercase;
-  color: #aaa;
+  color: #fff;
 }
 
 h4 {
@@ -29,6 +29,10 @@ html,body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+}
+
+p {
+  line-height: 22px;
 }
 
 strong {
@@ -98,9 +102,9 @@ a.button {
   text-transform: uppercase;
   padding: 4px 20px;
   color: #fff;
-  font-size: 12px;
-  border: 1px solid #aaa;
+  border: 1px solid #fff;
   cursor: pointer;
+  font-family: 'Share Tech Mono';
 }
 
 a.button:hover {
@@ -252,8 +256,6 @@ a.source:after {
   margin: 20px auto;
   font-family: 'Fira Sans';
   color: #efefef;
-  font-size: 12px;
-  line-height: 18px;
   border: 1px solid #aaa;
 }
 
@@ -301,8 +303,6 @@ a.source:after {
   margin: 0 0 10px 0;
   padding: 0 10px;
   line-height: 30px;
-  font-size: 18px;
-  text-transform: uppercase;
   border-width: 0 1px 1px 0;
   border-color: #aaa;
   border-style: solid;
@@ -313,7 +313,6 @@ a.source:after {
 }
 
 .pioneer_overlay .person_details .person_impact_details ul li span {
-  font-size: 14px;
   font-weight: bold;
   margin-right: 10px;
 }
@@ -365,18 +364,16 @@ a.source:after {
   border: 2px solid #aaa;
 }
 
-.pioneer_overlay .person_details .person_core h3,
-#achievement_overlay h3 {
+.pioneer_overlay .person_details .person_core h3 {
   background-color: #e81e48;
   display: table;
   margin: 8px auto;
   padding: 4px 12px;
-  color: #fff;
 }
 
 .pioneer_overlay .person_details .person_core p,
 #achievement_overlay p {
-  margin: 20px auto 40px auto;
+  margin: 20px auto 28px auto;
   padding: 0 20px;
 }
 
@@ -420,8 +417,8 @@ a.source:after {
 }
 
 #intro_container p {
-  line-height: 22px;
   margin: 12px 0;
+  max-width: 500px;
 }
 
 #intro_container i {
@@ -450,11 +447,9 @@ a.source:after {
   width: auto;
   max-width: 500px;
   margin: 20px auto;
-  line-height: 22px;
 }
 
 .simple_popup h2 {
-  font-size: 26px;
   margin: 0 0 35px 0;
 }
 
@@ -480,7 +475,7 @@ a.source:after {
 }
 
 #impact_key h4 {
-  color: #aaa;
+  color: #fff;
   margin-bottom: 6px;
 }
 
@@ -513,8 +508,7 @@ a.source:after {
 #achievement_overlay {
   display: none;
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 380px;
   top: 0;
   left: 0;
   background: none;
@@ -523,9 +517,16 @@ a.source:after {
 
 #achievement_overlay .achievement_details {
   text-align: center;
-  padding: 20px 0;
+  padding: 24px 0 32px 0;
   border: 1px solid #3f4d69;
   border-radius: 3px;
   background: #2b2b2b;
   min-height: 400px;
+}
+
+#achievement_overlay h3 {
+  background-color: #e81e48;
+  display: table;
+  margin: 16px auto;
+  padding: 4px 12px;
 }
