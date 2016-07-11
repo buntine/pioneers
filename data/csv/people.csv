@@ -62,3 +62,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Gottfried Wilhelm Leibniz", "Male", "Germany", "Leipzig", "", "", "1646", "1716", "A German polymath, philosopher and proto-computer scientist.", "gottfried_wilhelm_leibniz.jpg", "https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz"
 "J. C. R. Licklider", "Male", "USA", "St. Louis, Missouri", "", "", "1915", "1990", "An American psychologist and computer scientist.", "jcr_licklider.jpg", "https://en.wikipedia.org/wiki/J._C._R._Licklider"
 "Ramon Llull", "Male", "Majorca", "Palma", "", "", "1232", "1315", "A Majorcan logician and philosopher.", "ramon_llull.jpg", "https://en.wikipedia.org/wiki/Ramon_Llull"
+"Ada Lovelace", "Female", "England", "London", "", "", "1815", "1852", "An English mathematician and technical writer.", "ada_lovelace.jpg", "https://en.wikipedia.org/wiki/Ada_Lovelace"

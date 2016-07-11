@@ -102,6 +102,7 @@ footer .content {
   display: inline;
   padding: 0 0 0 30px;
   text-transform: lowercase;
+  line-height: 14px;
 }
 
 a {
