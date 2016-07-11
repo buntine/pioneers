@@ -1,7 +1,6 @@
 /// <reference path='../helpers.ts'/>
 
 namespace Impact {
-
     enum ShowState {
         None = 0,
         Waiting = 1,

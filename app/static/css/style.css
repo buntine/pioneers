@@ -165,7 +165,7 @@ a.source:after {
 #searchform input {
   background: none;
   color: #efefef;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 #datacanvas {
@@ -181,7 +181,10 @@ a.source:after {
 }
 
 .fa-remove:before {
-  content: url('/static/images/icons/x.svg');
+  content: "X";
+  font-size: 19px;
+  vertical-align: middle;
+  font-family: 'Share Tech Mono';
 }
 
 .tags {

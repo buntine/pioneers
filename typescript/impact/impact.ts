@@ -14,9 +14,9 @@ namespace Impact {
         }
 
         public build(set: Array<Structure.Person>) : boolean {
-            let canvas = Helpers.canvasDimensions(this.svg);
+            let canvas = Vector.sub(Helpers.canvasDimensions(this.svg),
+                                    new Vector(0, 20));
 
-            canvas.sub(new Vector(0, 20));
             this.people.clear();
 
             set.forEach((p) => {
