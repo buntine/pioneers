@@ -1,7 +1,23 @@
-h1 {
+h1, h2, h3, h4 {
   font-family: 'Share Tech Mono';
-  font-size: 20px;
-  text-transform: 'uppercase';
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h1 {
+  font-size: 32px;
 }
 
 html,body {
@@ -84,6 +100,7 @@ a.button {
   color: #fff;
   font-size: 12px;
   border: 1px solid #aaa;
+  cursor: pointer;
 }
 
 a.button:hover {
@@ -114,7 +131,7 @@ a.source:after {
 }
 
 #op_switcher a {
-  line-height: 37px;
+  line-height: 31px;
   padding: 0;
   width: 70px;
   display: block;
@@ -149,14 +166,14 @@ a.source:after {
 
 #looking_glass {
   float: left;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   background: #e81e48 url('/static/images/icons/search.svg') left no-repeat;
   border: 1px solid #efefef;
 }
 
 #searchform {
-  margin: 10px 0 0 20px;
+  margin: 13px 0 0 20px;
   padding: 0;
   font-family: 'Share Tech Mono';
   flex: 0 0 46px;
@@ -280,10 +297,11 @@ a.source:after {
   display: inline-table;
 }
 
-.pioneer_overlay .person_details .person_impact_details h3 {
+.pioneer_overlay .person_details .person_impact_details h4 {
   margin: 0 0 10px 0;
   padding: 0 10px;
   line-height: 30px;
+  font-size: 18px;
   text-transform: uppercase;
   border-width: 0 1px 1px 0;
   border-color: #aaa;
@@ -353,8 +371,6 @@ a.source:after {
   display: table;
   margin: 8px auto;
   padding: 4px 12px;
-  text-transform: uppercase;
-  font-size: 18px;
   color: #fff;
 }
 
@@ -428,15 +444,16 @@ a.source:after {
 
 .simple_popup {
   position: relative;
-  background: #FFF;
-  padding: 20px;
+  background: #2b2b2b;
+  color: #fff;
+  padding: 50px 70px;
   width: auto;
-  max-width: 640px;
+  max-width: 500px;
   margin: 20px auto;
-  line-height: 20px;
+  line-height: 22px;
 }
 
-.simple_popup h3 {
+.simple_popup h2 {
   font-size: 26px;
   margin: 0 0 35px 0;
 }
@@ -462,10 +479,7 @@ a.source:after {
   text-align: center;
 }
 
-#impact_key h3 {
-  font-family: "Share Tech Mono, arial";
-  text-transform: uppercase;
-  font-size: 16px;
+#impact_key h4 {
   color: #aaa;
   margin-bottom: 6px;
 }
