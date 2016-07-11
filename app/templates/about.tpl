@@ -1,6 +1,6 @@
 <div id="about_popup" class="simple_popup mfp-hide">
   <h2>About</h2>
-  <p>PIONEERS is an interactive study of the impact of pioneers in the field of computer science. With PIONEERS you can visualize the "who", "what" and "where" of contributions to any set of topics in our varied field.</p>
+  <p><i>The Pioneers</i> is an interactive study of the impact of pioneers in the field of computer science. With PIONEERS you can visualize the "who", "what" and "where" of contributions to any set of topics in our varied field.</p>
   <ul>
     <li>The <strong>who</strong> page will present each pioneer and their relative importance, via radius, for the chosen tag(s).</li>
     <li>The <strong>when</strong> page presents a timeline of achievements for the chosen tag(s), color-coded by overall impact.</li>
