@@ -16,7 +16,8 @@ class Pioneer {
                 flag: this.flagPath(),
             });
 
-            $("div#pioneer").html(rendered).show();
+            $("div#pioneer_overlay").html(rendered);
+            $("div#pioneer").show();
 
             // Add click event for this particular pioneers "show all" link.
             $("div#pioneer a.all_achievements").click((e: Event) => {
@@ -35,8 +36,8 @@ class Pioneer {
                     parseDescription: Helpers.parseDescription,
                 });
 
-                $("div#pioneer ul.person_achievements").html(rendered);
-                $("div#pioneer a.all_achievements").hide();
+                $("div#pioneer_overlay ul.person_achievements").html(rendered);
+                $("div#pioneer_overlay a.all_achievements").hide();
             });
         }, "json");
     }
