@@ -141,6 +141,7 @@ $(() => {
         let page = $("div#page");
         let [width, height] = [page.width(), page.height()];
 
+        $("div#pioneer").css({width: width, height: height});
         svg.attr({width: width, height: height});
         tabs[state.tab].resize(width, height);
     }

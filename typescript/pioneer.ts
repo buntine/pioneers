@@ -16,10 +16,10 @@ class Pioneer {
                 flag: this.flagPath(),
             });
 
-            Helpers.openPopup(`<div class="pioneer_overlay">${rendered}</div>`);
+            $("div#pioneer").html(rendered).show();
 
             // Add click event for this particular pioneers "show all" link.
-            $(".pioneer_overlay a.all_achievements").click((e: Event) => {
+            $("div#pioneer a.all_achievements").click((e: Event) => {
                 e.preventDefault();
                 this.allAchievements();
             });
@@ -35,8 +35,8 @@ class Pioneer {
                     parseDescription: Helpers.parseDescription,
                 });
 
-                $(".pioneer_overlay ul.person_achievements").html(rendered);
-                $(".pioneer_overlay a.all_achievements").hide();
+                $("div#pioneer ul.person_achievements").html(rendered);
+                $("div#pioneer a.all_achievements").hide();
             });
         }, "json");
     }
