@@ -100,6 +100,7 @@ $(() => {
 
         if (tab.built()) {
             tab.unfocus();
+            $("div#pioneer").hide();
             svg.clear();
         }
     }

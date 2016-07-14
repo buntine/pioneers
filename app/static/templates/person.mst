@@ -1,11 +1,15 @@
 <section class="person_details">
   <div class="person_core">
-    <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
+    <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="300" height="300" />
     <h3>{{person.name}}</h3>
     <span>{{years}}</span>
+    <div class="person_country">{{person.birthplace}}, {{person.country}}</div>
+    <div class="person_flag"><img class="flag" src="{{flag}}" title="{{person.country}}" width="40" height="25" /></div>
     <p>{{person.biography}}</p>
     <a class="button" href="{{person.source}}" title="Read more">Find out more</a>
   </div>
+</section>
+<!--
   <div class="person_impact_details">
     <div>
       <h4>Achievements</h4>
@@ -35,8 +39,4 @@
       </ul>
     </div>
   </div>
-</section>
-<section class="person_footer">
-  <div class="person_country">{{person.birthplace}}, {{person.country}}</div>
-  <div class="person_flag"><img class="flag" src="{{flag}}" title="{{person.country}}" width="40" height="25" /></div>
-</section>
+-->
