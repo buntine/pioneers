@@ -277,29 +277,37 @@ a.source:after {
 
 #pioneer_overlay {
   background-color: #2b2b2b;
-  padding: 20px;
   position: relative; 
   font-family: 'Fira Sans';
   color: #efefef;
+  width: 1000px;
+  margin: 40px auto 0 auto;
 }
 
-#pioneer_overlay .person_details {
-  max-width: 400px;
+.person_left {
+  width: 400px;
+  float: left;
+  text-align: center;
 }
 
-#pioneer_overlay .person_details .person_impact_details {
+.person_right {
+  width: 600px;
+  float: right;
+}
+
+#pioneer_overlay .person_impact_details {
   float: left;
   overflow: auto;
   width: 719px;
   height: 449px;
 }
 
-#pioneer_overlay .person_details .person_impact_details div {
+#pioneer_overlay .person_impact_details div {
   width: 348px;
   display: inline-table;
 }
 
-#pioneer_overlay .person_details .person_impact_details h4 {
+#pioneer_overlay .person_impact_details h4 {
   margin: 0 0 10px 0;
   padding: 0 10px;
   line-height: 30px;
@@ -308,21 +316,21 @@ a.source:after {
   border-style: solid;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li {
+#pioneer_overlay .person_impact_details ul li {
   margin: 10px 10px 22px 10px;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li span {
+#pioneer_overlay .person_impact_details ul li span {
   font-weight: bold;
   margin-right: 10px;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li span div.rating {
+#pioneer_overlay .person_impact_details ul li span div.rating {
   display: inline;
   margin-left: 15px;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li span div.rating div {
+#pioneer_overlay .person_impact_details ul li span div.rating div {
   display: inline-table;
   width: 8px;
   height: 8px;
@@ -331,49 +339,37 @@ a.source:after {
   margin: 0 5px;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li span div.rating div.on {
+#pioneer_overlay .person_impact_details ul li span div.rating div.on {
   background-color: #e81e48;
 }
 
-#pioneer_overlay .person_details .person_impact_details ol {
+#pioneer_overlay .person_impact_details ol {
   list-style: circle;
 }
 
-#pioneer_overlay .person_details .person_impact_details ol li {
+#pioneer_overlay .person_impact_details ol li {
   display: inline;
 }
 
-#pioneer_overlay .person_details .person_impact_details ul li p {
+#pioneer_overlay .person_impact_details ul li p {
   margin: 5px 0 0 0;
 }
 
-#pioneer_overlay .person_details .person_core {
-  padding: 10px;
-  text-align: center;
-}
-
-#pioneer_overlay .person_details .person_core img,
+#pioneer_overlay .person_left img,
 #achievement_overlay img {
-  border-radius: 50%;
   border: 2px solid #aaa;
+  border-radius: 50%;
 }
 
-#pioneer_overlay .person_details .person_core h3 {
-  background-color: #e81e48;
+#pioneer_overlay h2 {
   display: table;
-  margin: 8px auto;
+  margin: 16px auto;
   padding: 4px 12px;
 }
 
-#pioneer_overlay .person_details .person_core p,
+#pioneer_overlay p,
 #achievement_overlay p {
-  margin: 20px auto 28px auto;
-  padding: 0 20px;
-}
-
-#pioneer_overlay .person_details .person_details_impact {
-  width: 500px;
-  height: 450px;
+  margin: 5px auto 28px auto;
 }
 
 .takeover {
@@ -529,5 +525,9 @@ a.source:after {
   right: 20px;
   top: 20px;
   z-index: 200;
-
+  padding: 8px;
+  background-color: #e81e48;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: #fff;
 }

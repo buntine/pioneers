@@ -1,17 +1,14 @@
-<section class="person_details">
-  <div class="person_core">
+  <div class="person_left">
     <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="300" height="300" />
-    <h3>{{person.name}}</h3>
-    <span>{{years}}</span>
-    <div class="person_country">{{person.birthplace}}, {{person.country}}</div>
-    <div class="person_flag"><img class="flag" src="{{flag}}" title="{{person.country}}" width="40" height="25" /></div>
-    <p>{{person.biography}}</p>
-    <a class="button" href="{{person.source}}" title="Read more">Find out more</a>
+    <a class="button" href="{{person.source}}" title="Wikipedia">Wikipaedia Page</a>
+    <a class="button all_achievements" href="#" title="See all achievements">Plus {{remainingAchievements}} more</a>
   </div>
-</section>
-<!--
-  <div class="person_impact_details">
-    <div>
+  <div class="person_right">
+    <h2>{{person.name}}</h2>
+    <p>{{person.biography}}</p>
+    <p>{{years}}</p>
+   
+    <div class="person_impact_details">
       <h4>Achievements</h4>
       <ul class="person_achievements">
         {{#person.achievements}}
@@ -27,16 +24,4 @@
         {{/remainingAchievements}}
       </ul>
     </div>
-    <div>
-      <h4>Awards</h4>
-      <ul class="person_awards">
-        {{#person.wins}}
-        <li><span>{{year}}: {{name}}</span><p>{{reason}}</p></li>
-        {{/person.wins}}
-        {{^person.wins}}
-        <li><p>None yet!</p></li>
-        {{/person.wins}}
-      </ul>
-    </div>
   </div>
--->
