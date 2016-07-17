@@ -530,12 +530,15 @@ a.source:after {
 
 #pioneer .close {
   position: absolute;
+  font-size: 29px;
+  font-family: 'Share Tech Mono';
   right: 20px;
   top: 20px;
   z-index: 200;
   padding: 8px;
-  background-color: #e81e48;
-  border: 1px solid #fff;
-  border-radius: 50%;
   color: #fff;
+}
+
+#pioneer .close:hover {
+  color: #e81e48;
 }
