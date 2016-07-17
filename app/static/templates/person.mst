@@ -8,7 +8,7 @@
     <p>{{years}}</p>
    
     <div class="person_impact_details">
-      <h4>Achievements</h4>
+      <h4>Achievements &amp; Awards</h4>
       <ul class="person_achievements">
         {{#person.achievements}}
         <li>
