@@ -286,13 +286,18 @@ a.source:after {
 }
 
 .person_left {
-  width: 400px;
+  width: 360px;
+  padding-right: 50px;
   float: left;
   text-align: center;
 }
 
+.person_left div {
+  margin: 25px 0;
+}
+
 .person_right {
-  width: 600px;
+  width: 590px;
   float: right;
 }
 
