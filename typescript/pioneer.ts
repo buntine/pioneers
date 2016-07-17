@@ -47,7 +47,7 @@ class Pioneer {
             let impact = parseInt(render(text));
 
             return [1,2,3,4,5].map((n) => {
-                return `<div ${(impact >= n) ? "class='on'" : ""}></div>`;
+                return `<div class="${(impact >= n) ? "on" : "none"}"></div>`;
             }).join("");
         }
     }

@@ -1,7 +1,6 @@
   <div class="person_left">
     <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="300" height="300" />
-    <a class="button" href="{{person.source}}" title="Wikipedia">Wikipaedia Page</a>
-    <a class="button all_achievements" href="#" title="See all achievements">Plus {{remainingAchievements}} more</a>
+    <p><a class="button" href="{{person.source}}" title="Wikipedia">Wikipaedia Page</a></p>
   </div>
   <div class="person_right">
     <h2>{{person.name}}</h2>
