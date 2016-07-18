@@ -3,8 +3,8 @@
     <div><a class="button" href="{{person.source}}" title="Wikipedia">Wikipedia Page</a></div>
   </div>
   <div class="person_right">
-    <h2>{{person.name}}</h2>
-    <p>{{person.biography}} from {{person.birthplace}}, {{person.country}}</p>
+    <h2>{{person.name}} <img class="flag" src="{{flag}}" alt="{{country}}" title="{{country}}" /></h2>
+    <p>{{person.biography}} from {{person.birthplace}}, {{person.country}}.</p>
     <p>{{years}}</p>
    
     <div class="person_impact_details">

@@ -353,15 +353,21 @@ a.source:after {
   margin: 5px 0 0 0;
 }
 
-#pioneer_overlay .person_left img,
+#pioneer_overlay .person_left img.profile,
 #achievement_overlay img {
   border: 2px solid #aaa;
   border-radius: 50%;
 }
 
 #pioneer_overlay h2 {
-  font-size: 36px;
+  font-size: 40px;
   margin: 0 0 15px 0;
+}
+
+#pioneer_overlay img.flag {
+  padding-left: 12px;
+  width: 40px;
+  height: 30px;
 }
 
 #pioneer_overlay p {
