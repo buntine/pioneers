@@ -67,3 +67,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "John McCarthy", "Male", "USA", "Boston, Massachusetts", "", "", "1927", "2011", "A computer scientist and cognitive scientist.", "john_mccarthy.jpg", "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"
 "Marvin Minsky", "Male", "USA", "New York City, New York", "", "", "1927", "2016", "A computer scientist and cognitive scientist", "marvin_minsky.jpg", "https://en.wikipedia.org/wiki/Marvin_Minsky"
 "Peter Naur", "Male", "Denmark", "Frederiksberg", "", "", "1928", "2016", "A computer scientist and computing pioneer", "peter_naur.jpg", "https://en.wikipedia.org/wiki/Peter_Naur"
+"Max Newman", "Male", "England", "London", "", "", "1897", "1984", "A mathematician and codebreaker", "max_newman.jpg", "https://en.wikipedia.org/wiki/Max_Newman"
