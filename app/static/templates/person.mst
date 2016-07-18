@@ -4,7 +4,7 @@
   </div>
   <div class="person_right">
     <h2>{{person.name}}</h2>
-    <p>{{person.biography}}</p>
+    <p>{{person.biography}} from {{person.birthplace}}, {{person.country}}</p>
     <p>{{years}}</p>
    
     <div class="person_impact_details">

@@ -13,7 +13,7 @@ namespace Impact {
         private static REFINEMENT_DELTA = 4;
         private static REDRAW_THRESHOLD = 35;
         private static SIZING_DELTA = 0.057;
-        private static MAX_FRAME_DIFF = 100; // Miliseconds.
+        private static MAX_FRAME_DIFF = 40; // Miliseconds.
 
         constructor() {
             super();
