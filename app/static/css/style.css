@@ -327,7 +327,8 @@ a.source:after {
   font-weight: bold;
 }
 
-#pioneer_overlay .person_impact_details ul li span div.rating {
+#pioneer_overlay .person_impact_details ul li span div {
+  text-transform: uppercase;
   display: inline;
   margin-left: 15px;
 }
