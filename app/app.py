@@ -15,17 +15,14 @@ SUGGESTED_TAGS = [
 def expand_achievements(achievements):
     return map(lambda a: {"description": a.description,
                           "year": a.year,
+                          "award": a.award.name if a.award else None,
                           "impact": a.impact.value,
                           "source": a.source}, achievements)
-
-def expand_wins(wins):
-    return map(lambda w: {"name": w.award.name, "year": w.year, "reason": w.reason}, wins)
 
 def expand_person(person, achievements):
     p = person.to_dict(only=["id", "name", "country", "gender", "yob", "yod", "biography", "birthplace", "picture", "source"])
     p["total_achievements"] = select(a for a in Achievement if a.person == person).count()
     p["achievements"] = expand_achievements(achievements)
-    p["wins"] = expand_wins(person.wins)
     p["impact"] = reduce(lambda t, a: t + a["impact"], p["achievements"], 0)
 
     return p

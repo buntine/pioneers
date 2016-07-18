@@ -1,6 +1,6 @@
   <div class="person_left">
     <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="300" height="300" />
-    <div><a class="button" href="{{person.source}}" title="Wikipedia">Wikipaedia Page</a></div>
+    <div><a class="button" href="{{person.source}}" title="Wikipedia">Wikipedia Page</a></div>
   </div>
   <div class="person_right">
     <h2>{{person.name}}</h2>

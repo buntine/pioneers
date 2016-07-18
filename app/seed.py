@@ -85,11 +85,11 @@ def awards(rows):
 
     # Just hard-code tags and impact for now (in future some awards may be worth others).
     impact = Impact.get(value = 1)
-    tags = [fetch_tag("Awards", "Tag")]
 
     for row in rows:
         award = Award.get(name = row["Award"]) or Award(name = row["Award"])
         person = Person.get(name = row["Name"])
+        tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
 
         if person:
             Achievement(award = award, person = person, impact = impact, year = row["Date"], description = row["Description"],
