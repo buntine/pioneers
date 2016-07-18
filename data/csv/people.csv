@@ -65,4 +65,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Ada Lovelace", "Female", "England", "London", "", "", "1815", "1852", "An English mathematician and technical writer.", "ada_lovelace.jpg", "https://en.wikipedia.org/wiki/Ada_Lovelace"
 "John Mauchly", "Male", "USA", "Cincinnati", "", "", "1907", "1980", "An American physicist and early computer businessman.", "john_mauchly.jpg", "https://en.wikipedia.org/wiki/John_Mauchly"
 "John McCarthy", "Male", "USA", "Boston, Massachusetts", "", "", "1927", "2011", "A computer scientist and cognitive scientist.", "john_mccarthy.jpg", "https://en.wikipedia.org/wiki/John_McCarthy_(computer_scientist)"
-"Marvin Minsky", "Male", "USA", "New York City, New York", "", "", "1927", "2016", "A computer scientist and cognitive scientist.", "marvin_minsky.jpg", "https://en.wikipedia.org/wiki/Marvin_Minsky"
+"Marvin Minsky", "Male", "USA", "New York City, New York", "", "", "1927", "2016", "A computer scientist and cognitive scientist", "marvin_minsky.jpg", "https://en.wikipedia.org/wiki/Marvin_Minsky"
+"Peter Naur", "Male", "Denmark", "Frederiksberg", "", "", "1928", "2016", "A computer scientist and computing pioneer", "peter_naur.jpg", "https://en.wikipedia.org/wiki/Peter_Naur"
