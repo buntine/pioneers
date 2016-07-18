@@ -10,7 +10,6 @@ class Impact(db.Entity):
 
 class Person(db.Entity):
     achievements = Set("Achievement")
-    wins = Set("Win")
     name = Required(str)
     country = Required(str)
     birthplace = Required(str)
@@ -24,14 +23,8 @@ class Person(db.Entity):
     source = Required(str)
 
 class Award(db.Entity):
-    wins = Set("Win")
+    achievements = Set("Achievement")
     name = Required(str)
-
-class Win(db.Entity):
-    person = Required(Person)
-    award = Required(Award)
-    year = Required(int)
-    reason = Required(str)
 
 class Tag(db.Entity):
     name = Required(str)
@@ -41,6 +34,7 @@ class Tag(db.Entity):
 
 class Achievement(db.Entity):
     tags = Set("Tag")
+    award = Optional(Award)
     person = Required(Person)
     impact = Required(Impact)
     year = Required(int)

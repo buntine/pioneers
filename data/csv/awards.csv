@@ -1,4 +1,4 @@
-Name, Award, Year, Reason
-"Jean Bartik", "Turing Award", "1980", "Being good"
-"George Boole", "Turing Award", "1983", "Being good"
-"Tim Berners-Lee", "Turing Award", "1986", "Being good"
+Name, Award, Date, Description, Source
+"Jean Bartik", "Turing Award", "1980", "Being good", "http://google.com"
+"George Boole", "Turing Award", "1983", "Being good", "http://google.com"
+"Tim Berners-Lee", "Turing Award", "1986", "Being good", "http://google.com"

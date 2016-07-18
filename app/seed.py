@@ -45,7 +45,7 @@ def people(rows):
 
             if geocoded:
                 location = (geocoded.latitude, geocoded.longitude)
-                time.sleep(1.2);
+                time.sleep(0.5);
             else:
                 raise RuntimeError("Cannot geolocate: %s" % row["Name"])
         else:
@@ -83,14 +83,19 @@ def achievements(rows):
 def awards(rows):
     print "Removed: %d Awards." % Award.select().delete()
 
+    # Just hard-code tags and impact for now (in future some awards may be worth others).
+    impact = Impact.get(value = 1)
+    tags = [fetch_tag("Awards", "Tag")]
+
     for row in rows:
         award = Award.get(name = row["Award"]) or Award(name = row["Award"])
         person = Person.get(name = row["Name"])
 
         if person:
-            Win(award = award, person = person, year = row["Year"], reason = row["Reason"])
+            Achievement(award = award, person = person, impact = impact, year = row["Date"], description = row["Description"],
+                        source = row["Source"], tags = tags)
 
-            print "Created Award for %s, %s, %s" % (award.name, person.name, row["Year"])
+            print "Created Award for %s, %s, %s" % (award.name, person.name, row["Date"])
         else:
             print "WARN: Unknown person (%s). Skipping..." % row["Name"]
             continue

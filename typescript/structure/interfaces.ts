@@ -1,13 +1,14 @@
 namespace Structure {
-    export interface Win {
-        person?: Person;
-        name: string;
-        year: number;
-        reason: string;
-    }
+ //   export interface Win {
+ //       person?: Person;
+ //       name: string;
+ //       year: number;
+//        reason: string;
+ //   }
 
     export interface Achievement {
         year?: number;
+        award?: string;
         description: string;
         source: string;
         impact: number;
