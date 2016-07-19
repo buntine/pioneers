@@ -68,3 +68,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Marvin Minsky", "Male", "USA", "New York City, New York", "", "", "1927", "2016", "A computer scientist and cognitive scientist", "marvin_minsky.jpg", "https://en.wikipedia.org/wiki/Marvin_Minsky"
 "Peter Naur", "Male", "Denmark", "Frederiksberg", "", "", "1928", "2016", "A computer scientist and computing pioneer", "peter_naur.jpg", "https://en.wikipedia.org/wiki/Peter_Naur"
 "Max Newman", "Male", "England", "London", "", "", "1897", "1984", "A mathematician and codebreaker", "max_newman.jpg", "https://en.wikipedia.org/wiki/Max_Newman"
+"John von Neumann", "Male", "Hungary", "Budapest", "", "", "1903", "1957", "A polymath, physicist, inventor and computer scientist", "john_von_neumann.jpg", "https://en.wikipedia.org/wiki/John_von_Neumann"
