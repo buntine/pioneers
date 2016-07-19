@@ -52,9 +52,18 @@ $(() => {
              .on("load", () => {
                  setDimensions(true);
 
-                 // Show initial intro screen if user is coming to homepage.
+                 // Hide initial intro screen if user is not coming to homepage.
                  if (searched()) {
                      $("#intro").hide();
+                 }
+
+                 if (Helpers.isMobile()) {
+                     $.magnificPopup.open({
+                         items: {
+                             src: "#mobile_popup",
+                             type: "inline"
+                         }
+                     });
                  }
              });
 
@@ -85,7 +94,7 @@ $(() => {
     });
 
     $(".popup").magnificPopup({
-        type: 'inline',
+        type: "inline",
         midClick: true,
     });
 
