@@ -72,3 +72,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Kristen Nygaard", "Male", "Norway", "Oslo", "", "", "1926", "2002", "A computer scientist and politician", "kristen_nygaard.jpg", "https://en.wikipedia.org/wiki/Kristen_Nygaard"
 "James Cooley", "Male", "USA", "New York City, New York", "", "", "1926", "2016", "A computer scientist and mathematician", "james_cooley.jpg", "https://en.wikipedia.org/wiki/James_Cooley"
 "John W. Tukey", "Male", "USA", "New Bedford, Massachusetts", "", "", "1915", "2000", "A computer scientist and mathematician", "john_w_tukey.jpg", "https://en.wikipedia.org/wiki/John_Tukey"
+"Blaise Pascal", "Male", "France", "Clermont-Ferrand", "", "", "1623", "1662", "A mathematician, physicist, inventor and writer", "blaise_pascal.jpg", "https://en.wikipedia.org/wiki/Blaise_Pascal"
