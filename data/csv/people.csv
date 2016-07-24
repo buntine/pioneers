@@ -73,3 +73,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "James Cooley", "Male", "USA", "New York City, New York", "", "", "1926", "2016", "A computer scientist and mathematician", "james_cooley.jpg", "https://en.wikipedia.org/wiki/James_Cooley"
 "John W. Tukey", "Male", "USA", "New Bedford, Massachusetts", "", "", "1915", "2000", "A computer scientist and mathematician", "john_w_tukey.jpg", "https://en.wikipedia.org/wiki/John_Tukey"
 "Blaise Pascal", "Male", "France", "Clermont-Ferrand", "", "", "1623", "1662", "A mathematician, physicist, inventor and writer", "blaise_pascal.jpg", "https://en.wikipedia.org/wiki/Blaise_Pascal"
+"Emil Leon Post", "Male", "Poland", "Augustów", "", "", "1897", "1954", "A mathematician and logician", "emil_leon_post.jpg", "https://en.wikipedia.org/wiki/Emil_Leon_Post"
