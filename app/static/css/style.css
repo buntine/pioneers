@@ -89,8 +89,14 @@ div#pioneer {
   overflow: auto;
   background-color: #2b2b2b;
   z-index: 101;
+
+  animation: fadein 0.31s;
 }
 
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 footer {
   background-color: #1f1f1f;
