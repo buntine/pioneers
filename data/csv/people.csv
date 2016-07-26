@@ -74,3 +74,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "John W. Tukey", "Male", "USA", "New Bedford, Massachusetts", "", "", "1915", "2000", "A computer scientist and mathematician", "john_w_tukey.jpg", "https://en.wikipedia.org/wiki/John_Tukey"
 "Blaise Pascal", "Male", "France", "Clermont-Ferrand", "", "", "1623", "1662", "A mathematician, physicist, inventor and writer", "blaise_pascal.jpg", "https://en.wikipedia.org/wiki/Blaise_Pascal"
 "Emil Leon Post", "Male", "Poland", "Augustów", "", "", "1897", "1954", "A mathematician and logician", "emil_leon_post.jpg", "https://en.wikipedia.org/wiki/Emil_Leon_Post"
+"Dennis Ritchie", "Male", "USA", "Bronxville, New York", "", "", "1941", "2011", "A computer scientist and original hacker", "dennis_ritchie.jpg", "https://en.wikipedia.org/wiki/Dennis_Ritchie"
+"Ken Thompson", "Male", "USA", "New Orleans, Louisiana", "", "", "1943", "", "A computer scientist and original hacker", "ken_thompson.jpg", "https://en.wikipedia.org/wiki/Ken_Thompson"
