@@ -65,7 +65,7 @@ def achievements(rows):
 
         if person and impact:
             tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
-            topics = map(lambda t: fetch_tag(t, "Topic"), row["Topics"].split(","))
+            topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
             # Add appropriate slugged tag into all tag-linking syntax in description field.
             desc = unicode(row["Achievement"], "utf-8")
