@@ -6,7 +6,7 @@ An interactive study of the people, and their impact, in the field of computer s
 
 ## Data
 
-The pioneer data that populates this website was collected by hand from many sources across the World Wide Web. I hereby provide this collated data in CSV format to any person to use for any purpose whatsoever without limitation.
+The pioneer data that populates this website was collected by hand from many sources across the World Wide Web, rewritten into my own words and reformatted where appropriate. I hereby provide this collated data in CSV format to any person to use for any purpose whatsoever without limitation.
 
 * [people.csv](/data/csv/people.csv)
 * [achievements.csv](/data/csv/achievements.csv)
