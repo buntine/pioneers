@@ -57,6 +57,10 @@ def all_achievements_for_tags(tags):
 def all_achievements():
     return left_join((p, a) for p in Person
                             for a in p.achievements)
+
+def move_to_front(name, arr):
+    i = next(i for i, x in enumerate(arr) if x[0] == name)
+    return [arr.pop(i)] + arr
  
 @app.route("/")
 @app.route("/impact/<op>/<tags>")
@@ -68,7 +72,7 @@ def index(op="OR", tags=[]):
 
     return render_template("index.html",
             suggested_tag = random.choice(SUGGESTED_TAGS),
-            topics = get_tags("Topic"),
+            topics = move_to_front("All", get_tags("Topic")),
             tags = get_tags("Tag"))
 
 @app.route("/people")

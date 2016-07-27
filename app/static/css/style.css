@@ -389,6 +389,10 @@ a.source:after {
   font-size: 20px;
 }
 
+.takeover a {
+  font-size: 20px;
+}
+
 #intro {
   background: #2b2b2b url('/static/images/ui/tube.svg') 92% 89% no-repeat;
   color: #efefef;
