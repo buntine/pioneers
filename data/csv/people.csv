@@ -78,3 +78,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Ken Thompson", "Male", "USA", "New Orleans, Louisiana", "", "", "1943", "", "A computer scientist and original hacker", "ken_thompson.jpg", "https://en.wikipedia.org/wiki/Ken_Thompson"
 "Saul Rosen", "Male", "USA", "Port Chester, New York", "", "", "1922", "1991", "A mathematician and computer scientist", "saul_rosen.jpg", "http://history.computer.org/pioneers/rosen.html"
 "Bertrand Russell", "Male", "Wales", "Trellech, Monmouthshire", "", "", "1872", "1970", "A philosopher, logician, mathematician, historian, and more", "bertrand_russell.jpg", "https://en.wikipedia.org/wiki/Bertrand_Russell"
+"Gerard Salton", "Male", "Germany", "Nuremberg", "", "", "1927", "1995", "A computer scientist", "gerard_salton.jpg", "https://en.wikipedia.org/wiki/Gerard_Salton"
