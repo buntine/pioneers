@@ -76,3 +76,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Emil Leon Post", "Male", "Poland", "Augustów", "", "", "1897", "1954", "A mathematician and logician", "emil_leon_post.jpg", "https://en.wikipedia.org/wiki/Emil_Leon_Post"
 "Dennis Ritchie", "Male", "USA", "Bronxville, New York", "", "", "1941", "2011", "A computer scientist and original hacker", "dennis_ritchie.jpg", "https://en.wikipedia.org/wiki/Dennis_Ritchie"
 "Ken Thompson", "Male", "USA", "New Orleans, Louisiana", "", "", "1943", "", "A computer scientist and original hacker", "ken_thompson.jpg", "https://en.wikipedia.org/wiki/Ken_Thompson"
+"Saul Rosen", "Male", "USA", "Port Chester, New York", "", "", "1922", "1991", "A mathematician and computer scientist", "saul_rosen.jpg", "http://history.computer.org/pioneers/rosen.html"
