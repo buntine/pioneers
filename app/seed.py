@@ -64,7 +64,7 @@ def achievements(rows):
         impact = Impact.get(value = int(row["Impact"]))
 
         if person and impact:
-            tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
+            tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(",")))
             topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
             # Add appropriate slugged tag into all tag-linking syntax in description field.
@@ -89,7 +89,7 @@ def awards(rows):
     for row in rows:
         award = Award.get(name = row["Award"]) or Award(name = row["Award"])
         person = Person.get(name = row["Name"])
-        tags = map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(","))
+        tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(",")))
 
         if person:
             Achievement(award = award, person = person, impact = impact, year = row["Date"], description = row["Description"],
@@ -101,9 +101,10 @@ def awards(rows):
             continue
 
 def fetch_tag(t, style):
-    s = slug(t)
+    if len(t) > 0:
+        s = slug(t)
 
-    return Tag.get(slug = s, style = style) or Tag(name = t, slug = s, style = style)
+        return Tag.get(slug = s, style = style) or Tag(name = t, slug = s, style = style)
 
 def slug(s):
     pattern = re.compile("[^\w\-\+\@\#\$]+")
