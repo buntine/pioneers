@@ -83,3 +83,6 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Herbert A. Simon", "Male", "USA", "Pittsburgh, Pennsylvania", "", "", "1916", "2001", "A political scientist, economist, sociologist, psychologist, and computer scientist", "herbert_a_simon.jpg", "https://en.wikipedia.org/wiki/Herbert_A._Simon"
 "Ivan Sutherland", "Male", "USA", "Hastings, Nebraska", "", "", "1938", "", "A computer scientist and computer graphics pioneer", "ivan_sutherland.jpg", "https://en.wikipedia.org/wiki/Ivan_Sutherland"
 "Alan Turing", "Male", "England", "London", "", "", "1912", "1954", "A mathematician, logician and pioneering computer scientist", "alan_turing.jpg", "https://en.wikipedia.org/wiki/Alan_Turing"
+"Willis Ware", "Male", "USA", "Atlantic City, New Jersey", "", "", "1920", "2013", "A computer pioneer and security pioneer", "willis_ware.jpg", "https://en.wikipedia.org/wiki/Willis_Ware"
+"Adriaan van Wijngaarden", "Male", "Netherlands", "Rotterdam", "", "", "1916", "1987", "A mathematician and computer scientist", "adriaan_van_wijngaarden.jpg", "https://en.wikipedia.org/wiki/Adriaan_van_Wijngaarden"
+"Edsger W. Dijkstra", "Male", "Netherlands", "Rotterdam", "", "", "1930", "2002", "A theoretical physicist and computer scientist", "edsger_w_dijkstra.jpg", "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
