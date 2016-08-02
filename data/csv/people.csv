@@ -81,3 +81,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Gerard Salton", "Male", "Germany", "Nuremberg", "", "", "1927", "1995", "A computer scientist", "gerard_salton.jpg", "https://en.wikipedia.org/wiki/Gerard_Salton"
 "Claude Shannon", "Male", "USA", "Petoskey, Michigan", "", "", "1916", "2001", "A mathematician, electrical engineer and cryptographer", "claude_shannon.jpg", "https://en.wikipedia.org/wiki/Claude_Shannon"
 "Herbert A. Simon", "Male", "USA", "Pittsburgh, Pennsylvania", "", "", "1916", "2001", "A political scientist, economist, sociologist, psychologist, and computer scientist", "herbert_a_simon.jpg", "https://en.wikipedia.org/wiki/Herbert_A._Simon"
+"Ivan Sutherland", "Male", "USA", "Hastings, Nebraska", "", "", "1938", "", "A computer scientist and Internet pioneer", "ivan_sutherland.jpg", "https://en.wikipedia.org/wiki/Ivan_Sutherland"
