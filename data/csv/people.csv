@@ -89,3 +89,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Maurice Wilkes", "Male", "England", "Dudley, Worcestershire", "", "", "1913", "2010", "A computer scientist", "maurice_wilkes.jpg", "https://en.wikipedia.org/wiki/Maurice_Wilkes"
 "Sophie Wilson", "Female", "England", "Leeds, Yorkshire", "", "", "1957", "", "A computer scientist and software engineer", "sophie_wilson.jpg", "https://en.wikipedia.org/wiki/Sophie_Wilson"
 "Niklaus Wirth", "Male", "Switzerland", "Winterthur", "", "", "1934", "", "A computer scientist", "niklaus_wirth.jpg", "https://en.wikipedia.org/wiki/Niklaus_Wirth"
+"Konrad Zuse", "Male", "Germany", "Berlin", "", "", "1910", "1995", "A civil engineer, inventor and computer pioneer", "konrad_zuse.jpg", "https://en.wikipedia.org/wiki/Konrad_Zuse"
