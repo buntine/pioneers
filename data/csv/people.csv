@@ -70,6 +70,7 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Max Newman", "Male", "England", "London", "", "", "1897", "1984", "A mathematician and codebreaker", "max_newman.jpg", "https://en.wikipedia.org/wiki/Max_Newman"
 "John von Neumann", "Male", "Hungary", "Budapest", "", "", "1903", "1957", "A polymath, physicist, inventor and computer scientist", "john_von_neumann.jpg", "https://en.wikipedia.org/wiki/John_von_Neumann"
 "Kristen Nygaard", "Male", "Norway", "Oslo", "", "", "1926", "2002", "A computer scientist and politician", "kristen_nygaard.jpg", "https://en.wikipedia.org/wiki/Kristen_Nygaard"
+"Ole-Johan Dahl", "Male", "Norway", "Mandal", "", "", "1931", "2002", "A computer scientist", "ole_johan_dahl.jpg", "https://en.wikipedia.org/wiki/Ole-Johan_Dahl"
 "James Cooley", "Male", "USA", "New York City, New York", "", "", "1926", "2016", "A computer scientist and mathematician", "james_cooley.jpg", "https://en.wikipedia.org/wiki/James_Cooley"
 "John W. Tukey", "Male", "USA", "New Bedford, Massachusetts", "", "", "1915", "2000", "A computer scientist and mathematician", "john_w_tukey.jpg", "https://en.wikipedia.org/wiki/John_Tukey"
 "Blaise Pascal", "Male", "France", "Clermont-Ferrand", "", "", "1623", "1662", "A mathematician, physicist, inventor and writer", "blaise_pascal.jpg", "https://en.wikipedia.org/wiki/Blaise_Pascal"
