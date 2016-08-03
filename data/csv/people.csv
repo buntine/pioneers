@@ -87,3 +87,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Adriaan van Wijngaarden", "Male", "Netherlands", "Rotterdam", "", "", "1916", "1987", "A mathematician and computer scientist", "adriaan_van_wijngaarden.jpg", "https://en.wikipedia.org/wiki/Adriaan_van_Wijngaarden"
 "Edsger W. Dijkstra", "Male", "Netherlands", "Rotterdam", "", "", "1930", "2002", "A theoretical physicist and computer scientist", "edsger_w_dijkstra.jpg", "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
 "Maurice Wilkes", "Male", "England", "Dudley, Worcestershire", "", "", "1913", "2010", "A computer scientist", "maurice_wilkes.jpg", "https://en.wikipedia.org/wiki/Maurice_Wilkes"
+"Sophie Wilson", "Female", "England", "Leeds, Yorkshire", "", "", "1957", "", "A computer scientist and software engineer", "sophie_wilson.jpg", "https://en.wikipedia.org/wiki/Sophie_Wilson"
