@@ -2,7 +2,7 @@
 
 An interactive study of the people, and their impact, in the field of computer science. *The Pioneers of Computer Science* allows you to visualize the "who", "what" and "where" of contributions based on any set of topics in our varied field.
 
-[computerpionee.rs](https://computerpionee.rs/) (Coming Soon...)
+[computerpionee.rs](http://computerpionee.rs/) (Coming Soon...)
 
 ## Data
 

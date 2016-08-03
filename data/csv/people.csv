@@ -90,3 +90,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Sophie Wilson", "Female", "England", "Leeds, Yorkshire", "", "", "1957", "", "A computer scientist and software engineer", "sophie_wilson.jpg", "https://en.wikipedia.org/wiki/Sophie_Wilson"
 "Niklaus Wirth", "Male", "Switzerland", "Winterthur", "", "", "1934", "", "A computer scientist", "niklaus_wirth.jpg", "https://en.wikipedia.org/wiki/Niklaus_Wirth"
 "Konrad Zuse", "Male", "Germany", "Berlin", "", "", "1910", "1995", "A civil engineer, inventor and computer pioneer", "konrad_zuse.jpg", "https://en.wikipedia.org/wiki/Konrad_Zuse"
+"John G. Kemeny", "Male", "Hungary", "Budapest", "", "", "1926", "1992", "A mathematician and computer scientist", "john_g_kemeny.jpg", "https://en.wikipedia.org/wiki/John_G._Kemeny"
+"Thomas E. Kurtz", "Male", "USA", "Oak Park, Illinois", "", "", "1928", "", "A mathematician and computer scientist", "thomas_e_kurtz.jpg", "https://en.wikipedia.org/wiki/Thomas_E._Kurtz"

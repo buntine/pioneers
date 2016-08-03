@@ -2,6 +2,7 @@ NOTES
 TODO
 IDEAS
 BLOG
+USAGE
 .*.sw*
 venv/*
 db/*.sqlite3
