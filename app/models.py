@@ -1,8 +1,9 @@
 from pony.orm import *
+import os
 
 db = Database()
 
-sql_debug(True)
+#sql_debug(True)
 
 class Impact(db.Entity):
     value = Required(int)
@@ -41,5 +42,5 @@ class Achievement(db.Entity):
     description = Required(str)
     source = Required(str)
 
-db.bind("sqlite", "../db/pioneers.sqlite3", create_db=True)
+db.bind("postgres", user=os.environ["PIONEERSUSER"], password=os.environ["PIONEERSPASS"], host="127.0.0.1", database="pioneers")
 db.generate_mapping(create_tables=True)
