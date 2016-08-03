@@ -104,7 +104,7 @@ def fetch_tag(t, style):
     if len(t) > 0:
         s = slug(t)
 
-        return Tag.get(slug = s, style = style) or Tag(name = t, slug = s, style = style)
+        return Tag.get(slug = s, style = style) or Tag(name = unicode(t, "utf-8"), slug = s, style = style)
 
 def slug(s):
     pattern = re.compile("[^\w\-\+\@\#\$]+")
