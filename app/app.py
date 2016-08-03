@@ -8,8 +8,8 @@ app = Flask(__name__)
 app.config.from_envvar("SETTINGS", silent=True)
 
 SUGGESTED_TAGS = [
- {"slug": "algorithms-data-structures", "name": "Algorithms and data structures YO"},
- {"slug": "women-in-computing", "name": "Women in Computing YO"},
+ {"slug": "algorithms-data-structures", "name": "Algorithms &amp; data structures"},
+ {"slug": "women-in-computing", "name": "Women in Computing"},
 ]
 
 def expand_achievements(achievements):
