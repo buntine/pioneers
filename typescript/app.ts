@@ -69,7 +69,13 @@ $(() => {
 
     $("div.tags").change((e: Event) => {
         e.preventDefault();
-        search();
+
+        // Selectivity is triggering a second change event for unknown reasons. I was able to determine that
+        // only this unwelcomed event happens to set the 'cancelable' attribute to false.
+        // So I am checking for that as a somewhat dubious hack to filter out the event that I don't want.
+        if (e.cancelable) {
+            search();
+        }
     });
 
     $("#start").click((e: Event) => {
