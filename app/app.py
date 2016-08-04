@@ -9,7 +9,8 @@ app.config.from_envvar("SETTINGS", silent=True)
 
 SUGGESTED_TAGS = [
  {"slug": "algorithms-data-structures", "name": "Algorithms &amp; data structures"},
- {"slug": "women-in-computing", "name": "Women in Computing"},
+ {"slug": "women-in-computing", "name": "Women in computing"},
+ {"slug": "programming-languages", "name": "Programming languages"},
 ]
 
 def expand_achievements(achievements):

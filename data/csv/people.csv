@@ -93,3 +93,7 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Konrad Zuse", "Male", "Germany", "Berlin", "", "", "1910", "1995", "A civil engineer, inventor and computer pioneer", "konrad_zuse.jpg", "https://en.wikipedia.org/wiki/Konrad_Zuse"
 "John G. Kemeny", "Male", "Hungary", "Budapest", "", "", "1926", "1992", "A mathematician and computer scientist", "john_g_kemeny.jpg", "https://en.wikipedia.org/wiki/John_G._Kemeny"
 "Thomas E. Kurtz", "Male", "USA", "Oak Park, Illinois", "", "", "1928", "", "A mathematician and computer scientist", "thomas_e_kurtz.jpg", "https://en.wikipedia.org/wiki/Thomas_E._Kurtz"
+"Judea Pearl", "Male", "Israel", "Tel Aviv", "", "", "1936", "", "A computer scientist and philosopher", "judea_pearl.jpg", "https://en.wikipedia.org/wiki/Judea_Pearl"
+"Allen Newell", "Male", "USA", "San Francisco", "", "", "1927", "1992", "A computer scientist and cognitive psychologist", "simon_newell.jpg", "https://en.wikipedia.org/wiki/Allen_Newell"
+"Nathaniel Rochester", "Male", "USA", "Buffalo, New York", "", "", "1919", "2001", "A computer pioneer and electrical engineer", "nathaniel_rochester.jpg", "https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist)"
+"Arthur Samuel", "Male", "USA", "Emporia, Kansas", "", "", "1901", "1990", "A computer pioneer", "arthur_samuel.jpg", "https://en.wikipedia.org/wiki/Arthur_Samuel"
