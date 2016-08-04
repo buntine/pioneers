@@ -2,7 +2,7 @@ class Pioneer {
     public details: Structure.Person;
 
     public flagPath(): string {
-        return Helpers.imageSource("flags", `${this.details.country.toLowerCase()}.png`);
+        return Helpers.imageSource("flags", `${this.details.country.toLowerCase().replace(/\W/g, "_")}.png`);
     }
 
     public show(): void {
