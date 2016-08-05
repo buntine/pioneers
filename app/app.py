@@ -59,9 +59,14 @@ def all_achievements():
     return left_join((p, a) for p in Person
                             for a in p.achievements)
 
-def move_to_front(name, arr):
-    i = next(i for i, x in enumerate(arr) if x[0] == name)
-    return [arr.pop(i)] + arr
+def move_to_front(names, arr):
+    lst = arr
+
+    for n in reversed(names):
+        i = next(i for i, x in enumerate(lst) if x[0] == n)
+        lst = [lst.pop(i)] + lst
+
+    return lst
  
 @app.route("/")
 @app.route("/impact/<op>/<tags>")
@@ -73,7 +78,7 @@ def index(op="OR", tags=[]):
 
     return render_template("index.html",
             suggested_tag = random.choice(SUGGESTED_TAGS),
-            topics = move_to_front("All", get_tags("Topic")),
+            topics = move_to_front(["All", "Major milestones"], get_tags("Topic")),
             tags = get_tags("Tag"))
 
 @app.route("/people")
@@ -95,4 +100,4 @@ def achievements(person_id):
     return jsonify(achievements=expand_achievements(achievements))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0") # Add argument debug=True if you want to test during development.
+    app.run(host="0.0.0.0", debug=True) # Add argument debug=True if you want to test during development.
