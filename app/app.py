@@ -11,6 +11,7 @@ SUGGESTED_TAGS = [
  {"slug": "algorithms-data-structures", "name": "Algorithms &amp; data structures"},
  {"slug": "women-in-computing", "name": "Women in computing"},
  {"slug": "programming-languages", "name": "Programming languages"},
+ {"slug": "early-computers", "name": "Early computers"},
 ]
 
 def expand_achievements(achievements):
