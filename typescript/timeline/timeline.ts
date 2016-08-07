@@ -11,7 +11,7 @@ namespace Timeline {
 
         public static TOP_PADDING = 65;
         public static MAX_ROW_SIZE = 150;
-        private static MAX_FRAME_DIFF = 50; // Miliseconds.
+        private static MAX_FRAME_DIFF = 75; // Miliseconds.
 
         constructor(public svg: Snap.Paper) {
             this.columnSize = 100;
