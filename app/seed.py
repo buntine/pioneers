@@ -34,6 +34,10 @@ def impacts():
 
     commit()
     print "Created Impacts."
+
+@db_session
+def kill_tags():
+    print "Removed: %d Tags." % Tag.select().delete()
  
 @db_session
 def people(rows):
@@ -115,6 +119,7 @@ def slug(s):
     return pattern.sub("-", s.strip().lower())
 
 impacts()
+kill_tags()
 with_csv("data/csv/people.csv", people)
 with_csv("data/csv/achievements.csv", achievements)
 with_csv("data/csv/awards.csv", awards)
