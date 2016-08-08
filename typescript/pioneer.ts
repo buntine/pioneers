@@ -24,7 +24,24 @@ class Pioneer {
                 e.preventDefault();
                 this.allAchievements();
             });
+
+            $("div#pioneer").on("click", "a.close", (e: Event) => {
+                e.preventDefault();
+                this.close();
+            });
+
+            $(document).on("keyup", (e: KeyboardEvent) => {
+                if (e.keyCode === 27) {
+                    this.close();
+                }
+            });
         });
+    }
+
+    public close(): void {
+        $(document).off("keyup"); // Risky. Should be supplying exact function to unbind but current Typescript does not seem to support that.
+        $("div#pioneer").off("click", "a.close")
+                        .hide();
     }
 
     public allAchievements(): void {

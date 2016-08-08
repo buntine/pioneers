@@ -104,12 +104,6 @@ $(() => {
         midClick: true,
     });
 
-    $("div#pioneer a.close").click((e: Event) => {
-        e.preventDefault();
-
-        $("div#pioneer").hide();
-    });
-
     function clearTab(): void {
         let tab = tabs[state.tab];
 
