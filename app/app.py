@@ -7,13 +7,6 @@ from collections import defaultdict
 app = Flask(__name__)
 app.config.from_envvar("SETTINGS", silent=True)
 
-SUGGESTED_TAGS = [
- {"slug": "algorithms-data-structures", "name": "Algorithms &amp; data structures"},
- {"slug": "women-in-computing", "name": "Women in computing"},
- {"slug": "programming-languages", "name": "Programming languages"},
- {"slug": "early-computers", "name": "Early computers"},
-]
-
 def expand_achievements(achievements):
     return map(lambda a: {"description": a.description,
                           "year": a.year,
@@ -76,10 +69,11 @@ def move_to_front(names, arr):
 @db_session
 def index(op="OR", tags=[]):
     get_tags = lambda s: select((t.name, t.slug) for t in Tag if t.style == s).order_by(1)[:]
+    topics = get_tags("Topic")
 
     return render_template("index.html",
-            suggested_tag = random.choice(SUGGESTED_TAGS),
-            topics = move_to_front(["All", "Major milestones"], get_tags("Topic")),
+            suggested_tag = random.choice(topics),
+            topics = move_to_front(["All", "Major milestones"], topics),
             tags = get_tags("Tag"))
 
 @app.route("/people")
