@@ -25,6 +25,7 @@ namespace Timeline {
         private static RADIUS_FACTOR = 0.125;
         private static MAX_RADIUS = 15;
         private static HALO_MULTIPLIER = 1.36;
+        private static ANIMATE_SPEED = 350;
 
         public static COLOURS: Array<string> = [
             "#313c53",
@@ -65,7 +66,7 @@ namespace Timeline {
                 this.state = ShowState.Zooming;
 
                 // If user lets animation complete, continue to show full achievement details.
-                this.core.animate({r: r}, 700, mina.easeout, () => {
+                this.core.animate({r: r}, Achievement.ANIMATE_SPEED, mina.easeout, () => {
                     this.state = ShowState.Shown;
                     this.popper.expand(p, this);
                 });
@@ -96,7 +97,7 @@ namespace Timeline {
 
         public unfocus(): void {
             this.state = ShowState.None;
-            this.core.stop().animate({r: this.radius}, 300, mina.easein);
+            this.core.stop().animate({r: this.radius}, Achievement.ANIMATE_SPEED * 0.75, mina.easein);
         }
 
         private fill(): string {

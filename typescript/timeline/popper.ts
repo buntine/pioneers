@@ -6,7 +6,7 @@ namespace Timeline {
 
         private static WIDTH = 380;
         private static HEIGHT = 400;
-        private static SPEED = 220;
+        private static SPEED = 125;
 
         constructor(public svg: Snap.Paper) { }
 
