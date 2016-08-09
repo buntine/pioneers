@@ -17,7 +17,7 @@ def expand_achievements(achievements):
 def expand_person(person, achievements):
     p = person.to_dict(only=["id", "name", "country", "gender", "yob", "yod", "biography", "birthplace", "picture", "source"])
     p["total_achievements"] = select(a for a in Achievement if a.person == person).count()
-    p["achievements"] = expand_achievements(achievements)
+    p["achievements"] = sorted(expand_achievements(achievements), key=lambda a: a["year"])
     p["impact"] = reduce(lambda t, a: t + a["impact"], p["achievements"], 0)
 
     return p
