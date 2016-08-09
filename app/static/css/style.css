@@ -143,17 +143,6 @@ a.button:hover {
   background-color: #e81e48;
 }
 
-a[href^="http://"]:after, 
-a[href^="https://"]:after {
-  content: url(/static/images/icons/external.png);
-  margin: 0 0 0 5px;
-}
-
-a.source:after {
-  content: '';
-  margin: 0;
-}
-
 #tab_switcher {
   position: absolute;
   left: 50%;

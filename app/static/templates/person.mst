@@ -1,6 +1,6 @@
   <div class="person_left">
     <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="300" height="300" />
-    <div><a class="button" href="{{person.source}}" title="Wikipedia">Wikipedia Page</a></div>
+    <div><a class="button" href="{{person.source}}" target="_blank" title="Wikipedia">Wikipedia Page</a></div>
   </div>
   <div class="person_right">
     <h2>{{person.name}} <img class="flag" src="{{flag}}" alt="{{country}}" title="{{country}}" /></h2>
@@ -19,7 +19,7 @@
           <span>{{year}} <div class="rating">{{#rating}}{{impact}}{{/rating}}</div></span>
           {{/award}}
           {{#parseDescription}}
-          <p>{{description}} <a href="{{source}}">More</a></p>
+          <p>{{description}} &nbsp; <a href="{{source}}" target="_blank">Read more</a></p>
           {{/parseDescription}}
         </li>
         {{/person.achievements}}

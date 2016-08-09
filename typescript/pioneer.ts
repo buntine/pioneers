@@ -1,15 +1,11 @@
 class Pioneer {
     public details: Structure.Person;
 
-    public flagPath(): string {
-        return Helpers.imageSource("flags", `${this.details.country.toLowerCase().replace(/\W/g, "_")}.png`);
-    }
-
     public show(): void {
         $.get('/static/templates/person.mst', (template: string) => {
             let rendered = Mustache.render(template, {
                 person: this.details, 
-                years: () => { return `${this.details.yob} - ${this.details.yod || ""}` },
+                years: this.years(),
                 remainingAchievements: () => { return this.details.total_achievements - this.details.achievements.length },
                 parseDescription: Helpers.parseDescription,
                 rating: this.rating,
@@ -67,5 +63,17 @@ class Pioneer {
                 return `<div class="${(impact >= n) ? "on" : "none"}"></div>`;
             }).join("");
         }
+    }
+
+    private years(): string {
+        if (this.details.yod) {
+            return `${this.details.yob} - ${this.details.yod || ""}`;
+        } else {
+            return `Born in ${this.details.yob}.`;
+        }
+    }
+
+    public flagPath(): string {
+        return Helpers.imageSource("flags", `${this.details.country.toLowerCase().replace(/\W/g, "_")}.png`);
     }
 }
