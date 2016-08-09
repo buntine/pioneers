@@ -96,11 +96,12 @@ def awards(rows):
     for row in rows:
         award = Award.get(name = row["Award"]) or Award(name = row["Award"])
         person = Person.get(name = row["Name"])
-        tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(",")))
+        tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), ["Awards"] + row["Tags"].split(",")))
+        topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
         if person:
             Achievement(award = award, person = person, impact = impact, year = row["Date"], description = row["Description"],
-                        source = row["Source"], tags = tags)
+                        source = row["Source"], tags = (topics + tags))
 
             print "Created Award for %s, %s, %s" % (award.name, person.name, row["Date"])
         else:
@@ -120,6 +121,6 @@ def slug(s):
 
 impacts()
 kill_tags()
-with_csv("data/csv/people.csv", people)
+#with_csv("data/csv/people.csv", people)
 with_csv("data/csv/achievements.csv", achievements)
 with_csv("data/csv/awards.csv", awards)
