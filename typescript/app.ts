@@ -36,7 +36,7 @@ $(() => {
     }).draw();
 
     $("select.tags").selectivity({
-        placeholder: "Search one or more topics... e.g Programming, Theory of Computation, Concurrency",
+        placeholder: "Search one or more topics... e.g Programming languages, Concurrency, Lisp",
         templates: {
             multipleSelectedItem: function(item: any) {
               return (`<span class="selectivity-multiple-selected-item" data-item-id="${item.id}">
