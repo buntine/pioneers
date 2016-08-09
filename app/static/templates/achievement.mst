@@ -1,8 +1,8 @@
 <section class="achievement_details">
-    <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
-    <h3>{{person.name}}</h3>
-    {{#parseDescription}}
-    <p>{{achievement.description}} &nbsp; <a href="{{achievement.source}}" target="_blank">Read more</a></p>
-    {{/parseDescription}}
-    <a class="button all_achievements" href="#" title="Other achievements">Other achievements</a>
+  <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
+  <h3>{{person.name}}</h3>
+  {{#parseDescription}}
+  <p>{{achievement.description}} &nbsp; <a href="{{achievement.source}}" target="_blank">Read more</a></p>
+  {{/parseDescription}}
+  <a class="button all_achievements" href="#" title="Other achievements">Other achievements</a>
 </section>
