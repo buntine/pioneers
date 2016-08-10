@@ -97,3 +97,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Allen Newell", "Male", "United States", "San Francisco", "", "", "1927", "1992", "A computer scientist and cognitive psychologist", "allen_newell.jpg", "https://en.wikipedia.org/wiki/Allen_Newell"
 "Nathaniel Rochester", "Male", "United States", "Buffalo, New York", "", "", "1919", "2001", "A computer pioneer and electrical engineer", "nathaniel_rochester.jpg", "https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist)"
 "Arthur Samuel", "Male", "United States", "Emporia, Kansas", "", "", "1901", "1990", "A computer pioneer", "arthur_samuel.jpg", "https://en.wikipedia.org/wiki/Arthur_Samuel"
+"Abhay Bhushan", "Male", "India", "Allahabad", "", "", "1944", "", "An Internet pioneer", "abhay_bhushan.jpg", "https://en.wikipedia.org/wiki/Abhay_Bhushan"
