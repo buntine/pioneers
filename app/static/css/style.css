@@ -465,15 +465,19 @@ a.button:hover {
 }
 
 #impact_key h5 {
-  margin-bottom: 6px;
+  margin-bottom: 11px;
 }
 
 #impact_key ul li {
-  height: 22px;
-  width: 22px;
+  height: 19px;
+  width: 19px;
   float: left;
-  margin-right: 6px;
+  margin-right: 9px;
   border-radius: 11px;
+}
+
+#impact_key ul li:last-child {
+  margin-right: 0;
 }
 
 .one {
@@ -525,6 +529,7 @@ a.button:hover {
 
 #achievement_overlay p {
   margin: 15px auto 28px auto;
+  padding: 0 5px;
 }
 
 #achievement_overlay h3 {
