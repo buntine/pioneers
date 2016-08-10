@@ -55,7 +55,7 @@ class Pioneer {
         }, "json");
     }
 
-    private rating(): (text: string, render: (s: string) => string) => string {
+    public rating(): (text: string, render: (s: string) => string) => string {
         return (text: string, render: (s: string) => string) => {
             let impact = parseInt(render(text));
 

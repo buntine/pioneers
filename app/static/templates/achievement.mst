@@ -1,6 +1,14 @@
 <section class="achievement_details">
   <img class="profile" src="/static/images/people/{{person.picture}}" title="{{person.name}}" width="180" height="180" />
   <h3>{{person.name}}</h3>
+
+  {{#achievement.award}}
+    <span class="fat"><div>{{achievement.award}}</div></span>
+  {{/achievement.award}}
+  {{^achievement.award}}
+    <span class="fat"><div class="rating">{{#rating}}{{achievement.impact}}{{/rating}}</div></span>
+  {{/achievement.award}}
+
   {{#parseDescription}}
   <p>{{achievement.description}} &nbsp; <a href="{{achievement.source}}" target="_blank">Read more</a></p>
   {{/parseDescription}}
