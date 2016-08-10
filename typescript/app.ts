@@ -23,7 +23,10 @@ $(() => {
         selector: "#op_switcher",
         ops: [["OR", "OR"], ["AND", "AND"]],
         callback: (_: [string, string]) => {
-            search();
+            // Only fire another search if user is already searching more than one tag.
+            if (searched(2)) {
+                search();
+            }
         }
     }).draw();
 
@@ -243,7 +246,7 @@ $(() => {
         history.pushState(state, null, path);
     }
 
-    function searched(): boolean {
-        return state.tags.length > 0;
+    function searched(minimum = 1): boolean {
+        return state.tags.length >= minimum;
     }
 });
