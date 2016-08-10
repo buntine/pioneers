@@ -1,5 +1,5 @@
 import random
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from models import *
 from pony.orm import *
 from collections import defaultdict
@@ -94,5 +94,12 @@ def achievements(person_id):
 
     return jsonify(achievements=expand_achievements(achievements))
 
+from flask import send_from_directory
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, "static", "images", "icons"),
+                                           "favicon.ico", mimetype="image/vnd.microsoft.icon")
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True) # Add argument debug=True if you want to test during development.
+    app.run(host="0.0.0.0") # Add argument debug=True if you want to test during development.
