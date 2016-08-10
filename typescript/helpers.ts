@@ -38,6 +38,16 @@ namespace Helpers {
         };
     }
 
+    export function rating(): (text: string, render: (s: string) => string) => string {
+        return (text: string, render: (s: string) => string) => {
+            let impact = parseInt(render(text));
+
+            return [1,2,3,4,5].map((n) => {
+                return `<div class="${(impact >= n) ? "on" : "none"}"></div>`;
+            }).join("");
+        }
+    }
+
     export function canvasDimensions(svg: Snap.Paper): Vector {
         let [w, h] = ["width", "height"].map(a => parseInt(svg.attr(a)));
 

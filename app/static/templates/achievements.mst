@@ -1,11 +1,12 @@
 {{#achievements}}
 <li>
-  {{#award}}
-  <span class="fat">{{year}} <div>{{award}}</div></span>
-  {{/award}}
-  {{^award}}
-  <span class="fat">{{year}} <div class="rating">{{#rating}}{{impact}}{{/rating}}</div></span>
-  {{/award}}
+  <span class="fat">{{year}} <div class="rating">
+    {{#award}}{{award}}{{/award}}
+    {{^award}}
+      {{#rating}}{{impact}}{{/rating}}
+    {{/award}}
+  </div></span>
+
   {{#parseDescription}}
   <p>{{description}} &nbsp; <a href="{{source}}" target="_blank">Read more</a></p>
   {{/parseDescription}}

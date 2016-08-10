@@ -318,11 +318,6 @@ div.rating div {
   width: 719px;
 }
 
-#pioneer_overlay .person_impact_details div {
-  width: 348px;
-  display: inline-table;
-}
-
 #pioneer_overlay .person_impact_details h4 {
   margin: 45px 0 24px 0;
 }
@@ -331,7 +326,7 @@ div.rating div {
   margin: 10px 0 22px 0;
 }
 
-#pioneer_overlay .person_impact_details ul li span div {
+#pioneer_overlay .person_impact_details div.rating {
   display: inline;
   margin-left: 15px;
 }

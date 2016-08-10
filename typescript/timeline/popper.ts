@@ -44,7 +44,7 @@ namespace Timeline {
                 let rendered = Mustache.render(template, {
                     person: p.details, 
                     achievement: a.details, 
-                    rating: p.rating,
+                    rating: Helpers.rating,
                     parseDescription: Helpers.parseDescription,
                 });
 
