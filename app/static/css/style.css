@@ -6,6 +6,8 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   font-size: 32px;
+  position: absolute;
+  left: -1000px;
 }
 
 h2 {
