@@ -1,4 +1,4 @@
-ssh perunwit@computerpionee.rs "\
+ssh $PIONEERSDEPLOYUSER@computerpionee.rs "\
   cd $PIONEERSPATH;\
   echo 'UPDATING SOURCE';\
   git pull origin master;\
