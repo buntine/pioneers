@@ -50,7 +50,7 @@ namespace Timeline {
 
                 let overlay = $("#achievement_overlay")
                     .html(rendered)
-                    .css({top: this.point.y + 60 - this.radius, left: this.point.x - (Popper.WIDTH / 2)})
+                    .css({top: this.point.y + Helpers.headerOffset() - this.radius, left: this.point.x - (Popper.WIDTH / 2)})
                     .show();
 
                 overlay.find(".all_achievements").click((e: MouseEvent) => {
@@ -59,11 +59,12 @@ namespace Timeline {
                     p.show();
                 });
 
-                let adjust = this.leftAdjustment();
+                let adjust = new Vector(this.leftAdjustment(), this.topAdjustment());
 
-                if (adjust !== 0) {
-                    overlay.css({left: `${overlay.position().left - adjust}px`});
-                    this.rect.transform(`translateX(${-adjust})`);
+                if (!adjust.isEmpty()) {
+                    overlay.css({left: `${overlay.position().left - adjust.x}px`,
+                                 top: `${overlay.position().top - adjust.y}px`});
+                    this.rect.transform(`translate(${-adjust.x}, ${-adjust.y})`);
                 }
             });
         }
@@ -72,7 +73,7 @@ namespace Timeline {
             let r = this.radius
 
             $("#achievement_overlay").hide();
-            this.rect.transform(`translateX(${0})`); // Move to original point incase we did a left adjustment.
+            this.rect.transform("translate(0, 0)"); // Move to original point incase we did a left adjustment.
     
             this.rect.animate({height: r * 2, width: r * 2, x: this.point.x - r}, Popper.SPEED, mina.easein, () => {
                 this.rect.animate({rx: r, ry: r}, Popper.SPEED, mina.easeout, () => {
@@ -93,6 +94,17 @@ namespace Timeline {
                 return left;
             } else if (right > 0) {
                 return right;
+            } else {
+                return 0;
+            }
+        }
+
+        private topAdjustment(): number {
+            let dimensions = Helpers.canvasDimensions(this.svg);
+            let bottom = (this.point.y + Popper.HEIGHT) - (dimensions.y - Helpers.headerOffset() - Helpers.footerOffset());
+
+            if (bottom > 0) {
+                return bottom;
             } else {
                 return 0;
             }

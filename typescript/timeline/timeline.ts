@@ -9,7 +9,7 @@ namespace Timeline {
         private id: number;
         private resolution: Structure.Resolution;
 
-        public static TOP_PADDING = 65;
+        public static TOP_PADDING = 5;
         public static MAX_ROW_SIZE = 150;
         private static MAX_FRAME_DIFF = 75; // Miliseconds.
 

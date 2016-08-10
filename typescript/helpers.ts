@@ -26,6 +26,14 @@ namespace Helpers {
         return (offset * container_width) + ((container_width / 2) - (width / 2));
     }
 
+    export function headerOffset(): number {
+        return $("header").offset().height;
+    }
+
+    export function footerOffset(): number {
+        return $("footer").offset().height;
+    }
+
     export function parseDescription(): (text: string, render: (s: string) => string) => string {
         return (text: string, render: (s: string) => string) => {
             let rendered = render(text);
