@@ -92,6 +92,12 @@ $(() => {
         });
     });
 
+    $("#looking_glass").click((e: Event) => {
+        e.preventDefault();
+        $("select.tags").selectivity("focus")
+                        .selectivity("open");
+    });
+
     $(document).on("click", "a.add_tag", (e: Event) => {
         e.preventDefault();
 
