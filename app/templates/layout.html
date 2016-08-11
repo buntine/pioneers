@@ -35,6 +35,11 @@
                 <option value="{{t.1}}">{{t.0}}</option>
                 {% endfor %}
               </optgroup>
+              <optgroup label="People">
+                {% for t in people %}
+                <option value="{{t.1}}">{{t.0}}</option>
+                {% endfor %}
+              </optgroup>
             </select>
             <div id="op_switcher" class="switcher"></div>
           </form>

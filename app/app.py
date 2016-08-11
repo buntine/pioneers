@@ -74,6 +74,7 @@ def index(op="OR", tags=[]):
     return render_template("index.html",
             suggested_tag = random.choice(topics),
             topics = move_to_front(["All", "Major milestones"], topics),
+            people = get_tags("People"),
             tags = get_tags("Tag"))
 
 @app.route("/people")

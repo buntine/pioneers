@@ -71,6 +71,9 @@ def achievements(rows):
             tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), row["Tags"].split(",")))
             topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
+            # Add tag for persons name.
+            tags.append(fetch_tag(person.name.encode("utf-8"), "People"))
+
             if impact.value == 5:
                 topics.append(fetch_tag("Major milestones", "Topic"))
 
@@ -121,6 +124,6 @@ def slug(s):
 
 impacts()
 kill_tags()
-with_csv("data/csv/people.csv", people)
+#with_csv("data/csv/people.csv", people)
 with_csv("data/csv/achievements.csv", achievements)
 with_csv("data/csv/awards.csv", awards)
