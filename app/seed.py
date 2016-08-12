@@ -124,6 +124,6 @@ def slug(s):
 
 impacts()
 kill_tags()
-#with_csv("data/csv/people.csv", people)
+with_csv("data/csv/people.csv", people)
 with_csv("data/csv/achievements.csv", achievements)
 with_csv("data/csv/awards.csv", awards)
