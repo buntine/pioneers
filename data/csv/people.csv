@@ -100,3 +100,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Abhay Bhushan", "Male", "India", "Allahabad", "", "", "1944", "", "An Internet pioneer", "abhay_bhushan.jpg", "https://en.wikipedia.org/wiki/Abhay_Bhushan"
 "J. Presper Eckert", "Male", "United States", "Philadelphia, Pennsylvania", "", "", "1919", "1995", "An electrical engineer and computer pioneer", "j_presper_eckert.jpg", "https://en.wikipedia.org/wiki/J._Presper_Eckert"
 "Rob Pike", "Male", "Canada", "Toronto", "", "", "1956", "", "A programmer and author", "rob_pike.jpg", "https://en.wikipedia.org/wiki/Rob_Pike"
+"William Shockley", "Male", "United States", "Palo Alto, California", "", "", "1910", "1989", "A physicist and inventor", "william_shockley.jpg", "https://en.wikipedia.org/wiki/William_Shockley"
+"Richard Stallman", "Male", "United States", "New York City, New York", "", "", "1953", "", "A software freedom activist and programmer", "richard_stallman.jpg", "https://en.wikipedia.org/wiki/Richard_Stallman"
