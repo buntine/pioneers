@@ -98,3 +98,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Nathaniel Rochester", "Male", "United States", "Buffalo, New York", "", "", "1919", "2001", "A computer pioneer and electrical engineer", "nathaniel_rochester.jpg", "https://en.wikipedia.org/wiki/Nathaniel_Rochester_(computer_scientist)"
 "Arthur Samuel", "Male", "United States", "Emporia, Kansas", "", "", "1901", "1990", "A computer pioneer", "arthur_samuel.jpg", "https://en.wikipedia.org/wiki/Arthur_Samuel"
 "Abhay Bhushan", "Male", "India", "Allahabad", "", "", "1944", "", "An Internet pioneer", "abhay_bhushan.jpg", "https://en.wikipedia.org/wiki/Abhay_Bhushan"
+"J. Presper Eckert", "Male", "United States", "Philadelphia, Pennsylvania", "", "", "1919", "1995", "An electrical engineer and computer pioneer", "j_presper_eckert.jpg", "https://en.wikipedia.org/wiki/J._Presper_Eckert"
+"Rob Pike", "Male", "Canada", "Toronto", "", "", "1956", "", "A programmer and author", "rob_pike.jpg", "https://en.wikipedia.org/wiki/Rob_Pike"
