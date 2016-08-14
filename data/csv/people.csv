@@ -102,3 +102,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Rob Pike", "Male", "Canada", "Toronto", "", "", "1956", "", "A programmer and author", "rob_pike.jpg", "https://en.wikipedia.org/wiki/Rob_Pike"
 "William Shockley", "Male", "United States", "Palo Alto, California", "", "", "1910", "1989", "A physicist and inventor", "william_shockley.jpg", "https://en.wikipedia.org/wiki/William_Shockley"
 "Richard Stallman", "Male", "United States", "New York City, New York", "", "", "1953", "", "A software freedom activist and programmer", "richard_stallman.jpg", "https://en.wikipedia.org/wiki/Richard_Stallman"
+"Gerald Jay Sussman", "Male", "United States", "Cambridge, Massachusetts", "", "", "1947", "", "The Panasonic Professor of Electrical Engineering at MIT", "gerald_jay_sussman.jpg", "https://en.wikipedia.org/wiki/Gerald_Jay_Sussman"
+"Guy L. Steele Jr.", "Male", "United States", "Missouri", "", "", "1954", "", "A computer scientist", "guy_l_steele.jpg", "https://en.wikipedia.org/wiki/Guy_L._Steele_Jr."
