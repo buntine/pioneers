@@ -104,3 +104,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Richard Stallman", "Male", "United States", "New York City, New York", "", "", "1953", "", "A software freedom activist and programmer", "richard_stallman.jpg", "https://en.wikipedia.org/wiki/Richard_Stallman"
 "Gerald Jay Sussman", "Male", "United States", "Cambridge, Massachusetts", "", "", "1947", "", "The Panasonic Professor of Electrical Engineering at MIT", "gerald_jay_sussman.jpg", "https://en.wikipedia.org/wiki/Gerald_Jay_Sussman"
 "Guy L. Steele Jr.", "Male", "United States", "Missouri", "", "", "1954", "", "A computer scientist", "guy_l_steele.jpg", "https://en.wikipedia.org/wiki/Guy_L._Steele_Jr."
+"Bob Kahn", "Male", "United States", "Brooklyn, New York", "", "", "1938", "", "An electrical engineer", "bob_kahn.jpg", "https://en.wikipedia.org/wiki/Bob_Kahn"
