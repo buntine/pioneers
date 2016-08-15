@@ -88,7 +88,8 @@ $(() => {
         let tags = $(e.target).data("tags");
 
         tags.split(",").forEach((t: string) => {
-            $("select.tags").selectivity("add", t);
+            $("select.tags").selectivity("add", t)
+                            .selectivity("focus");
         });
     });
 
