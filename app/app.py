@@ -70,9 +70,10 @@ def move_to_front(names, arr):
 def index(op="OR", tags=[]):
     get_tags = lambda s: select((t.name, t.slug) for t in Tag if t.style == s).order_by(1)[:]
     topics = get_tags("Topic")
+    suggested = random.choice(filter(lambda t: t[0] != "All", topics))
 
     return render_template("index.html",
-            suggested_tag = random.choice(topics),
+            suggested_tag = suggested,
             topics = move_to_front(["All", "Major milestones"], topics),
             people = get_tags("People"),
             tags = get_tags("Tag"))
