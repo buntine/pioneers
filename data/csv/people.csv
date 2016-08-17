@@ -114,3 +114,5 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Linus Torvalds", "Male", "Finland", "Helsinki", "", "", "1969", "", "A software engineer", "linus_torvalds.jpg", "https://en.wikipedia.org/wiki/Linus_Torvalds"
 "Steve Wozniak", "Male", "United States", "San Jose, California", "", "", "1950", "", "An inventor, electronics engineer, programmer, and technology entrepreneur", "steve_wozniak.jpg", "https://en.wikipedia.org/wiki/Steve_Wozniak"
 "Steve Russell", "Male", "United States", "San Jose, California", "", "", "1937", "", "A computer scientist", "steve_russell.jpg", "https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)"
+"Charles H. Moore", "Male", "United States", "McKeesport, Pennsylvania", "", "", "1938", "", "A entrepreneur and software developer", "charles_h_moore.jpg", "https://en.wikipedia.org/wiki/Charles_H._Moore"
+"Robin Milner", "Male", "England", "Yealmpton, Plymouth", "", "", "1934", "2010", "A computer scientist", "robin_milner.jpg", "https://en.wikipedia.org/wiki/Robin_Milner"
