@@ -83,9 +83,12 @@ $(() => {
         let tags = $(e.target).data("tags");
 
         tags.split(",").forEach((t: string) => {
-            $("select.tags").selectivity("add", t)
-                            .selectivity("focus");
+            $("select.tags").selectivity("add", t);
         });
+
+        if (!Helpers.isMobile()) {
+            $("select.tags").selectivity("focus");
+        }
     });
 
     $("#looking_glass").click((e: Event) => {
