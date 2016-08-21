@@ -61,13 +61,7 @@ $(() => {
                  }
 
                  if (Helpers.isMobile()) {
-                     $.magnificPopup.open({
-                         items: {
-                             src: "#mobile_popup",
-                             type: "inline"
-                         },
-                         closeOnContentClick: true
-                     });
+                     // Removed mobile disclaimer because it was turning users away.
                  }
              });
 
