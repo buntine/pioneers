@@ -65,7 +65,8 @@ $(() => {
                          items: {
                              src: "#mobile_popup",
                              type: "inline"
-                         }
+                         },
+                         closeOnContentClick: true
                      });
                  }
              });
