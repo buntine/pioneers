@@ -51,7 +51,14 @@ $(() => {
     });
 
     $(window).on("popstate", () => {clearTab(); fetchState();})
-             .on("orientationchange", (_: Event) => setDimensions())
+             .on("orientationchange", (_: Event) => {
+                 // As it turns out - repainting on mobile after an orientation change is tricky business. The event is fired
+                 // before the DOM updates itself. So here I am taking the easy/ugly route by just waiting a little while until
+                 // repainting. It should work *most* of the time...
+                 setTimeout(() => {
+                     setDimensions();
+                 }, 550);
+             })
              .on("resize", (_: Event) => {
                  if (!Helpers.isMobile()) {
                      setDimensions();
