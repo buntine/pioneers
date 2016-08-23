@@ -18,7 +18,6 @@ $(() => {
         "timeline": new Timeline.Timeline(svg),
         "geography": new Geography.Geography(svg),
     };
-    let currentWidth = $(window).width();
 
     let opSwitcher = new Toggler({
         selector: "#op_switcher",
@@ -53,16 +52,7 @@ $(() => {
 
     $(window).on("popstate", () => {clearTab(); fetchState();})
              .on("resize", (_: Event) => {
-                 if (Helpers.isMobile()) {
-                     // Only redraw if width has changed. This is necessary because several mobile browsers constantly change viewable height
-                     // by hiding/showing the navigation bar.
-                     let newWidth = $(window).width();
-
-                     if (newWidth !== currentWidth) {
-                         setDimensions();
-                         currentWidth = newWidth;
-                     }
-                 } else {
+                 if (!Helpers.isMobile()) {
                      setDimensions();
                  }
              })
