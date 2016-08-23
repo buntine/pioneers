@@ -51,6 +51,7 @@ $(() => {
     });
 
     $(window).on("popstate", () => {clearTab(); fetchState();})
+             .on("orientationchange", (_: Event) => setDimensions())
              .on("resize", (_: Event) => {
                  if (!Helpers.isMobile()) {
                      setDimensions();
