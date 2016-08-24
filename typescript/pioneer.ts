@@ -2,7 +2,7 @@ class Pioneer {
     public details: Structure.Person;
 
     public show(): void {
-        $.get('/static/templates/person.mst', (template: string) => {
+        $.get("/static/templates/person.mst", (template: string) => {
             let rendered = Mustache.render(template, {
                 person: this.details, 
                 years: this.years(),
@@ -11,17 +11,18 @@ class Pioneer {
                 rating: Helpers.rating,
                 flag: this.flagPath(),
             });
+            let pioneer = $("div#pioneer");
 
             $("div#pioneer_overlay").html(rendered);
-            $("div#pioneer").show();
+            pioneer.show();
 
             // Add click event for this particular pioneers "show all" link.
-            $("div#pioneer a.all_achievements").click((e: Event) => {
+            pioneer.find("a.all_achievements").click((e: Event) => {
                 e.preventDefault();
                 this.allAchievements();
             });
 
-            $("div#pioneer").on("click", "a.close", (e: Event) => {
+            pioneer.on("click", "a.close", (e: Event) => {
                 e.preventDefault();
                 this.close();
             });
@@ -42,7 +43,7 @@ class Pioneer {
 
     public allAchievements(): void {
         $.get(`/people/${this.details.id}/achievements`, (resp: {achievements: Array<Structure.Achievement>}) => {
-            $.get('/static/templates/achievements.mst', (template: string) => {
+            $.get("/static/templates/achievements.mst", (template: string) => {
                 let rendered = Mustache.render(template, {
                     achievements: resp.achievements, 
                     rating: Helpers.rating,

@@ -71,10 +71,6 @@ $(() => {
                  if (searched()) {
                      $("#intro").hide();
                  }
-
-                 if (Helpers.isMobile()) {
-                     // Removed mobile disclaimer because it was turning users away.
-                 }
              });
 
     $("div.tags").change((e: Event) => {
@@ -90,16 +86,18 @@ $(() => {
 
     $("#start").click((e: Event) => {
         e.preventDefault();
-        $("#intro").hide();
 
         let tags = $(e.target).data("tags");
+        let select = $("select.tags");
+
+        $("#intro").hide();
 
         tags.split(",").forEach((t: string) => {
-            $("select.tags").selectivity("add", t);
+            select.selectivity("add", t);
         });
 
         if (!Helpers.isMobile()) {
-            $("select.tags").selectivity("focus");
+            select.selectivity("focus");
         }
     });
 
