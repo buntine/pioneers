@@ -12,7 +12,7 @@
   </span>
 
   {{#parseDescription}}
-  <p>{{achievement.description}} &nbsp; <a href="{{achievement.source}}" target="_blank">Read more</a></p>
+  <p>{{achievement.description}} &nbsp; <a href="{{achievement.source}}" rel="noopener noreferrer" target="_blank">Read more</a></p>
   {{/parseDescription}}
   <a class="button all_achievements" href="#" title="Other achievements">Other achievements</a>
 </section>
