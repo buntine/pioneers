@@ -117,3 +117,4 @@ Name, Gender, Country, Birthplace, Latitude, Longitude, Born, Died, Biography, P
 "Charles H. Moore", "Male", "United States", "McKeesport, Pennsylvania", "", "", "1938", "", "A entrepreneur and software developer", "charles_h_moore.jpg", "https://en.wikipedia.org/wiki/Charles_H._Moore"
 "Robin Milner", "Male", "England", "Plymouth", "", "", "1934", "2010", "A computer scientist", "robin_milner.jpg", "https://en.wikipedia.org/wiki/Robin_Milner"
 "Gene Mosher", "Male", "United States", "Philadelphia, New York", "", "", "1949", "", "A software developer and restaurateur", "gene_mosher.jpg", "http://www.viewtouch.com/birthplace.html"
+"Ed Roberts", "Male", "United States", "Miami, Florida", "", "", "1941", "2010", "An engineer and businessman", "ed_roberts.jpg", "https://en.wikipedia.org/wiki/Ed_Roberts_(computer_engineer)"
