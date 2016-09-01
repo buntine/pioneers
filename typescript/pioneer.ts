@@ -1,4 +1,4 @@
-class Pioneer {
+abstract class Pioneer {
     public details: Structure.Person;
 
     public show(): void {
