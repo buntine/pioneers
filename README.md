@@ -20,8 +20,14 @@ It's always a little risky to "rank" people in terms of their importance. And, a
 
 Contributions are always more than welcome for both new data and new/improved functionality!
 
-1) Ensure you have Typescript, Python and (Postgres or Sqlite3) installed.
+In order to run locally, it should just be a matter of:
+
+1) Ensure you have Typescript, Python and Sqlite3 installed.
 2) Install Flask: `pip install flask`
+3) Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
+4) Seed database: `$ python app/seed.py`
+5) Build TypeScript and run server: `$ ./build.sh`
+6) Go to [http://localhost:5000](http://localhost:5000)
 
 ## Screenshots
 
