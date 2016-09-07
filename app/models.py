@@ -42,5 +42,9 @@ class Achievement(db.Entity):
     description = Required(str)
     source = Required(str)
 
-db.bind("postgres", user=os.environ["PIONEERSUSER"], password=os.environ["PIONEERSPASS"], host="127.0.0.1", database="pioneers")
+if "PIONEERSDEVELOPMENT" in os.environ and os.environ["PIONEERSDEVELOPMENT"] == "1":
+    db.bind("sqlite", "../db/pioneers.sqlite3", create_db=True)
+else:
+    db.bind("postgres", user=os.environ["PIONEERSUSER"], password=os.environ["PIONEERSPASS"], host="127.0.0.1", database="pioneers")
+
 db.generate_mapping(create_tables=True)
