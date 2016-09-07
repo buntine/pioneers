@@ -20,14 +20,14 @@ It's always a little risky to "rank" people in terms of their importance. And, a
 
 Contributions are always more than welcome for both new data and new/improved functionality!
 
-In order to run locally, it should just be a matter of:
+In order to run the app locally, it should just be a matter of:
 
-1) Ensure you have Typescript, Python and Sqlite3 installed.
-2) Install Flask: `pip install flask`
-3) Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
-4) Seed database: `$ python app/seed.py`
-5) Build TypeScript and run server: `$ ./build.sh`
-6) Go to [http://localhost:5000](http://localhost:5000)
+* Ensure you have Typescript, Python and Sqlite3 installed.
+* Install Flask: `pip install flask`
+* Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
+* Seed database: `$ python app/seed.py`
+* Build TypeScript and run server: `$ ./build.sh`
+* Go to [http://localhost:5000](http://localhost:5000)
 
 ## Screenshots
 
