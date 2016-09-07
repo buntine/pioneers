@@ -14,9 +14,21 @@ If you make something cool, please send me a link. Happy hacking!
 
 ## Accuracy / Disclaimer
 
-It's always a little risky to "rank" people in terms of their importance. And although I've tried to be fair I feel compelled to declare that this website is intended to celebrate the achievements of the masters of our field and is no way attempting to belittle any one persons effort relative to anothers. It should be assumed that this data set will always be *somewhat incomplete* and *somewhat inaccurate*.
+It's always a little risky to "rank" people in terms of their importance. And, although I've tried to be fair, I feel compelled to declare that this website is simply intended to celebrate the achievements of the masters of our field and is no way attempting to belittle any one persons effort relative to anothers. It should be assumed that this data set will always be *somewhat incomplete and somewhat inaccurate*.
 
-Contributions and corrections are always more than welcome!
+## Running locally / Contributing
+
+Contributions are always more than welcome for both new data and new/improved functionality!
+
+In order to run the app locally, it should just be a matter of:
+
+* Ensure you have Typescript, Python and Sqlite3 installed.
+* Install Flask: `pip install flask`
+* Install Pony ORM: `pip install pony`
+* Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
+* Seed database: `$ python app/seed.py`
+* Build TypeScript and run server: `$ ./build.sh`
+* Go to [http://localhost:5000](http://localhost:5000)
 
 ## Screenshots
 
