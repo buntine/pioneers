@@ -23,12 +23,15 @@ Contributions are always more than welcome for both new data and new/improved fu
 In order to run the app locally, it should just be a matter of:
 
 * Ensure you have Typescript, Python and Sqlite3 installed.
+* Install pip: `sudo apt-get install python-pip` (or eequivalent for your O/S)
 * Install Flask: `pip install flask`
 * Install Pony ORM: `pip install pony`
 * Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
 * Seed database: `$ python app/seed.py`
 * Build TypeScript and run server: `$ ./build.sh`
 * Go to [http://localhost:5000](http://localhost:5000)
+
+After initial installation, you will only need to `./build.sh` each time you want to test.
 
 ## Screenshots
 
