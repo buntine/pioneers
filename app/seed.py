@@ -12,6 +12,8 @@ from geopy.geocoders import Nominatim
 # Seeds the database from the CSV files in ./data/csv.
 # WARNING: This import is destructive. All existing data will be purged!
 
+__GEOCODE = False
+
 # sql_debug(True)
 
 print "Opened database."
@@ -45,13 +47,16 @@ def people(rows):
 
     for row in rows:
         if row["Latitude"] == "" or row["Longitude"] == "":
-            geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]), timeout=12)
+            if __GEOCODE:
+                geocoded = geolocator.geocode("%s, %s" % (row["Birthplace"], row["Country"]), timeout=12)
 
-            if geocoded:
-                location = (geocoded.latitude, geocoded.longitude)
-                time.sleep(0.5);
+                if geocoded:
+                    location = (geocoded.latitude, geocoded.longitude)
+                    time.sleep(0.5);
+                else:
+                    raise RuntimeError("Cannot geolocate: %s" % row["Name"])
             else:
-                raise RuntimeError("Cannot geolocate: %s" % row["Name"])
+                location = (0.0, 0.0)
         else:
             location = (row["Latitude"], row["Longitude"])
 
@@ -98,7 +103,7 @@ def awards(rows):
 
     for row in rows:
         award = Award.get(name = row["Award"]) or Award(name = row["Award"])
-        person = Person.get(name = row["Name"])
+        person = Person.get(name = unicode(row["Name"], "utf-8"))
         tags = filter(None, map(lambda t: fetch_tag(t, "Tag"), ["Awards"] + row["Tags"].split(",")))
         topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
