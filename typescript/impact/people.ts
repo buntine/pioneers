@@ -103,6 +103,11 @@ namespace Impact {
 
                     this.position(next_ts, iteration + 1)
                 });
+            // Reposition people who've been pushed too far off-screen.
+            } else {
+                let pToMove = this.filter((p) => p.offScreen());
+
+                // TODO: Resposition each p in pToMove.
             }
         }
 

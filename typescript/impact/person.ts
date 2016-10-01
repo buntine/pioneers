@@ -49,6 +49,7 @@ namespace Impact {
 
         public position(): void {
             let v = Vector.sub(this.point, this.initialPoint);
+
             this.avatar.transform(`translate(${v.x}, ${v.y})`);
         }
 
@@ -105,6 +106,13 @@ namespace Impact {
                            ((this.details.impact - thresholds[0]) /
                             (thresholds[1] - thresholds[0]) *
                             (Person.MAX_PADDING - Person.MIN_PADDING));
+        }
+
+        public offScreen(): boolean {
+            let height = Helpers.canvasDimensions(this.svg).y;
+
+            return (this.point.y < 0 + (this.radius / 8)) ||
+                   (this.point.y > height - (this.radius / 8));
         }
 
         private hide(): void {
