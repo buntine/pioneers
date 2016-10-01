@@ -14,17 +14,29 @@ namespace Impact {
         }
 
         public build(set: Array<Structure.Person>) : boolean {
-            let canvas = Vector.sub(Helpers.canvasDimensions(this.svg),
+            let thresholds: [number, number] = [999, 0],
+                canvas = Vector.sub(Helpers.canvasDimensions(this.svg),
                                     new Vector(0, 20));
 
             this.people.clear();
 
             set.forEach((p) => {
-                let randomPosition = Vector.randomized(new Vector(150, 20), canvas)
+                let randomPosition = Vector.randomized(new Vector(150, 20), canvas),
+                    impact = p.impact;
 
                 this.people.push(
                     new Person(this.svg, p, randomPosition));
+
+                if (impact < thresholds[0]) {
+                    thresholds[0] = impact;
+                } else if (impact > thresholds[1]) {	
+                    thresholds[1] = impact;
+                }
             });
+
+            // Set padding now that we know the min/max impacts. Smaller people
+            // should be packed closer together.
+            this.people.forEach((p) => p.normalizePadding(thresholds));
 
             return this.built();
         }

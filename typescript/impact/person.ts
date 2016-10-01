@@ -6,11 +6,14 @@ namespace Impact {
         public title: Title;
         public avatar: Snap.Element;
         public radius: number;
+        public padding: number;
         private initialPoint: Vector;
         private image: HTMLImageElement;
 
         public static MAX_ZOOM = 250;
         public static MAX_SIZE = 350;
+        public static MIN_PADDING = 4;
+        public static MAX_PADDING = 13;
 
         constructor(public svg: Snap.Paper, public details: Structure.Person, public point: Vector) {
             super();
@@ -19,6 +22,7 @@ namespace Impact {
             this.title = new Title(this);
             this.image = new Image();
             this.image.src = Helpers.imageSource("people", this.details.picture);
+            this.padding = 12;
         }
 
         public draw(unit: number): void {
@@ -52,9 +56,9 @@ namespace Impact {
             this.point = this.initialPoint.clone();
         }
 
-        public detract(p: Person, padding: number): void {
+        public detract(p: Person): void {
             let dist = this.point.distanceFrom(p.point);
-            let radii = this.radius + p.radius + padding;
+            let radii = this.radius + p.radius + this.padding;
 
             // Overlapping, move away from each other.
             if (dist < radii) {
@@ -94,6 +98,13 @@ namespace Impact {
             this.avatar.stop().animate({strokeWidth: 1}, 300);
             this.unhide();
             this.title.finalize();
+        }
+
+        public normalizePadding(thresholds: [number, number]): void {
+            this.padding = Person.MIN_PADDING +
+                           ((this.details.impact - thresholds[0]) /
+                            (thresholds[1] - thresholds[0]) *
+                            (Person.MAX_PADDING - Person.MIN_PADDING));
         }
 
         private hide(): void {

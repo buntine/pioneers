@@ -80,7 +80,7 @@ namespace Impact {
             // Detract other particles.
             for (let i=0;i<this.length;i++) {
                 for (let n=i+1;n<this.length;n++) {
-                    this[i].detract(this[n], 12);
+                    this[i].detract(this[n]);
                 }
             }
 
