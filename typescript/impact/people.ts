@@ -107,7 +107,12 @@ namespace Impact {
             } else {
                 let pToMove = this.filter((p) => p.offScreen());
 
-                // TODO: Resposition each p in pToMove.
+                for (let p of pToMove) {
+                    // p.moveToCenter();
+                    // Find furthest away person on X axis that allows for p.radius
+                    // p.point = new Point(newx, newy);
+                    // p.position();
+                }
             }
         }
 
