@@ -125,7 +125,10 @@ namespace Impact {
         }
 
         public moveTo(p: Person): void {
-            this.attract(p.point, 1);
+            let point = Vector.sub(p.point,
+                                   new Vector(-(this.radius + p.radius), 0));
+
+            this.attract(point, 1);
         }
 
         private hide(): void {
