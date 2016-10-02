@@ -135,6 +135,5 @@ namespace Impact {
         private unhide(): void {
             this.avatar.attr({display: ""});
         }
-
     }
 }
