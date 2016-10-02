@@ -110,7 +110,7 @@ namespace Impact {
 
         public offScreen(): boolean {
             let height = Helpers.canvasDimensions(this.svg).y,
-                allowance = this.radius / 3,
+                allowance = this.radius / 2,
                 y = this.point.y;
 
             return (y < 0 + allowance) || (y > (height - allowance));
@@ -122,6 +122,10 @@ namespace Impact {
 
             this.point.y = y;
             this.point.x = dim.x - this.radius;
+        }
+
+        public moveTo(p: Person): void {
+            this.attract(p.point, 1);
         }
 
         private hide(): void {

@@ -108,12 +108,27 @@ namespace Impact {
                 let pToMove = this.filter((p) => p.offScreen());
 
                 for (let p of pToMove) {
+                    let closest: Person;
+
                     p.recenter();
-                    // Find furthest away person on X axis that allows for p.radius
-                    // p.point = new Point(newx, newy);
+                    closest = this.findClosestTo(p);
+
+                    p.moveTo(closest);
                     p.position();
                 }
             }
+        }
+
+        private findClosestTo(person: Person): Person {
+            let closest = this[0];
+
+            for (let p of this) {
+               if (person.point.distanceFrom(p.point) < person.point.distanceFrom(closest.point) && person.details.id != p.details.id) {
+                   closest = p;
+               }
+            }
+
+            return closest;
         }
 
         private delta(): number {
