@@ -110,10 +110,18 @@ namespace Impact {
 
         public offScreen(): boolean {
             let height = Helpers.canvasDimensions(this.svg).y,
-                allowance = this.radius / 6,
+                allowance = this.radius / 3,
                 y = this.point.y;
 
-            return (y < 0 + allowance) || (y > height - allowance);
+            return (y < 0 + allowance) || (y > (height - allowance));
+        }
+
+        public recenter(): void {
+            let dim = Helpers.canvasDimensions(this.svg),
+                y = this.radius + (Math.random() * (dim.y - (this.radius * 2) - 60));
+
+            this.point.y = y;
+            this.point.x = dim.x - this.radius;
         }
 
         private hide(): void {
