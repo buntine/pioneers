@@ -117,7 +117,7 @@ namespace Impact {
                     p.moveTo(closest);
                     p.position();
 
-                    offset += p.radius * 2;
+                    offset += (p.radius * 2) + p.padding;
                 }
             }
         }
