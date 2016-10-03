@@ -116,9 +116,9 @@ namespace Impact {
             return (y < 0 + allowance) || (y > (height - allowance));
         }
 
-        public recenter(): void {
+        public recenter(offset: number): void {
             let dim = Helpers.canvasDimensions(this.svg),
-                y = this.radius + (Math.random() * (dim.y - (this.radius * 2) - 60));
+                y = this.radius + offset + this.padding;
 
             this.point.y = y;
             this.point.x = dim.x - this.radius;
@@ -126,7 +126,7 @@ namespace Impact {
 
         public moveTo(p: Person): void {
             let point = Vector.sub(p.point,
-                                   new Vector(-(this.radius + p.radius), 0));
+                                   new Vector(-(this.radius + p.radius + this.padding), (p.point.y - this.point.y)));
 
             this.attract(point, 1);
         }

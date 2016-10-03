@@ -106,15 +106,18 @@ namespace Impact {
             // Reposition people who've been pushed too far off-screen.
             } else {
                 let pToMove = this.filter((p) => p.offScreen());
+                let offset = 0;
 
                 for (let p of pToMove) {
                     let closest: Person;
 
-                    p.recenter();
+                    p.recenter(offset);
                     closest = this.findClosestTo(p);
 
                     p.moveTo(closest);
                     p.position();
+
+                    offset += p.radius * 2;
                 }
             }
         }
@@ -123,7 +126,9 @@ namespace Impact {
             let closest = this[0];
 
             for (let p of this) {
-               if (person.point.distanceFrom(p.point) < person.point.distanceFrom(closest.point) && person.details.id != p.details.id) {
+               let dist = p.point.y - person.point.y;
+               let inY = Math.abs(Math.sqrt(dist * dist)) < (p.radius + person.radius);
+               if (inY && person.point.distanceFrom(p.point) < person.point.distanceFrom(closest.point) && person.details.id != p.details.id) {
                    closest = p;
                }
             }
