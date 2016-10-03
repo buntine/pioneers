@@ -109,12 +109,8 @@ namespace Impact {
                 let offset = 0;
 
                 for (let p of pToMove) {
-                    let closest: Person;
-
                     p.recenter(offset);
-                    closest = this.findClosestTo(p);
-
-                    p.moveTo(closest);
+                    p.moveTo(this.findClosestTo(p));
                     p.position();
 
                     offset += (p.radius * 2) + p.padding;

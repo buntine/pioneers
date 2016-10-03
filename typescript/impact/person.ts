@@ -121,19 +121,15 @@ namespace Impact {
                 y = this.radius + offset + this.padding;
 
             this.point.y = y;
-            this.point.x = dim.x - this.radius;
+            this.point.x = dim.x;
         }
 
         public moveTo(p: Person): void {
-           // let point = Vector.sub(p.point,
-            //                       new Vector(0, (p.point.y + this.point.y)));
-
-            console.log(`Move ${this.details.name} to ${p.details.name}`);
-
-            this.point.x -= (this.point.x - p.point.x) - (this.radius + p.radius + this.padding);
-            //this.point.sub(point);
+            // We want to move towards `p` but maintain some appropriate padding. And also not change the Y axis of `this`.
+            let point = new Vector(p.point.x + (this.radius + p.radius + this.padding),
+                                   this.point.y);
  
-            //this.attract(p.point, 1);
+            this.attract(point, 1);
         }
 
         private hide(): void {
