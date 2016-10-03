@@ -132,6 +132,10 @@ namespace Impact {
             this.attract(point, 1);
         }
 
+        public collidingOn(p: Person, axis: Axis) {
+            return this.point.distanceFrom(p.point, axis) < (this.radius + p.radius);
+        }
+
         private hide(): void {
             this.avatar.attr({display: "none"});
         }

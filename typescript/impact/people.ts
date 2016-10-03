@@ -119,12 +119,14 @@ namespace Impact {
         }
 
         private findClosestTo(person: Person): Person {
-            let closest = this[0];
+            let closest = this[0],
+                point = person.point;
 
             for (let p of this) {
-               let dist = p.point.y - person.point.y;
-               let inY = Math.abs(Math.sqrt(dist * dist)) < (p.radius + person.radius);
-               if (inY && person.point.distanceFrom(p.point) < person.point.distanceFrom(closest.point) && person.details.id != p.details.id) {
+               // We only want to find the closest person that is collidable on the Y axis.
+               if (person.collidingOn(p, Axis.Y) &&
+                   person.details.id != p.details.id &&
+                   point.distanceFrom(p.point) < point.distanceFrom(closest.point)) {
                    closest = p;
                }
             }

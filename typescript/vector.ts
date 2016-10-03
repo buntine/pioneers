@@ -1,3 +1,9 @@
+enum Axis {
+    X,
+    Y,
+    Both,
+}
+
 class Vector {
     constructor(public x: number, public y: number) {}
 
@@ -30,16 +36,25 @@ class Vector {
         this.y /= n;
     }
 
-    public mag(): number {
-        let [x, y] = [this.x, this.y];
+    public mag(axis = Axis.Both): number {
+        let [x, y] = [this.x, this.y],
+            total = 0;
 
-        return Math.sqrt(x * x + y * y);
+        if (axis !== Axis.Y) {
+            total += x * x;
+        }
+
+        if (axis !== Axis.X) {
+            total += y * y;
+        }
+
+        return Math.sqrt(total);
     }
 
-    public distanceFrom(v: Vector): number {
+    public distanceFrom(v: Vector, axis = Axis.Both): number {
         let distance = Vector.sub(v, this);
 
-        return distance.mag();
+        return distance.mag(axis);
     }
 
     public normalize(): void {
