@@ -32,7 +32,7 @@ $(() => {
 
     let tabSwitcher = new Toggler({
         selector: "#tab_switcher",
-        ops: [["Who?", "impact"], ["What?", "timeline"]],
+        ops: [["Who?", "impact"], ["When?", "timeline"]],
         callback: (_: [string, string]) => {
             search(false);
         }
