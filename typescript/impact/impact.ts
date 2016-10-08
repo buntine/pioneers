@@ -57,11 +57,15 @@ namespace Impact {
             callback();
         }
 
-        public execute(): void {
+        public execute(overlay = true): void {
             $("#people_list").show();
 
             this.setResolution("High");
-            this.people.pack();
+            this.people.pack(() => {
+                if (overlay) {
+                    console.log("Overlay for impact");
+                }
+            });
         }
 
         public unfocus(): void {

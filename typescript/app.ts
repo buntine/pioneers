@@ -232,7 +232,7 @@ $(() => {
                         svg.clear();
                     }
 
-                    t.execute();
+                    t.execute(true);
                 });
             } else {
                 t.unfocus();

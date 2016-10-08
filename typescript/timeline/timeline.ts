@@ -50,7 +50,7 @@ namespace Timeline {
             callback();
         }
 
-        public execute(): void {
+        public execute(overlay = true): void {
             $("#impact_key").show();
 
             this.setResolution("High");
@@ -58,10 +58,14 @@ namespace Timeline {
             this.forAchievements((a, p) => a.drawHalo(this.columnSize)); // Halos must be all drawm before cores to prevent layering issues.
             this.forAchievements((a, p) => a.drawCore(this.columnSize, p));
 
-            this.position(performance.now(), this.id);
+            this.position(performance.now(), this.id, () => {
+                if (overlay) {
+                    console.log("Overlay for timeline");
+                }
+            });
         }
 
-        private position (ts: number, id: number, iteration = 1): void {
+        private position(ts: number, id: number, callback: () => void, iteration = 1): void {
             // Stop if this recursion is no longer active.
             if (this.id !== id) { return; }
 
@@ -75,10 +79,11 @@ namespace Timeline {
                         this.setResolution("Low");
                     }
 
-                    this.position(next_ts, id, iteration + 1)
+                    this.position(next_ts, id, callback, iteration + 1)
                 });
             } else {
                 this.forAchievements((a, _) => a.snap());
+                callback();
             }
         }
 

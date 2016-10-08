@@ -1,7 +1,7 @@
 namespace Structure {
     export interface Tab {
         preload(callback: () => void, iteration?: number): void;
-        execute(): void;
+        execute(overlay: boolean): void;
         build(set: Array<Structure.Person>): boolean;
         built(): boolean;
         unfocus(): void;

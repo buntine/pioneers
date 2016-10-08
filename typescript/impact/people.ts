@@ -32,7 +32,7 @@ namespace Impact {
             return super.push(p);
         }
 
-        public pack(): void {
+        public pack(callback: () => void): void {
             let [w, h] = [this.center.x * 2, this.center.y * 2]
             let unit = Math.min(w / this.totalImpact, h / this.totalImpact) * this.delta();
 
@@ -42,7 +42,7 @@ namespace Impact {
                 p.draw(unit);
             }
 
-            this.position(performance.now(), 1);
+            this.position(performance.now(), callback);
         }
 
         public reset(): void {
@@ -59,7 +59,7 @@ namespace Impact {
             this.length = 0;
         }
 
-        private position(ts: number, iteration: number): void {
+        private position(ts: number, callback: () => void, iteration = 1): void {
             if (!this.alive) { return; }
 
             let redraw: boolean;
@@ -101,7 +101,7 @@ namespace Impact {
                         this.resolution = "Low";
                     }
 
-                    this.position(next_ts, iteration + 1)
+                    this.position(next_ts, callback, iteration + 1)
                 });
             // Reposition people who've been pushed too far off-screen.
             } else {
@@ -115,6 +115,8 @@ namespace Impact {
 
                     offset += (p.radius * 2) + p.padding;
                 }
+
+                callback();
             }
         }
 
