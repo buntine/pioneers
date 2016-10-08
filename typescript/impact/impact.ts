@@ -57,7 +57,7 @@ namespace Impact {
             callback();
         }
 
-        public execute(overlay = true): void {
+        public execute(overlay = false): void {
             $("#people_list").show();
 
             this.setResolution("High");

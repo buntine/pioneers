@@ -11,7 +11,7 @@ namespace Geography {
             callback();
         }
 
-        public execute(): void {
+        public execute(oerlay = false): void {
             $("#comingsoon").show();
         }
 

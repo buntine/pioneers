@@ -50,7 +50,7 @@ namespace Timeline {
             callback();
         }
 
-        public execute(overlay = true): void {
+        public execute(overlay = false): void {
             $("#impact_key").show();
 
             this.setResolution("High");
