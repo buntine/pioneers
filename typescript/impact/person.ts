@@ -101,11 +101,13 @@ namespace Impact {
             this.title.finalize();
         }
 
-        public normalizePadding(thresholds: [number, number]): void {
-            this.padding = Person.MIN_PADDING +
-                           ((this.details.impact - thresholds[0]) /
-                            (thresholds[1] - thresholds[0]) *
-                            (Person.MAX_PADDING - Person.MIN_PADDING));
+        public normalizePadding([low, high]: [number, number]): void {
+            if (low !== high) {
+                this.padding = Person.MIN_PADDING +
+                               ((this.details.impact - low) /
+                                (high - low) *
+                                (Person.MAX_PADDING - Person.MIN_PADDING));
+            }
         }
 
         public offScreen(): boolean {

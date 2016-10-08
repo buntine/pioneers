@@ -36,7 +36,9 @@ namespace Impact {
 
             // Set padding now that we know the min/max impacts. Smaller people
             // should be packed closer together.
-            this.people.forEach((p) => p.normalizePadding(thresholds));
+            if (thresholds[0] !== thresholds[1]) {
+                this.people.forEach((p) => p.normalizePadding(thresholds));
+            }
 
             return this.built();
         }
