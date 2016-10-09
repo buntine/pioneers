@@ -13,6 +13,7 @@ declare var $: any;
 $(() => {
     let svg = Snap("#datacanvas");
     let state: Structure.AppState = stateFromPath();
+    let firstSearch = true;
     let tabs: {[K: string]: Structure.Tab} = {
         "impact": new Impact.Impact(svg),
         "timeline": new Timeline.Timeline(svg),
@@ -232,7 +233,8 @@ $(() => {
                         svg.clear();
                     }
 
-                    t.execute(true);
+                    t.execute(firstSearch);
+                    firstSearch = false;
                 });
             } else {
                 t.unfocus();
