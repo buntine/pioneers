@@ -120,6 +120,10 @@ namespace Impact {
             }
         }
 
+        public closestToCenter(): Person {
+            return this[0];
+        }
+
         private findClosestTo(person: Person): Person {
             let closest = this[0],
                 point = person.point;
@@ -135,7 +139,7 @@ namespace Impact {
 
             return closest;
         }
-
+ 
         private delta(): number {
             return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
         }

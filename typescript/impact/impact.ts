@@ -63,7 +63,11 @@ namespace Impact {
             this.setResolution("High");
             this.people.pack(() => {
                 if (overlay) {
-                    console.log("Overlay for impact");
+                    let toHighlight = this.people.closestToCenter();
+                    let v = toHighlight.point;
+
+                    $("#pioneer_highlight").css({top: v.y, left: v.x}).show();
+                    console.log(toHighlight);
                 }
             });
         }

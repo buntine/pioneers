@@ -550,3 +550,11 @@ div.rating div {
 #pioneer .close:hover {
   color: #e81e48;
 }
+
+#pioneer_highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  background: red;
+}

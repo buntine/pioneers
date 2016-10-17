@@ -58,7 +58,7 @@ $(() => {
                  // repainting. It should work *most* of the time...
                  setTimeout(() => {
                      setDimensions();
-                 }, 800);
+                 }, 900);
              })
              .on("resize", (_: Event) => {
                  if (!Helpers.isMobile()) {
