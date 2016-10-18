@@ -71,7 +71,9 @@ namespace Impact {
                     pioneerHighlight.css({
                         top: y,
                         left: v.x + 8,
-                    }).animate({
+                    });
+
+                    $(".highlight_overlay").animate({
                         opacity: 1,
                     }, 500);
 

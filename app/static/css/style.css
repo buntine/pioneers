@@ -551,11 +551,20 @@ div.rating div {
   color: #e81e48;
 }
 
-#pioneer_highlight_overlay {
+.highlight_overlay {
   position: absolute;
-  top: 0;
-  left: 0;
   opacity: 0;
   background: red;
   height: 40px;
+}
+
+#pioneer_highlight_overlay {
+  top: 0;
+  left: 0;
+}
+
+#search_highlight_overlay {
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
 }
