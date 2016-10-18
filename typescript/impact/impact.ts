@@ -81,7 +81,7 @@ namespace Impact {
                         $(".highlight_overlay").animate({
                             opacity: 0,
                         }, 500);
-                    }, 6400);
+                    }, 5800);
                 }
             });
         }
