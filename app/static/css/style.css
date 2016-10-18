@@ -551,10 +551,11 @@ div.rating div {
   color: #e81e48;
 }
 
-#pioneer_highlight {
+#pioneer_highlight_overlay {
   position: absolute;
   top: 0;
   left: 0;
-  display: none;
+  opacity: 0;
   background: red;
+  height: 40px;
 }

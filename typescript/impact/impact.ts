@@ -64,10 +64,22 @@ namespace Impact {
             this.people.pack(() => {
                 if (overlay) {
                     let toHighlight = this.people.closestToCenter();
-                    let v = toHighlight.point;
+                    let pioneerHighlight = $("#pioneer_highlight_overlay");
+                    let v = toHighlight.bottomRight();
+                    let y = (v.y - (pioneerHighlight.height() / 2) - toHighlight.radius) + Helpers.headerOffset();
 
-                    $("#pioneer_highlight").css({top: v.y, left: v.x}).show();
-                    console.log(toHighlight);
+                    pioneerHighlight.css({
+                        top: y,
+                        left: v.x + 8,
+                    }).animate({
+                        opacity: 1,
+                    }, 500);
+
+                    setTimeout(() => {
+                        $(".highlight_overlay").animate({
+                            opacity: 0,
+                        }, 500);
+                    }, 6400);
                 }
             });
         }

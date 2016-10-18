@@ -87,6 +87,10 @@ namespace Impact {
             return Vector.sub(this.point, new Vector(this.radius, this.radius));
         }
 
+        public bottomRight(): Vector {
+            return Vector.sub(this.point, new Vector(-this.radius, -this.radius));
+        }
+
         public highlight(): void {
             this.title.initiate()
             this.avatar.animate({strokeWidth: 6}, 690, mina.easein, () => {
