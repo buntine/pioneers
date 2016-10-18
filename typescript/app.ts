@@ -129,6 +129,7 @@ $(() => {
         if (tab.built()) {
             tab.unfocus();
             $("div#pioneer").hide();
+            $(".highlight_overlay").hide();
             svg.clear();
         }
     }

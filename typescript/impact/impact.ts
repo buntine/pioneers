@@ -75,12 +75,12 @@ namespace Impact {
 
                     $(".highlight_overlay").animate({
                         opacity: 1,
-                    }, 500);
+                    }, 700);
 
                     setTimeout(() => {
                         $(".highlight_overlay").animate({
                             opacity: 0,
-                        }, 500);
+                        }, 700);
                     }, 5800);
                 }
             });
