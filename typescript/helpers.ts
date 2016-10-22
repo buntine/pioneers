@@ -22,6 +22,23 @@ namespace Helpers {
         });
     }
 
+    export function signalHighlightOverlays(): void {
+        let overlays = $(".highlight_overlay");
+
+        overlays.animate({
+            opacity: 1,
+        }, 700);
+
+        setTimeout(() => {
+            overlays.animate({
+                opacity: 0,
+            }, {
+              duration: 700,
+              complete: () => overlays.hide()
+            });
+        }, 6000);
+    }
+
     export function centerize(container_width: number, width: number, offset: number): number {
         return (offset * container_width) + ((container_width / 2) - (width / 2));
     }

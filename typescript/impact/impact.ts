@@ -73,18 +73,7 @@ namespace Impact {
                         left: v.x + 31,
                     });
 
-                    $(".highlight_overlay").animate({
-                        opacity: 1,
-                    }, 700);
-
-                    setTimeout(() => {
-                        $(".highlight_overlay").animate({
-                            opacity: 0,
-                        }, {
-                          duration: 700,
-                          complete: () => $(".highlight_overlay").hide()
-                        });
-                    }, 6000);
+                    Helpers.signalHighlightOverlays();
                 }
             });
         }

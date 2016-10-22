@@ -55,12 +55,12 @@ namespace Timeline {
 
             this.setResolution("High");
             this.drawScale();
-            this.forAchievements((a, p) => a.drawHalo(this.columnSize)); // Halos must be all drawm before cores to prevent layering issues.
+            this.forAchievements((a, p) => a.drawHalo(this.columnSize)); // Halos must be all drawn before cores to prevent layering issues.
             this.forAchievements((a, p) => a.drawCore(this.columnSize, p));
 
             this.position(performance.now(), this.id, () => {
                 if (overlay) {
-                    console.log("Overlay for timeline");
+                    Helpers.signalHighlightOverlays();
                 }
             });
         }

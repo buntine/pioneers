@@ -610,8 +610,8 @@ div.rating div {
 }
 
 #pioneer_highlight_overlay {
-  top: 0;
-  left: 0;
+  top: -500px;
+  left: -500px;
 }
 
 #search_highlight_overlay {
