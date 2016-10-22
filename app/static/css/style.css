@@ -552,10 +552,61 @@ div.rating div {
 }
 
 .highlight_overlay {
+  color: #f1f1f1;
+  max-width: 300px;
+  font-size: 16px;
+  padding: 40px 10px;
   position: absolute;
   opacity: 0;
-  background: red;
-  height: 40px;
+  background: #e81e48;
+  border: 2px solid #efefef;
+}
+.highlight_overlay:after, .highlight_overlay:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.highlight_overlay_left:after, .highlight_overlay_left:before {
+  right: 100%;
+  top: 50%;
+}
+.highlight_overlay_top:after, .highlight_overlay_top:before {
+  bottom: 100%;
+  left: 50%;
+}
+
+.highlight_overlay:after {
+  border-color: rgba(232, 30, 72, 0);
+  border-width: 25px;
+}
+
+.highlight_overlay_left:after {
+  border-right-color: #e81e48;
+  margin-top: -25px;
+}
+
+.highlight_overlay_top:after {
+  border-bottom-color: #e81e48;
+  margin-left: -25px;
+}
+
+.highlight_overlay:before {
+  border-color: rgba(239, 239, 239, 0);
+  border-width: 28px;
+}
+
+.highlight_overlay_left:before {
+  border-right-color: #efefef;
+  margin-top: -28px;
+}
+
+.highlight_overlay_top:before {
+  border-bottom-color: #efefef;
+  margin-left: -28px;
 }
 
 #pioneer_highlight_overlay {
