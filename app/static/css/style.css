@@ -615,7 +615,7 @@ div.rating div {
 }
 
 #search_highlight_overlay {
-  top: 70px;
+  top: 95px;
   left: 50%;
   transform: translateX(-50%);
 }

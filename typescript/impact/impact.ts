@@ -70,7 +70,7 @@ namespace Impact {
 
                     pioneerHighlight.css({
                         top: y,
-                        left: v.x + 8,
+                        left: v.x + 31,
                     });
 
                     $(".highlight_overlay").animate({
@@ -81,7 +81,7 @@ namespace Impact {
                         $(".highlight_overlay").animate({
                             opacity: 0,
                         }, 700);
-                    }, 5800);
+                    }, 6000);
                 }
             });
         }
