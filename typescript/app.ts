@@ -225,18 +225,16 @@ $(() => {
                 $("#loading").show();
 
                 t.preload(() => {
-                    let isMobile = Helpers.isMobile();
-
                     $("#loading").hide();
 
                     // Chrome on mobile does not clear out the SVG correctly and also seems to change zoom level
                     // depending on what user is doing so I am forced to clear out the SVG one more time before
                     // I redraw it.
-                    if (isMobile) {
+                    if (Helpers.isMobile()) {
                         svg.clear();
                     }
 
-                    t.execute(firstSearch && !isMobile);
+                    t.execute(firstSearch);
                     firstSearch = false;
                 });
             } else {
