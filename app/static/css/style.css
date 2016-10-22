@@ -559,7 +559,7 @@ div.rating div {
   position: absolute;
   opacity: 0;
   background: #e81e48;
-  border: 2px solid #efefef;
+  border: 1px solid #efefef;
 }
 .highlight_overlay:after, .highlight_overlay:before {
   border: solid transparent;
