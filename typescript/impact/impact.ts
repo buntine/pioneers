@@ -80,7 +80,10 @@ namespace Impact {
                     setTimeout(() => {
                         $(".highlight_overlay").animate({
                             opacity: 0,
-                        }, 700);
+                        }, {
+                          duration: 700,
+                          complete: () => $(".highlight_overlay").hide()
+                        });
                     }, 6000);
                 }
             });
