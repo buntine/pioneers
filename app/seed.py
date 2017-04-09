@@ -98,7 +98,7 @@ def achievements(rows):
 def awards(rows):
     print "Removed: %d Awards." % Award.select().delete()
 
-    # Just hard-code tags and impact for now (in future some awards may be worth others).
+    # Just hard-code tags and impact for now (in future some awards may be worth more than others).
     impact = Impact.get(value = 1)
 
     for row in rows:
@@ -108,6 +108,9 @@ def awards(rows):
         topics = map(lambda t: fetch_tag(t, "Topic"), ["All"] + row["Topics"].split(","))
 
         if person:
+            # Add tag for persons name.
+            tags.append(fetch_tag(person.name.encode("utf-8"), "People"))
+
             Achievement(award = award, person = person, impact = impact, year = row["Date"], description = row["Description"],
                         source = row["Source"], tags = (topics + tags))
 
