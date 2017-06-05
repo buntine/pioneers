@@ -26,6 +26,7 @@ In order to run the app locally, it should just be a matter of:
 * Install pip if you don't already have it: `$ sudo apt-get install python-pip` (or equivalent for your O/S)
 * Install Flask: `$ pip install flask`
 * Install Pony ORM: `$ pip install pony`
+* Install GeoPy: `$ pip install geopy`
 * Set development flag in shell or ~/.bashrc: `$ export PIONEERSDEVELOPMENT=1`
 * Seed database: `$ python app/seed.py`
 * Build TypeScript and run server: `$ ./build.sh`
