@@ -1,11 +1,12 @@
 /// <reference path='../structure/resolution.ts'/>
 
 namespace Impact {
-    export class People extends Array<Person> {
+    export class People {
         private totalImpact: number;
         private center: Vector;
         public alive: boolean;
         public resolution: Structure.Resolution;
+        public people: Array<Person>;
 
         private static MIN_REFINEMENT = 50;
         private static MAX_DELTA = 0.7;
@@ -16,8 +17,7 @@ namespace Impact {
         private static MAX_FRAME_DIFF = 75; // Miliseconds.
 
         constructor() {
-            super();
-
+            this.people = [];
             this.resolution = "High";
             this.totalImpact = 0;
             this.alive = true;
@@ -29,7 +29,7 @@ namespace Impact {
 
         public push(p: Person): number {
             this.totalImpact += p.details.impact;
-            return super.push(p);
+            return this.people.push(p);
         }
 
         public pack(callback: () => void): void {
@@ -38,7 +38,7 @@ namespace Impact {
 
             this.alive = true;
 
-            for (let p of this) {
+            for (let p of this.people) {
                 p.draw(unit);
             }
 
@@ -48,7 +48,7 @@ namespace Impact {
         public reset(): void {
             this.alive = false;
 
-            for (let p of this) {
+            for (let p of this.people) {
                 p.reset();
             }
         }
@@ -56,36 +56,36 @@ namespace Impact {
         public clear(): void {
             this.alive = false;
             this.totalImpact = 0;
-            this.length = 0;
+            this.people.length = 0;
         }
 
         private position(ts: number, callback: () => void, iteration = 1): void {
             if (!this.alive) { return; }
 
             let redraw: boolean;
-            let iterations = Math.max(People.MIN_REFINEMENT, this.length * People.REFINEMENT_DELTA);
+            let iterations = Math.max(People.MIN_REFINEMENT, this.people.length * People.REFINEMENT_DELTA);
 
             if (this.resolution == "High") {
-                redraw = iteration % Math.ceil(this.length / People.REDRAW_THRESHOLD) == 0;
+                redraw = iteration % Math.ceil(this.people.length / People.REDRAW_THRESHOLD) == 0;
             } else {
                 redraw = iteration == iterations;
             }
 
             // Sort from closest->furthest to center point.
-            this.sort((a: Person, b: Person) => {
+            this.people.sort((a: Person, b: Person) => {
                 let c = this.center;
                 return a.point.distanceFrom(c) - b.point.distanceFrom(c);
             });
 
             // Detract other particles.
-            for (let i=0;i<this.length;i++) {
-                for (let n=i+1;n<this.length;n++) {
-                    this[i].detract(this[n]);
+            for (let i=0;i<this.people.length;i++) {
+                for (let n=i+1;n<this.people.length;n++) {
+                    this.people[i].detract(this.people[n]);
                 }
             }
 
             // Attract to center point.
-            for (let p of this) {
+            for (let p of this.people) {
                 p.attract(this.center, People.DAMPING_FACTOR / iteration);
 
                 if (redraw) {
@@ -105,7 +105,7 @@ namespace Impact {
                 });
             // Reposition people who've been pushed too far off-screen.
             } else {
-                let pToMove = this.filter((p) => p.offScreen());
+                let pToMove = this.people.filter((p) => p.offScreen());
                 let offset = 0;
 
                 for (let p of pToMove) {
@@ -121,14 +121,14 @@ namespace Impact {
         }
 
         public closestToCenter(): Person {
-            return this[0];
+            return this.people[0];
         }
 
         private findClosestTo(person: Person): Person {
-            let closest = this[0],
+            let closest = this.people[0],
                 point = person.point;
 
-            for (let p of this) {
+            for (let p of this.people) {
                // We only want to find the closest person that is collidable on the Y axis.
                if (person.collidingOn(p, Axis.Y) &&
                    person.details.id != p.details.id &&
@@ -141,7 +141,7 @@ namespace Impact {
         }
  
         private delta(): number {
-            return (this.length == 1) ? People.MAX_DELTA : 1 + ((this.length - 1) * People.SIZING_DELTA);
+            return (this.people.length == 1) ? People.MAX_DELTA : 1 + ((this.people.length - 1) * People.SIZING_DELTA);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Impact {
             this.people = new People();
         }
 
-        public build(set: Array<Structure.Person>) : boolean {
+        public build(set: Array<Structure.Person>): boolean {
             let thresholds: [number, number] = [999, 0],
                 canvas = Vector.sub(Helpers.canvasDimensions(this.svg),
                                     new Vector(0, 20));
@@ -37,7 +37,7 @@ namespace Impact {
             // Set padding now that we know the min/max impacts. Smaller people
             // should be packed closer together.
             if (thresholds[0] !== thresholds[1]) {
-                this.people.forEach((p) => p.normalizePadding(thresholds));
+                this.people.people.forEach((p) => p.normalizePadding(thresholds));
             }
 
             return this.built();
@@ -46,7 +46,7 @@ namespace Impact {
         public preload(callback: () => void, iteration = 1): void {
             // Wait up to 6 seconds for images to load.
             if (iteration < 60) {
-                for (let p of this.people) {
+                for (let p of this.people.people) {
                     if (!p.preloaded()) {
                         setTimeout(() => this.preload(callback, iteration + 1), Impact.PRELOAD_INTERVAL);
                         return;
@@ -90,7 +90,7 @@ namespace Impact {
         }
 
         public built(): boolean {
-            return this.people.length > 0;
+            return this.people.people.length > 0;
         }
 
         public setResolution(r: Structure.Resolution): void {
